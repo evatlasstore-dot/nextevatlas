@@ -66,7 +66,7 @@ npx tsc --noEmit --incremental false
 Pour enregistrer et envoyer vos modifications sur le dépôt GitHub (`https://github.com/evatlasstore-dot/nextevatlas.git`) :
 
 ```bash
-# 1. Vérifier le statut des fichiers modifiés
+# 1. Vérifier le statut des fichiers modifiés rgergre gergergsg
 git status
 
 # 2. Ajouter les modifications
