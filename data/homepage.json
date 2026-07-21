@@ -1,0 +1,52 @@
+{
+  "brandFeatures": [
+    {
+      "icon": "bolt",
+      "title": "Puissance jusqu’à 22 kW",
+      "description": "Une recharge AC adaptée aux usages résidentiels et professionnels."
+    },
+    {
+      "icon": "signal",
+      "title": "Wi-Fi, Bluetooth, Ethernet et 4G en option",
+      "description": "Une connectivité complète pour intégrer la borne à votre quotidien."
+    },
+    {
+      "icon": "phone",
+      "title": "Programmation et suivi via application",
+      "description": "Pilotez les sessions et consultez l’état de recharge simplement."
+    },
+    {
+      "icon": "shield",
+      "title": "Installation sécurisée et mise en service",
+      "description": "Un accompagnement professionnel, de l’étude à la configuration."
+    }
+  ],
+  "productBenefits": [
+    "Jusqu’à 22 kW",
+    "Connectivité complète",
+    "Application de pilotage",
+    "Installation professionnelle"
+  ],
+  "faq": [
+    {
+      "question": "Quelle puissance choisir ?",
+      "answer": "La solution peut atteindre jusqu’à 22 kW ; le choix dépend de votre installation et de vos usages."
+    },
+    {
+      "question": "Mon véhicule est-il compatible ?",
+      "answer": "EVAtlas vous accompagne pour vérifier la compatibilité de votre véhicule et de votre prise de recharge."
+    },
+    {
+      "question": "Comment se déroule l’installation ?",
+      "answer": "Un professionnel étudie le site, installe la borne et effectue sa mise en service."
+    },
+    {
+      "question": "Quelle garantie est proposée ?",
+      "answer": "Les conditions de garantie locale sont précisées avec votre solution et son installation."
+    },
+    {
+      "question": "Puis-je utiliser une application ?",
+      "answer": "La borne permet la programmation et le suivi via application connectée."
+    }
+  ]
+}

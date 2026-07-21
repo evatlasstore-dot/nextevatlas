@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1421 215" role="img" aria-labelledby="title">
+  <title id="title">EVAtlas</title>
+  <defs>
+    <!-- The mask derives transparency from the supplied logo itself: white becomes transparent. -->
+    <filter id="invert-luminance" color-interpolation-filters="sRGB">
+      <feColorMatrix type="matrix" values="-1 0 0 0 1  0 -1 0 0 1  0 0 -1 0 1  0 0 0 1 0"/>
+    </filter>
+    <mask id="logo-alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="1421" height="215">
+      <image href="/images/evatlas-logo-source.png" width="1421" height="215" filter="url(#invert-luminance)"/>
+    </mask>
+  </defs>
+  <image href="/images/evatlas-logo-source.png" width="1421" height="215" mask="url(#logo-alpha)"/>
+</svg>

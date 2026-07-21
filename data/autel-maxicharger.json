@@ -1,0 +1,42 @@
+{
+  "name": "Autel MaxiCharger AC Wallbox",
+  "shortName": "Autel MaxiCharger",
+  "power": "Jusqu’à 22 kW",
+  "dimensions": "336 × 187 × 85 mm",
+  "weight": "3,9 kg",
+  "cable": "5 m ou 7,5 m",
+  "installation": "Murale ou sur pied",
+  "technicalGroups": [
+    {
+      "title": "Recharge",
+      "items": [["Puissance", "Jusqu’à 22 kW"], ["Alimentation", "400 V triphasé"], ["Intensité", "32 A"], ["Connecteur", "Type 2, Mode 3"]]
+    },
+    {
+      "title": "Connectivité",
+      "items": [["Réseaux", "Wi‑Fi, Bluetooth, Ethernet"], ["Option", "4G en option"], ["Accès", "RFID"], ["Application", "Autel Charge App"]]
+    },
+    {
+      "title": "Protection",
+      "items": [["Électrique", "Surtensions, sous-tensions et surintensités"], ["Indice", "IP54"], ["Impacts", "IK08"], ["Température", "-40 °C à +55 °C"]]
+    },
+    {
+      "title": "Format",
+      "items": [["Installation", "Murale ou sur pied"], ["Garantie", "24 mois"], ["Dimensions", "336 × 187 × 85 mm"], ["Poids", "3,9 kg"], ["Câble", "5 m ou 7,5 m"]]
+    }
+  ],
+  "sequence": [
+    { "step": "01", "title": "Vue extérieure", "copy": "336 × 187 × 85 mm · 3,9 kg · pose murale ou sur pied · câble de 5 m ou 7,5 m." },
+    { "step": "02", "title": "Connectivité", "copy": "Wi‑Fi, Bluetooth, Ethernet, 4G en option, RFID et Autel Charge App." },
+    { "step": "03", "title": "Puissance", "copy": "Jusqu’à 22 kW · 3 phases · 32 A · 400 V · Type 2 · Mode 3." },
+    { "step": "04", "title": "Sécurité", "copy": "Protections électriques, IP54, IK08 et fonctionnement de -40 °C à +55 °C." },
+    { "step": "05", "title": "Écosystème intelligent", "copy": "Programmation, historique, notifications, gestion de la puissance et des accès." }
+  ],
+  "appFeatures": ["Démarrer et arrêter la recharge", "Programmer les horaires", "Suivre la consommation", "Consulter l’historique", "Gérer la puissance", "Gérer les accès", "Recevoir les notifications"],
+  "faq": [
+    { "question": "Quelle puissance peut délivrer la MaxiCharger ?", "answer": "La borne peut atteindre jusqu’à 22 kW. La puissance réellement disponible dépend du véhicule et de l’installation électrique." },
+    { "question": "Mon véhicule est-il compatible ?", "answer": "La MaxiCharger utilise un connecteur Type 2, Mode 3. EVAtlas vérifie la compatibilité avec votre véhicule avant l’installation." },
+    { "question": "Comment se déroule l’installation ?", "answer": "EVAtlas analyse le besoin, vérifie le site, installe la borne puis réalise la configuration et la mise en service." },
+    { "question": "Quelle garantie est proposée ?", "answer": "La garantie indiquée pour ce produit est de 24 mois. Les conditions sont précisées avec votre solution d’installation." },
+    { "question": "Puis-je utiliser l’Autel Charge App ?", "answer": "Oui. L’application permet notamment de programmer les sessions, suivre la consommation et gérer les accès." }
+  ]
+}
