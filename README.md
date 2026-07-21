@@ -61,4 +61,22 @@ npm run build
 npx tsc --noEmit --incremental false
 ```
 
+## Publication Git (Terminal)
+
+Pour enregistrer et envoyer vos modifications sur le dépôt GitHub (`https://github.com/evatlasstore-dot/nextevatlas.git`) :
+
+```bash
+# 1. Vérifier le statut des fichiers modifiés
+git status
+
+# 2. Ajouter les modifications
+git add .
+
+# 3. Créer un commit avec un message explicatif
+git commit -m "Description de vos modifications"
+
+# 4. Envoyer les modifications vers GitHub
+git push origin main
+```
+
 Avant une mise en ligne publique, compléter les mentions relatives à l’identité juridique et à l’hébergeur, confirmer les coordonnées de contact, puis remplacer les avis de démonstration par des témoignages réels et autorisés.
