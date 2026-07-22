@@ -114,7 +114,6 @@
 }
 
 .atlasStageMeta i,
-.atlasSignal b,
 .protocolFooter i,
 .controlReadout strong i,
 .appDevice figcaption i {
@@ -134,13 +133,15 @@
 
 .atlasObject {
   position: absolute;
-  inset: 72px 12% 72px;
+  inset: 82px 9% 128px;
   z-index: 1;
 }
 
 .atlasCharger {
   z-index: 1;
   object-fit: contain;
+  object-position: center 47%;
+  transform: scale(1.06) translateY(-1%);
   filter: drop-shadow(0 26px 24px rgba(20, 45, 28, .23));
 }
 
@@ -168,55 +169,25 @@
   border-style: dashed;
 }
 
-.atlasSignal {
-  position: absolute;
-  z-index: 2;
-  right: 2%;
-  bottom: 13%;
-  display: inline-flex;
-  align-items: center;
-  gap: 9px;
-  padding: 10px 12px;
-  color: #eff8e9;
-  border: 1px solid rgba(239, 248, 233, .22);
-  border-radius: 999px;
-  background: rgba(28, 58, 37, .88);
-  box-shadow: 0 14px 26px rgba(30, 58, 36, .17);
-  font-size: .65rem;
-  font-weight: 800;
-  letter-spacing: .09em;
-  text-transform: uppercase;
-}
-
 .atlasStageFooter {
   align-self: end;
-  align-items: flex-end;
-  padding-top: 18px;
+  display: block;
+  min-height: 116px;
+  padding: 24px 28px 23px;
   color: #edf6e6;
   background: linear-gradient(90deg, rgba(24, 53, 35, .96), rgba(28, 61, 40, .89));
 }
 
-.atlasStageFooter > span {
-  color: #b9d994;
-  font-size: .69rem;
-  font-weight: 800;
-  letter-spacing: .11em;
-}
-
 .atlasStageFooter p {
-  margin-right: auto;
+  max-width: 470px;
+  margin: 0;
   font-family: Manrope, sans-serif;
-  font-size: clamp(1.05rem, 1.55vw, 1.42rem);
+  font-size: clamp(1.02rem, 1.45vw, 1.34rem);
   font-weight: 600;
   letter-spacing: -.05em;
-  line-height: 1.17;
-}
-
-.atlasStageFooter > i {
-  width: 34px;
-  height: 34px;
-  border: 1px solid rgba(238, 247, 229, .47);
-  border-radius: 50%;
+  line-height: 1.1;
+  overflow-wrap: anywhere;
+  text-wrap: balance;
 }
 
 .contextList {
@@ -227,20 +198,43 @@
 
 .contextCard {
   position: relative;
+  isolation: isolate;
   display: grid;
   grid-template-columns: 58px minmax(0, 1fr);
   gap: 18px;
   min-height: 166px;
   padding: 27px 0;
   border-bottom: 1px solid rgba(24, 49, 38, .16);
-  transition: padding .35s cubic-bezier(.22,.61,.36,1), background .35s cubic-bezier(.22,.61,.36,1);
+  transition: border-color .25s ease;
+}
+
+.contextCard::before {
+  position: absolute;
+  z-index: 0;
+  inset: 8px -14px;
+  border-radius: 18px;
+  background: linear-gradient(90deg, rgba(222, 237, 208, .72), rgba(255, 255, 250, .8));
+  box-shadow: 0 12px 28px rgba(31, 59, 38, .05);
+  content: "";
+  opacity: 0;
+  pointer-events: none;
+  transform: scale(.985);
+  transition: opacity .25s ease, transform .32s cubic-bezier(.22,.61,.36,1);
+}
+
+.contextCard > * {
+  position: relative;
+  z-index: 1;
+  min-width: 0;
 }
 
 .contextCard:hover {
-  padding-right: 18px;
-  padding-left: 18px;
-  margin-inline: -18px;
-  background: rgba(255, 255, 250, .56);
+  border-bottom-color: rgba(49, 91, 66, .3);
+}
+
+.contextCard:hover::before {
+  opacity: 1;
+  transform: scale(1);
 }
 
 .contextIndex {
@@ -274,6 +268,13 @@
   color: #183126;
   font-size: clamp(1.55rem, 2.3vw, 2.42rem);
   letter-spacing: -.06em;
+  overflow-wrap: anywhere;
+  text-wrap: balance;
+  transition: color .25s ease;
+}
+
+.contextCard:hover h3 {
+  color: #244b32;
 }
 
 .contextCard p {
@@ -282,6 +283,7 @@
   color: #58695e;
   font-size: .84rem;
   line-height: 1.58;
+  overflow-wrap: anywhere;
 }
 
 .contextDetail {
@@ -289,6 +291,8 @@
   margin-top: 15px;
   color: #6c786f;
   font-size: .58rem;
+  line-height: 1.45;
+  overflow-wrap: anywhere;
 }
 
 .atlasLink,
@@ -998,7 +1002,6 @@
   .atlasStage { max-width: 710px; width: 100%; margin: 0 auto; }
   .contextList { grid-template-columns: 1fr 1fr; column-gap: 26px; }
   .contextCard:nth-child(3) { grid-column: 1 / -1; }
-  .contextCard:hover { padding-right: 0; padding-left: 0; margin-inline: 0; background: transparent; }
   .atlasLink { align-self: center; justify-self: end; margin-top: 0; }
   .protocolTimeline { grid-template-columns: 1fr 1fr; }
   .protocolTimeline::before { display: none; }
@@ -1019,11 +1022,9 @@
   .atlasStageMeta,
   .atlasStageFooter { padding: 18px; }
   .atlasStageMeta small { display: none; }
-  .atlasObject { inset: 63px 7% 70px; }
-  .atlasSignal { right: 4%; bottom: 13%; padding: 8px 10px; font-size: .58rem; }
-  .atlasStageFooter { gap: 12px; }
-  .atlasStageFooter p { font-size: 1.05rem; }
-  .atlasStageFooter > i { width: 27px; height: 27px; }
+  .atlasObject { inset: 63px 3.5% 116px; }
+  .atlasStageFooter { min-height: 104px; padding: 20px 18px 19px; }
+  .atlasStageFooter p { max-width: 320px; font-size: 1rem; }
   .contextList { display: block; margin-top: 8px; }
   .contextCard { grid-template-columns: 44px minmax(0, 1fr); min-height: 0; padding: 24px 0; }
   .contextIndex { gap: 18px; }
@@ -1069,9 +1070,8 @@
 @media (max-width: 430px) {
   .atlasStage { min-height: 490px; }
   .atlasStageMeta { font-size: .58rem; }
-  .atlasStageFooter p br { display: none; }
   .atlasStageFooter p { font-size: .94rem; }
-  .atlasObject { inset-right: 1%; inset-left: 1%; }
+  .atlasObject { right: 0; bottom: 110px; left: 0; }
   .protocolTimeline li { grid-template-columns: 46px minmax(0, 1fr); gap: 13px; }
   .protocolStepTop > span { width: 44px; height: 44px; font-size: .64rem; }
   .protocolTimeline h3 { font-size: 1.35rem; }
@@ -1086,6 +1086,7 @@
 
 @media (prefers-reduced-motion: reduce) {
   .contextCard,
+  .contextCard::before,
   .protocolTimeline li,
   .launchQuote,
   .launchSimulator,
@@ -1097,6 +1098,7 @@
   .launchSimulator > b,
   .faqItems summary svg { transition: none; }
   .contextCard:hover,
+  .contextCard:hover::before,
   .protocolTimeline li:hover,
   .launchQuote:hover,
   .launchSimulator:hover { transform: none; }

@@ -108,12 +108,9 @@ export function HomeFuturisticSolutions() {
                 fill
                 sizes="(max-width: 760px) 88vw, (max-width: 1100px) 50vw, 540px"
               />
-              <span className={styles.atlasSignal} aria-hidden="true"><b /> Prête</span>
             </div>
             <div className={styles.atlasStageFooter}>
-              <span>01 / 03</span>
               <p>Une même borne.<br />Un projet entièrement personnalisé.</p>
-              <i aria-hidden="true" />
             </div>
           </article>
 
