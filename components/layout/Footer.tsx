@@ -4,6 +4,7 @@ import Image from "next/image";
 import { usePathname } from "next/navigation";
 import Icon from "@/components/ui/Icon";
 import TrackedLink from "@/components/ui/TrackedLink";
+import ProductRouteLink from "@/components/ui/ProductRouteLink";
 import ProductPageFooter from "@/components/product/ProductPageFooter";
 
 const trackWhatsApp = () => {
@@ -30,7 +31,7 @@ export default function Footer() {
         <nav className="footer-standard-links" aria-label="Navigation du pied de page">
           <p>Navigation</p>
           <TrackedLink href="/">Accueil</TrackedLink>
-          <TrackedLink href="/nos-produits">Nos produits</TrackedLink>
+          <ProductRouteLink>Nos produits</ProductRouteLink>
           <TrackedLink href="/simulateur">Simulateur</TrackedLink>
           <TrackedLink href="/a-propos">À propos</TrackedLink>
           <TrackedLink href="/faq">FAQ</TrackedLink>
