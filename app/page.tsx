@@ -4,11 +4,11 @@ import Header from "@/components/layout/Header";
 import BrandProductSection from "@/components/home/BrandProductSection";
 import HomeHero from "@/components/home/HomeHero";
 import {
-  HomeConnectedSection,
-  HomeConversionSection,
-  HomeProcessSection,
-  HomeSolutionsSection,
-} from "@/components/home/HomePageSections";
+  HomeFuturisticConnected,
+  HomeFuturisticConversion,
+  HomeFuturisticProcess,
+  HomeFuturisticSolutions,
+} from "@/components/home/HomeFuturisticSections";
 import HomeReviewsCarousel from "@/components/home/HomeReviewsCarousel";
 import { organizationSchema, faqSchema, localBusinessSchema, websiteSchema } from "@/data/schema";
 
@@ -28,10 +28,10 @@ export default function HomePage() {
       <main id="main-content">
         <HomeHero />
         <BrandProductSection />
-        <HomeSolutionsSection />
-        <HomeProcessSection />
-        <HomeConnectedSection />
-        <HomeConversionSection />
+        <HomeFuturisticSolutions />
+        <HomeFuturisticProcess />
+        <HomeFuturisticConnected />
+        <HomeFuturisticConversion />
         <HomeReviewsCarousel />
       </main>
       <Footer />
