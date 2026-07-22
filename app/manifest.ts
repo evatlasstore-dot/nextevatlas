@@ -13,7 +13,8 @@ export default function manifest(): MetadataRoute.Manifest {
     theme_color: "#173326",
     lang: "fr-MA",
     icons: [
-      { src: "/images/evatlas-logo.png", sizes: "1421x215", type: "image/png", purpose: "any" },
+      { src: "/images/evatlas-icon-192.png", sizes: "192x192", type: "image/png", purpose: "any" },
+      { src: "/images/evatlas-icon-512.png", sizes: "512x512", type: "image/png", purpose: "any" },
     ],
   };
 }

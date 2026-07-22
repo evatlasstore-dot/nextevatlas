@@ -16,7 +16,11 @@ export const metadata: Metadata = {
   publisher: "EVAtlas",
   category: "Mobilité électrique",
   formatDetection: { email: false, address: false, telephone: false },
-  icons: { icon: "/images/evatlas-logo.png", apple: "/images/evatlas-logo.png" },
+  icons: {
+    icon: [{ url: "/images/evatlas-icon-512.png", sizes: "512x512", type: "image/png" }],
+    shortcut: "/images/evatlas-icon-192.png",
+    apple: [{ url: "/images/evatlas-icon-180.png", sizes: "180x180", type: "image/png" }],
+  },
   robots: { index: true, follow: true, googleBot: { index: true, follow: true, "max-image-preview": "large", "max-snippet": -1, "max-video-preview": -1 } },
 };
 
