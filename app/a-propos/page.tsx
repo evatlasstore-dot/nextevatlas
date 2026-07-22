@@ -66,9 +66,6 @@ export default function AboutPage() {
                 <TrackedLink href="/nos-produits" className={styles["about-secondary-link"]}>Voir les solutions <Icon name="arrow" size={16} /></TrackedLink>
               </div>
             </div>
-            <figure className={styles["about-hero-media"]}>
-              <img src="/images/evatlas-team.jpg" width="1232" height="822" alt="Équipe réunie dans un environnement de travail lumineux" />
-            </figure>
           </div>
         </section>
 

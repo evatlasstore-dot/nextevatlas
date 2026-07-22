@@ -65,7 +65,7 @@ const sections: LegalSection[] = [
     title: "Vos droits",
     paragraphs: [
       "Vous pouvez demander l’accès aux données vous concernant, leur rectification, leur suppression lorsque les conditions sont réunies, la limitation de certains traitements ou vous opposer à un usage particulier. Vous pouvez également retirer un consentement pour l’avenir lorsqu’un traitement repose sur celui-ci.",
-      "Pour faciliter la réponse, indiquez l’objet de votre demande et le moyen de contact utilisé lors de vos échanges avec EVAtlas. Une vérification d’identité proportionnée peut être demandée si elle est nécessaire pour protéger vos informations.",
+      "Pour faciliter la réponse, indiquez l’objet de votre demande et le moyen de contact utilisé lors de vos échanges avec EVAtlas. Une vérification d’identité proportionnée peut être demandée si elle est nécessaire pour protéger vos informations. Vous pouvez aussi vous adresser à la Commission nationale de contrôle de la protection des données à caractère personnel (CNDP) dans les conditions prévues par la réglementation applicable.",
     ],
   },
   {
@@ -85,6 +85,7 @@ export default function PrivacyPage() {
       title="Politique de confidentialité"
       introduction="Cette politique explique quelles informations peuvent être traitées lorsque vous contactez EVAtlas et comment exercer vos choix."
       sections={sections}
+      note="Avant toute mise en production commerciale, compléter l’identité du responsable de traitement, les destinataires effectivement utilisés, les durées de conservation précises et les formalités CNDP applicables au traitement réellement déployé."
     />
   );
 }

@@ -4,7 +4,8 @@ import Footer from "@/components/layout/Footer";
 import ChargingSimulator from "@/components/forms/ChargingSimulator";
 import Icon from "@/components/ui/Icon";
 import TrackedLink from "@/components/ui/TrackedLink";
-import ReviewsSection from "@/components/shared/ReviewsSection";
+import HomeReviewsCarousel from "@/components/home/HomeReviewsCarousel";
+import styles from "./SimulatorPage.module.css";
 
 export const metadata: Metadata = {
   title: "Simulateur de temps de recharge pour voiture électrique",
@@ -16,26 +17,26 @@ export const metadata: Metadata = {
     locale: "fr_MA",
     title: "Estimez votre temps de recharge avec EVAtlas",
     description: "Un calcul simple et transparent selon votre batterie et la puissance disponible.",
-    images: [{ url: "/images/product/autel-maxicharger/hero-poster.png", width: 1280, height: 720, alt: "Simulation du temps de recharge avec une Autel MaxiCharger" }],
+    images: [{ url: "/images/simulator/simulator-hero-morocco.png", width: 1672, height: 941, alt: "Véhicule électrique en recharge devant une maison contemporaine au Maroc" }],
   },
-  twitter: { card: "summary_large_image", images: ["/images/product/autel-maxicharger/hero-poster.png"] },
+  twitter: { card: "summary_large_image", images: ["/images/simulator/simulator-hero-morocco.png"] },
 };
 
 export default function SimulatorPage() {
   return (
     <>
       <Header />
-      <main id="main-content" className="sim-page">
-        <section className="sim-hero" aria-labelledby="sim-page-title">
-          <div className="sim-hero-shell">
-            <div className="sim-breadcrumb"><TrackedLink href="/">Accueil</TrackedLink><span aria-hidden="true">/</span><span>Simulateur</span></div>
-            <div className="sim-hero-layout">
-              <div className="sim-hero-copy">
-                <p className="sim-hero-eyebrow">Comprendre avant de choisir</p>
+      <main id="main-content" className={styles.page}>
+        <section className={styles.hero} aria-labelledby="sim-page-title">
+          <div className={styles.heroShell}>
+            <div className={styles.breadcrumb}><TrackedLink href="/">Accueil</TrackedLink><span aria-hidden="true">/</span><span>Simulateur</span></div>
+            <div className={styles.heroLayout}>
+              <div className={styles.heroCopy}>
+                <p className={styles.heroEyebrow}>Comprendre avant de choisir</p>
                 <h1 id="sim-page-title">Votre recharge, traduite en temps réel.</h1>
                 <p>Visualisez l’effet de la capacité, du niveau de batterie et de la puissance disponible avant de préparer votre installation.</p>
               </div>
-              <aside className="sim-hero-card" aria-label="Principes du simulateur">
+              <aside className={styles.heroCard} aria-label="Principes du simulateur">
                 <p><span>4</span>données seulement</p>
                 <ul>
                   <li><Icon name="check" size={15} /> Résultat immédiat</li>
@@ -47,7 +48,12 @@ export default function SimulatorPage() {
           </div>
         </section>
         <ChargingSimulator />
-        <ReviewsSection title="Des usages différents, une estimation lisible." ids={["kenza-casablanca", "hamza-rabat", "nabil-tanger"]} />
+        <HomeReviewsCarousel
+          id="simulator-reviews-title"
+          eyebrow="Retours d’expérience"
+          title="Des projets proches du vôtre."
+          description="Les témoignages ci-dessous sont des contenus provisoires de démonstration. Ils illustrent des usages fréquents et seront remplacés par des avis clients vérifiés."
+        />
       </main>
       <Footer />
     </>

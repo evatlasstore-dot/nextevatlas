@@ -5,6 +5,13 @@ import Icon from "@/components/ui/Icon";
 import { demoStories } from "@/data/reviews";
 import styles from "./HomePageSections.module.css";
 
+type HomeReviewsCarouselProps = {
+  eyebrow?: string;
+  title?: string;
+  description?: string;
+  id?: string;
+};
+
 function getItemsPerView() {
   if (typeof window === "undefined") return 3;
   if (window.matchMedia("(max-width: 680px)").matches) return 1;
@@ -12,7 +19,12 @@ function getItemsPerView() {
   return 3;
 }
 
-export default function HomeReviewsCarousel() {
+export default function HomeReviewsCarousel({
+  eyebrow = "Retours d’expérience",
+  title = "Des projets proches du vôtre.",
+  description = "Les témoignages ci-dessous sont des contenus provisoires de démonstration. Ils illustrent des usages fréquents et seront remplacés par des avis clients vérifiés.",
+  id = "home-reviews-title",
+}: HomeReviewsCarouselProps) {
   const [itemsPerView, setItemsPerView] = useState(3);
   const [page, setPage] = useState(0);
   const touchStart = useRef<number | null>(null);
@@ -42,14 +54,14 @@ export default function HomeReviewsCarousel() {
   const visibleEnd = Math.min(visibleStart + itemsPerView - 1, stories.length);
 
   return (
-    <section className={`${styles.reviewsSection} section`} aria-labelledby="home-reviews-title">
+    <section className={`${styles.reviewsSection} section`} aria-labelledby={id}>
       <div className="container">
         <header className={styles.reviewsHeader}>
           <div>
-            <p className="eyebrow">Retours d’expérience</p>
-            <h2 id="home-reviews-title">Des projets proches du vôtre.</h2>
+            <p className="eyebrow">{eyebrow}</p>
+            <h2 id={id}>{title}</h2>
           </div>
-          <p>Les témoignages ci-dessous sont des contenus provisoires de démonstration. Ils illustrent des usages fréquents et seront remplacés par des avis clients vérifiés.</p>
+          <p>{description}</p>
         </header>
 
         <div

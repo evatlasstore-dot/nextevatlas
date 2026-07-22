@@ -24,33 +24,40 @@ export default function LegalPage({ eyebrow, title, introduction, sections, note
       <main id="main-content" className={styles["legal-page"]}>
         <header className={styles["legal-header"]}>
           <div className={styles["legal-shell"]}>
-            <p className={styles["legal-eyebrow"]}>{eyebrow}</p>
-            <h1>{title}</h1>
-            <p>{introduction}</p>
-            <span className={styles["legal-updated"]}>Mise à jour&nbsp;: 17 juillet 2026</span>
+            <div className={styles["legal-header-copy"]}>
+              <p className={styles["legal-eyebrow"]}>{eyebrow}</p>
+              <h1>{title}</h1>
+              <p className={styles["legal-introduction"]}>{introduction}</p>
+              <div className={styles["legal-meta"]} aria-label="Informations sur ce document">
+                <span>{sections.length} rubriques</span>
+                <time className={styles["legal-updated"]} dateTime="2026-07-22">Mise à jour&nbsp;: 22 juillet 2026</time>
+              </div>
+            </div>
           </div>
         </header>
 
         <div className={styles["legal-main"]}>
           <div className={`${styles["legal-shell"]} ${styles["legal-layout"]}`}>
             <aside className={styles["legal-toc"]}>
-              <p>Dans cette page</p>
-              <nav aria-label={`Sommaire — ${title}`}>
-                {sections.map((section) => (
-                  <a href={`#${section.id}`} key={section.id}>{section.title}</a>
-                ))}
-                <a href="#contact-legal">Contact</a>
+              <p id="legal-toc-title">Dans cette page</p>
+              <nav aria-labelledby="legal-toc-title">
+                <ol>
+                  {sections.map((section) => (
+                    <li key={section.id}><a href={`#${section.id}`}>{section.title}</a></li>
+                  ))}
+                  <li><a href="#contact-legal">Contact</a></li>
+                </ol>
               </nav>
             </aside>
 
-            <div className={styles["legal-content"]}>
+            <div className={styles["legal-content"]} aria-label={`Contenu — ${title}`}>
               {sections.map((section) => (
-                <section id={section.id} className={styles["legal-section"]} key={section.id}>
-                  <h2>{section.title}</h2>
-                  {section.paragraphs.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
+                <section id={section.id} className={styles["legal-section"]} key={section.id} aria-labelledby={`${section.id}-title`}>
+                  <h2 id={`${section.id}-title`}>{section.title}</h2>
+                  {section.paragraphs.map((paragraph, index) => <p key={`${section.id}-${index}`}>{paragraph}</p>)}
                   {section.items && (
                     <ul>
-                      {section.items.map((item) => <li key={item}>{item}</li>)}
+                      {section.items.map((item, index) => <li key={`${section.id}-item-${index}`}>{item}</li>)}
                     </ul>
                   )}
                 </section>
@@ -58,8 +65,8 @@ export default function LegalPage({ eyebrow, title, introduction, sections, note
 
               {note && <p className={styles["legal-note"]}>{note}</p>}
 
-              <section id="contact-legal" className={styles["legal-contact"]}>
-                <h2>Contact</h2>
+              <section id="contact-legal" className={styles["legal-contact"]} aria-labelledby="contact-legal-title">
+                <h2 id="contact-legal-title">Contact</h2>
                 <address>
                   <span>EVAtlas</span>
                   <span>12 Rue Mustapha Manfalouti, Gauthier – RDC, Casablanca 20053</span>

@@ -20,7 +20,10 @@ type IconName =
   | "search"
   | "mail"
   | "calendar"
-  | "external";
+  | "external"
+  | "linkedin"
+  | "instagram"
+  | "facebook";
 
 export default function Icon({ name, size = 20 }: { name: IconName; size?: number }) {
   const common = { width: size, height: size, viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: 1.8, strokeLinecap: "round" as const, strokeLinejoin: "round" as const, "aria-hidden": true };
@@ -47,6 +50,9 @@ export default function Icon({ name, size = 20 }: { name: IconName; size?: numbe
     mail: <><rect x="3" y="5" width="18" height="14" rx="2" /><path d="m4 7 8 6 8-6" /></>,
     calendar: <><rect x="3" y="5" width="18" height="16" rx="2" /><path d="M7 3v4m10-4v4M3 10h18" /></>,
     external: <><path d="M14 4h6v6M20 4l-9 9" /><path d="M18 13v6a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h6" /></>,
+    linkedin: <><path d="M5 9v10" /><path d="M5 5.5v.01" /><path d="M10 19v-5.6a4 4 0 0 1 8 0V19" /><path d="M10 9v10" /></>,
+    instagram: <><rect x="3" y="3" width="18" height="18" rx="5" /><circle cx="12" cy="12" r="4" /><path d="M17.5 6.5h.01" /></>,
+    facebook: <path d="M14.5 21v-8h3l.5-3h-3.5V8.2c0-.9.3-1.7 1.8-1.7H18V3.8c-.3 0-1.2-.1-2.2-.1-2.3 0-3.8 1.4-3.8 4V10H9v3h3v8" />,
   };
   return <svg {...common}>{paths[name]}</svg>;
 }

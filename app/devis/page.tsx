@@ -4,7 +4,7 @@ import Footer from "@/components/layout/Footer";
 import QuoteForm from "@/components/forms/QuoteForm";
 import Icon from "@/components/ui/Icon";
 import TrackedLink from "@/components/ui/TrackedLink";
-import ReviewsSection from "@/components/shared/ReviewsSection";
+import HomeReviewsCarousel from "@/components/home/HomeReviewsCarousel";
 
 export const metadata: Metadata = {
   title: "Demander un devis pour une borne de recharge au Maroc",
@@ -16,9 +16,9 @@ export const metadata: Metadata = {
     locale: "fr_MA",
     title: "Préparez votre projet de recharge avec EVAtlas",
     description: "Une demande guidée pour cadrer votre borne, votre véhicule et votre installation.",
-    images: [{ url: "/images/evatlas-maxicharger-garage-poster.png", width: 1280, height: 720, alt: "Projet d’installation d’une borne de recharge EVAtlas" }],
+    images: [{ url: "/images/quote/quote-hero-morocco.png", width: 1672, height: 941, alt: "Borne de recharge et véhicule électrique dans une résidence marocaine" }],
   },
-  twitter: { card: "summary_large_image", images: ["/images/evatlas-maxicharger-garage-poster.png"] },
+  twitter: { card: "summary_large_image", images: ["/images/quote/quote-hero-morocco.png"] },
 };
 
 export default function QuotePage() {
@@ -44,7 +44,7 @@ export default function QuotePage() {
           </div>
         </section>
         <QuoteForm />
-        <ReviewsSection title="Chaque projet commence par une réalité différente." ids={["yasmine-casablanca", "salma-marrakech", "othmane-agadir"]} />
+        <HomeReviewsCarousel />
       </main>
       <Footer />
     </>
