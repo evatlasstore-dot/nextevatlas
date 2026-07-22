@@ -37,7 +37,7 @@ export default function SimulatorPage() {
                 <p>Visualisez l’effet de la capacité, du niveau de batterie et de la puissance disponible avant de préparer votre installation.</p>
               </div>
               <aside className={styles.heroCard} aria-label="Principes du simulateur">
-                <p><span>4</span>données seulement</p>
+                <p><span>6</span>données utiles</p>
                 <ul>
                   <li><Icon name="check" size={15} /> Résultat immédiat</li>
                   <li><Icon name="check" size={15} /> Hypothèse expliquée</li>

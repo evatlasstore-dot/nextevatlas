@@ -94,6 +94,11 @@ export default function QuoteForm({ initialProduct, initialSimulation = null }: 
     }
 
     if (parameters.get("source") !== "simulateur") return;
+    const vehicleLabel = parameters.get("vehicleLabel")?.trim();
+    if (vehicleLabel && vehicleLabel.length <= 120) {
+      setFields((current) => ({ ...current, vehicle: vehicleLabel }));
+    }
+
     const rawValues = ["capacity", "start", "target", "power"].map((key) => parameters.get(key));
     if (rawValues.every((value) => value !== null && value.trim() !== "" && Number.isFinite(Number(value)))) {
       const [capacity, start, target, power] = rawValues.map(Number);
