@@ -54,36 +54,10 @@
   border: 1px solid rgba(23, 52, 36, .12);
   border-radius: 38px;
   background:
-    linear-gradient(rgba(41, 74, 50, .06) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(41, 74, 50, .06) 1px, transparent 1px),
-    radial-gradient(circle at 50% 48%, rgba(237, 247, 220, .98), rgba(202, 216, 183, .9) 43%, #b3c395 100%);
-  background-size: 48px 48px, 48px 48px, auto;
+    radial-gradient(circle at 46% 42%, rgba(241, 248, 226, .98) 0, rgba(216, 229, 198, .94) 42%, rgba(181, 199, 152, .98) 100%),
+    linear-gradient(145deg, #c4d3ab, #afc18f);
   box-shadow: 0 32px 82px rgba(33, 61, 42, .12);
   isolation: isolate;
-}
-
-.atlasStage::before,
-.atlasStage::after {
-  position: absolute;
-  z-index: -1;
-  border: 1px solid rgba(40, 77, 52, .2);
-  border-radius: 50%;
-  content: "";
-}
-
-.atlasStage::before {
-  width: 74%;
-  aspect-ratio: 1;
-  top: 13%;
-  left: 13%;
-}
-
-.atlasStage::after {
-  width: 51%;
-  aspect-ratio: 1;
-  top: 24.5%;
-  left: 24.5%;
-  border-style: dashed;
 }
 
 .atlasStageMeta,
@@ -155,17 +129,21 @@
 }
 
 .atlasOrbitalOne {
-  width: 88%;
+  width: auto;
+  height: 91%;
   aspect-ratio: 1;
-  top: 5%;
-  left: 6%;
+  top: 2%;
+  left: 46%;
+  transform: translateX(-50%);
 }
 
 .atlasOrbitalTwo {
-  width: 64%;
+  width: auto;
+  height: 66%;
   aspect-ratio: 1;
-  top: 18%;
-  left: 18%;
+  top: 15%;
+  left: 46%;
+  transform: translateX(-50%);
   border-style: dashed;
 }
 
@@ -1018,7 +996,7 @@
   .sectionHeader > p,
   .protocolHeader > div:last-child > p { font-size: .91rem; }
   .atlasWorkspace { margin-top: 42px; }
-  .atlasStage { min-height: 535px; border-radius: 28px; background-size: 38px 38px, 38px 38px, auto; }
+  .atlasStage { min-height: 535px; border-radius: 28px; }
   .atlasStageMeta,
   .atlasStageFooter { padding: 18px; }
   .atlasStageMeta small { display: none; }
