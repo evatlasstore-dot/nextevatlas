@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import Icon from "@/components/ui/Icon";
 import TrackedLink from "@/components/ui/TrackedLink";
+import ProductPageHeader from "@/components/product/ProductPageHeader";
 
 const navigation = [
   { label: "Accueil", href: "/" },
@@ -61,6 +62,8 @@ export default function Header({ productMode = false }: { productMode?: boolean 
     document.addEventListener("keydown", onKeyDown);
     return () => document.removeEventListener("keydown", onKeyDown);
   }, [open]);
+
+  if (productMode) return <ProductPageHeader />;
 
   return (
     <header className={`site-header ${productMode ? "product-header" : ""} ${scrolled ? "is-scrolled" : ""}`}>

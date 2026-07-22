@@ -1,15 +1,15 @@
 import type { Metadata } from "next";
-import ProductPageHeader from "@/components/product/ProductPageHeader";
-import ProductPageFooter from "@/components/product/ProductPageFooter";
+import Header from "@/components/layout/Header";
+import Footer from "@/components/layout/Footer";
 import ProductHero from "@/components/product/ProductHero";
 import ProductExplodedView from "@/components/product/ProductExplodedView";
 import AutelChargeAppSection from "@/components/product/AutelChargeAppSection";
 import InstallationCompatibility from "@/components/product/InstallationCompatibility";
 import TechnicalSpecifications from "@/components/product/TechnicalSpecifications";
-import ProductTrustFaq from "@/components/product/ProductTrustFaq";
 import ProductFinalCTA from "@/components/product/ProductFinalCTA";
 import ProductNavigationSection from "@/components/product/ProductNavigationSection";
-import { autelBreadcrumbSchema, autelFaqSchema, autelProductSchema } from "@/data/autel-schema";
+import HomeReviewsCarousel from "@/components/home/HomeReviewsCarousel";
+import { autelBreadcrumbSchema, autelProductSchema } from "@/data/autel-schema";
 
 export const metadata: Metadata = {
   title: "Autel MaxiCharger 22 kW Maroc | EVAtlas",
@@ -21,5 +21,24 @@ export const metadata: Metadata = {
 };
 
 export default function AutelMaxiChargerPage() {
-  return <><ProductPageHeader /><main className="autel-product-page"><ProductHero /><ProductExplodedView /><TechnicalSpecifications /><AutelChargeAppSection /><InstallationCompatibility /><ProductTrustFaq /><ProductFinalCTA /><ProductNavigationSection /></main><ProductPageFooter /><script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify([autelProductSchema, autelFaqSchema, autelBreadcrumbSchema]) }} /></>;
+  return (
+    <>
+      <Header productMode />
+      <main className="autel-product-page">
+        <ProductHero />
+        <ProductExplodedView />
+        <TechnicalSpecifications />
+        <AutelChargeAppSection />
+        <InstallationCompatibility />
+        <ProductFinalCTA />
+        <ProductNavigationSection />
+        <HomeReviewsCarousel />
+      </main>
+      <Footer />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify([autelProductSchema, autelBreadcrumbSchema]) }}
+      />
+    </>
+  );
 }

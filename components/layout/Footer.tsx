@@ -1,15 +1,20 @@
 "use client";
 
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 import Icon from "@/components/ui/Icon";
 import TrackedLink from "@/components/ui/TrackedLink";
+import ProductPageFooter from "@/components/product/ProductPageFooter";
 
 const trackWhatsApp = () => {
   if (typeof window !== "undefined") window.dispatchEvent(new CustomEvent("evatlas:tracking", { detail: { event: "click_whatsapp" } }));
 };
 
 export default function Footer() {
+  const pathname = usePathname();
   const year = new Date().getFullYear();
+
+  if (pathname === "/nos-produits/autel-maxicharger") return <ProductPageFooter />;
 
   return (
     <footer className="site-footer footer-standard">
