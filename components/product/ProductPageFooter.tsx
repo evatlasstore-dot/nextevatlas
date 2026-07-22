@@ -2,6 +2,7 @@
 
 import Icon from "@/components/ui/Icon";
 import TrackedLink from "@/components/ui/TrackedLink";
+import ProductRouteLink from "@/components/ui/ProductRouteLink";
 
 const trackWhatsApp = () => {
   if (typeof window !== "undefined") window.dispatchEvent(new CustomEvent("evatlas:tracking", { detail: { event: "click_whatsapp" } }));
@@ -24,7 +25,7 @@ export default function ProductPageFooter() {
         <nav className="footer-standard-links" aria-label="Navigation du pied de page">
           <p>Navigation</p>
           <TrackedLink href="/">Accueil</TrackedLink>
-          <TrackedLink href="/nos-produits/autel-maxicharger">Nos solutions</TrackedLink>
+          <ProductRouteLink>Nos solutions</ProductRouteLink>
           <TrackedLink href="/simulateur">Simulateur</TrackedLink>
           <TrackedLink href="/blog" eventName="click_blog">Guides</TrackedLink>
         </nav>

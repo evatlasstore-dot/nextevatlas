@@ -3,6 +3,7 @@
 import { useEffect, useMemo, useState } from "react";
 import Icon from "@/components/ui/Icon";
 import TrackedLink from "@/components/ui/TrackedLink";
+import ProductRouteLink from "@/components/ui/ProductRouteLink";
 
 type ChargingSimulatorProps = {
   product?: string;
@@ -150,7 +151,7 @@ export default function ChargingSimulator({ product = "autel-maxicharger" }: Cha
             ) : (
               <button className="sim-result-cta sim-result-cta-disabled" type="button" disabled>Corriger les valeurs pour continuer</button>
             )}
-            <TrackedLink className="sim-product-link" href="/nos-produits/autel-maxicharger">Découvrir l’Autel MaxiCharger <Icon name="arrow" size={15} /></TrackedLink>
+            <ProductRouteLink className="sim-product-link">Découvrir l’Autel MaxiCharger <Icon name="arrow" size={15} /></ProductRouteLink>
           </aside>
         </div>
       </div>

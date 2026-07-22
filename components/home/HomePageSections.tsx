@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Icon from "@/components/ui/Icon";
 import TrackedLink from "@/components/ui/TrackedLink";
+import ProductRouteLink from "@/components/ui/ProductRouteLink";
 import HomeFaqSection from "@/components/home/HomeFaqSection";
 import styles from "./HomePageSections.module.css";
 
@@ -121,9 +122,9 @@ export function HomeConnectedSection() {
             <li><Icon name="signal" size={19} /><span><b>Suivre la recharge</b><small>Consultez l’état et l’historique depuis votre téléphone.</small></span></li>
             <li><Icon name="shield" size={19} /><span><b>Gérer les accès</b><small>Gardez la maîtrise de l’utilisation de votre borne.</small></span></li>
           </ul>
-          <TrackedLink href="/nos-produits/autel-maxicharger" className={styles.inlineLink} eventName="click_product_feature">
+          <ProductRouteLink className={styles.inlineLink} eventName="click_product_feature">
             Voir la borne en détail <Icon name="arrow" size={17} />
-          </TrackedLink>
+          </ProductRouteLink>
         </div>
 
         <div className={styles.appMedia} aria-label="Aperçu de l’application Autel Charge">

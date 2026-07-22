@@ -1,6 +1,6 @@
 import homepage from "@/data/homepage.json";
 import Icon from "@/components/ui/Icon";
-import TrackedLink from "@/components/ui/TrackedLink";
+import ProductRouteLink from "@/components/ui/ProductRouteLink";
 
 export default function BrandProductSection() {
   return (
@@ -9,7 +9,7 @@ export default function BrandProductSection() {
           <p className="eyebrow">EVAtlas et la borne</p>
           <h2 id="brand-title">Une solution pensée au-delà de la borne</h2>
           <p>EVAtlas accompagne les particuliers et les professionnels au Maroc dans le choix, l’installation, la configuration et le suivi de leur solution de recharge.</p>
-          <TrackedLink href="/nos-produits/autel-maxicharger" className="text-link" eventName="click_product_feature">Explorer la MaxiCharger <Icon name="arrow" size={16} /></TrackedLink>
+          <ProductRouteLink className="text-link" eventName="click_product_feature">Explorer la MaxiCharger <Icon name="arrow" size={16} /></ProductRouteLink>
       </div>
       <div className="container product-experience reveal">
         <div className="product-stage" aria-label="Aperçu vidéo de la recharge EVAtlas">

@@ -3,6 +3,7 @@ import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import Icon from "@/components/ui/Icon";
 import TrackedLink from "@/components/ui/TrackedLink";
+import ProductRouteLink from "@/components/ui/ProductRouteLink";
 import styles from "@/components/content/ContentPages.module.css";
 import ReviewsSection from "@/components/shared/ReviewsSection";
 
@@ -146,9 +147,9 @@ export default function ProductsPage() {
                   <li>Garantie indiquée 24 mois</li>
                 </ul>
                 <div className={styles["catalog-product-actions"]}>
-                  <TrackedLink href="/nos-produits/autel-maxicharger" className="button" eventName="click_catalog_product">
+                  <ProductRouteLink className="button" eventName="click_catalog_product">
                     Découvrir la MaxiCharger <Icon name="arrow" size={17} />
-                  </TrackedLink>
+                  </ProductRouteLink>
                   <TrackedLink href="/devis?product=autel-maxicharger" className={styles["catalog-secondary-link"]} eventName="click_catalog_product_quote">
                     Demander une étude <Icon name="arrow" size={16} />
                   </TrackedLink>

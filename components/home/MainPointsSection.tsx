@@ -1,6 +1,6 @@
 import homepage from "@/data/homepage.json";
 import Icon from "@/components/ui/Icon";
-import TrackedLink from "@/components/ui/TrackedLink";
+import ProductRouteLink from "@/components/ui/ProductRouteLink";
 
 export default function MainPointsSection() {
   return (
@@ -29,7 +29,7 @@ export default function MainPointsSection() {
             <div><span>02</span><p><b>Entreprises et hôtels</b><small>Des points de recharge pour accueillir et accompagner.</small></p></div>
             <div><span>03</span><p><b>Résidences et parkings</b><small>Une approche adaptée aux lieux partagés.</small></p></div>
           </div>
-          <TrackedLink href="/nos-produits/autel-maxicharger" className="console-link">Explorer les solutions <Icon name="arrow" size={16} /></TrackedLink>
+          <ProductRouteLink className="console-link">Explorer les solutions <Icon name="arrow" size={16} /></ProductRouteLink>
         </article>
         <article className="console-product reveal">
           <p className="console-index">03 / PRODUIT VEDETTE</p>
@@ -39,7 +39,7 @@ export default function MainPointsSection() {
           <ul className="console-specs">
             {homepage.productBenefits.map((benefit, index) => <li key={benefit}><span>0{index + 1}</span>{benefit}</li>)}
           </ul>
-          <TrackedLink href="/nos-produits/autel-maxicharger" className="console-product-link" eventName="click_product_feature">Découvrir la borne <Icon name="arrow" size={16} /></TrackedLink>
+          <ProductRouteLink className="console-product-link" eventName="click_product_feature">Découvrir la borne <Icon name="arrow" size={16} /></ProductRouteLink>
         </article>
       </div>
     </section>

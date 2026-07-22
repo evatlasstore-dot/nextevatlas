@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Icon from "@/components/ui/Icon";
 import TrackedLink from "@/components/ui/TrackedLink";
+import ProductRouteLink from "@/components/ui/ProductRouteLink";
 import homepage from "@/data/homepage.json";
 import styles from "./HomeFuturisticSections.module.css";
 
@@ -208,9 +209,9 @@ export function HomeFuturisticConnected() {
                 </div>
               </article>
             ))}
-            <TrackedLink href="/nos-produits/autel-maxicharger" className={styles.controlLink} eventName="click_product_feature">
+            <ProductRouteLink className={styles.controlLink} eventName="click_product_feature">
               Explorer la MaxiCharger <Icon name="arrow" size={17} />
-            </TrackedLink>
+            </ProductRouteLink>
           </div>
 
           <figure className={styles.appDevice} aria-label="Aperçu de l’application Autel Charge">

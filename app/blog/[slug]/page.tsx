@@ -5,6 +5,7 @@ import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import Icon from "@/components/ui/Icon";
 import TrackedLink from "@/components/ui/TrackedLink";
+import ProductRouteLink from "@/components/ui/ProductRouteLink";
 import {
   blogPosts,
   getBlogPost,
@@ -397,13 +398,12 @@ export default async function BlogArticlePage({
               >
                 Demander une étude <Icon name="arrow" size={17} />
               </TrackedLink>
-              <TrackedLink
-                href="/nos-produits/autel-maxicharger"
+              <ProductRouteLink
                 className="text-link"
                 eventName="click_article_product"
               >
                 Découvrir l’Autel MaxiCharger <Icon name="arrow" size={15} />
-              </TrackedLink>
+              </ProductRouteLink>
             </div>
           </div>
         </section>
