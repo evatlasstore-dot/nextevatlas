@@ -7,6 +7,7 @@ out/
 
 # Local environment and editor files
 .env*
+!.env.example
 .DS_Store
 *.tsbuildinfo
 

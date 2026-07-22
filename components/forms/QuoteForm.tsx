@@ -34,6 +34,7 @@ type QuoteFields = {
 };
 
 type QuoteErrors = Partial<Record<keyof QuoteFields, string>>;
+type SubmissionState = "idle" | "submitting" | "success" | "error";
 
 const productLabels: Record<QuoteFields["product"], string> = {
   "autel-maxicharger": "Autel MaxiCharger AC Wallbox",
@@ -72,6 +73,9 @@ const isValidPhone = (value: string) => value.replace(/\D/g, "").length >= 9;
 export default function QuoteForm({ initialProduct, initialSimulation = null }: QuoteFormProps) {
   const [step, setStep] = useState(1);
   const [errors, setErrors] = useState<QuoteErrors>({});
+  const [submissionState, setSubmissionState] = useState<SubmissionState>("idle");
+  const [submissionError, setSubmissionError] = useState("");
+  const [website, setWebsite] = useState("");
   const [simulation, setSimulation] = useState<SimulationContext | null>(initialSimulation);
   const [fields, setFields] = useState<QuoteFields>({
     customerType: "particulier",
@@ -108,6 +112,10 @@ export default function QuoteForm({ initialProduct, initialSimulation = null }: 
   const updateField = <Key extends keyof QuoteFields>(key: Key, value: QuoteFields[Key]) => {
     setFields((current) => ({ ...current, [key]: value }));
     setErrors((current) => ({ ...current, [key]: undefined }));
+    if (submissionState !== "idle") {
+      setSubmissionState("idle");
+      setSubmissionError("");
+    }
   };
 
   const validateProject = () => {
@@ -124,6 +132,7 @@ export default function QuoteForm({ initialProduct, initialSimulation = null }: 
     if (fields.firstName.trim().length < 2) nextErrors.firstName = "Indiquez votre prénom.";
     if (!isValidPhone(fields.phone)) nextErrors.phone = "Saisissez un numéro de téléphone valide.";
     if (fields.email && !isValidEmail(fields.email)) nextErrors.email = "Saisissez une adresse e-mail valide.";
+    if (fields.contactPreference === "email" && !fields.email) nextErrors.email = "Indiquez votre adresse e-mail pour être recontacté par e-mail.";
     if (fields.city.trim().length < 2) nextErrors.city = "Indiquez la ville du projet.";
     if (!fields.consent) nextErrors.consent = "Votre accord est nécessaire pour préparer la prise de contact.";
     return nextErrors;
@@ -174,13 +183,64 @@ export default function QuoteForm({ initialProduct, initialSimulation = null }: 
     window.dispatchEvent(new CustomEvent("evatlas:tracking", { detail: { event: "finalize_quote_whatsapp" } }));
   };
 
+  const handleQuoteSubmission = async (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+
+    const nextErrors = validateContact();
+    if (Object.keys(nextErrors).length > 0) {
+      setErrors(nextErrors);
+      return;
+    }
+
+    setErrors({});
+    setSubmissionError("");
+    setSubmissionState("submitting");
+
+    // Opening synchronously keeps the existing WhatsApp handoff available on browsers
+    // that otherwise block a new tab after an asynchronous request.
+    const whatsappWindow = window.open("", "_blank");
+    if (whatsappWindow) whatsappWindow.opener = null;
+
+    try {
+      const response = await fetch("/api/devis", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify({
+          ...fields,
+          simulation,
+          website,
+        }),
+      });
+
+      const payload = await response.json().catch(() => null) as { error?: unknown } | null;
+      if (!response.ok) {
+        const message = typeof payload?.error === "string" ? payload.error : "L’envoi n’a pas pu être finalisé. Réessayez dans un instant.";
+        throw new Error(message);
+      }
+
+      setSubmissionState("success");
+      trackFinalization();
+
+      if (whatsappWindow && !whatsappWindow.closed) {
+        whatsappWindow.location.replace(whatsappUrl);
+      }
+    } catch (error) {
+      if (whatsappWindow && !whatsappWindow.closed) whatsappWindow.close();
+      setSubmissionError(error instanceof Error ? error.message : "L’envoi n’a pas pu être finalisé. Réessayez dans un instant.");
+      setSubmissionState("error");
+    }
+  };
+
   return (
     <section className="quote-section" aria-labelledby="quote-form-title">
       <div className="quote-shell">
         <header className="quote-heading">
           <p className="quote-eyebrow">Votre étude personnalisée</p>
           <h2 id="quote-form-title">Quelques informations, puis un échange humain.</h2>
-          <p>Comptez environ deux minutes. À la fin, un message récapitulatif sera préparé pour vous dans WhatsApp.</p>
+          <p>Comptez environ deux minutes. Votre demande sera envoyée à EVAtlas, puis un message récapitulatif sera préparé dans WhatsApp.</p>
         </header>
 
         <div className="quote-workspace">
@@ -190,7 +250,7 @@ export default function QuoteForm({ initialProduct, initialSimulation = null }: 
               {[
                 [1, "Le projet", "Usage et installation"],
                 [2, "Vos coordonnées", "Pour vous recontacter"],
-                [3, "Vérification", "Avant WhatsApp"],
+                [3, "Vérification", "Envoi et WhatsApp"],
               ].map(([index, title, detail]) => (
                 <li
                   className={`${step === index ? "quote-step-current" : ""} ${step > Number(index) ? "quote-step-complete" : ""}`.trim()}
@@ -204,11 +264,15 @@ export default function QuoteForm({ initialProduct, initialSimulation = null }: 
             </ol>
             <div className="quote-aside-note">
               <Icon name="shield" size={19} />
-              <p><b>Aucune demande n’est envoyée automatiquement.</b><span>Vous relisez et validez vous-même le message dans WhatsApp.</span></p>
+              <p><b>Votre demande est traitée par un conseiller EVAtlas.</b><span>Après l’envoi, vous pouvez aussi poursuivre l’échange dans WhatsApp.</span></p>
             </div>
           </aside>
 
-          <form className="quote-form" noValidate onSubmit={handleContinue}>
+          <form className="quote-form" noValidate onSubmit={step === 3 ? handleQuoteSubmission : handleContinue}>
+            <div className="quote-honeypot" aria-hidden="true">
+              <label htmlFor="quote-website">Ne pas remplir ce champ</label>
+              <input id="quote-website" name="website" type="text" tabIndex={-1} autoComplete="off" value={website} onChange={(event) => setWebsite(event.target.value)} />
+            </div>
             {Object.keys(errors).length > 0 && (
               <div className="quote-error-summary" role="alert">
                 <Icon name="shield" size={18} />
@@ -292,7 +356,7 @@ export default function QuoteForm({ initialProduct, initialSimulation = null }: 
 
             {step === 2 && (
               <div className="quote-panel">
-                <div className="quote-panel-heading"><span>02</span><div><h3>Comment vous joindre&nbsp;?</h3><p>Ces coordonnées seront uniquement intégrées au message que vous validerez.</p></div></div>
+                <div className="quote-panel-heading"><span>02</span><div><h3>Comment vous joindre&nbsp;?</h3><p>Ces coordonnées permettent à EVAtlas de vous répondre et de préparer votre étude.</p></div></div>
                 <div className="quote-field-grid">
                   <label className="quote-field">
                     <span>Prénom</span>
@@ -309,7 +373,7 @@ export default function QuoteForm({ initialProduct, initialSimulation = null }: 
                     {errors.phone && <small className="quote-field-error" id="quote-phone-error">{errors.phone}</small>}
                   </label>
                   <label className="quote-field">
-                    <span>E-mail <small>facultatif</small></span>
+                    <span>E-mail <small>{fields.contactPreference === "email" ? "requis pour cette préférence" : "facultatif"}</small></span>
                     <input className={errors.email ? "quote-input-error" : ""} type="email" inputMode="email" value={fields.email} autoComplete="email" aria-invalid={Boolean(errors.email)} aria-describedby={errors.email ? "quote-email-error" : undefined} onChange={(event) => updateField("email", event.target.value)} />
                     {errors.email && <small className="quote-field-error" id="quote-email-error">{errors.email}</small>}
                   </label>
@@ -334,7 +398,7 @@ export default function QuoteForm({ initialProduct, initialSimulation = null }: 
 
                 <label className={`quote-consent ${errors.consent ? "quote-consent-error" : ""}`}>
                   <input type="checkbox" checked={fields.consent} aria-invalid={Boolean(errors.consent)} aria-describedby={errors.consent ? "quote-consent-error" : undefined} onChange={(event) => updateField("consent", event.target.checked)} />
-                  <span>J’accepte que ces informations soient utilisées par EVAtlas pour répondre à ma demande. Elles seront transmises lorsque je validerai le message dans WhatsApp.</span>
+                  <span>J’accepte que ces informations soient utilisées par EVAtlas pour répondre à ma demande. Si je renseigne mon e-mail, je recevrai une confirmation de prise en charge.</span>
                 </label>
                 {errors.consent && <small className="quote-field-error" id="quote-consent-error">{errors.consent}</small>}
               </div>
@@ -342,7 +406,7 @@ export default function QuoteForm({ initialProduct, initialSimulation = null }: 
 
             {step === 3 && (
               <div className="quote-panel">
-                <div className="quote-panel-heading"><span>03</span><div><h3>Tout est prêt.</h3><p>Relisez ce résumé avant d’ouvrir votre conversation avec EVAtlas.</p></div></div>
+                <div className="quote-panel-heading"><span>03</span><div><h3>Tout est prêt.</h3><p>Relisez ce résumé avant d’envoyer votre demande à EVAtlas.</p></div></div>
                 <dl className="quote-summary">
                   <div><dt>Solution</dt><dd>{productLabels[fields.product]}</dd></div>
                   <div><dt>Profil</dt><dd>{fields.customerType === "particulier" ? "Particulier" : fields.organization || "Professionnel"}</dd></div>
@@ -352,16 +416,34 @@ export default function QuoteForm({ initialProduct, initialSimulation = null }: 
                   <div><dt>Contact</dt><dd>{fields.firstName} {fields.lastName} · {fields.phone}</dd></div>
                   {simulation && <div><dt>Simulation</dt><dd>{simulation.capacity} kWh · {simulation.start} % → {simulation.target} % · {simulation.power} kW</dd></div>}
                 </dl>
-                <div className="quote-whatsapp-note"><Icon name="whatsapp" size={22} /><p><b>Dernière étape dans WhatsApp</b><span>Le bouton ouvre un message prérempli. Rien ne part tant que vous ne l’envoyez pas vous-même.</span></p></div>
+                <div className="quote-whatsapp-note"><Icon name="whatsapp" size={22} /><p><b>Après l’envoi, poursuivez si vous le souhaitez dans WhatsApp.</b><span>Un message récapitulatif s’ouvrira après la confirmation de votre demande.</span></p></div>
+
+                {submissionState === "success" && (
+                  <div className="quote-submission-status quote-submission-success" role="status" aria-live="polite">
+                    <Icon name="check" size={20} />
+                    <p><b>Votre demande a bien été envoyée.</b><span>Un conseiller EVAtlas vous contactera prochainement. {fields.email ? "Une confirmation a aussi été envoyée à votre adresse e-mail." : "Vous pouvez ajouter votre adresse e-mail lors d’une prochaine demande pour recevoir une confirmation."}</span></p>
+                    <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" onClick={trackFinalization}>Ouvrir WhatsApp à nouveau <Icon name="arrow" size={15} /></a>
+                  </div>
+                )}
+
+                {submissionState === "error" && (
+                  <div className="quote-submission-status quote-submission-error" role="alert">
+                    <Icon name="shield" size={20} />
+                    <p><b>Votre demande n’a pas été envoyée.</b><span>{submissionError}</span></p>
+                    <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" onClick={trackFinalization}>Poursuivre directement sur WhatsApp <Icon name="arrow" size={15} /></a>
+                  </div>
+                )}
               </div>
             )}
 
             <footer className="quote-actions">
-              {step > 1 ? <button className="quote-back" type="button" onClick={() => { setErrors({}); setStep((current) => current - 1); }}><span aria-hidden="true">←</span> Revenir</button> : <TrackedLink className="quote-back" href="/simulateur">Faire d’abord une simulation</TrackedLink>}
+              {step > 1 ? <button className="quote-back" type="button" onClick={() => { setErrors({}); setSubmissionState("idle"); setSubmissionError(""); setStep((current) => current - 1); }}><span aria-hidden="true">←</span> Revenir</button> : <TrackedLink className="quote-back" href="/simulateur">Faire d’abord une simulation</TrackedLink>}
               {step < 3 ? (
                 <button className="quote-next" type="submit">Continuer <Icon name="arrow" size={17} /></button>
               ) : (
-                <a className="quote-next quote-whatsapp" href={whatsappUrl} target="_blank" rel="noopener noreferrer" onClick={trackFinalization}>Finaliser sur WhatsApp <Icon name="whatsapp" size={19} /></a>
+                <button className="quote-next quote-whatsapp" type="submit" disabled={submissionState === "submitting"} aria-busy={submissionState === "submitting"}>
+                  {submissionState === "submitting" ? "Envoi en cours…" : "Envoyer ma demande"} <Icon name={submissionState === "submitting" ? "bolt" : "whatsapp"} size={19} />
+                </button>
               )}
             </footer>
           </form>
