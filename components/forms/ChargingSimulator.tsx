@@ -13,6 +13,7 @@ import {
   type EvVehicleBrand,
   type EvVehicleModel,
 } from "@/data/ev-vehicles";
+import { evBrandLogoByName } from "@/data/ev-brand-logos";
 import styles from "./ChargingSimulator.module.css";
 
 type ChargingSimulatorProps = {
@@ -59,6 +60,7 @@ export default function ChargingSimulator({ product = "autel-maxicharger" }: Cha
   );
 
   const activeBrand = selectedVehicle?.brand ?? selectedBrand;
+  const activeBrandLogo = activeBrand ? evBrandLogoByName.get(activeBrand.name) ?? null : null;
 
   const chooseBrand = useCallback((brandName: string) => {
     setSelectedBrandName(brandName);
@@ -271,6 +273,24 @@ export default function ChargingSimulator({ product = "autel-maxicharger" }: Cha
                     fill
                     sizes="(max-width: 760px) 88vw, (max-width: 1040px) 620px, 480px"
                   />
+                ) : activeBrandLogo ? (
+                  <div className={styles.brandEmblem} aria-hidden="true">
+                    <span className={styles.brandEmblemAura} />
+                    <span className={styles.brandEmblemPlate}>
+                      {activeBrandLogo.src ? (
+                        <Image
+                          className={styles.brandEmblemLogo}
+                          src={activeBrandLogo.src}
+                          alt=""
+                          fill
+                          sizes="(max-width: 760px) 220px, 250px"
+                        />
+                      ) : (
+                        <span className={styles.brandEmblemMonogram}>{activeBrandLogo.name}</span>
+                      )}
+                    </span>
+                    <span className={styles.brandEmblemName}>{activeBrandLogo.name}</span>
+                  </div>
                 ) : (
                   <div className={styles.vehicleFallback} aria-hidden="true"><Icon name="car" size={56} /></div>
                 )}
@@ -280,6 +300,7 @@ export default function ChargingSimulator({ product = "autel-maxicharger" }: Cha
                 <strong>{selectedVehicle?.model ?? (activeBrand ? "Choisissez un modèle" : "Choisissez une marque")}</strong>
                 <small>{selectedVehicle ? `${formatCapacity(selectedVehicle.batteryKwh)} utiles · jusqu’à ${formatPower(selectedVehicle.maxAcKw)} AC` : activeBrand ? "Le modèle précisera les données de charge." : "La marque puis le modèle débloquent votre estimation."}</small>
                 {activeBrand?.visual && <small className={styles.vehicleVisualNote}>Visuel 3D de la gamme : {activeBrand.visual.model}</small>}
+                {!activeBrand?.visual && activeBrandLogo && <small className={styles.vehicleVisualNote}>Emblème 3D de la marque · {activeBrandLogo.domain}</small>}
               </figcaption>
             </figure>
 

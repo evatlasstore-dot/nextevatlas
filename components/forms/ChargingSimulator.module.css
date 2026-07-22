@@ -663,6 +663,106 @@
   transform: scale(1.1);
 }
 
+.brandEmblem {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  isolation: isolate;
+  perspective: 720px;
+}
+
+.brandEmblemAura {
+  position: absolute;
+  width: min(68%, 250px);
+  aspect-ratio: 1;
+  border: 1px solid color-mix(in srgb, var(--vehicle-accent) 34%, transparent);
+  border-radius: 38% 62% 58% 42%;
+  background: radial-gradient(circle, color-mix(in srgb, var(--vehicle-accent) 22%, transparent), transparent 67%);
+  box-shadow: 0 0 0 18px color-mix(in srgb, var(--vehicle-accent) 6%, transparent), 0 22px 44px rgba(4, 23, 13, .22);
+  transform: rotate(-15deg) translateZ(-22px);
+}
+
+.brandEmblemPlate {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  width: min(54%, 196px);
+  min-width: 118px;
+  aspect-ratio: 1;
+  place-items: center;
+  overflow: hidden;
+  border: 1px solid color-mix(in srgb, var(--vehicle-accent) 50%, rgba(255, 255, 255, .25));
+  border-radius: 31%;
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, .32), transparent 31%),
+    linear-gradient(145deg, color-mix(in srgb, var(--vehicle-colour) 83%, #fff), color-mix(in srgb, var(--vehicle-colour) 98%, #07190f));
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, .42),
+    inset 0 -14px 23px rgba(1, 17, 8, .22),
+    0 23px 23px rgba(3, 19, 10, .25);
+  transform: rotateX(13deg) rotateY(-17deg) rotateZ(6deg) translateZ(15px);
+}
+
+.brandEmblemPlate::before,
+.brandEmblemPlate::after {
+  position: absolute;
+  z-index: -1;
+  inset: 10px -10px -11px 13px;
+  border-radius: 31%;
+  background: color-mix(in srgb, var(--vehicle-colour) 87%, #06170d);
+  content: "";
+  transform: translateZ(-15px);
+}
+
+.brandEmblemPlate::after {
+  inset: 0;
+  z-index: 0;
+  border: 1px solid rgba(255, 255, 255, .11);
+  background: linear-gradient(120deg, rgba(255, 255, 255, .18), transparent 37%, rgba(255, 255, 255, .04));
+  transform: none;
+}
+
+.brandEmblemLogo {
+  z-index: 1;
+  padding: 23%;
+  object-fit: contain;
+  filter: brightness(0) invert(1) drop-shadow(0 5px 7px rgba(0, 0, 0, .33));
+}
+
+.brandEmblemMonogram {
+  position: relative;
+  z-index: 1;
+  max-width: 82%;
+  color: #fff;
+  font-family: Manrope, sans-serif;
+  font-size: clamp(.92rem, 2.3vw, 1.85rem);
+  font-weight: 800;
+  letter-spacing: -.08em;
+  line-height: .93;
+  overflow-wrap: anywhere;
+  text-align: center;
+  text-transform: uppercase;
+  text-shadow: 0 5px 9px rgba(0, 0, 0, .25);
+}
+
+.brandEmblemName {
+  position: absolute;
+  z-index: 2;
+  max-width: 86%;
+  right: 3%;
+  bottom: 43px;
+  overflow: hidden;
+  color: color-mix(in srgb, var(--vehicle-accent) 76%, #fff);
+  font-size: .56rem;
+  font-weight: 800;
+  letter-spacing: .12em;
+  text-align: right;
+  text-overflow: ellipsis;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
 .vehiclePreview figcaption {
   position: absolute;
   bottom: 8px;
