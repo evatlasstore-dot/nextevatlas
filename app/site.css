@@ -52,8 +52,9 @@ main[id="main-content"] { scroll-margin-top:100px; }
 /* Quote flow. */
 .quote-page,.sim-page { color:var(--ui-ink); background:var(--ui-canvas); }
 .quote-hero,.sim-hero { position:relative; padding:clamp(155px,16vw,215px) 0 clamp(76px,9vw,120px); overflow:hidden; background:radial-gradient(circle at 84% 12%,rgba(168,212,111,.34),transparent 28%),linear-gradient(145deg,#fbfbf6,#e4ebe0); }
-.quote-hero { isolation:isolate; color:#f5faef; background:#142b1e url('/images/quote/quote-hero-morocco.png') center / cover no-repeat; }
-.quote-hero::before { position:absolute; z-index:-1; inset:0; background:linear-gradient(90deg,rgba(8,22,14,.94) 0%,rgba(10,28,18,.83) 40%,rgba(10,28,18,.3) 69%,rgba(10,28,18,.12) 100%); content:""; }
+.quote-hero { min-height:min(900px,100svh); isolation:isolate; color:#f5faef; background:#142b1e url('/images/quote/quote-hero-morocco.png') center 46% / cover no-repeat; }
+.quote-hero::before { position:absolute; z-index:0; inset:0; background:linear-gradient(90deg,rgba(6,21,13,.95) 0%,rgba(8,27,17,.84) 35%,rgba(9,30,19,.5) 58%,rgba(9,28,18,.14) 100%),linear-gradient(0deg,rgba(5,18,12,.62) 0%,transparent 46%); content:""; }
+.quote-hero::after { position:absolute; z-index:0; inset:0; pointer-events:none; opacity:.5; background-image:linear-gradient(rgba(220,244,194,.17) 1px,transparent 1px),linear-gradient(90deg,rgba(220,244,194,.17) 1px,transparent 1px); background-position:right center; background-size:clamp(46px,4.6vw,74px) clamp(46px,4.6vw,74px); mask-image:linear-gradient(90deg,transparent 43%,#000 100%); -webkit-mask-image:linear-gradient(90deg,transparent 43%,#000 100%); content:""; }
 .quote-hero-shell,.quote-shell,.sim-hero-shell,.sim-shell { width:min(calc(100% - 48px),1240px); margin-inline:auto; }
 .quote-hero-shell { position:relative; z-index:1; }
 .quote-breadcrumb,.sim-breadcrumb { display:flex; align-items:center; gap:10px; color:#708075; font-size:.78rem; }
@@ -61,16 +62,22 @@ main[id="main-content"] { scroll-margin-top:100px; }
 .quote-hero .quote-breadcrumb a { color:#d2e7b7; }
 .quote-breadcrumb a:hover,.sim-breadcrumb a:hover { color:var(--ui-brand); }
 .quote-hero-layout,.sim-hero-layout { display:grid; grid-template-columns:minmax(0,1.25fr) minmax(300px,.75fr); gap:clamp(48px,9vw,130px); align-items:flex-end; margin-top:58px; }
+.quote-hero .quote-hero-layout { min-height:min(640px,74svh); grid-template-columns:minmax(0,760px); align-content:end; gap:clamp(42px,5.5vw,72px); margin-top:clamp(48px,6.5vw,92px); }
 .quote-hero-eyebrow,.sim-hero-eyebrow,.quote-eyebrow,.sim-eyebrow { color:#668260; font-size:.74rem; font-weight:700; letter-spacing:.14em; text-transform:uppercase; }
 .quote-hero-copy h1,.sim-hero-copy h1 { max-width:850px; margin-top:17px; font-size:clamp(3rem,6vw,6.15rem); letter-spacing:-.075em; line-height:.98; }
 .quote-hero-copy > p:last-child,.sim-hero-copy > p:last-child { max-width:680px; margin-top:26px; color:var(--ui-muted); font-size:clamp(1.02rem,1.45vw,1.2rem); line-height:1.68; }
 .quote-hero .quote-hero-eyebrow { color:#cae6a4; }
 .quote-hero .quote-hero-copy h1 { color:#fff; }
 .quote-hero .quote-hero-copy > p:last-child { color:rgba(246,252,240,.78); }
+.quote-hero .quote-hero-copy { position:relative; max-width:760px; padding:8px 0 clamp(30px,4vw,48px) clamp(24px,3.1vw,46px); border-left:1px solid rgba(222,243,202,.56); }
+.quote-hero .quote-hero-copy::before { position:absolute; top:8px; left:-5px; width:9px; aspect-ratio:1; border-radius:50%; background:#c8ed9c; box-shadow:0 0 0 7px rgba(200,237,156,.13),0 0 28px rgba(200,237,156,.76); content:""; }
+.quote-hero .quote-hero-copy::after { position:absolute; top:8px; left:clamp(24px,3.1vw,46px); width:clamp(76px,9vw,142px); height:1px; background:linear-gradient(90deg,rgba(205,239,171,.95),rgba(205,239,171,0)); content:""; }
 .quote-hero-proof { display:grid; border-top:1px solid var(--ui-line); }
-.quote-hero .quote-hero-proof { padding:7px 23px; border:1px solid rgba(230,245,216,.2); border-radius:25px; background:rgba(8,29,18,.58); box-shadow:0 20px 55px rgba(0,0,0,.18); backdrop-filter:blur(16px); }
+.quote-hero .quote-hero-proof { width:min(100%,1240px); grid-template-columns:repeat(3,minmax(0,1fr)); padding:0; border:0; border-top:1px solid rgba(230,245,216,.3); border-radius:0; background:none; box-shadow:none; backdrop-filter:none; }
 .quote-hero-proof > div { display:grid; grid-template-columns:32px 1fr; gap:13px; padding:18px 0; border-bottom:1px solid var(--ui-line); color:#4c6b51; }
-.quote-hero .quote-hero-proof > div { color:#cce7a9; border-bottom-color:rgba(230,245,216,.16); }
+.quote-hero .quote-hero-proof > div { grid-template-columns:30px minmax(0,1fr); gap:12px; padding:clamp(17px,2vw,25px) clamp(16px,2.3vw,31px); color:#cce7a9; border-bottom:0; }
+.quote-hero .quote-hero-proof > div:first-child { padding-left:0; }
+.quote-hero .quote-hero-proof > div + div { border-left:1px solid rgba(230,245,216,.2); }
 .quote-hero-proof p { display:grid; gap:3px; }
 .quote-hero-proof b { color:var(--ui-ink); font-size:.83rem; }
 .quote-hero .quote-hero-proof b { color:#fff; }
@@ -330,6 +337,16 @@ main[id="main-content"] { scroll-margin-top:100px; }
   .story-card { min-height:300px; padding:23px; }
   .quote-hero,.sim-hero { padding-top:132px; padding-bottom:72px; }
   .quote-hero-layout,.sim-hero-layout { grid-template-columns:1fr; gap:42px; margin-top:42px; }
+  .quote-hero { min-height:max(760px,100svh); padding-top:118px; padding-bottom:48px; background-position:58% center; }
+  .quote-hero::before { background:linear-gradient(90deg,rgba(5,20,13,.95) 0%,rgba(7,25,16,.85) 68%,rgba(8,28,18,.44) 100%),linear-gradient(0deg,rgba(5,19,12,.74),transparent 48%); }
+  .quote-hero::after { opacity:.34; background-size:46px 46px; mask-image:linear-gradient(90deg,transparent 28%,#000 100%); -webkit-mask-image:linear-gradient(90deg,transparent 28%,#000 100%); }
+  .quote-hero .quote-hero-layout { min-height:calc(max(760px,100svh) - 166px); align-content:end; gap:31px; margin-top:36px; }
+  .quote-hero .quote-hero-copy { padding:6px 0 24px 22px; }
+  .quote-hero .quote-hero-copy::after { left:22px; width:84px; }
+  .quote-hero .quote-hero-proof { grid-template-columns:1fr; }
+  .quote-hero .quote-hero-proof > div { padding:15px 0; }
+  .quote-hero .quote-hero-proof > div:first-child { padding-top:17px; }
+  .quote-hero .quote-hero-proof > div + div { border-top:1px solid rgba(230,245,216,.18); border-left:0; }
   .quote-hero-copy h1,.sim-hero-copy h1 { font-size:clamp(2.65rem,12vw,4rem); }
   .quote-workspace { grid-template-columns:1fr; margin-top:40px; border-radius:28px; }
   .quote-aside { min-height:0; padding:26px 22px; }
