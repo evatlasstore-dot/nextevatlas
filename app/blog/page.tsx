@@ -271,7 +271,7 @@ export default function BlogPage() {
                 Ouvrir le simulateur <Icon name="arrow" size={17} />
               </TrackedLink>
               <TrackedLink
-                href="/devis"
+                href="/devis#quote-form"
                 className="button"
                 eventName="click_blog_quote"
               >

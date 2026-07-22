@@ -25,7 +25,7 @@ export default function ProductNavigationSection() {
               <small>Estimation immédiate</small>
               <b><Icon name="arrow" size={19} /></b>
             </TrackedLink>
-            <TrackedLink href="/devis?product=autel-maxicharger" className="handoff-action handoff-action-primary" eventName="start_quote_autel">
+            <TrackedLink href="/devis?product=autel-maxicharger#quote-form" className="handoff-action handoff-action-primary" eventName="start_quote_autel">
               <span className="handoff-action-icon"><Icon name="shield" size={22} /></span>
               <div><p>Mon choix est confirmé</p><h3>Préparer mon installation.</h3><span>Nous étudions votre site et vous orientons vers une configuration adaptée.</span></div>
               <small>Étude personnalisée</small>

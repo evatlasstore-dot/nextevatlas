@@ -36,7 +36,7 @@ export default function QuotePage() {
                 <p>Partagez l’essentiel de votre besoin. Notre équipe pourra reprendre votre contexte, vérifier la faisabilité et vous orienter vers une solution cohérente.</p>
               </div>
               <aside className="quote-hero-proof" aria-label="Les engagements de la demande">
-                <div><Icon name="shield" size={20} /><p><b>Demande transparente</b><span>Aucun faux envoi&nbsp;: vous finalisez directement dans WhatsApp.</span></p></div>
+                <div><Icon name="shield" size={20} /><p><b>Demande transparente</b><span>Vos informations sont transmises directement et de façon sécurisée à l’équipe EVAtlas.</span></p></div>
                 <div><Icon name="pin" size={20} /><p><b>Regard local</b><span>Une étude adaptée au véhicule, au lieu et à l’installation.</span></p></div>
                 <div><Icon name="phone" size={20} /><p><b>Échange humain</b><span>Un interlocuteur reprend votre projet avec vous.</span></p></div>
               </aside>

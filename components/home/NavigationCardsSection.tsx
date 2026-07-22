@@ -18,7 +18,7 @@ export default function NavigationCardsSection() {
             <div><Icon name="shield" size={18} /><span><b>Accompagnement local</b><small>Une équipe disponible pour reprendre votre projet.</small></span></div>
           </aside>
           <div className="launchpad-options">
-            <TrackedLink href="/devis" className="launchpad-option launchpad-option-primary" eventName="submit_quote_start">
+            <TrackedLink href="/devis#quote-form" className="launchpad-option launchpad-option-primary" eventName="submit_quote_start">
               <span className="launchpad-number">01</span>
               <div><p>Projet défini</p><h3>Échanger avec un expert.</h3><span>Véhicule, puissance et emplacement&nbsp;: nous préparons une recommandation cohérente.</span><ul aria-label="Contenu de l’étude"><li>Étude personnalisée</li><li>Solution adaptée</li></ul></div>
               <b><Icon name="arrow" size={20} /></b>

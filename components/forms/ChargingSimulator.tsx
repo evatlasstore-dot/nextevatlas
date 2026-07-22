@@ -104,7 +104,7 @@ export default function ChargingSimulator({ product = "autel-maxicharger" }: Cha
       target: String(targetLevel),
       power: String(power),
     });
-    return `/devis/?${parameters.toString()}`;
+    return `/devis/?${parameters.toString()}#quote-form`;
   }, [capacity, power, selectedProduct, selectedVehicle.id, startLevel, targetLevel]);
 
   const vehicleStyle = {

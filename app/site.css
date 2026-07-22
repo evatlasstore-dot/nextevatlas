@@ -110,10 +110,10 @@ main[id="main-content"] { scroll-margin-top:100px; }
 .quote-panel-heading > span,.sim-controls-heading > span { display:grid; width:40px; height:40px; place-items:center; color:#53765a; border:1px solid var(--ui-line); border-radius:50%; font-size:.69rem; font-weight:700; }
 .quote-panel-heading h3,.sim-controls-heading h3 { font-size:clamp(1.55rem,2.5vw,2.35rem); }
 .quote-panel-heading p,.sim-controls-heading p { max-width:570px; margin-top:7px; color:var(--ui-muted); font-size:.8rem; line-height:1.55; }
-.quote-imported,.quote-error-summary,.quote-whatsapp-note { display:grid; grid-template-columns:28px 1fr; gap:12px; padding:17px; margin-top:24px; border:1px solid rgba(74,112,79,.15); border-radius:18px; color:#4c6c51; background:#eef4e9; }
-.quote-imported p,.quote-error-summary p,.quote-whatsapp-note p { display:grid; gap:3px; }
-.quote-imported b,.quote-error-summary b,.quote-whatsapp-note b { font-size:.78rem; }
-.quote-imported span,.quote-error-summary span,.quote-whatsapp-note span { color:#6b786e; font-size:.71rem; line-height:1.45; }
+.quote-imported,.quote-error-summary { display:grid; grid-template-columns:28px 1fr; gap:12px; padding:17px; margin-top:24px; border:1px solid rgba(74,112,79,.15); border-radius:18px; color:#4c6c51; background:#eef4e9; }
+.quote-imported p,.quote-error-summary p { display:grid; gap:3px; }
+.quote-imported b,.quote-error-summary b { font-size:.78rem; }
+.quote-imported span,.quote-error-summary span { color:#6b786e; font-size:.71rem; line-height:1.45; }
 .quote-error-summary { color:#8a493f; border-color:rgba(142,70,58,.18); background:#fff1ed; }
 .quote-honeypot { position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0 0 0 0); clip-path:inset(50%); white-space:nowrap; }
 .quote-submission-status { display:grid; grid-template-columns:28px minmax(0,1fr); gap:12px; padding:17px; margin-top:18px; border:1px solid; border-radius:18px; }
@@ -123,6 +123,13 @@ main[id="main-content"] { scroll-margin-top:100px; }
 .quote-submission-success { color:#3d6a46; border-color:rgba(69,118,76,.22); background:#edf7e8; }
 .quote-submission-success span { color:#5c7561; }
 .quote-submission-success a { grid-column:2; display:inline-flex; width:max-content; align-items:center; gap:7px; color:#245e3d; font-size:.72rem; font-weight:700; }
+.quote-submission-thank-you { position:relative; grid-template-columns:36px minmax(0,1fr); gap:15px; padding:24px; overflow:hidden; border-color:rgba(70,126,78,.32); background:radial-gradient(circle at 90% 14%,rgba(190,232,142,.58),transparent 30%),linear-gradient(135deg,#f4faed,#e4f1dc); box-shadow:0 14px 32px rgba(37,86,47,.09); }
+.quote-submission-thank-you > svg { position:relative; z-index:1; display:grid; width:36px; height:36px; padding:8px; color:#fff; border-radius:50%; background:#315b42; box-shadow:0 0 0 6px rgba(91,144,91,.14); }
+.quote-submission-thank-you p { position:relative; z-index:1; gap:7px; }
+.quote-submission-thank-you b { font-size:.91rem; letter-spacing:-.02em; }
+.quote-submission-thank-you span { max-width:520px; font-size:.77rem; line-height:1.55; }
+.quote-submission-thank-you a { position:relative; z-index:1; width:max-content; max-width:100%; min-height:39px; align-items:center; padding:0 13px; margin-top:3px; border:1px solid rgba(47,105,64,.2); border-radius:999px; background:rgba(255,255,255,.65); transition:background .2s,transform .2s; }
+.quote-submission-thank-you a:hover { background:#fff; transform:translateY(-1px); }
 .quote-submission-error { color:#8a493f; border-color:rgba(142,70,58,.18); background:#fff1ed; }
 .quote-submission-error span { color:#93594f; }
 .quote-submission-error a { grid-column:2; display:inline-flex; width:max-content; align-items:center; gap:7px; color:#884239; font-size:.72rem; font-weight:700; }
@@ -158,7 +165,6 @@ main[id="main-content"] { scroll-margin-top:100px; }
 .quote-next { display:inline-flex; min-height:52px; align-items:center; justify-content:center; gap:10px; padding:0 22px; color:#fff; border:0; border-radius:999px; background:#315b42; font:inherit; font-size:.82rem; font-weight:700; cursor:pointer; transition:transform .2s,background .2s; }
 .quote-next:hover { transform:translateY(-2px); background:#213f2d; }
 .quote-next:disabled { cursor:wait; opacity:.72; transform:none; }
-.quote-whatsapp { background:#2f704b; }
 
 /* Charging simulator. */
 .sim-hero-card { padding:25px; border:1px solid rgba(255,255,255,.78); border-radius:28px; background:rgba(255,255,252,.58); box-shadow:0 18px 44px rgba(43,68,48,.09); }

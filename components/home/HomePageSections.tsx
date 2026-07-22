@@ -69,7 +69,7 @@ export function HomeSolutionsSection() {
               </div>
             </article>
           ))}
-          <TrackedLink href="/devis" className={styles.inlineLink} eventName="submit_quote_start">
+          <TrackedLink href="/devis#quote-form" className={styles.inlineLink} eventName="submit_quote_start">
             Parler de mon installation <Icon name="arrow" size={17} />
           </TrackedLink>
         </div>
@@ -150,7 +150,7 @@ export function HomeConversionSection() {
           <h2 id="home-conversion-title">Vous savez où recharger. Construisons la suite.</h2>
           <p>Recevez une recommandation adaptée à votre véhicule et à votre installation électrique.</p>
           <div className={styles.conversionActions}>
-            <TrackedLink href="/devis" className="button" eventName="submit_quote_start">Demander un devis <Icon name="arrow" size={17} /></TrackedLink>
+            <TrackedLink href="/devis#quote-form" className="button" eventName="submit_quote_start">Demander un devis <Icon name="arrow" size={17} /></TrackedLink>
             <TrackedLink href="https://wa.me/212786376294" className={styles.secondaryButton} eventName="click_whatsapp" prefetch={false}><Icon name="whatsapp" size={18} /> WhatsApp</TrackedLink>
           </div>
         </div>

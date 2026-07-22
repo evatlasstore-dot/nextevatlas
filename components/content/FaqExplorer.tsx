@@ -68,7 +68,7 @@ export default function FaqExplorer() {
         </div>
         <div className={styles["faq-page-support"]}>
           <p>Votre situation demande une vérification précise&nbsp;?</p>
-          <TrackedLink href="/devis" eventName="click_faq_quote">
+          <TrackedLink href="/devis#quote-form" eventName="click_faq_quote">
             Parler de mon projet <Icon name="arrow" size={15} />
           </TrackedLink>
         </div>

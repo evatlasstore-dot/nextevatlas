@@ -75,7 +75,7 @@ export default function ProductsPage() {
               <h1 id="catalog-title">La bonne borne commence par le bon usage.</h1>
               <p>EVAtlas met le véhicule, le lieu et vos habitudes au centre de la recommandation. Une approche simple pour choisir une recharge cohérente aujourd’hui et durable demain.</p>
               <div className={styles["catalog-hero-actions"]}>
-                <TrackedLink href="/devis" className="button" eventName="click_catalog_quote">
+                <TrackedLink href="/devis#quote-form" className="button" eventName="click_catalog_quote">
                   Étudier mon projet <Icon name="arrow" size={17} />
                 </TrackedLink>
                 <TrackedLink href="/simulateur" className={styles["catalog-secondary-link"]} eventName="click_catalog_simulator">
@@ -150,7 +150,7 @@ export default function ProductsPage() {
                   <ProductRouteLink className="button" eventName="click_catalog_product">
                     Découvrir la MaxiCharger <Icon name="arrow" size={17} />
                   </ProductRouteLink>
-                  <TrackedLink href="/devis?product=autel-maxicharger" className={styles["catalog-secondary-link"]} eventName="click_catalog_product_quote">
+                  <TrackedLink href="/devis?product=autel-maxicharger#quote-form" className={styles["catalog-secondary-link"]} eventName="click_catalog_product_quote">
                     Demander une étude <Icon name="arrow" size={16} />
                   </TrackedLink>
                 </div>
@@ -185,7 +185,7 @@ export default function ProductsPage() {
               <h2 id="catalog-cta-title">Faisons correspondre la borne à votre réalité.</h2>
             </div>
             <div className={styles["catalog-cta-actions"]}>
-              <TrackedLink href="/devis" className="button" eventName="click_catalog_final_quote">Demander un devis <Icon name="arrow" size={17} /></TrackedLink>
+              <TrackedLink href="/devis#quote-form" className="button" eventName="click_catalog_final_quote">Demander un devis <Icon name="arrow" size={17} /></TrackedLink>
               <TrackedLink href="/faq" className={styles["catalog-secondary-link"]}>Consulter la FAQ <Icon name="arrow" size={16} /></TrackedLink>
             </div>
           </div>

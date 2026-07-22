@@ -392,7 +392,7 @@ export default async function BlogArticlePage({
                 Simuler ma recharge <Icon name="arrow" size={17} />
               </TrackedLink>
               <TrackedLink
-                href="/devis"
+                href="/devis#quote-form"
                 className="button"
                 eventName="click_article_quote"
               >

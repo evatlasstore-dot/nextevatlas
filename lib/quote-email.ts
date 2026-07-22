@@ -55,12 +55,6 @@ const supplyLabels = {
   inconnue: "Je ne sais pas encore",
 } as const;
 
-const preferenceLabels = {
-  whatsapp: "WhatsApp",
-  telephone: "Téléphone",
-  email: "E-mail",
-} as const;
-
 function getRequiredEnvironmentVariable(name: string): string {
   const value = process.env[name]?.trim();
   if (!value) throw new Error(`Missing ${name} configuration.`);
@@ -314,8 +308,7 @@ function quoteDetails(submission: QuoteSubmission): Array<[string, string]> {
     ["Ville", submission.city],
     ["Contact", `${submission.firstName} ${submission.lastName}`.trim()],
     ["Téléphone", submission.phone],
-    ...(submission.email ? [["E-mail", submission.email] as [string, string]] : []),
-    ["Canal préféré", preferenceLabels[submission.contactPreference]],
+    ["E-mail", submission.email],
     ...(submission.simulation
       ? [["Simulation", `${submission.simulation.capacity} kWh · ${submission.simulation.start} % → ${submission.simulation.target} % · ${submission.simulation.power} kW`] as [string, string]]
       : []),
@@ -342,12 +335,11 @@ function createInternalMessage(config: MailConfig, submission: QuoteSubmission):
 
 function createCustomerMessage(submission: QuoteSubmission): MailMessage {
   const firstName = escapeHtml(submission.firstName);
-  const contactChannel = preferenceLabels[submission.contactPreference].toLowerCase();
   const text = [
     `Bonjour ${submission.firstName},`,
     "",
     "Merci pour votre demande d’étude EVAtlas.",
-    `Un conseiller EVAtlas vous contactera prochainement via ${contactChannel} pour reprendre votre projet de recharge.`,
+    "Un conseiller EVAtlas vous contactera prochainement pour reprendre votre projet de recharge.",
     "",
     "À très bientôt,",
     "L’équipe EVAtlas",
@@ -358,7 +350,7 @@ function createCustomerMessage(submission: QuoteSubmission): MailMessage {
     subject: "Votre demande EVAtlas a bien été reçue",
     text,
     autoReply: true,
-    html: `<div style="font-family:Arial,sans-serif;color:#142d20;max-width:620px;margin:0 auto;padding:32px 24px"><p style="color:#60815e;font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase">EVATLAS · DEMANDE REÇUE</p><h1 style="font-size:30px;line-height:1.15;margin:0 0 18px">Merci ${firstName}, votre demande est bien reçue.</h1><p style="font-size:17px;line-height:1.6;color:#455846">Un conseiller EVAtlas vous contactera prochainement via ${escapeHtml(contactChannel)} pour reprendre votre projet de recharge.</p><p style="font-size:17px;line-height:1.6;color:#455846">À très bientôt,<br><strong>L’équipe EVAtlas</strong></p></div>`,
+    html: `<div style="font-family:Arial,sans-serif;color:#142d20;max-width:620px;margin:0 auto;padding:32px 24px"><p style="color:#60815e;font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase">EVATLAS · DEMANDE REÇUE</p><h1 style="font-size:30px;line-height:1.15;margin:0 0 18px">Merci ${firstName}, votre demande est bien reçue.</h1><p style="font-size:17px;line-height:1.6;color:#455846">Un conseiller EVAtlas vous contactera prochainement pour reprendre votre projet de recharge.</p><p style="font-size:17px;line-height:1.6;color:#455846">À très bientôt,<br><strong>L’équipe EVAtlas</strong></p></div>`,
   };
 }
 

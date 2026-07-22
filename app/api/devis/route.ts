@@ -117,6 +117,6 @@ export async function POST(request: NextRequest) {
     const reason = error instanceof Error ? error.message : "unknown error";
     // Do not log the submission itself: it contains personal information.
     console.error("Quote e-mail delivery failed:", reason);
-    return json({ ok: false, error: "Le service d’envoi est momentanément indisponible. Réessayez plus tard ou contactez-nous par WhatsApp." }, 503);
+    return json({ ok: false, error: "Le service d’envoi est momentanément indisponible. Réessayez dans quelques instants ou contactez notre équipe." }, 503);
   }
 }

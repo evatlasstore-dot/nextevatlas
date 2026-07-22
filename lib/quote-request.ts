@@ -3,7 +3,6 @@ export type QuoteProduct = "autel-maxicharger" | "a-definir";
 export type QuoteInstallationType = "maison" | "residence" | "entreprise" | "hotel" | "parking";
 export type QuoteMounting = "murale" | "sur-pied" | "a-definir";
 export type QuoteElectricalSupply = "monophase" | "triphase" | "inconnue";
-export type QuoteContactPreference = "whatsapp" | "telephone" | "email";
 
 export type QuoteSimulation = {
   capacity: number;
@@ -25,7 +24,6 @@ export type QuoteSubmission = {
   phone: string;
   email: string;
   city: string;
-  contactPreference: QuoteContactPreference;
   consent: true;
   simulation: QuoteSimulation | null;
 };
@@ -37,7 +35,6 @@ const products = new Set<QuoteProduct>(["autel-maxicharger", "a-definir"]);
 const installationTypes = new Set<QuoteInstallationType>(["maison", "residence", "entreprise", "hotel", "parking"]);
 const mountings = new Set<QuoteMounting>(["murale", "sur-pied", "a-definir"]);
 const electricalSupplies = new Set<QuoteElectricalSupply>(["monophase", "triphase", "inconnue"]);
-const contactPreferences = new Set<QuoteContactPreference>(["whatsapp", "telephone", "email"]);
 
 const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/u;
 
@@ -110,7 +107,6 @@ export function parseQuoteSubmission(input: unknown):
   const phone = getString(input, "phone");
   const email = getString(input, "email").toLowerCase();
   const city = getString(input, "city");
-  const contactPreference = getEnum(input, "contactPreference", contactPreferences, "whatsapp");
   const simulation = parseSimulation(input.simulation);
 
   if (!hasValidLength(vehicle, 2, 120)) errors.vehicle = "Indiquez un véhicule valide.";
@@ -122,11 +118,8 @@ export function parseQuoteSubmission(input: unknown):
   if (phone.length > 32 || phone.replace(/\D/gu, "").length < 9) {
     errors.phone = "Saisissez un numéro de téléphone valide.";
   }
-  if (email && (!emailPattern.test(email) || email.length > 160)) {
-    errors.email = "Saisissez une adresse e-mail valide.";
-  }
-  if (contactPreference === "email" && !email) {
-    errors.email = "Indiquez votre adresse e-mail pour être recontacté par e-mail.";
+  if (!email || !emailPattern.test(email) || email.length > 160) {
+    errors.email = "Indiquez une adresse e-mail valide.";
   }
   if (!hasValidLength(city, 2, 100)) errors.city = "Indiquez la ville du projet.";
   if (input.consent !== true) errors.consent = "Votre accord est nécessaire pour envoyer la demande.";
@@ -151,7 +144,6 @@ export function parseQuoteSubmission(input: unknown):
       phone,
       email,
       city,
-      contactPreference,
       consent: true,
       simulation: validSimulation,
     },

@@ -29,7 +29,6 @@ type QuoteFields = {
   phone: string;
   email: string;
   city: string;
-  contactPreference: "whatsapp" | "telephone" | "email";
   consent: boolean;
 };
 
@@ -61,12 +60,6 @@ const supplyLabels: Record<QuoteFields["electricalSupply"], string> = {
   inconnue: "Je ne sais pas encore",
 };
 
-const preferenceLabels: Record<QuoteFields["contactPreference"], string> = {
-  whatsapp: "WhatsApp",
-  telephone: "Téléphone",
-  email: "E-mail",
-};
-
 const isValidEmail = (value: string) => /^\S+@\S+\.\S+$/.test(value);
 const isValidPhone = (value: string) => value.replace(/\D/g, "").length >= 9;
 
@@ -90,7 +83,6 @@ export default function QuoteForm({ initialProduct, initialSimulation = null }: 
     phone: "",
     email: "",
     city: "",
-    contactPreference: "whatsapp",
     consent: false,
   });
 
@@ -107,6 +99,34 @@ export default function QuoteForm({ initialProduct, initialSimulation = null }: 
       const [capacity, start, target, power] = rawValues.map(Number);
       setSimulation({ capacity, start, target, power });
     }
+  }, []);
+
+  useEffect(() => {
+    const centerQuoteForm = () => {
+      if (window.location.hash !== "#quote-form") return;
+
+      const quoteForm = document.getElementById("quote-form");
+      if (!quoteForm) return;
+
+      const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      window.requestAnimationFrame(() => {
+        quoteForm.scrollIntoView({
+          behavior: reduceMotion ? "auto" : "smooth",
+          block: "center",
+          inline: "nearest",
+        });
+      });
+    };
+
+    const initialFrame = window.requestAnimationFrame(centerQuoteForm);
+    const initialTimeout = window.setTimeout(centerQuoteForm, 250);
+    window.addEventListener("hashchange", centerQuoteForm);
+
+    return () => {
+      window.cancelAnimationFrame(initialFrame);
+      window.clearTimeout(initialTimeout);
+      window.removeEventListener("hashchange", centerQuoteForm);
+    };
   }, []);
 
   const updateField = <Key extends keyof QuoteFields>(key: Key, value: QuoteFields[Key]) => {
@@ -131,8 +151,7 @@ export default function QuoteForm({ initialProduct, initialSimulation = null }: 
     const nextErrors: QuoteErrors = {};
     if (fields.firstName.trim().length < 2) nextErrors.firstName = "Indiquez votre prénom.";
     if (!isValidPhone(fields.phone)) nextErrors.phone = "Saisissez un numéro de téléphone valide.";
-    if (fields.email && !isValidEmail(fields.email)) nextErrors.email = "Saisissez une adresse e-mail valide.";
-    if (fields.contactPreference === "email" && !fields.email) nextErrors.email = "Indiquez votre adresse e-mail pour être recontacté par e-mail.";
+    if (!isValidEmail(fields.email)) nextErrors.email = "Indiquez une adresse e-mail valide.";
     if (fields.city.trim().length < 2) nextErrors.city = "Indiquez la ville du projet.";
     if (!fields.consent) nextErrors.consent = "Votre accord est nécessaire pour préparer la prise de contact.";
     return nextErrors;
@@ -173,14 +192,13 @@ export default function QuoteForm({ initialProduct, initialSimulation = null }: 
       `Contact : ${fields.firstName} ${fields.lastName}`.trim(),
       `Ville : ${fields.city}`,
       `Téléphone : ${fields.phone}`,
-      ...(fields.email ? [`E-mail : ${fields.email}`] : []),
-      `Canal préféré : ${preferenceLabels[fields.contactPreference]}`,
+      `E-mail : ${fields.email}`,
     ].join("\n");
     return `https://wa.me/212786376294?text=${encodeURIComponent(message)}`;
   }, [fields, simulation]);
 
-  const trackFinalization = () => {
-    window.dispatchEvent(new CustomEvent("evatlas:tracking", { detail: { event: "finalize_quote_whatsapp" } }));
+  const trackWhatsAppFallback = () => {
+    window.dispatchEvent(new CustomEvent("evatlas:tracking", { detail: { event: "click_quote_whatsapp_after_submission" } }));
   };
 
   const handleQuoteSubmission = async (event: FormEvent<HTMLFormElement>) => {
@@ -195,11 +213,6 @@ export default function QuoteForm({ initialProduct, initialSimulation = null }: 
     setErrors({});
     setSubmissionError("");
     setSubmissionState("submitting");
-
-    // Opening synchronously keeps the existing WhatsApp handoff available on browsers
-    // that otherwise block a new tab after an asynchronous request.
-    const whatsappWindow = window.open("", "_blank");
-    if (whatsappWindow) whatsappWindow.opener = null;
 
     try {
       const response = await fetch("/api/devis", {
@@ -222,13 +235,7 @@ export default function QuoteForm({ initialProduct, initialSimulation = null }: 
       }
 
       setSubmissionState("success");
-      trackFinalization();
-
-      if (whatsappWindow && !whatsappWindow.closed) {
-        whatsappWindow.location.replace(whatsappUrl);
-      }
     } catch (error) {
-      if (whatsappWindow && !whatsappWindow.closed) whatsappWindow.close();
       setSubmissionError(error instanceof Error ? error.message : "L’envoi n’a pas pu être finalisé. Réessayez dans un instant.");
       setSubmissionState("error");
     }
@@ -240,7 +247,7 @@ export default function QuoteForm({ initialProduct, initialSimulation = null }: 
         <header className="quote-heading">
           <p className="quote-eyebrow">Votre étude personnalisée</p>
           <h2 id="quote-form-title">Quelques informations, puis un échange humain.</h2>
-          <p>Comptez environ deux minutes. Votre demande sera envoyée à EVAtlas, puis un message récapitulatif sera préparé dans WhatsApp.</p>
+          <p>Comptez environ deux minutes. Votre demande est transmise directement à l’équipe EVAtlas afin qu’un conseiller puisse préparer votre étude.</p>
         </header>
 
         <div className="quote-workspace">
@@ -250,7 +257,7 @@ export default function QuoteForm({ initialProduct, initialSimulation = null }: 
               {[
                 [1, "Le projet", "Usage et installation"],
                 [2, "Vos coordonnées", "Pour vous recontacter"],
-                [3, "Vérification", "Envoi et WhatsApp"],
+                [3, "Vérification", "Confirmation de l’envoi"],
               ].map(([index, title, detail]) => (
                 <li
                   className={`${step === index ? "quote-step-current" : ""} ${step > Number(index) ? "quote-step-complete" : ""}`.trim()}
@@ -264,11 +271,11 @@ export default function QuoteForm({ initialProduct, initialSimulation = null }: 
             </ol>
             <div className="quote-aside-note">
               <Icon name="shield" size={19} />
-              <p><b>Votre demande est traitée par un conseiller EVAtlas.</b><span>Après l’envoi, vous pouvez aussi poursuivre l’échange dans WhatsApp.</span></p>
+              <p><b>Votre demande est traitée par un conseiller EVAtlas.</b><span>Après l’envoi, notre équipe reprend votre projet avec les informations transmises.</span></p>
             </div>
           </aside>
 
-          <form className="quote-form" noValidate onSubmit={step === 3 ? handleQuoteSubmission : handleContinue}>
+          <form id="quote-form" className="quote-form" noValidate onSubmit={step === 3 ? handleQuoteSubmission : handleContinue}>
             <div className="quote-honeypot" aria-hidden="true">
               <label htmlFor="quote-website">Ne pas remplir ce champ</label>
               <input id="quote-website" name="website" type="text" tabIndex={-1} autoComplete="off" value={website} onChange={(event) => setWebsite(event.target.value)} />
@@ -373,8 +380,8 @@ export default function QuoteForm({ initialProduct, initialSimulation = null }: 
                     {errors.phone && <small className="quote-field-error" id="quote-phone-error">{errors.phone}</small>}
                   </label>
                   <label className="quote-field">
-                    <span>E-mail <small>{fields.contactPreference === "email" ? "requis pour cette préférence" : "facultatif"}</small></span>
-                    <input className={errors.email ? "quote-input-error" : ""} type="email" inputMode="email" value={fields.email} autoComplete="email" aria-invalid={Boolean(errors.email)} aria-describedby={errors.email ? "quote-email-error" : undefined} onChange={(event) => updateField("email", event.target.value)} />
+                    <span>E-mail</span>
+                    <input className={errors.email ? "quote-input-error" : ""} type="email" inputMode="email" value={fields.email} autoComplete="email" required aria-required="true" aria-invalid={Boolean(errors.email)} aria-describedby={errors.email ? "quote-email-error" : undefined} onChange={(event) => updateField("email", event.target.value)} />
                     {errors.email && <small className="quote-field-error" id="quote-email-error">{errors.email}</small>}
                   </label>
                   <label className="quote-field">
@@ -384,21 +391,9 @@ export default function QuoteForm({ initialProduct, initialSimulation = null }: 
                   </label>
                 </div>
 
-                <fieldset className="quote-fieldset">
-                  <legend>Canal de réponse préféré</legend>
-                  <div className="quote-choice-grid quote-choice-grid-three">
-                    {Object.entries(preferenceLabels).map(([value, label]) => (
-                      <label className={`quote-choice ${fields.contactPreference === value ? "quote-choice-selected" : ""}`} key={value}>
-                        <input type="radio" name="contactPreference" value={value} checked={fields.contactPreference === value} onChange={() => updateField("contactPreference", value as QuoteFields["contactPreference"])} />
-                        <span><b>{label}</b></span>
-                      </label>
-                    ))}
-                  </div>
-                </fieldset>
-
                 <label className={`quote-consent ${errors.consent ? "quote-consent-error" : ""}`}>
                   <input type="checkbox" checked={fields.consent} aria-invalid={Boolean(errors.consent)} aria-describedby={errors.consent ? "quote-consent-error" : undefined} onChange={(event) => updateField("consent", event.target.checked)} />
-                  <span>J’accepte que ces informations soient utilisées par EVAtlas pour répondre à ma demande. Si je renseigne mon e-mail, je recevrai une confirmation de prise en charge.</span>
+                  <span>J’accepte que ces informations soient utilisées par EVAtlas pour répondre à ma demande. Une confirmation de prise en charge sera envoyée à mon adresse e-mail.</span>
                 </label>
                 {errors.consent && <small className="quote-field-error" id="quote-consent-error">{errors.consent}</small>}
               </div>
@@ -414,15 +409,14 @@ export default function QuoteForm({ initialProduct, initialSimulation = null }: 
                   <div><dt>Projet</dt><dd>{installationLabels[fields.installationType]} · {mountingLabels[fields.mounting]}</dd></div>
                   <div><dt>Localisation</dt><dd>{fields.city}</dd></div>
                   <div><dt>Contact</dt><dd>{fields.firstName} {fields.lastName} · {fields.phone}</dd></div>
+                  <div><dt>E-mail</dt><dd>{fields.email}</dd></div>
                   {simulation && <div><dt>Simulation</dt><dd>{simulation.capacity} kWh · {simulation.start} % → {simulation.target} % · {simulation.power} kW</dd></div>}
                 </dl>
-                <div className="quote-whatsapp-note"><Icon name="whatsapp" size={22} /><p><b>Après l’envoi, poursuivez si vous le souhaitez dans WhatsApp.</b><span>Un message récapitulatif s’ouvrira après la confirmation de votre demande.</span></p></div>
-
                 {submissionState === "success" && (
-                  <div className="quote-submission-status quote-submission-success" role="status" aria-live="polite">
+                  <div className="quote-submission-status quote-submission-success quote-submission-thank-you" role="status" aria-live="polite">
                     <Icon name="check" size={20} />
-                    <p><b>Votre demande a bien été envoyée.</b><span>Un conseiller EVAtlas vous contactera prochainement. {fields.email ? "Une confirmation a aussi été envoyée à votre adresse e-mail." : "Vous pouvez ajouter votre adresse e-mail lors d’une prochaine demande pour recevoir une confirmation."}</span></p>
-                    <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" onClick={trackFinalization}>Ouvrir WhatsApp à nouveau <Icon name="arrow" size={15} /></a>
+                    <p><b>Merci {fields.firstName}, votre demande est bien envoyée.</b><span>Notre équipe l’a reçue et un conseiller EVAtlas vous contactera prochainement. Une confirmation vient d’être envoyée à votre adresse e-mail.</span></p>
+                    <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" onClick={trackWhatsAppFallback}><Icon name="whatsapp" size={16} /> Contacter un conseiller sur WhatsApp si nécessaire <Icon name="arrow" size={15} /></a>
                   </div>
                 )}
 
@@ -430,7 +424,7 @@ export default function QuoteForm({ initialProduct, initialSimulation = null }: 
                   <div className="quote-submission-status quote-submission-error" role="alert">
                     <Icon name="shield" size={20} />
                     <p><b>Votre demande n’a pas été envoyée.</b><span>{submissionError}</span></p>
-                    <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" onClick={trackFinalization}>Poursuivre directement sur WhatsApp <Icon name="arrow" size={15} /></a>
+                    <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" onClick={trackWhatsAppFallback}><Icon name="whatsapp" size={16} /> Contacter un conseiller sur WhatsApp <Icon name="arrow" size={15} /></a>
                   </div>
                 )}
               </div>
@@ -440,9 +434,11 @@ export default function QuoteForm({ initialProduct, initialSimulation = null }: 
               {step > 1 ? <button className="quote-back" type="button" onClick={() => { setErrors({}); setSubmissionState("idle"); setSubmissionError(""); setStep((current) => current - 1); }}><span aria-hidden="true">←</span> Revenir</button> : <TrackedLink className="quote-back" href="/simulateur">Faire d’abord une simulation</TrackedLink>}
               {step < 3 ? (
                 <button className="quote-next" type="submit">Continuer <Icon name="arrow" size={17} /></button>
+              ) : submissionState === "success" ? (
+                <TrackedLink className="quote-next" href="/" eventName="quote_submission_complete">Retour à l’accueil <Icon name="arrow" size={17} /></TrackedLink>
               ) : (
-                <button className="quote-next quote-whatsapp" type="submit" disabled={submissionState === "submitting"} aria-busy={submissionState === "submitting"}>
-                  {submissionState === "submitting" ? "Envoi en cours…" : "Envoyer ma demande"} <Icon name={submissionState === "submitting" ? "bolt" : "whatsapp"} size={19} />
+                <button className="quote-next" type="submit" disabled={submissionState === "submitting"} aria-busy={submissionState === "submitting"}>
+                  {submissionState === "submitting" ? "Envoi en cours…" : "Envoyer ma demande"} <Icon name={submissionState === "submitting" ? "bolt" : "arrow"} size={19} />
                 </button>
               )}
             </footer>

@@ -129,7 +129,7 @@ export function HomeFuturisticSolutions() {
                 </div>
               </article>
             ))}
-            <TrackedLink href="/devis" className={styles.atlasLink} eventName="submit_quote_start">
+            <TrackedLink href="/devis#quote-form" className={styles.atlasLink} eventName="submit_quote_start">
               Parler de mon installation <Icon name="arrow" size={18} />
             </TrackedLink>
           </div>
@@ -254,7 +254,7 @@ export function HomeFuturisticConversion() {
         </header>
 
         <div className={styles.launchChoices}>
-          <TrackedLink href="/devis" className={styles.launchQuote} eventName="submit_quote_start">
+          <TrackedLink href="/devis#quote-form" className={styles.launchQuote} eventName="submit_quote_start">
             <span>01</span>
             <div>
               <small>Projet personnalisé</small>

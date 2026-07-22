@@ -62,7 +62,7 @@ export default function AboutPage() {
               <h1 id="about-title">Rendre la recharge plus simple à décider.</h1>
               <p>EVAtlas accompagne les projets de recharge électrique depuis Casablanca, avec une approche centrée sur le véhicule, le lieu et l’usage réel au Maroc.</p>
               <div className={styles["about-hero-actions"]}>
-                <TrackedLink href="/devis" className="button" eventName="click_about_quote">Parler de mon projet <Icon name="arrow" size={17} /></TrackedLink>
+                <TrackedLink href="/devis#quote-form" className="button" eventName="click_about_quote">Parler de mon projet <Icon name="arrow" size={17} /></TrackedLink>
                 <TrackedLink href="/nos-produits" className={styles["about-secondary-link"]}>Voir les solutions <Icon name="arrow" size={16} /></TrackedLink>
               </div>
             </div>
@@ -142,7 +142,7 @@ export default function AboutPage() {
           <div className={`${styles["about-shell"]} ${styles["about-cta-inner"]}`}>
             <div><p className={styles["about-eyebrow"]}>Votre prochaine étape</p><h2 id="about-cta-title">Commençons par comprendre votre besoin.</h2></div>
             <div className={styles["about-cta-actions"]}>
-              <TrackedLink href="/devis" className="button" eventName="click_about_final_quote">Demander une étude <Icon name="arrow" size={17} /></TrackedLink>
+              <TrackedLink href="/devis#quote-form" className="button" eventName="click_about_final_quote">Demander une étude <Icon name="arrow" size={17} /></TrackedLink>
               <TrackedLink href="/faq" className={styles["about-secondary-link"]}>Consulter la FAQ <Icon name="arrow" size={16} /></TrackedLink>
             </div>
           </div>

@@ -30,7 +30,7 @@ export default function HomeHero() {
         <h1 id="hero-title">La recharge intelligente, pensée pour votre quotidien.</h1>
         <p className="hero-description">Jusqu’à 22 kW, installation professionnelle, pilotage connecté et accompagnement local.</p>
         <div className="hero-actions">
-          <TrackedLink href="/devis" className="button" eventName="click_hero_quote">Demander un devis <Icon name="arrow" size={17} /></TrackedLink>
+          <TrackedLink href="/devis#quote-form" className="button" eventName="click_hero_quote">Demander un devis <Icon name="arrow" size={17} /></TrackedLink>
           <ProductRouteLink className="button button-outline" eventName="click_hero_product">Découvrir la borne <Icon name="arrow" size={17} /></ProductRouteLink>
         </div>
         <ul className="hero-reassurance" aria-label="Les engagements EVAtlas">

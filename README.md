@@ -32,7 +32,7 @@ avec un double-clic sur `index.html`.
 - `/nos-produits` — catalogue et aide au choix
 - `/nos-produits/autel-maxicharger` — expérience produit Autel MaxiCharger
 - `/simulateur` — estimation interactive du temps de recharge
-- `/devis` — demande guidée en trois étapes, finalisée par l’utilisateur dans WhatsApp
+- `/devis` — demande guidée en trois étapes, transmise directement à l’équipe EVAtlas par e-mail
 - `/a-propos` — présentation d’EVAtlas et de sa méthode
 - `/faq` — questions fréquentes
 - `/blog` — centre de conseils et six guides complets

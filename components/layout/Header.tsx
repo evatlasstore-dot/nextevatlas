@@ -11,7 +11,7 @@ import ProductPageHeader from "@/components/product/ProductPageHeader";
 const navigation = [
   { label: "Accueil", href: "/" },
   { label: "Nos produits", href: "/nos-produits/autel-maxicharger", productRoute: true },
-  { label: "Devis", href: "/devis" },
+  { label: "Devis", href: "/devis#quote-form" },
   { label: "Simulateur", href: "/simulateur" },
   { label: "À propos", href: "/a-propos" },
   { label: "FAQ", href: "/faq" },
@@ -25,7 +25,10 @@ export default function Header({ productMode = false }: { productMode?: boolean 
   const menuRef = useRef<HTMLDivElement>(null);
   const toggleRef = useRef<HTMLButtonElement>(null);
   const isProductContext = productMode || pathname.startsWith("/nos-produits/autel-maxicharger");
-  const isActive = (href: string) => href === "/" ? pathname === "/" : pathname === href || pathname.startsWith(`${href}/`);
+  const isActive = (href: string) => {
+    const pathnameHref = href.split("#", 1)[0];
+    return pathnameHref === "/" ? pathname === "/" : pathname === pathnameHref || pathname.startsWith(`${pathnameHref}/`);
+  };
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
@@ -78,10 +81,10 @@ export default function Header({ productMode = false }: { productMode?: boolean 
             if (item.productRoute) {
               return <ProductRouteLink key={item.href} href={item.href} className={active ? "active" : ""} aria-current={active ? "page" : undefined}>{item.label}</ProductRouteLink>;
             }
-            return <TrackedLink key={item.href} href={item.href} className={active ? "active" : ""} aria-current={active ? "page" : undefined} eventName={item.href === "/devis" ? "click_header_quote" : undefined}>{item.label}</TrackedLink>;
+            return <TrackedLink key={item.href} href={item.href} className={active ? "active" : ""} aria-current={active ? "page" : undefined} eventName={item.href.startsWith("/devis") ? "click_header_quote" : undefined}>{item.label}</TrackedLink>;
           })}
         </nav>
-        <TrackedLink href={isProductContext ? "/devis?product=autel-maxicharger" : "/devis"} className="header-quote button button-small" eventName="click_header_quote">
+        <TrackedLink href={isProductContext ? "/devis?product=autel-maxicharger#quote-form" : "/devis#quote-form"} className="header-quote button button-small" eventName="click_header_quote">
           Demander un devis <Icon name="arrow" size={15} />
         </TrackedLink>
         <button ref={toggleRef} className="menu-toggle" type="button" aria-label={open ? "Fermer le menu" : "Ouvrir le menu"} aria-controls="mobile-navigation" aria-expanded={open} onClick={() => setOpen((value) => !value)}>
@@ -95,10 +98,10 @@ export default function Header({ productMode = false }: { productMode?: boolean 
             if (item.productRoute) {
               return <ProductRouteLink key={item.href} href={item.href} tabIndex={open ? 0 : -1} onClick={() => setOpen(false)} className={`mobile-nav-link ${active ? "active" : ""}`} aria-current={active ? "page" : undefined}><span>0{index + 1}</span>{item.label}</ProductRouteLink>;
             }
-            return <TrackedLink key={item.href} href={item.href} tabIndex={open ? 0 : -1} onClick={() => setOpen(false)} className={`mobile-nav-link ${active ? "active" : ""}`} aria-current={active ? "page" : undefined} eventName={item.href === "/devis" ? "click_header_quote" : undefined}><span>0{index + 1}</span>{item.label}</TrackedLink>;
+            return <TrackedLink key={item.href} href={item.href} tabIndex={open ? 0 : -1} onClick={() => setOpen(false)} className={`mobile-nav-link ${active ? "active" : ""}`} aria-current={active ? "page" : undefined} eventName={item.href.startsWith("/devis") ? "click_header_quote" : undefined}><span>0{index + 1}</span>{item.label}</TrackedLink>;
           })}
         </nav>
-        <TrackedLink href={isProductContext ? "/devis?product=autel-maxicharger" : "/devis"} tabIndex={open ? 0 : -1} onClick={() => setOpen(false)} className="button mobile-quote" eventName="click_header_quote">Demander un devis <Icon name="arrow" size={16} /></TrackedLink>
+        <TrackedLink href={isProductContext ? "/devis?product=autel-maxicharger#quote-form" : "/devis#quote-form"} tabIndex={open ? 0 : -1} onClick={() => setOpen(false)} className="button mobile-quote" eventName="click_header_quote">Demander un devis <Icon name="arrow" size={16} /></TrackedLink>
       </div>
     </header>
   );

@@ -4,7 +4,7 @@ import { useEffect, useRef } from "react";
 import Icon from "@/components/ui/Icon";
 import TrackedLink from "@/components/ui/TrackedLink";
 
-const quoteHref = "/devis?product=autel-maxicharger";
+const quoteHref = "/devis?product=autel-maxicharger#quote-form";
 const simulatorHref = "/simulateur?product=autel-maxicharger";
 
 export default function ProductHero() {
