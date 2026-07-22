@@ -212,14 +212,14 @@ export function HomeFuturisticConnected() {
           </div>
 
           <figure className={styles.appDevice} aria-label="Aperçu de l’application Autel Charge">
-            <div className={styles.appDeviceChrome}><span /><i /><i /></div>
-            <video autoPlay muted loop playsInline preload="metadata" poster="/images/app/autel-charge-app/app-poster.png">
-              <source src="/videos/autel-charge-app.mp4" type="video/mp4" />
-            </video>
-            <figcaption>
-              <span><i aria-hidden="true" /> Connexion active</span>
-              <p>Votre borne,<br />dans le bon rythme.</p>
-            </figcaption>
+            <Image
+              className={styles.appMockup}
+              src="/images/app/autel-charge-app/autel-charge-phone-mockups-cutout.png"
+              alt="Application Autel Charge présentée sur trois smartphones"
+              width={1162}
+              height={1354}
+              sizes="(max-width: 760px) 118vw, (max-width: 1100px) 72vw, 640px"
+            />
           </figure>
 
           <aside className={styles.controlReadout} aria-label="Aperçu des fonctions connectées">

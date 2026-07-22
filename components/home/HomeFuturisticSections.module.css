@@ -89,8 +89,7 @@
 
 .atlasStageMeta i,
 .protocolFooter i,
-.controlReadout strong i,
-.appDevice figcaption i {
+.controlReadout strong i {
   width: 7px;
   height: 7px;
   flex: 0 0 auto;
@@ -561,84 +560,52 @@
   min-height: 660px;
   margin: 0;
   overflow: hidden;
-  border: 10px solid rgba(250, 252, 247, .83);
+  border: 1px solid rgba(218, 241, 197, .22);
   border-radius: 42px;
-  background: #1f402d url('/images/app/autel-charge-app/app-poster.png') 54% center / cover no-repeat;
-  box-shadow: 0 34px 84px rgba(32, 61, 42, .22), inset 0 0 0 1px rgba(22, 49, 33, .18);
+  background:
+    radial-gradient(circle at 50% 46%, rgba(177, 229, 135, .34), transparent 26%),
+    radial-gradient(circle at 50% 51%, rgba(74, 137, 86, .45), transparent 54%),
+    linear-gradient(145deg, #173b29, #102b1f 82%);
+  box-shadow: 0 34px 84px rgba(32, 61, 42, .22), inset 0 0 0 1px rgba(230, 249, 213, .07);
   isolation: isolate;
+}
+
+.appDevice::before {
+  position: absolute;
+  z-index: 0;
+  width: 76%;
+  aspect-ratio: 1;
+  top: 13%;
+  left: 50%;
+  border: 1px solid rgba(213, 243, 186, .22);
+  border-radius: 50%;
+  box-shadow: 0 0 0 36px rgba(188, 229, 151, .035), 0 0 0 96px rgba(188, 229, 151, .025);
+  content: "";
+  pointer-events: none;
+  transform: translateX(-50%) rotateX(58deg);
 }
 
 .appDevice::after {
   position: absolute;
-  z-index: 1;
+  z-index: 0;
   inset: 0;
-  background: linear-gradient(180deg, rgba(12, 31, 20, .14), transparent 27%, rgba(10, 30, 18, .72) 100%);
+  background: linear-gradient(180deg, rgba(231, 255, 215, .05), transparent 32%, rgba(6, 24, 16, .27));
   content: "";
   pointer-events: none;
 }
 
-.appDevice video {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: 54% center;
-}
-
-.appDeviceChrome {
+.appMockup {
   position: absolute;
   z-index: 2;
-  top: 16px;
+  top: 50%;
   left: 50%;
-  display: flex;
-  width: 84px;
-  height: 23px;
-  align-items: center;
-  justify-content: center;
-  gap: 4px;
-  border-radius: 0 0 16px 16px;
-  background: rgba(15, 35, 23, .91);
-  transform: translateX(-50%);
-}
-
-.appDeviceChrome > span,
-.appDeviceChrome > i {
   display: block;
-  border-radius: 50%;
-  background: rgba(241, 251, 226, .58);
-}
-
-.appDeviceChrome > span { width: 29px; height: 3px; border-radius: 999px; }
-.appDeviceChrome > i { width: 4px; height: 4px; }
-
-.appDevice figcaption {
-  position: absolute;
-  z-index: 2;
-  right: 28px;
-  bottom: 29px;
-  left: 28px;
-  color: #fff;
-}
-
-.appDevice figcaption > span {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  color: #d5efae;
-  font-size: .62rem;
-  font-weight: 800;
-  letter-spacing: .11em;
-  text-transform: uppercase;
-}
-
-.appDevice figcaption p {
-  margin-top: 14px;
-  font-family: Manrope, sans-serif;
-  font-size: clamp(1.75rem, 3vw, 3rem);
-  font-weight: 600;
-  letter-spacing: -.075em;
-  line-height: .96;
+  width: min(116%, 590px);
+  height: auto;
+  max-width: none;
+  filter: drop-shadow(0 28px 22px rgba(1, 13, 7, .46));
+  transform: translate(-50%, -49%) perspective(1200px) rotateY(-7deg) rotateX(3deg) scale(1.015);
+  transform-style: preserve-3d;
 }
 
 .controlReadout {
@@ -1020,9 +987,8 @@
   .controlBoard { grid-template-columns: 1fr; margin-top: 43px; }
   .controlFeatures { order: 2; }
   .controlFeatures > article { grid-template-columns: 30px 22px minmax(0, 1fr); padding: 18px 0; }
-  .appDevice { order: 1; min-height: 525px; border-width: 8px; border-radius: 31px; }
-  .appDevice figcaption { right: 22px; bottom: 24px; left: 22px; }
-  .appDevice figcaption p { font-size: 2rem; }
+  .appDevice { order: 1; min-height: 525px; border-width: 1px; border-radius: 31px; }
+  .appMockup { width: 112%; transform: translate(-50%, -49%) perspective(1000px) rotateY(-6deg) rotateX(2deg); }
   .controlReadout { order: 3; grid-template-columns: 1fr 1fr; }
   .controlPulse { grid-column: 1 / -1; height: 72px; }
   .controlReadout > article:not(.controlPulse) { padding:18px; }
