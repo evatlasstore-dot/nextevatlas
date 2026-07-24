@@ -1666,6 +1666,328 @@
   }
 }
 
+/* Option B — Apple Light Lab */
+.lightLabWorkspace {
+  grid-template-columns: minmax(300px, .8fr) minmax(390px, 1.28fr) minmax(285px, .72fr);
+  gap: 14px;
+  padding: 0;
+  overflow: visible;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+.lightLabControls,
+.lightLabStage,
+.lightLabResults {
+  border: 1px solid rgba(26, 57, 37, .11);
+  box-shadow: 0 24px 58px rgba(38, 64, 43, .09);
+}
+
+.lightLabControls {
+  padding: clamp(26px, 3vw, 42px);
+  border-radius: 30px;
+  background: rgba(255, 255, 253, .84);
+  backdrop-filter: blur(18px);
+}
+
+.lightLabControls::before {
+  width: 145px;
+  height: 145px;
+  top: -96px;
+  right: -86px;
+  border-color: rgba(86, 132, 79, .11);
+  box-shadow: 0 0 0 22px rgba(117, 159, 98, .035), 0 0 0 46px rgba(117, 159, 98, .02);
+}
+
+.lightLabControls .controlsHeading {
+  padding-bottom: 21px;
+}
+
+.lightLabControls .vehicleFieldset {
+  padding: 21px 0 23px;
+}
+
+.lightLabControls .powerFieldset {
+  padding-top: 22px;
+  margin-top: 22px;
+}
+
+.lightLabControls .powerOption > span {
+  min-height: 75px;
+}
+
+.lightLabStage {
+  min-height: 680px;
+  padding: clamp(22px, 2.5vw, 34px);
+  color: #153124;
+  border-radius: 36px;
+  background:
+    radial-gradient(circle at 51% 44%, rgba(185, 218, 149, .42), transparent 22%),
+    radial-gradient(circle at 8% 4%, rgba(230, 242, 215, .92), transparent 29%),
+    linear-gradient(150deg, #fbfcf8, #edf3e8 100%);
+}
+
+.lightLabStage::after {
+  width: 280px;
+  height: 280px;
+  right: -150px;
+  bottom: -148px;
+  border-color: rgba(62, 103, 67, .13);
+  box-shadow: 0 0 0 34px rgba(83, 127, 73, .035), 0 0 0 68px rgba(83, 127, 73, .018);
+}
+
+.lightLabStage .studioTopline {
+  border-color: rgba(26, 57, 37, .13);
+  color: #547756;
+}
+
+.lightLabStage .studioTopline > span:last-child {
+  color: #758276;
+}
+
+.lightLabStage .studioTopline i {
+  background: #77a75a;
+  box-shadow: 0 0 0 4px rgba(119, 167, 90, .16);
+}
+
+.lightLabStage .studioScene::before {
+  bottom: 15%;
+  background: radial-gradient(ellipse, rgba(94, 130, 77, .23), transparent 66%);
+}
+
+.lightLabStage .studioGrid {
+  opacity: .33;
+  background-image: linear-gradient(rgba(59, 97, 63, .16) 1px, transparent 1px), linear-gradient(90deg, rgba(59, 97, 63, .16) 1px, transparent 1px);
+}
+
+.lightLabStage .studioOrbital {
+  border-color: rgba(91, 132, 82, .32);
+  box-shadow: 0 0 0 17px rgba(116, 158, 97, .06), 0 0 0 45px rgba(116, 158, 97, .025);
+}
+
+.lightLabStage .studioChargeArc {
+  opacity: .65;
+}
+
+.lightLabStage .studioChargeArc span {
+  background: #315b42;
+  box-shadow: 0 0 0 6px rgba(102, 149, 83, .18), 0 0 20px rgba(102, 149, 83, .34);
+}
+
+.lightLabStage .studioVehicleImage {
+  filter: drop-shadow(0 26px 20px rgba(30, 57, 37, .22));
+}
+
+.lightLabStage .studioFallback {
+  color: #486c4c;
+}
+
+.lightLabStage .studioFallback svg {
+  border-color: rgba(69, 108, 73, .22);
+  background: rgba(255, 255, 255, .72);
+  box-shadow: 0 18px 30px rgba(49, 84, 53, .12);
+}
+
+.lightLabStage .studioMarker,
+.lightLabStage .studioBattery {
+  border-color: rgba(44, 82, 50, .13);
+  background: rgba(255, 255, 253, .68);
+  box-shadow: 0 11px 24px rgba(43, 74, 48, .1);
+}
+
+.lightLabStage .studioMarker span,
+.lightLabStage .studioBattery span {
+  color: #778276;
+}
+
+.lightLabStage .studioMarker b,
+.lightLabStage .studioBattery b {
+  color: #173827;
+}
+
+.lightLabStage .studioCaption {
+  border-color: rgba(26, 57, 37, .13);
+}
+
+.lightLabStage .studioCaption > span,
+.lightLabStage .studioCaption small {
+  color: #698c65;
+}
+
+.lightLabStage .studioCaption strong {
+  color: #183628;
+}
+
+.lightLabStage .studioCaption p {
+  color: #657267;
+}
+
+.lightLabStage .brandEmblemPlate {
+  border-color: rgba(77, 118, 75, .24);
+  background: linear-gradient(145deg, #3f6848, #1f4932);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .35), inset 0 -14px 23px rgba(1, 17, 8, .15), 0 22px 23px rgba(43, 74, 48, .19);
+}
+
+.lightLabResults {
+  min-height: 680px;
+  padding: clamp(22px, 2.5vw, 34px);
+  color: #163326;
+  border-radius: 30px;
+  background: rgba(255, 255, 253, .9);
+}
+
+.lightLabResults::before {
+  width: 270px;
+  height: 270px;
+  top: -172px;
+  right: -176px;
+  border-color: rgba(73, 117, 72, .1);
+  box-shadow: 0 0 0 34px rgba(103, 146, 86, .035), 0 0 0 68px rgba(103, 146, 86, .018);
+}
+
+.lightLabResults .resultsTopline {
+  border-color: rgba(26, 57, 37, .13);
+  color: #5d815d;
+}
+
+.lightLabResults .resultsTopline > span:last-child {
+  color: #758176;
+}
+
+.lightLabResults .resultsTopline i {
+  background: #79a664;
+  box-shadow: 0 0 0 4px rgba(121, 166, 100, .15);
+}
+
+.lightLabResults .durationBlock {
+  padding: 32px 0 24px;
+}
+
+.lightLabResults .durationBlock p,
+.lightLabResults .comparison h3 {
+  color: #5a825a;
+}
+
+.lightLabResults .durationBlock output {
+  color: #173827;
+}
+
+.lightLabResults .durationBlock > div:first-child > span,
+.lightLabResults .comparison small,
+.lightLabResults .method {
+  color: #68766b;
+}
+
+.lightLabResults .chargeRing {
+  background: conic-gradient(#7eaa68 var(--charge-progress), rgba(55, 92, 61, .1) 0);
+}
+
+.lightLabResults .chargeRing::before {
+  background: #fbfcf8;
+}
+
+.lightLabResults .chargeRing b {
+  color: #23422f;
+}
+
+.lightLabResults .chargeRing small {
+  color: #718074;
+}
+
+.lightLabResults .metrics {
+  border-color: rgba(39, 76, 46, .13);
+  background: rgba(55, 92, 61, .1);
+}
+
+.lightLabResults .metrics div {
+  background: #f7f9f4;
+}
+
+.lightLabResults .metrics dt,
+.lightLabResults .comparison th {
+  color: #778278;
+}
+
+.lightLabResults .metrics dd {
+  color: #1b3b29;
+}
+
+.lightLabResults .comparison th,
+.lightLabResults .comparison td {
+  border-color: rgba(39, 76, 46, .12);
+}
+
+.lightLabResults .comparisonActive td,
+.lightLabResults .method svg {
+  color: #618e5e;
+}
+
+.lightLabResults .resultCta {
+  color: #fff;
+  background: #28543b;
+  box-shadow: 0 12px 22px rgba(44, 83, 55, .16);
+}
+
+.lightLabResults .productLink {
+  color: #57705c;
+}
+
+@media (max-width: 1180px) {
+  .lightLabWorkspace {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  }
+
+  .lightLabControls {
+    grid-row: span 2;
+  }
+
+  .lightLabStage,
+  .lightLabResults {
+    min-height: 0;
+  }
+
+  .lightLabStage {
+    min-height: 590px;
+  }
+}
+
+@media (max-width: 900px) {
+  .lightLabWorkspace {
+    grid-template-columns: 1fr;
+  }
+
+  .lightLabControls {
+    grid-row: auto;
+  }
+
+  .lightLabStage {
+    min-height: 570px;
+  }
+}
+
+@media (max-width: 560px) {
+  .lightLabWorkspace {
+    gap: 9px;
+  }
+
+  .lightLabControls,
+  .lightLabStage,
+  .lightLabResults {
+    padding: 24px 18px;
+    border-radius: 23px;
+  }
+
+  .lightLabStage {
+    min-height: 500px;
+  }
+
+  .lightLabStage .studioScene {
+    min-height: 318px;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .studioVehicleImage {
     animation: none;
