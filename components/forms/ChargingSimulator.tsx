@@ -140,8 +140,8 @@ export default function ChargingSimulator({ product = "autel-maxicharger" }: Cha
           <p>Choisissez votre marque, votre modèle puis ajustez votre session. Les données de batterie et de charge AC sont préremplies à partir de la version de référence sélectionnée.</p>
         </header>
 
-        <div className={styles.workspace}>
-          <form className={styles.controls} onSubmit={(event) => event.preventDefault()}>
+        <div className={`${styles.workspace} ${styles.studioWorkspace}`} style={vehicleStyle}>
+          <form className={`${styles.controls} ${styles.studioControls}`} onSubmit={(event) => event.preventDefault()}>
             <div className={styles.controlsHeading}>
               <span>01</span>
               <div>
@@ -256,35 +256,32 @@ export default function ChargingSimulator({ product = "autel-maxicharger" }: Cha
             {errors.length > 0 && <div className={styles.errors} role="alert"><Icon name="shield" size={18} /><ul>{errors.map((error) => <li key={error}>{error}</li>)}</ul></div>}
           </form>
 
-          <aside className={styles.results} aria-live="polite" aria-label="Résultat de la simulation" style={vehicleStyle}>
-            <div className={styles.resultsTopline}>
-              <span>Calcul en direct</span>
-              <span><i aria-hidden="true" /> {selectedVehicle ? "Données de la version de référence" : "Sélectionnez votre véhicule"}</span>
+          <aside className={styles.vehicleStudio} aria-label="Aperçu immersif du véhicule sélectionné">
+            <div className={styles.studioTopline}>
+              <span>Jumeau énergétique</span>
+              <span><i aria-hidden="true" /> {selectedVehicle ? "Synchro active" : "En attente"}</span>
             </div>
 
-            <figure className={styles.vehiclePreview}>
-              <div className={styles.vehicleOrbital} aria-hidden="true" />
-              <div className={styles.vehicleMedia}>
+            <div className={styles.studioScene}>
+              <div className={styles.studioGrid} aria-hidden="true" />
+              <div className={styles.studioOrbital} aria-hidden="true" />
+              <div className={styles.studioChargeArc} aria-hidden="true"><span /></div>
+              <div className={styles.studioVehicleMedia}>
                 {activeBrand?.visual ? (
                   <Image
-                    className={styles.vehicleImage}
+                    className={styles.studioVehicleImage}
                     src={activeBrand.visual.src}
-                    alt={activeBrand.visual.alt}
+                    alt={selectedVehicle ? `Aperçu 3D de la gamme ${activeBrand.name} pour ${selectedVehicle.displayModel}` : activeBrand.visual.alt}
                     fill
-                    sizes="(max-width: 760px) 88vw, (max-width: 1040px) 620px, 480px"
+                    sizes="(max-width: 760px) 88vw, (max-width: 1120px) 56vw, 390px"
+                    priority={Boolean(activeBrand)}
                   />
                 ) : activeBrandLogo ? (
                   <div className={styles.brandEmblem} aria-hidden="true">
                     <span className={styles.brandEmblemAura} />
                     <span className={styles.brandEmblemPlate}>
                       {activeBrandLogo.src ? (
-                        <Image
-                          className={styles.brandEmblemLogo}
-                          src={activeBrandLogo.src}
-                          alt=""
-                          fill
-                          sizes="(max-width: 760px) 220px, 250px"
-                        />
+                        <Image className={styles.brandEmblemLogo} src={activeBrandLogo.src} alt="" fill sizes="220px" />
                       ) : (
                         <span className={styles.brandEmblemMonogram}>{activeBrandLogo.name}</span>
                       )}
@@ -292,17 +289,27 @@ export default function ChargingSimulator({ product = "autel-maxicharger" }: Cha
                     <span className={styles.brandEmblemName}>{activeBrandLogo.name}</span>
                   </div>
                 ) : (
-                  <div className={styles.vehicleFallback} aria-hidden="true"><Icon name="car" size={56} /></div>
+                  <div className={styles.studioFallback} aria-hidden="true"><Icon name="car" size={62} /></div>
                 )}
               </div>
-              <figcaption>
-                <span>{activeBrand?.name ?? "Votre véhicule"}</span>
-                <strong>{selectedVehicle?.model ?? (activeBrand ? "Choisissez un modèle" : "Choisissez une marque")}</strong>
-                <small>{selectedVehicle ? `${formatCapacity(selectedVehicle.batteryKwh)} utiles · jusqu’à ${formatPower(selectedVehicle.maxAcKw)} AC` : activeBrand ? "Le modèle précisera les données de charge." : "La marque puis le modèle débloquent votre estimation."}</small>
-                {activeBrand?.visual && <small className={styles.vehicleVisualNote}>Visuel 3D de la gamme : {activeBrand.visual.model}</small>}
-                {!activeBrand?.visual && activeBrandLogo && <small className={styles.vehicleVisualNote}>Emblème 3D de la marque · {activeBrandLogo.domain}</small>}
-              </figcaption>
-            </figure>
+              <div className={styles.studioMarker} aria-hidden="true"><span>AC</span><b>{selectedVehicle ? formatPower(selectedVehicle.maxAcKw) : "—"}</b></div>
+              <div className={styles.studioBattery} aria-hidden="true"><span>Charge cible</span><b>{selectedVehicle ? `${targetLevel}%` : "—"}</b></div>
+            </div>
+
+            <div className={styles.studioCaption}>
+              <span>{activeBrand?.name ?? "Configurez votre véhicule"}</span>
+              <strong>{selectedVehicle?.displayModel ?? "Votre véhicule apparaîtra ici"}</strong>
+              <p>{selectedVehicle ? `${formatCapacity(selectedVehicle.batteryKwh)} utiles · ${selectedVehicle.acPort ?? "Port AC"} · ${selectedVehicle.dcPort ?? "Port DC"}` : "Sélectionnez une marque et un modèle pour activer le jumeau énergétique."}</p>
+              {activeBrand?.visual && <small>Rendu 3D de la gamme {activeBrand.name}</small>}
+              {!activeBrand?.visual && activeBrandLogo && <small>Emblème 3D de la marque</small>}
+            </div>
+          </aside>
+
+          <aside className={`${styles.results} ${styles.studioResults}`} aria-live="polite" aria-label="Résultat de la simulation">
+            <div className={styles.resultsTopline}>
+              <span>Calcul en direct</span>
+              <span><i aria-hidden="true" /> {selectedVehicle ? "Données de la version de référence" : "Sélectionnez votre véhicule"}</span>
+            </div>
 
             <div className={styles.durationBlock}>
               <div>
