@@ -59,7 +59,7 @@ export default function ProductsPage() {
     itemListElement: [{
       "@type": "ListItem",
       position: 1,
-      url: "https://evatlas.ma/nos-produits/autel-maxicharger",
+      url: "https://evatlas.store/nos-produits/autel-maxicharger",
       name: "Autel MaxiCharger AC Wallbox",
     }],
   };

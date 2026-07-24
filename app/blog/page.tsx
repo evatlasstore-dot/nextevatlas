@@ -6,7 +6,7 @@ import Icon from "@/components/ui/Icon";
 import TrackedLink from "@/components/ui/TrackedLink";
 import { blogPosts } from "@/data/blog";
 
-const siteUrl = "https://evatlas.ma";
+const siteUrl = "https://evatlas.store";
 const blogUrl = `${siteUrl}/blog`;
 
 export const metadata: Metadata = {

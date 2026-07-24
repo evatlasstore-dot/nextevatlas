@@ -1,6 +1,6 @@
 import homepage from "./homepage.json";
 
-const siteUrl = "https://evatlas.ma";
+const siteUrl = "https://evatlas.store";
 
 export const organizationSchema = {
   "@context": "https://schema.org",

@@ -3,7 +3,7 @@ import { blogPosts } from "@/data/blog";
 
 export const dynamic = "force-static";
 
-const siteUrl = "https://evatlas.ma";
+const siteUrl = "https://evatlas.store";
 const contentDate = new Date("2026-07-17T00:00:00.000Z");
 
 export default function sitemap(): MetadataRoute.Sitemap {

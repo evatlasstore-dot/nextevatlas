@@ -1,6 +1,6 @@
 import product from "@/data/autel-maxicharger.json";
 
-const siteUrl = "https://evatlas.ma";
+const siteUrl = "https://evatlas.store";
 const productUrl = `${siteUrl}/nos-produits/autel-maxicharger`;
 
 export const autelProductSchema = {

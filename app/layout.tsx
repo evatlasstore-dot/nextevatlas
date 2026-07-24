@@ -3,7 +3,7 @@ import "./globals.css";
 import "./site.css";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://evatlas.ma"),
+  metadataBase: new URL("https://evatlas.store"),
   title: {
     default: "EVAtlas — Bornes de recharge au Maroc",
     template: "%s | EVAtlas",
@@ -11,7 +11,7 @@ export const metadata: Metadata = {
   description:
     "EVAtlas propose des bornes de recharge connectées jusqu’à 22 kW avec installation professionnelle et accompagnement local au Maroc.",
   applicationName: "EVAtlas",
-  authors: [{ name: "Équipe EVAtlas", url: "https://evatlas.ma/a-propos" }],
+  authors: [{ name: "Équipe EVAtlas", url: "https://evatlas.store/a-propos" }],
   creator: "EVAtlas",
   publisher: "EVAtlas",
   category: "Mobilité électrique",

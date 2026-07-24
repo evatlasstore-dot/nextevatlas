@@ -8,7 +8,7 @@ export default function robots(): MetadataRoute.Robots {
       userAgent: "*",
       allow: "/",
     },
-    sitemap: "https://evatlas.ma/sitemap.xml",
-    host: "https://evatlas.ma",
+    sitemap: "https://evatlas.store/sitemap.xml",
+    host: "https://evatlas.store",
   };
 }

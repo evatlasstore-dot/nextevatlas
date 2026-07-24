@@ -13,7 +13,7 @@ import {
   type BlogSection,
 } from "@/data/blog";
 
-const siteUrl = "https://evatlas.ma";
+const siteUrl = "https://evatlas.store";
 
 type BlogArticlePageProps = {
   params: Promise<{ slug: string }>;
