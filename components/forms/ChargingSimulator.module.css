@@ -1988,6 +1988,332 @@
   }
 }
 
+/* Option C — Digital Twin Dashboard */
+.digitalTwinWorkspace {
+  grid-template-columns: minmax(300px, .77fr) minmax(400px, 1.24fr) minmax(294px, .82fr);
+  gap: 9px;
+  padding: 9px;
+  overflow: hidden;
+  border: 1px solid rgba(190, 228, 164, .17);
+  border-radius: 34px;
+  background:
+    linear-gradient(rgba(194, 231, 170, .045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(194, 231, 170, .045) 1px, transparent 1px),
+    #06130d;
+  background-size: 28px 28px, 28px 28px, auto;
+  box-shadow: 0 34px 90px rgba(6, 24, 14, .25);
+}
+
+.digitalTwinControls,
+.digitalTwinStage,
+.digitalTwinResults {
+  border: 1px solid rgba(202, 237, 180, .13);
+}
+
+.digitalTwinControls {
+  padding: clamp(25px, 3vw, 42px);
+  color: #ebf5e5;
+  border-radius: 25px;
+  background: linear-gradient(160deg, rgba(21, 53, 35, .96), rgba(9, 31, 20, .98));
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .035);
+}
+
+.digitalTwinControls::before {
+  width: 160px;
+  height: 160px;
+  top: -100px;
+  right: -96px;
+  border-color: rgba(185, 226, 153, .13);
+  box-shadow: 0 0 0 24px rgba(185, 226, 153, .035), 0 0 0 51px rgba(185, 226, 153, .018);
+}
+
+.digitalTwinControls .controlsHeading {
+  border-color: rgba(226, 246, 211, .13);
+}
+
+.digitalTwinControls .controlsHeading > span,
+.digitalTwinControls .sessionHeader > span {
+  color: #bfe19e;
+  border-color: rgba(198, 235, 168, .25);
+  background: rgba(220, 245, 196, .06);
+}
+
+.digitalTwinControls .kicker,
+.digitalTwinControls .sessionHeader small {
+  color: #a9ce91;
+}
+
+.digitalTwinControls .controlsHeading h3,
+.digitalTwinControls .sessionHeader b,
+.digitalTwinControls .vehicleFieldset legend,
+.digitalTwinControls .fieldset legend {
+  color: #f4f9ef;
+}
+
+.digitalTwinControls .controlsHeading > div > p:last-child,
+.digitalTwinControls .fieldHelp,
+.digitalTwinControls .selectorHint,
+.digitalTwinControls .compatibilityNotice {
+  color: rgba(239, 248, 232, .61);
+}
+
+.digitalTwinControls .vehicleFieldset,
+.digitalTwinControls .powerFieldset {
+  border-color: rgba(226, 246, 211, .13);
+}
+
+.digitalTwinControls .selectLabel > span {
+  color: #adc3af;
+}
+
+.digitalTwinControls .selectLabel select {
+  color: #ecf5e7;
+  border-color: rgba(202, 235, 181, .18);
+  background: rgba(245, 255, 240, .055);
+}
+
+.digitalTwinControls .selectLabel select:disabled {
+  color: rgba(235, 245, 229, .36);
+  border-color: rgba(202, 235, 181, .08);
+  background: rgba(245, 255, 240, .025);
+}
+
+.digitalTwinControls .selectorHint svg,
+.digitalTwinControls .compatibilityNotice svg {
+  color: #a8d78a;
+}
+
+.digitalTwinControls .vehicleSpecs {
+  border-color: rgba(202, 235, 181, .16);
+  background: rgba(202, 235, 181, .1);
+}
+
+.digitalTwinControls .vehicleSpecs div {
+  background: rgba(11, 38, 24, .78);
+}
+
+.digitalTwinControls .vehicleSpecs dt {
+  color: rgba(232, 246, 221, .48);
+}
+
+.digitalTwinControls .vehicleSpecs dd {
+  color: #edf7e7;
+}
+
+.digitalTwinControls .numberField {
+  border-color: rgba(220, 244, 202, .24);
+}
+
+.digitalTwinControls .numberField input {
+  color: #fff;
+  background: transparent;
+}
+
+.digitalTwinControls .numberField span {
+  color: #a9c8a3;
+}
+
+.digitalTwinControls .preset,
+.digitalTwinControls .presetActive {
+  color: #cce3c2;
+  border-color: rgba(202, 235, 181, .16);
+  background: rgba(245, 255, 240, .045);
+}
+
+.digitalTwinControls .presetActive {
+  color: #133221;
+  border-color: #bde590;
+  background: #bde590;
+}
+
+.digitalTwinControls .range {
+  accent-color: #b4dc86;
+}
+
+.digitalTwinControls .powerOption > span {
+  border-color: rgba(202, 235, 181, .14);
+  background: rgba(245, 255, 240, .045);
+}
+
+.digitalTwinControls .powerOption b {
+  color: #f2f8ed;
+}
+
+.digitalTwinControls .powerOption small {
+  color: rgba(236, 247, 227, .5);
+}
+
+.digitalTwinControls .powerOptionSelected > span {
+  color: #163926;
+  border-color: #b9df8d;
+  background: #b9df8d;
+  box-shadow: 0 10px 24px rgba(9, 26, 15, .23);
+}
+
+.digitalTwinControls .powerOptionSelected b,
+.digitalTwinControls .powerOptionSelected small {
+  color: #163926;
+}
+
+.digitalTwinStage {
+  min-height: 680px;
+  padding: clamp(22px, 2.5vw, 34px);
+  color: #edf7e6;
+  border-radius: 25px;
+  background:
+    radial-gradient(circle at 50% 42%, color-mix(in srgb, var(--vehicle-accent) 24%, transparent), transparent 31%),
+    linear-gradient(145deg, #103a26, #071a11 68%);
+}
+
+.digitalTwinStage::after {
+  right: -163px;
+  bottom: -158px;
+  border-color: color-mix(in srgb, var(--vehicle-accent) 22%, transparent);
+}
+
+.digitalTwinStage .studioTopline {
+  border-color: rgba(226, 246, 211, .14);
+  color: #b9df8d;
+}
+
+.digitalTwinStage .studioTopline > span:last-child {
+  color: rgba(243, 250, 238, .58);
+}
+
+.digitalTwinStage .studioGrid {
+  opacity: .41;
+  background-image: linear-gradient(rgba(204, 242, 180, .17) 1px, transparent 1px), linear-gradient(90deg, rgba(204, 242, 180, .17) 1px, transparent 1px);
+}
+
+.digitalTwinStage .studioOrbital {
+  width: min(77%, 326px);
+  border-color: color-mix(in srgb, var(--vehicle-accent) 48%, transparent);
+  box-shadow: 0 0 0 17px color-mix(in srgb, var(--vehicle-accent) 8%, transparent), 0 0 0 45px color-mix(in srgb, var(--vehicle-accent) 4%, transparent);
+}
+
+.digitalTwinStage .studioChargeArc {
+  width: min(90%, 375px);
+}
+
+.digitalTwinStage .studioVehicleMedia {
+  inset: 3% -20% 2%;
+}
+
+.digitalTwinStage .studioVehicleImage {
+  filter: drop-shadow(0 29px 22px rgba(0, 0, 0, .46));
+  transform: scale(1.21);
+}
+
+.digitalTwinStage .studioMarker,
+.digitalTwinStage .studioBattery {
+  border-color: rgba(213, 241, 193, .21);
+  background: rgba(8, 29, 18, .72);
+}
+
+.digitalTwinStage .studioCaption {
+  border-color: rgba(226, 246, 211, .14);
+}
+
+.digitalTwinResults {
+  min-height: 680px;
+  padding: clamp(22px, 2.5vw, 34px);
+  color: #eff8eb;
+  border-radius: 25px;
+  background: linear-gradient(160deg, rgba(16, 46, 30, .98), rgba(6, 25, 16, .99));
+}
+
+.digitalTwinResults::before {
+  width: 280px;
+  height: 280px;
+  top: -176px;
+  right: -184px;
+  border-color: rgba(196, 232, 166, .14);
+}
+
+.digitalTwinResults .resultsTopline {
+  border-color: rgba(226, 246, 211, .14);
+}
+
+.digitalTwinResults .durationBlock {
+  padding-top: 33px;
+}
+
+.digitalTwinResults .metrics {
+  border-color: rgba(215, 241, 194, .14);
+  background: rgba(215, 241, 194, .11);
+}
+
+.digitalTwinResults .metrics div {
+  background: rgba(8, 31, 19, .7);
+}
+
+.digitalTwinResults .comparison th,
+.digitalTwinResults .comparison td {
+  border-color: rgba(225, 244, 210, .12);
+}
+
+.digitalTwinResults .resultCta {
+  color: #163926;
+  background: #b9df8d;
+}
+
+@media (max-width: 1180px) {
+  .digitalTwinWorkspace {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  }
+
+  .digitalTwinControls {
+    grid-row: span 2;
+  }
+
+  .digitalTwinStage,
+  .digitalTwinResults {
+    min-height: 0;
+  }
+
+  .digitalTwinStage {
+    min-height: 590px;
+  }
+}
+
+@media (max-width: 900px) {
+  .digitalTwinWorkspace {
+    grid-template-columns: 1fr;
+    padding: 7px;
+  }
+
+  .digitalTwinControls {
+    grid-row: auto;
+  }
+
+  .digitalTwinStage {
+    min-height: 570px;
+  }
+}
+
+@media (max-width: 560px) {
+  .digitalTwinWorkspace {
+    gap: 7px;
+    padding: 7px;
+    border-radius: 24px;
+  }
+
+  .digitalTwinControls,
+  .digitalTwinStage,
+  .digitalTwinResults {
+    padding: 24px 18px;
+    border-radius: 18px;
+  }
+
+  .digitalTwinStage {
+    min-height: 500px;
+  }
+
+  .digitalTwinStage .studioScene {
+    min-height: 318px;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .studioVehicleImage {
     animation: none;

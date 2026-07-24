@@ -140,8 +140,8 @@ export default function ChargingSimulator({ product = "autel-maxicharger" }: Cha
           <p>Choisissez votre marque, votre modèle puis ajustez votre session. Les données de batterie et de charge AC sont préremplies à partir de la version de référence sélectionnée.</p>
         </header>
 
-        <div className={`${styles.workspace} ${styles.lightLabWorkspace}`} style={vehicleStyle}>
-          <form className={`${styles.controls} ${styles.lightLabControls}`} onSubmit={(event) => event.preventDefault()}>
+        <div className={`${styles.workspace} ${styles.digitalTwinWorkspace}`} style={vehicleStyle}>
+          <form className={`${styles.controls} ${styles.digitalTwinControls}`} onSubmit={(event) => event.preventDefault()}>
             <div className={styles.controlsHeading}>
               <span>01</span>
               <div>
@@ -256,10 +256,10 @@ export default function ChargingSimulator({ product = "autel-maxicharger" }: Cha
             {errors.length > 0 && <div className={styles.errors} role="alert"><Icon name="shield" size={18} /><ul>{errors.map((error) => <li key={error}>{error}</li>)}</ul></div>}
           </form>
 
-          <aside className={`${styles.vehicleStudio} ${styles.lightLabStage}`} aria-label="Aperçu immersif du véhicule sélectionné">
+          <aside className={`${styles.vehicleStudio} ${styles.digitalTwinStage}`} aria-label="Aperçu immersif du véhicule sélectionné">
             <div className={styles.studioTopline}>
-              <span>Laboratoire de recharge</span>
-              <span><i aria-hidden="true" /> {selectedVehicle ? "Configuration active" : "En attente"}</span>
+              <span>Jumeau numérique</span>
+              <span><i aria-hidden="true" /> {selectedVehicle ? "Télémétrie active" : "En attente"}</span>
             </div>
 
             <div className={styles.studioScene}>
@@ -305,7 +305,7 @@ export default function ChargingSimulator({ product = "autel-maxicharger" }: Cha
             </div>
           </aside>
 
-          <aside className={`${styles.results} ${styles.lightLabResults}`} aria-live="polite" aria-label="Résultat de la simulation">
+          <aside className={`${styles.results} ${styles.digitalTwinResults}`} aria-live="polite" aria-label="Résultat de la simulation">
             <div className={styles.resultsTopline}>
               <span>Calcul en direct</span>
               <span><i aria-hidden="true" /> {selectedVehicle ? "Données de la version de référence" : "Sélectionnez votre véhicule"}</span>
