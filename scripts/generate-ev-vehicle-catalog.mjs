@@ -71,7 +71,9 @@ const slug = (value) => value
   .toLowerCase()
   .replace(/[^a-z0-9]+/g, "-")
   .replace(/(^-|-$)/g, "") || "vehicle";
-const formatNumber = (value) => Number.isInteger(value) ? String(value) : String(value).replace(".", ",");
+const stringOrNull = (value) => typeof value === "string" && value.trim() ? value.trim() : null;
+const booleanOrNull = (value) => typeof value === "boolean" ? value : null;
+const withoutLeadingBrand = (name, brand) => name.replace(new RegExp(`^${brand.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}\\s+`, "i"), "").trim();
 
 const records = rawVehicles
   .map((vehicle, sourceIndex) => {
@@ -83,16 +85,33 @@ const records = rawVehicles
       sourceIndex,
       brand: String(vehicle.brand).trim(),
       model: String(vehicle.model).trim(),
+      variant: stringOrNull(vehicle.variant),
       referenceVariant: String(vehicle.full_name || vehicle.variant || vehicle.model).trim(),
       batteryKwh: rounded(batteryKwh),
       maxAcKw: rounded(maxAcKw),
       maxDcKw: validNumber(vehicle?.charging?.dc?.max_power_kw) ? rounded(vehicle.charging.dc.max_power_kw) : null,
+      dcPower10To80Kw: validNumber(vehicle?.charging?.dc?.power_10_80_kw) ? rounded(vehicle.charging.dc.power_10_80_kw) : null,
       rangeKm: validNumber(vehicle?.performance?.electric_range_km) ? Math.round(vehicle.performance.electric_range_km) : null,
       consumptionWhPerKm: validNumber(vehicle?.consumption?.evdb_real?.vehicle_consumption_wh_km)
         ? Math.round(vehicle.consumption.evdb_real.vehicle_consumption_wh_km)
         : null,
-      acPort: typeof vehicle?.charging?.ac?.port === "string" ? vehicle.charging.ac.port : null,
-      dcPort: typeof vehicle?.charging?.dc?.port === "string" ? vehicle.charging.dc.port : null,
+      acPort: stringOrNull(vehicle?.charging?.ac?.port),
+      dcPort: stringOrNull(vehicle?.charging?.dc?.port),
+      acChargeTime: stringOrNull(vehicle?.charging?.ac?.charge_time),
+      dcChargeTime: stringOrNull(vehicle?.charging?.dc?.charge_time),
+      acChargeSpeedKmh: validNumber(vehicle?.charging?.ac?.charge_speed_kmh) ? Math.round(vehicle.charging.ac.charge_speed_kmh) : null,
+      dcChargeSpeedKmh: validNumber(vehicle?.charging?.dc?.charge_speed_kmh) ? Math.round(vehicle.charging.dc.charge_speed_kmh) : null,
+      plugAndChargeSupported: booleanOrNull(vehicle?.charging?.plug_and_charge?.supported),
+      plugAndChargeProtocol: stringOrNull(vehicle?.charging?.plug_and_charge?.protocol),
+      preconditioningAvailable: booleanOrNull(vehicle?.charging?.battery_preconditioning?.possible),
+      preconditioningUsingNavigation: booleanOrNull(vehicle?.charging?.battery_preconditioning?.automatic_using_navigation),
+      batteryChemistry: stringOrNull(vehicle?.battery?.cathode_material),
+      batteryArchitectureV: validNumber(vehicle?.battery?.architecture_v) ? Math.round(vehicle.battery.architecture_v) : null,
+      v2lSupported: booleanOrNull(vehicle?.v2x?.v2l_supported),
+      v2hAcSupported: booleanOrNull(vehicle?.v2x?.v2h_ac_supported),
+      v2hDcSupported: booleanOrNull(vehicle?.v2x?.v2h_dc_supported),
+      v2gAcSupported: booleanOrNull(vehicle?.v2x?.v2g_ac_supported),
+      v2gDcSupported: booleanOrNull(vehicle?.v2x?.v2g_dc_supported),
     };
   })
   .filter(Boolean);
@@ -112,46 +131,53 @@ const brandNames = [...groupedByBrand.keys()].sort((left, right) => {
 });
 
 const catalog = brandNames.map((brandName, brandIndex) => {
-  const configGroups = new Map();
+  const uniqueVehicles = new Map();
   for (const record of groupedByBrand.get(brandName)) {
-    const key = [record.model, record.batteryKwh, record.maxAcKw].join("|");
-    const existing = configGroups.get(key);
-    // Keep the first reference for stable data. The fields driving the AC calculation
-    // are already identical within this group.
-    if (!existing || (record.maxDcKw ?? -1) > (existing.maxDcKw ?? -1)) configGroups.set(key, record);
+    // The source can repeat an identical trim. Keep exactly one record per complete
+    // vehicle identity; never collapse distinct variants simply because their battery
+    // or AC input happen to match.
+    const key = record.referenceVariant;
+    const existing = uniqueVehicles.get(key);
+    const richness = (candidate) => Object.values(candidate).filter((value) => value !== null && value !== false && value !== "").length;
+    if (!existing || richness(record) > richness(existing)) uniqueVehicles.set(key, record);
   }
 
-  const modelConfigurationCounts = new Map();
-  for (const record of configGroups.values()) {
-    modelConfigurationCounts.set(record.model, (modelConfigurationCounts.get(record.model) || 0) + 1);
-  }
-
-  const modelOrdinal = new Map();
-  const models = [...configGroups.values()]
-    .sort((left, right) => {
-      const nameDifference = collator.compare(left.model, right.model);
-      if (nameDifference !== 0) return nameDifference;
-      if (left.batteryKwh !== right.batteryKwh) return right.batteryKwh - left.batteryKwh;
-      return right.maxAcKw - left.maxAcKw;
-    })
+  const idOrdinals = new Map();
+  const models = [...uniqueVehicles.values()]
+    .sort((left, right) => collator.compare(left.referenceVariant, right.referenceVariant))
     .map((record) => {
-      const ordinal = (modelOrdinal.get(record.model) || 0) + 1;
-      modelOrdinal.set(record.model, ordinal);
-      const modelIsAmbiguous = modelConfigurationCounts.get(record.model) > 1;
+      const baseId = `${slug(brandName)}-${slug(record.referenceVariant)}`;
+      const ordinal = (idOrdinals.get(baseId) || 0) + 1;
+      idOrdinals.set(baseId, ordinal);
       return {
-        id: `${slug(brandName)}-${slug(record.model)}-${String(record.batteryKwh).replace(".", "-")}-${String(record.maxAcKw).replace(".", "-")}-${ordinal}`,
+        id: `${baseId}-${ordinal}`,
         model: record.model,
-        displayModel: modelIsAmbiguous
-          ? `${record.model} · ${formatNumber(record.batteryKwh)} kWh · ${formatNumber(record.maxAcKw)} kW AC`
-          : record.model,
+        displayModel: withoutLeadingBrand(record.referenceVariant, brandName),
+        variant: record.variant,
         referenceVariant: record.referenceVariant,
         batteryKwh: record.batteryKwh,
         maxAcKw: record.maxAcKw,
         maxDcKw: record.maxDcKw,
+        dcPower10To80Kw: record.dcPower10To80Kw,
         rangeKm: record.rangeKm,
         consumptionWhPerKm: record.consumptionWhPerKm,
         acPort: record.acPort,
         dcPort: record.dcPort,
+        acChargeTime: record.acChargeTime,
+        dcChargeTime: record.dcChargeTime,
+        acChargeSpeedKmh: record.acChargeSpeedKmh,
+        dcChargeSpeedKmh: record.dcChargeSpeedKmh,
+        plugAndChargeSupported: record.plugAndChargeSupported,
+        plugAndChargeProtocol: record.plugAndChargeProtocol,
+        preconditioningAvailable: record.preconditioningAvailable,
+        preconditioningUsingNavigation: record.preconditioningUsingNavigation,
+        batteryChemistry: record.batteryChemistry,
+        batteryArchitectureV: record.batteryArchitectureV,
+        v2lSupported: record.v2lSupported,
+        v2hAcSupported: record.v2hAcSupported,
+        v2hDcSupported: record.v2hDcSupported,
+        v2gAcSupported: record.v2gAcSupported,
+        v2gDcSupported: record.v2gDcSupported,
       };
     });
 
@@ -177,7 +203,7 @@ const catalog = brandNames.map((brandName, brandIndex) => {
 const output = `/*
  * Generated from the EV vehicle database supplied to EVAtlas.
  * Run: node scripts/generate-ev-vehicle-catalog.mjs <source.json>
- * The client catalogue intentionally keeps only vehicle identity and charging data.
+ * Every unique vehicle trim is retained; only duplicate source rows are removed.
  */
 
 export type EvVehicleVisual = {
@@ -190,14 +216,31 @@ export type EvVehicleModel = {
   id: string;
   model: string;
   displayModel: string;
+  variant: string | null;
   referenceVariant: string;
   batteryKwh: number;
   maxAcKw: number;
   maxDcKw: number | null;
+  dcPower10To80Kw: number | null;
   rangeKm: number | null;
   consumptionWhPerKm: number | null;
   acPort: string | null;
   dcPort: string | null;
+  acChargeTime: string | null;
+  dcChargeTime: string | null;
+  acChargeSpeedKmh: number | null;
+  dcChargeSpeedKmh: number | null;
+  plugAndChargeSupported: boolean | null;
+  plugAndChargeProtocol: string | null;
+  preconditioningAvailable: boolean | null;
+  preconditioningUsingNavigation: boolean | null;
+  batteryChemistry: string | null;
+  batteryArchitectureV: number | null;
+  v2lSupported: boolean | null;
+  v2hAcSupported: boolean | null;
+  v2hDcSupported: boolean | null;
+  v2gAcSupported: boolean | null;
+  v2gDcSupported: boolean | null;
 };
 
 export type EvVehicleBrand = {
