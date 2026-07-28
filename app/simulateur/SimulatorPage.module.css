@@ -3,6 +3,10 @@
   background: #f2f4ed;
 }
 
+.page > section:last-of-type {
+  padding-top: clamp(78px, 7.5vw, 112px);
+}
+
 .hero {
   position: relative;
   display: grid;
@@ -200,6 +204,10 @@
 }
 
 @media (max-width: 760px) {
+  .page > section:last-of-type {
+    padding-top: 70px;
+  }
+
   .hero {
     min-height: max(720px, 100svh);
     padding-top: 118px;

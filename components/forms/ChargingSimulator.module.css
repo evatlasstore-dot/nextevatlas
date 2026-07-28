@@ -1,5 +1,5 @@
 .section {
-  padding: clamp(82px, 11vw, 150px) 0;
+  padding: clamp(88px, 9vw, 132px) 0 clamp(94px, 8vw, 118px);
   color: #13271c;
   background:
     radial-gradient(circle at 88% 4%, rgba(192, 220, 157, .26), transparent 23%),
@@ -13,26 +13,34 @@
 
 .heading {
   display: grid;
-  grid-template-columns: minmax(220px, .56fr) minmax(0, 1.44fr);
-  gap: 18px clamp(46px, 8vw, 112px);
-  align-items: start;
+  grid-template-columns: minmax(0, 1.16fr) minmax(300px, .56fr);
+  gap: 19px clamp(48px, 7vw, 96px);
+  align-items: end;
+}
+
+.heading > p:first-child {
+  grid-column: 1;
+  align-self: start;
 }
 
 .heading h2 {
-  grid-column: 2;
-  max-width: 790px;
-  margin-top: -5px;
-  font-size: clamp(2.35rem, 4.7vw, 5rem);
+  grid-column: 1;
+  grid-row: 2;
+  max-width: 820px;
+  margin: 0;
+  font-size: clamp(2.55rem, 4.85vw, 4.95rem);
   letter-spacing: -.072em;
-  line-height: .97;
+  line-height: .95;
 }
 
 .heading > p:last-child {
   grid-column: 2;
-  max-width: 635px;
+  grid-row: 2;
+  max-width: 410px;
+  padding-bottom: 7px;
   color: #5a6a5e;
-  font-size: 1rem;
-  line-height: 1.68;
+  font-size: .96rem;
+  line-height: 1.7;
 }
 
 .workspace {
@@ -40,16 +48,16 @@
   grid-template-columns: minmax(0, 1.12fr) minmax(390px, .88fr);
   gap: 10px;
   padding: 10px;
-  margin-top: clamp(48px, 7vw, 82px);
+  margin-top: clamp(46px, 5.6vw, 68px);
   border: 1px solid rgba(34, 64, 43, .13);
-  border-radius: 42px;
+  border-radius: 38px;
   background: rgba(255, 255, 252, .86);
   box-shadow: 0 34px 90px rgba(35, 59, 42, .12);
 }
 
 .controls {
   min-width: 0;
-  padding: clamp(29px, 4.2vw, 54px);
+  padding: clamp(32px, 3.8vw, 50px);
 }
 
 .controlsHeading {
@@ -78,7 +86,7 @@
 .kicker,
 .sessionHeader small {
   color: #668260;
-  font-size: .63rem;
+  font-size: .66rem;
   font-weight: 800;
   letter-spacing: .13em;
   text-transform: uppercase;
@@ -87,17 +95,17 @@
 .controlsHeading h3 {
   margin-top: 7px;
   color: #163325;
-  font-size: clamp(1.6rem, 2.5vw, 2.38rem);
+  font-size: clamp(1.72rem, 2.55vw, 2.42rem);
   letter-spacing: -.06em;
   line-height: 1.05;
 }
 
 .controlsHeading > div > p:last-child {
   max-width: 510px;
-  margin-top: 8px;
+  margin-top: 10px;
   color: #66756b;
-  font-size: .8rem;
-  line-height: 1.58;
+  font-size: .84rem;
+  line-height: 1.62;
 }
 
 .vehicleFieldset,
@@ -117,7 +125,7 @@
 .fieldset legend {
   margin-bottom: 12px;
   color: #213d2c;
-  font-size: .76rem;
+  font-size: .8rem;
   font-weight: 800;
 }
 
@@ -135,7 +143,7 @@
 
 .selectLabel > span {
   color: #6b7b70;
-  font-size: .65rem;
+  font-size: .68rem;
   font-weight: 700;
   letter-spacing: .05em;
   text-transform: uppercase;
@@ -143,7 +151,7 @@
 
 .selectLabel select {
   width: 100%;
-  min-height: 50px;
+  min-height: 52px;
   padding: 0 39px 0 14px;
   color: #193427;
   border: 1px solid rgba(42, 73, 49, .17);
@@ -151,7 +159,7 @@
   outline: none;
   background: #f7f9f4;
   font: inherit;
-  font-size: .84rem;
+  font-size: .87rem;
   font-weight: 700;
 }
 
@@ -173,8 +181,8 @@
   gap: 8px;
   margin: 14px 0 0;
   color: #68786c;
-  font-size: .66rem;
-  line-height: 1.5;
+  font-size: .69rem;
+  line-height: 1.52;
 }
 
 .selectorHint svg {
@@ -205,7 +213,7 @@
 
 .vehicleSpecs dt {
   color: #77857b;
-  font-size: .55rem;
+  font-size: .58rem;
   font-weight: 700;
   line-height: 1.3;
 }
@@ -214,7 +222,7 @@
   margin: 0;
   overflow-wrap: anywhere;
   color: #234332;
-  font-size: .65rem;
+  font-size: .69rem;
   font-weight: 800;
 }
 
@@ -335,7 +343,7 @@
 
 .sessionHeader b {
   color: #203d2c;
-  font-size: .88rem;
+  font-size: .94rem;
 }
 
 .sessionGrid {
@@ -383,12 +391,12 @@
   min-height: 32px;
   margin-top: 8px;
   color: #7a857d;
-  font-size: .62rem;
+  font-size: .65rem;
   line-height: 1.45;
 }
 
 .fieldset:disabled {
-  opacity: .5;
+  opacity: .6;
 }
 
 .fieldset:disabled .numberField,
@@ -414,7 +422,7 @@
   border-radius: 999px;
   background: #f7f8f4;
   font: inherit;
-  font-size: .57rem;
+  font-size: .6rem;
   font-weight: 800;
   cursor: pointer;
 }
@@ -475,7 +483,7 @@
 }
 
 .powerOption:has(input:disabled) > span {
-  opacity: .56;
+  opacity: .68;
 }
 
 .powerOption:has(input:disabled):hover > span {
@@ -485,12 +493,12 @@
 
 .powerOption b {
   color: #203b2b;
-  font-size: .69rem;
+  font-size: .72rem;
 }
 
 .powerOption small {
   color: #7d877f;
-  font-size: .55rem;
+  font-size: .58rem;
   line-height: 1.3;
 }
 
@@ -516,7 +524,7 @@
   gap: 8px;
   margin-top: 16px;
   color: #4d7152;
-  font-size: .67rem;
+  font-size: .7rem;
   line-height: 1.48;
 }
 
@@ -554,7 +562,7 @@
   position: relative;
   display: flex;
   min-width: 0;
-  padding: clamp(25px, 3.2vw, 40px);
+  padding: clamp(27px, 3vw, 38px);
   overflow: hidden;
   flex-direction: column;
   color: #eef6e9;
@@ -591,7 +599,7 @@
   padding-bottom: 17px;
   border-bottom: 1px solid rgba(225, 242, 207, .18);
   color: #c9e1a5;
-  font-size: .61rem;
+  font-size: .64rem;
   font-weight: 800;
   letter-spacing: .1em;
   text-transform: uppercase;
@@ -616,17 +624,17 @@
 
 .vehiclePreview {
   position: relative;
-  min-height: 238px;
-  padding: 28px 0 0;
+  min-height: 270px;
+  padding: 30px 0 0;
   margin: 0;
   overflow: hidden;
 }
 
 .vehicleOrbital {
   position: absolute;
-  width: 205px;
-  height: 205px;
-  top: 15px;
+  width: 218px;
+  height: 218px;
+  top: 18px;
   left: 50%;
   border: 1px solid color-mix(in srgb, var(--vehicle-accent) 42%, transparent);
   border-radius: 50%;
@@ -636,7 +644,7 @@
 
 .vehicleMedia {
   position: absolute;
-  inset: -20px -14% 35px;
+  inset: -12px -13% 42px;
 }
 
 .vehicleFallback {
@@ -660,7 +668,7 @@
   object-fit: contain;
   object-position: center 49%;
   filter: drop-shadow(0 15px 15px rgba(5, 22, 13, .28));
-  transform: scale(1.1);
+  transform: scale(1.08);
 }
 
 .brandEmblem {
@@ -773,7 +781,7 @@
 
 .vehiclePreview figcaption span {
   color: var(--vehicle-accent);
-  font-size: .62rem;
+  font-size: .65rem;
   font-weight: 800;
   letter-spacing: .11em;
   text-transform: uppercase;
@@ -788,7 +796,8 @@
 
 .vehiclePreview figcaption small {
   color: rgba(255, 255, 255, .62);
-  font-size: .62rem;
+  font-size: .65rem;
+  line-height: 1.4;
 }
 
 .vehiclePreview figcaption .vehicleVisualNote {
@@ -804,7 +813,7 @@
   grid-template-columns: minmax(0, 1fr) 82px;
   gap: 15px;
   align-items: end;
-  padding: 26px 0 24px;
+  padding: 29px 0 26px;
 }
 
 .durationBlock p {
@@ -887,13 +896,13 @@
   display: grid;
   gap: 8px;
   min-width: 0;
-  padding: 14px 12px;
+  padding: 16px 13px;
   background: rgba(18, 54, 36, .76);
 }
 
 .metrics dt {
   color: rgba(255, 255, 255, .54);
-  font-size: .57rem;
+  font-size: .6rem;
   line-height: 1.35;
 }
 
@@ -901,7 +910,7 @@
   margin: 0;
   overflow-wrap: anywhere;
   color: #fff;
-  font-size: .7rem;
+  font-size: .74rem;
   font-weight: 800;
 }
 
@@ -954,9 +963,10 @@
 .method {
   display: flex;
   gap: 8px;
-  margin-top: 20px;
+  padding-top: 22px;
+  margin-top: auto;
   color: rgba(255, 255, 255, .57);
-  font-size: .62rem;
+  font-size: .65rem;
   line-height: 1.5;
 }
 
@@ -973,13 +983,13 @@
   justify-content: center;
   gap: 9px;
   padding: 0 17px;
-  margin-top: 24px;
+  margin-top: 20px;
   color: #183326;
   border: 0;
   border-radius: 999px;
   background: var(--vehicle-accent);
   font: inherit;
-  font-size: .75rem;
+  font-size: .77rem;
   font-weight: 800;
   text-align: center;
   transition: transform .2s ease, filter .2s ease;
@@ -1007,7 +1017,7 @@
   gap: 7px;
   margin-top: 15px;
   color: rgba(255, 255, 255, .69);
-  font-size: .66rem;
+  font-size: .68rem;
   font-weight: 800;
 }
 
@@ -1040,7 +1050,7 @@
 
 @media (max-width: 760px) {
   .section {
-    padding: 76px 0;
+    padding: 72px 0 58px;
   }
 
   .shell {
@@ -1058,17 +1068,18 @@
 
   .heading > p:last-child {
     margin-top: 18px;
+    padding-bottom: 0;
     font-size: .94rem;
   }
 
   .workspace {
     padding: 6px;
-    margin-top: 40px;
+    margin-top: 36px;
     border-radius: 28px;
   }
 
   .controls {
-    padding: 28px 18px;
+    padding: 28px 20px 31px;
   }
 
   .controlsHeading,
@@ -1107,6 +1118,7 @@
 
   .sessionGrid {
     grid-template-columns: 1fr 1fr;
+    gap: 17px;
   }
 
   .capacityFieldset {
@@ -1122,12 +1134,12 @@
   }
 
   .results {
-    padding: 25px 18px 24px;
+    padding: 26px 20px 25px;
     border-radius: 23px;
   }
 
   .vehiclePreview {
-    min-height: 226px;
+    min-height: 238px;
   }
 
   .durationBlock {
@@ -1181,7 +1193,7 @@
 
   .sessionGrid {
     grid-template-columns: 1fr;
-    gap: 23px;
+    gap: 18px;
   }
 
   .capacityFieldset {
@@ -1189,7 +1201,16 @@
   }
 
   .powerGrid {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 7px;
+  }
+
+  .powerOption:last-child {
+    grid-column: 1 / -1;
+  }
+
+  .powerOption > span {
+    min-height: 76px;
   }
 
   .vehiclePreview {
