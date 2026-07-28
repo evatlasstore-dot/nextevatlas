@@ -87,7 +87,7 @@ main[id="main-content"] { scroll-margin-top:100px; }
 .quote-heading,.sim-heading { display:grid; grid-template-columns:minmax(230px,.58fr) minmax(0,1.42fr); gap:20px clamp(48px,8vw,110px); align-items:start; }
 .quote-heading h2,.sim-heading h2 { grid-column:2; margin-top:-3px; font-size:clamp(2.2rem,4.4vw,4.65rem); letter-spacing:-.065em; }
 .quote-heading > p:last-child,.sim-heading > p:last-child { grid-column:2; max-width:620px; color:var(--ui-muted); font-size:1rem; line-height:1.65; }
-.quote-workspace { display:grid; grid-template-columns:300px minmax(0,1fr); margin-top:58px; overflow:hidden; border:1px solid var(--ui-line); border-radius:38px; background:var(--ui-surface); box-shadow:var(--ui-shadow); }
+.quote-workspace { display:grid; grid-template-columns:300px minmax(0,1fr); margin-top:58px; overflow:hidden; scroll-margin-top:110px; border:1px solid var(--ui-line); border-radius:38px; background:var(--ui-surface); box-shadow:var(--ui-shadow); }
 .quote-aside { display:flex; min-height:760px; padding:36px 30px; flex-direction:column; color:#eef5e9; background:linear-gradient(155deg,#244a35,#112b1e); }
 .quote-aside-label { color:#c8dfa8; font-size:.72rem; font-weight:700; letter-spacing:.12em; text-transform:uppercase; }
 .quote-steps { display:grid; gap:0; padding:0; margin:40px 0 0; list-style:none; }
@@ -104,7 +104,7 @@ main[id="main-content"] { scroll-margin-top:100px; }
 .quote-aside-note p { display:grid; gap:4px; }
 .quote-aside-note b { color:#fff; font-size:.76rem; }
 .quote-aside-note span { color:rgba(255,255,255,.62); font-size:.7rem; line-height:1.48; }
-.quote-form { min-width:0; background:#fff; }
+.quote-form { min-width:0; scroll-margin-top:110px; background:#fff; }
 .quote-panel { padding:clamp(32px,5vw,58px); }
 .quote-panel-heading,.sim-controls-heading { display:grid; grid-template-columns:43px 1fr; gap:18px; align-items:start; padding-bottom:28px; border-bottom:1px solid var(--ui-line); }
 .quote-panel-heading > span,.sim-controls-heading > span { display:grid; width:40px; height:40px; place-items:center; color:#53765a; border:1px solid var(--ui-line); border-radius:50%; font-size:.69rem; font-weight:700; }
@@ -367,6 +367,7 @@ main[id="main-content"] { scroll-margin-top:100px; }
   .quote-hero .quote-hero-proof > div + div { border-top:1px solid rgba(230,245,216,.18); border-left:0; }
   .quote-hero-copy h1,.sim-hero-copy h1 { font-size:clamp(2.65rem,12vw,4rem); }
   .quote-workspace { grid-template-columns:1fr; margin-top:40px; border-radius:28px; }
+  .quote-workspace,.quote-form { scroll-margin-top:88px; }
   .quote-aside { min-height:0; padding:26px 22px; }
   .quote-steps { grid-template-columns:repeat(3,1fr); gap:8px; margin-top:28px; }
   .quote-steps li { display:block; min-height:0; opacity:.62; }

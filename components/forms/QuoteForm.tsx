@@ -1,6 +1,6 @@
 "use client";
 
-import { type FormEvent, useEffect, useMemo, useState } from "react";
+import { type FormEvent, useEffect, useLayoutEffect, useMemo, useState } from "react";
 import Icon from "@/components/ui/Icon";
 import TrackedLink from "@/components/ui/TrackedLink";
 
@@ -34,6 +34,13 @@ type QuoteFields = {
 
 type QuoteErrors = Partial<Record<keyof QuoteFields, string>>;
 type SubmissionState = "idle" | "submitting" | "success" | "error";
+type QuoteApiResponse = {
+  ok?: boolean;
+  error?: unknown;
+  requestId?: unknown;
+  internalEmailSent?: unknown;
+  customerEmailSent?: unknown;
+};
 
 const productLabels: Record<QuoteFields["product"], string> = {
   "autel-maxicharger": "Autel MaxiCharger AC Wallbox",
@@ -68,6 +75,7 @@ export default function QuoteForm({ initialProduct, initialSimulation = null }: 
   const [errors, setErrors] = useState<QuoteErrors>({});
   const [submissionState, setSubmissionState] = useState<SubmissionState>("idle");
   const [submissionError, setSubmissionError] = useState("");
+  const [customerEmailSent, setCustomerEmailSent] = useState<boolean | null>(null);
   const [website, setWebsite] = useState("");
   const [simulation, setSimulation] = useState<SimulationContext | null>(initialSimulation);
   const [fields, setFields] = useState<QuoteFields>({
@@ -106,31 +114,109 @@ export default function QuoteForm({ initialProduct, initialSimulation = null }: 
     }
   }, []);
 
-  useEffect(() => {
-    const centerQuoteForm = () => {
-      if (window.location.hash !== "#quote-form") return;
+  useLayoutEffect(() => {
+    let animationFrame = 0;
+    let startTimer = 0;
+    let restoreScrollBehavior: (() => void) | null = null;
 
-      const quoteForm = document.getElementById("quote-form");
-      if (!quoteForm) return;
+    const userIntentEvents: Array<keyof WindowEventMap> = ["wheel", "touchstart", "pointerdown", "keydown"];
 
-      const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-      window.requestAnimationFrame(() => {
-        quoteForm.scrollIntoView({
-          behavior: reduceMotion ? "auto" : "smooth",
-          block: "center",
-          inline: "nearest",
-        });
-      });
+    const stopAnimation = () => {
+      window.cancelAnimationFrame(animationFrame);
+      window.clearTimeout(startTimer);
+      userIntentEvents.forEach((eventName) => window.removeEventListener(eventName, stopAnimation));
+      restoreScrollBehavior?.();
+      restoreScrollBehavior = null;
     };
 
-    const initialFrame = window.requestAnimationFrame(centerQuoteForm);
-    const initialTimeout = window.setTimeout(centerQuoteForm, 250);
-    window.addEventListener("hashchange", centerQuoteForm);
+    const getDestination = () => {
+      const quoteForm = document.getElementById("quote-form");
+      const workspace = quoteForm?.closest<HTMLElement>(".quote-workspace");
+      const target = workspace || quoteForm;
+      if (!target) return null;
+
+      const header = document.querySelector<HTMLElement>(".site-header");
+      const headerOffset = (header?.getBoundingClientRect().height || 76) + 22;
+      return Math.max(0, target.getBoundingClientRect().top + window.scrollY - headerOffset);
+    };
+
+    const glideToQuote = (startFromHero: boolean) => {
+      if (window.location.hash !== "#quote-form") return;
+
+      stopAnimation();
+      const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      const root = document.documentElement;
+      const previousScrollBehavior = root.style.scrollBehavior;
+      root.style.scrollBehavior = "auto";
+      restoreScrollBehavior = () => {
+        root.style.scrollBehavior = previousScrollBehavior;
+      };
+
+      if (startFromHero) window.scrollTo({ top: 0, left: 0, behavior: "auto" });
+
+      const destination = getDestination();
+      if (destination === null) {
+        stopAnimation();
+        return;
+      }
+
+      if (reduceMotion) {
+        window.scrollTo({ top: destination, left: 0, behavior: "auto" });
+        stopAnimation();
+        return;
+      }
+
+      const origin = window.scrollY;
+      const distance = destination - origin;
+      if (Math.abs(distance) < 2) {
+        stopAnimation();
+        return;
+      }
+
+      const duration = Math.min(1_350, Math.max(820, Math.abs(distance) * 0.42));
+      const startedAt = performance.now();
+      userIntentEvents.forEach((eventName) => window.addEventListener(eventName, stopAnimation, { passive: true }));
+
+      const animate = (time: number) => {
+        const progress = Math.min(1, (time - startedAt) / duration);
+        const eased = progress < 0.5
+          ? 8 * progress ** 4
+          : 1 - ((-2 * progress + 2) ** 4) / 2;
+
+        window.scrollTo(0, origin + distance * eased);
+
+        if (progress < 1) {
+          animationFrame = window.requestAnimationFrame(animate);
+        } else {
+          window.scrollTo(0, destination);
+          stopAnimation();
+        }
+      };
+
+      animationFrame = window.requestAnimationFrame(animate);
+    };
+
+    const beginInitialGlide = () => {
+      if (window.location.hash !== "#quote-form") return;
+
+      // Neutralise le saut natif de l’ancre avant le premier rendu visible,
+      // puis laisse la page glisser depuis le hero vers le formulaire.
+      const root = document.documentElement;
+      const previousScrollBehavior = root.style.scrollBehavior;
+      root.style.scrollBehavior = "auto";
+      window.scrollTo({ top: 0, left: 0, behavior: "auto" });
+      root.style.scrollBehavior = previousScrollBehavior;
+
+      startTimer = window.setTimeout(() => glideToQuote(true), 90);
+    };
+
+    const handleHashChange = () => glideToQuote(false);
+    beginInitialGlide();
+    window.addEventListener("hashchange", handleHashChange);
 
     return () => {
-      window.cancelAnimationFrame(initialFrame);
-      window.clearTimeout(initialTimeout);
-      window.removeEventListener("hashchange", centerQuoteForm);
+      stopAnimation();
+      window.removeEventListener("hashchange", handleHashChange);
     };
   }, []);
 
@@ -140,6 +226,7 @@ export default function QuoteForm({ initialProduct, initialSimulation = null }: 
     if (submissionState !== "idle") {
       setSubmissionState("idle");
       setSubmissionError("");
+      setCustomerEmailSent(null);
     }
   };
 
@@ -217,10 +304,11 @@ export default function QuoteForm({ initialProduct, initialSimulation = null }: 
 
     setErrors({});
     setSubmissionError("");
+    setCustomerEmailSent(null);
     setSubmissionState("submitting");
 
     try {
-      const response = await fetch("/api/devis", {
+      const response = await fetch("/api/devis/", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -233,12 +321,17 @@ export default function QuoteForm({ initialProduct, initialSimulation = null }: 
         }),
       });
 
-      const payload = await response.json().catch(() => null) as { error?: unknown } | null;
+      const payload = await response.json().catch(() => null) as QuoteApiResponse | null;
       if (!response.ok) {
         const message = typeof payload?.error === "string" ? payload.error : "L’envoi n’a pas pu être finalisé. Réessayez dans un instant.";
         throw new Error(message);
       }
 
+      if (payload?.internalEmailSent !== true) {
+        throw new Error("Le serveur n’a pas confirmé la réception de votre demande. Réessayez dans un instant.");
+      }
+
+      setCustomerEmailSent(payload.customerEmailSent === true);
       setSubmissionState("success");
     } catch (error) {
       setSubmissionError(error instanceof Error ? error.message : "L’envoi n’a pas pu être finalisé. Réessayez dans un instant.");
@@ -420,7 +513,14 @@ export default function QuoteForm({ initialProduct, initialSimulation = null }: 
                 {submissionState === "success" && (
                   <div className="quote-submission-status quote-submission-success quote-submission-thank-you" role="status" aria-live="polite">
                     <Icon name="check" size={20} />
-                    <p><b>Merci {fields.firstName}, votre demande est bien envoyée.</b><span>Notre équipe l’a reçue et un conseiller EVAtlas vous contactera prochainement. Une confirmation vient d’être envoyée à votre adresse e-mail.</span></p>
+                    <p>
+                      <b>Merci {fields.firstName}, votre demande est bien envoyée.</b>
+                      <span>
+                        {customerEmailSent
+                          ? "Notre équipe l’a reçue et un conseiller EVAtlas vous contactera prochainement. Une confirmation vient d’être envoyée à votre adresse e-mail."
+                          : "Notre équipe l’a bien reçue et un conseiller EVAtlas vous contactera prochainement. La confirmation par e-mail peut prendre quelques minutes."}
+                      </span>
+                    </p>
                     <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" onClick={trackWhatsAppFallback}><Icon name="whatsapp" size={16} /> Contacter un conseiller sur WhatsApp si nécessaire <Icon name="arrow" size={15} /></a>
                   </div>
                 )}
@@ -436,7 +536,7 @@ export default function QuoteForm({ initialProduct, initialSimulation = null }: 
             )}
 
             <footer className="quote-actions">
-              {step > 1 ? <button className="quote-back" type="button" onClick={() => { setErrors({}); setSubmissionState("idle"); setSubmissionError(""); setStep((current) => current - 1); }}><span aria-hidden="true">←</span> Revenir</button> : <TrackedLink className="quote-back" href="/simulateur">Faire d’abord une simulation</TrackedLink>}
+              {step > 1 ? <button className="quote-back" type="button" onClick={() => { setErrors({}); setSubmissionState("idle"); setSubmissionError(""); setCustomerEmailSent(null); setStep((current) => current - 1); }}><span aria-hidden="true">←</span> Revenir</button> : <TrackedLink className="quote-back" href="/simulateur">Faire d’abord une simulation</TrackedLink>}
               {step < 3 ? (
                 <button className="quote-next" type="submit">Continuer <Icon name="arrow" size={17} /></button>
               ) : submissionState === "success" ? (

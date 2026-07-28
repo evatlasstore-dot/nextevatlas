@@ -2,7 +2,7 @@ import { randomUUID } from "node:crypto";
 
 import { NextRequest, NextResponse } from "next/server";
 
-import { sendQuoteEmails } from "@/lib/quote-email";
+import { getSafeMailError, sendQuoteEmails } from "@/lib/quote-email";
 import { parseQuoteSubmission } from "@/lib/quote-request";
 
 export const runtime = "nodejs";
@@ -111,12 +111,22 @@ export async function POST(request: NextRequest) {
 
   const requestId = randomUUID();
   try {
-    const result = await sendQuoteEmails(parsed.data);
-    return json({ ok: true, requestId, customerEmailSent: result.customerEmailSent }, 201);
+    const result = await sendQuoteEmails(parsed.data, { requestId });
+    return json(
+      {
+        ok: true,
+        requestId,
+        internalEmailSent: result.internalEmailSent,
+        customerEmailSent: result.customerEmailSent,
+      },
+      201,
+    );
   } catch (error) {
-    const reason = error instanceof Error ? error.message : "unknown error";
     // Do not log the submission itself: it contains personal information.
-    console.error("Quote e-mail delivery failed:", reason);
+    console.error("Quote e-mail delivery failed:", {
+      requestId,
+      ...getSafeMailError(error),
+    });
     return json({ ok: false, error: "Le service d’envoi est momentanément indisponible. Réessayez dans quelques instants ou contactez notre équipe." }, 503);
   }
 }

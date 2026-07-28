@@ -28,7 +28,44 @@ type SmtpResponse = {
   message: string;
 };
 
+type MailDeliveryStage =
+  | "connection"
+  | "greeting"
+  | "ehlo"
+  | "authentication"
+  | "sender"
+  | "recipient"
+  | "content"
+  | "delivery"
+  | "unknown";
+
+export type QuoteEmailResult = {
+  internalEmailSent: true;
+  customerEmailSent: boolean;
+};
+
+export type SafeMailError = {
+  name: string;
+  stage: MailDeliveryStage;
+  smtpCode: number | null;
+  temporary: boolean;
+};
+
+class MailDeliveryError extends Error {
+  constructor(
+    public readonly stage: MailDeliveryStage,
+    public readonly smtpCode: number | null,
+    public readonly temporary: boolean,
+    cause: unknown,
+  ) {
+    super(`SMTP delivery failed during ${stage}.`, { cause });
+    this.name = "MailDeliveryError";
+  }
+}
+
 const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/u;
+const temporarySmtpCodes = new Set([421, 450, 451, 452]);
+const temporaryNetworkCodes = new Set(["ECONNRESET", "ETIMEDOUT", "EPIPE", "EAI_AGAIN"]);
 
 const productLabels = {
   "autel-maxicharger": "Autel MaxiCharger AC Wallbox",
@@ -74,7 +111,10 @@ function getMailConfig(): MailConfig {
   }
 
   const user = getRequiredEnvironmentVariable("SMTP_USER");
-  const password = getRequiredEnvironmentVariable("SMTP_PASSWORD");
+  const rawPassword = getRequiredEnvironmentVariable("SMTP_PASSWORD");
+  // Google displays app passwords in groups of four characters. Accept both
+  // the grouped and compact forms while keeping other SMTP passwords unchanged.
+  const password = host.toLowerCase() === "smtp.gmail.com" ? rawPassword.replace(/\s+/gu, "") : rawPassword;
   const notificationEmail = (process.env.QUOTE_NOTIFICATION_EMAIL?.trim() || user).toLowerCase();
   const from = getRequiredEnvironmentVariable("MAIL_FROM").replace(/[\r\n]+/gu, " ");
   const fromAddressMatch = from.match(/<([^<>\s]+@[^<>\s]+)>/u);
@@ -85,6 +125,42 @@ function getMailConfig(): MailConfig {
   }
 
   return { host, port, secure, user, password, notificationEmail, from, fromAddress };
+}
+
+function smtpCodeFromError(error: unknown): number | null {
+  if (!(error instanceof Error)) return null;
+  const match = error.message.match(/\b([245]\d{2})\b/u);
+  return match ? Number(match[1]) : null;
+}
+
+function networkCodeFromError(error: unknown): string | null {
+  if (!error || typeof error !== "object" || !("code" in error)) return null;
+  return typeof error.code === "string" ? error.code : null;
+}
+
+function isTemporaryDeliveryError(error: unknown, smtpCode: number | null): boolean {
+  if (smtpCode !== null && temporarySmtpCodes.has(smtpCode)) return true;
+  const networkCode = networkCodeFromError(error);
+  if (networkCode !== null && temporaryNetworkCodes.has(networkCode)) return true;
+  return error instanceof Error && /timed out|closed unexpectedly/iu.test(error.message);
+}
+
+export function getSafeMailError(error: unknown): SafeMailError {
+  if (error instanceof MailDeliveryError) {
+    return {
+      name: error.name,
+      stage: error.stage,
+      smtpCode: error.smtpCode,
+      temporary: error.temporary,
+    };
+  }
+
+  return {
+    name: error instanceof Error ? error.name : "UnknownError",
+    stage: "unknown",
+    smtpCode: smtpCodeFromError(error),
+    temporary: false,
+  };
 }
 
 function escapeHtml(value: string): string {
@@ -144,6 +220,10 @@ class SmtpSession {
 
   constructor(private readonly socket: TLSSocket) {
     socket.setEncoding("utf8");
+    socket.setTimeout(20_000, () => {
+      this.closeWithError(new Error("SMTP command timed out."));
+      socket.destroy();
+    });
     socket.on("data", (chunk: string) => this.receive(chunk));
     socket.on("error", (error: Error) => this.closeWithError(error));
     socket.on("close", () => this.closeWithError(new Error("SMTP connection closed unexpectedly.")));
@@ -268,12 +348,18 @@ function connect(config: MailConfig): Promise<TLSSocket> {
 }
 
 async function sendMail(config: MailConfig, message: MailMessage): Promise<void> {
-  const session = new SmtpSession(await connect(config));
+  let stage: MailDeliveryStage = "connection";
+  let session: SmtpSession | null = null;
+
   try {
+    session = new SmtpSession(await connect(config));
+    stage = "greeting";
     const greeting = await session.response();
     if (greeting.code !== 220) throw new Error(`SMTP greeting failed with code ${greeting.code}.`);
 
+    stage = "ehlo";
     const ehlo = await session.command("EHLO evatlas.local", [250]);
+    stage = "authentication";
     if (/AUTH(?:[ =].*)?\bPLAIN\b/iu.test(ehlo.message)) {
       const credentials = Buffer.from(`\u0000${config.user}\u0000${config.password}`, "utf8").toString("base64");
       await session.command(`AUTH PLAIN ${credentials}`, [235]);
@@ -285,14 +371,34 @@ async function sendMail(config: MailConfig, message: MailMessage): Promise<void>
       throw new Error("SMTP server does not advertise a supported authentication method.");
     }
 
+    stage = "sender";
     await session.command(`MAIL FROM:<${config.fromAddress}>`, [250]);
+    stage = "recipient";
     await session.command(`RCPT TO:<${message.to}>`, [250, 251]);
+    stage = "content";
     await session.command("DATA", [354]);
+    stage = "delivery";
     await session.data(createMessage(config, message));
     await session.quit();
   } catch (error) {
-    session.destroy();
-    throw error;
+    session?.destroy();
+    if (error instanceof MailDeliveryError) throw error;
+    const smtpCode = smtpCodeFromError(error);
+    throw new MailDeliveryError(stage, smtpCode, isTemporaryDeliveryError(error, smtpCode), error);
+  }
+}
+
+async function sendMailWithRetry(config: MailConfig, message: MailMessage): Promise<void> {
+  const maximumAttempts = 2;
+
+  for (let attempt = 1; attempt <= maximumAttempts; attempt += 1) {
+    try {
+      await sendMail(config, message);
+      return;
+    } catch (error) {
+      const safeError = getSafeMailError(error);
+      if (!safeError.temporary || attempt === maximumAttempts) throw error;
+    }
   }
 }
 
@@ -354,11 +460,31 @@ function createCustomerMessage(submission: QuoteSubmission): MailMessage {
   };
 }
 
-export async function sendQuoteEmails(submission: QuoteSubmission): Promise<{ customerEmailSent: boolean }> {
+export async function sendQuoteEmails(
+  submission: QuoteSubmission,
+  context?: { requestId?: string },
+): Promise<QuoteEmailResult> {
   const config = getMailConfig();
   const internalMessage = createInternalMessage(config, submission);
-  const messages: Promise<void>[] = [sendMail(config, internalMessage)];
-  if (submission.email) messages.push(sendMail(config, createCustomerMessage(submission)));
-  await Promise.all(messages);
-  return { customerEmailSent: Boolean(submission.email) };
+
+  // The EVAtlas notification is the critical delivery. Only its failure should
+  // make the quote request fail in the browser.
+  await sendMailWithRetry(config, internalMessage);
+
+  let customerEmailSent = false;
+  if (submission.email) {
+    try {
+      await sendMailWithRetry(config, createCustomerMessage(submission));
+      customerEmailSent = true;
+    } catch (error) {
+      // Never log the recipient or form contents. The request remains successful
+      // because EVAtlas has already received the lead.
+      console.warn("Quote customer confirmation failed:", {
+        requestId: context?.requestId || "unavailable",
+        ...getSafeMailError(error),
+      });
+    }
+  }
+
+  return { internalEmailSent: true, customerEmailSent };
 }
