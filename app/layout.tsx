@@ -27,6 +27,22 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="fr-MA">
+      <head>
+        <script
+          async
+          src="https://www.googletagmanager.com/gtag/js?id=G-X43Z4LZK9H"
+        />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', 'G-X43Z4LZK9H');
+            `,
+          }}
+        />
+      </head>
       <body><a className="skip-link" href="#main-content">Aller au contenu</a>{children}</body>
     </html>
   );
