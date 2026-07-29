@@ -10,6 +10,23 @@ const workflows = [
   { step: "03", title: "Sécuriser", features: [product.appFeatures[5], product.appFeatures[6]] }
 ];
 
+const appStores = [
+  {
+    label: "App Store",
+    prefix: "Télécharger dans",
+    href: "https://apps.apple.com/fr/app/autel-charge/id1578454464",
+    icon: "/icons/stores/apple.svg",
+    event: "download_autel_charge_ios"
+  },
+  {
+    label: "Google Play",
+    prefix: "Disponible sur",
+    href: "https://play.google.com/store/apps/details?id=com.autel.charge",
+    icon: "/icons/stores/google-play.svg",
+    event: "download_autel_charge_android"
+  }
+] as const;
+
 export default function AutelChargeAppSection() {
   const sectionRef = useRef<HTMLElement>(null);
   const [activeWorkflow, setActiveWorkflow] = useState(0);
@@ -74,6 +91,29 @@ export default function AutelChargeAppSection() {
                   </button>
                 );
               })}
+            </div>
+
+            <div className="app-command-download" aria-label="Télécharger l’application Autel Charge">
+              <div className="app-command-download-copy">
+                <span>Application gratuite</span>
+                <p>Installez Autel Charge sur votre téléphone.</p>
+              </div>
+              <div className="app-command-store-actions">
+                {appStores.map((store) => (
+                  <a
+                    className="app-command-store"
+                    href={store.href}
+                    key={store.label}
+                    onClick={() => window.dispatchEvent(new CustomEvent("evatlas:tracking", { detail: { event: store.event } }))}
+                    rel="noopener noreferrer"
+                    target="_blank"
+                  >
+                    <Image alt="" aria-hidden="true" height={24} src={store.icon} width={24} />
+                    <span><small>{store.prefix}</small><b>{store.label}</b></span>
+                    <i aria-hidden="true">↗</i>
+                  </a>
+                ))}
+              </div>
             </div>
 
             <section className="app-command-detail" aria-live="polite" key={selectedWorkflow.step}>
