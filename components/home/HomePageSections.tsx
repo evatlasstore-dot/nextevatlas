@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Icon from "@/components/ui/Icon";
 import TrackedLink from "@/components/ui/TrackedLink";
+import { WHATSAPP_URL } from "@/data/contact";
 import ProductRouteLink from "@/components/ui/ProductRouteLink";
 import HomeFaqSection from "@/components/home/HomeFaqSection";
 import styles from "./HomePageSections.module.css";
@@ -88,7 +89,7 @@ export function HomeProcessSection() {
         </div>
         <div>
           <p>Un interlocuteur local suit votre projet, vérifie les conditions techniques et vous accompagne jusqu’à la prise en main.</p>
-          <TrackedLink href="https://wa.me/212786376294" className={styles.whatsappLink} eventName="click_whatsapp" prefetch={false}>
+          <TrackedLink href={WHATSAPP_URL} className={styles.whatsappLink} eventName="click_whatsapp" prefetch={false}>
             <Icon name="whatsapp" size={18} /> Échanger sur WhatsApp
           </TrackedLink>
         </div>
@@ -151,7 +152,7 @@ export function HomeConversionSection() {
           <p>Recevez une recommandation adaptée à votre véhicule et à votre installation électrique.</p>
           <div className={styles.conversionActions}>
             <TrackedLink href="/devis#quote-form" className="button" eventName="submit_quote_start">Demander un devis <Icon name="arrow" size={17} /></TrackedLink>
-            <TrackedLink href="https://wa.me/212786376294" className={styles.secondaryButton} eventName="click_whatsapp" prefetch={false}><Icon name="whatsapp" size={18} /> WhatsApp</TrackedLink>
+            <TrackedLink href={WHATSAPP_URL} className={styles.secondaryButton} eventName="click_whatsapp" prefetch={false}><Icon name="whatsapp" size={18} /> WhatsApp</TrackedLink>
           </div>
         </div>
 

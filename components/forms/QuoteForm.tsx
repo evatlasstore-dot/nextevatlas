@@ -3,6 +3,7 @@
 import { type FormEvent, useEffect, useLayoutEffect, useMemo, useState } from "react";
 import Icon from "@/components/ui/Icon";
 import TrackedLink from "@/components/ui/TrackedLink";
+import { WHATSAPP_URL } from "@/data/contact";
 
 type SimulationContext = {
   capacity: number;
@@ -286,7 +287,7 @@ export default function QuoteForm({ initialProduct, initialSimulation = null }: 
       `Téléphone : ${fields.phone}`,
       `E-mail : ${fields.email}`,
     ].join("\n");
-    return `https://wa.me/212786376294?text=${encodeURIComponent(message)}`;
+    return `${WHATSAPP_URL}?text=${encodeURIComponent(message)}`;
   }, [fields, simulation]);
 
   const trackWhatsAppFallback = () => {

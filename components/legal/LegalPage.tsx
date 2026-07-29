@@ -71,7 +71,7 @@ export default function LegalPage({ eyebrow, title, introduction, sections, note
                   <span>EVAtlas</span>
                   <span>12 Rue Mustapha Manfalouti, Gauthier – RDC, Casablanca 20053</span>
                   <a href="mailto:evatlas.store@gmail.com">evatlas.store@gmail.com</a>
-                  <a href="tel:+212694592374">+212 6 94 59 23 74</a>
+                  <a href="tel:+212712833284">+212 7 12 83 32 84</a>
                 </address>
               </section>
             </div>

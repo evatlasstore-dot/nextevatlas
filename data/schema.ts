@@ -8,7 +8,7 @@ export const organizationSchema = {
   name: "EVAtlas",
   url: siteUrl,
   email: "evatlas.store@gmail.com",
-  telephone: "+212694592374",
+  telephone: "+212712833284",
 };
 
 export const localBusinessSchema = {
@@ -17,7 +17,7 @@ export const localBusinessSchema = {
   name: "EVAtlas",
   url: siteUrl,
   email: "evatlas.store@gmail.com",
-  telephone: "+212694592374",
+  telephone: "+212712833284",
   address: {
     "@type": "PostalAddress",
     streetAddress: "12 Rue Mustapha Manfalouti, Gauthier – RDC",

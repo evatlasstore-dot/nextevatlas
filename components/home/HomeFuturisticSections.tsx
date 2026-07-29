@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Icon from "@/components/ui/Icon";
 import TrackedLink from "@/components/ui/TrackedLink";
+import { WHATSAPP_URL } from "@/data/contact";
 import ProductRouteLink from "@/components/ui/ProductRouteLink";
 import homepage from "@/data/homepage.json";
 import styles from "./HomeFuturisticSections.module.css";
@@ -150,7 +151,7 @@ export function HomeFuturisticProcess() {
           </div>
           <div>
             <p>Un interlocuteur local accompagne votre projet du premier échange à la mise en service. Chaque étape a sa fonction, son contrôle et sa place.</p>
-            <TrackedLink href="https://wa.me/212786376294" className={styles.protocolContact} eventName="click_whatsapp" prefetch={false}>
+            <TrackedLink href={WHATSAPP_URL} className={styles.protocolContact} eventName="click_whatsapp" prefetch={false}>
               <Icon name="whatsapp" size={18} /> Échanger avec un conseiller
             </TrackedLink>
           </div>

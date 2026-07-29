@@ -13,7 +13,7 @@ const sections: LegalSection[] = [
     id: "editeur",
     title: "Éditeur du site",
     paragraphs: [
-      "Le site evatlas.ma est édité sous la marque EVAtlas. L’adresse de contact communiquée est le 12 Rue Mustapha Manfalouti, Gauthier – RDC, Casablanca 20053. EVAtlas peut être contacté par e-mail à evatlas.store@gmail.com ou par téléphone au +212 6 94 59 23 74.",
+      "Le site evatlas.ma est édité sous la marque EVAtlas. L’adresse de contact communiquée est le 12 Rue Mustapha Manfalouti, Gauthier – RDC, Casablanca 20053. EVAtlas peut être contacté par e-mail à evatlas.store@gmail.com ou par téléphone au +212 7 12 83 32 84.",
       "La dénomination sociale complète, la forme juridique et les identifiants administratifs de la structure exploitante ne figurent pas dans les informations actuellement disponibles dans ce projet. Ils devront être ajoutés à cette page avant toute publication commerciale définitive.",
     ],
   },
