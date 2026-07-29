@@ -508,9 +508,9 @@
 .controlBoard {
   display: grid;
   grid-template-columns: minmax(220px, .82fr) minmax(330px, .98fr) minmax(210px, .62fr);
-  gap: clamp(16px, 2.5vw, 34px);
+  gap: clamp(12px, 1.55vw, 22px);
   align-items: stretch;
-  margin-top: clamp(52px, 7vw, 90px);
+  margin-top: clamp(40px, 4.6vw, 62px);
 }
 
 .controlFeatures {
@@ -524,7 +524,7 @@
   grid-template-columns: 31px 25px minmax(0, 1fr);
   gap: 12px;
   align-items: start;
-  padding: 23px 0;
+  padding: 20px 0;
   border-bottom: 1px solid rgba(24, 49, 38, .16);
 }
 
@@ -552,12 +552,101 @@
 }
 
 .controlLink {
-  margin-top: 27px;
+  margin-top: 21px;
+}
+
+.controlDownload {
+  display: grid;
+  gap: 10px;
+  padding-top: 20px;
+}
+
+.controlDownload > span {
+  color: #587653;
+  font-size: .6rem;
+  font-weight: 900;
+  letter-spacing: .11em;
+  text-transform: uppercase;
+}
+
+.controlStoreButtons {
+  display: grid;
+  min-width: 0;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.controlStoreButton {
+  display: grid;
+  min-width: 0;
+  min-height: 58px;
+  padding: 9px 10px;
+  color: #fff;
+  border: 1px solid rgba(216, 239, 190, .2);
+  border-radius: 14px;
+  background: linear-gradient(145deg, #224733, #122c20);
+  box-shadow: 0 11px 24px rgba(20, 50, 32, .14), inset 0 1px rgba(255, 255, 255, .08);
+  grid-template-columns: 23px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 9px;
+  text-decoration: none;
+  transition: color .22s ease, transform .22s ease, border-color .22s ease, background .22s ease, box-shadow .22s ease;
+}
+
+.controlStoreButton:hover,
+.controlStoreButton:focus-visible {
+  color: #fff;
+  border-color: rgba(207, 236, 170, .62);
+  background: linear-gradient(145deg, #2e6042, #173a28);
+  box-shadow: 0 16px 29px rgba(20, 50, 32, .2), inset 0 1px rgba(255, 255, 255, .1);
+  transform: translateY(-2px);
+}
+
+.controlStoreButton:focus-visible {
+  outline: 3px solid rgba(100, 151, 91, .38);
+  outline-offset: 3px;
+}
+
+.controlStoreButton img {
+  display: block;
+  width: 23px;
+  height: 23px;
+}
+
+.controlStoreButton > span {
+  display: grid;
+  min-width: 0;
+  gap: 1px;
+}
+
+.controlStoreButton small {
+  overflow: hidden;
+  color: rgba(255, 255, 255, .64);
+  font-size: .46rem;
+  line-height: 1.15;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.controlStoreButton b {
+  overflow: hidden;
+  font-family: Manrope, sans-serif;
+  font-size: .72rem;
+  letter-spacing: -.025em;
+  line-height: 1.2;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.controlStoreButton > i {
+  color: #cce7a8;
+  font-size: .7rem;
+  font-style: normal;
 }
 
 .appDevice {
   position: relative;
-  min-height: 660px;
+  min-height: 620px;
   margin: 0;
   overflow: visible;
 }
@@ -576,12 +665,43 @@
   top: 50%;
   left: 50%;
   display: block;
-  width: min(112%, 610px);
+  width: min(119%, 630px);
   height: auto;
   max-width: none;
   filter: drop-shadow(0 28px 22px rgba(16, 42, 26, .26));
-  transform: translate(-50%, -50%) perspective(1200px) rotateY(-7deg) rotateX(3deg) scale(1.015);
+  transform: translate(-52%, -51%) perspective(1200px) rotateY(-7deg) rotateX(3deg) scale(1.015);
   transform-style: preserve-3d;
+}
+
+@media (min-width: 1101px) {
+  .appDevice::before {
+    position: absolute;
+    z-index: 0;
+    top: 49%;
+    left: -25px;
+    display: block;
+    width: 74px;
+    height: 1px;
+    background: linear-gradient(90deg, rgba(62, 103, 70, .48), rgba(96, 145, 87, .12));
+    content: "";
+    pointer-events: none;
+  }
+
+  .appDevice::after {
+    position: absolute;
+    z-index: 0;
+    top: calc(49% - 4px);
+    left: -28px;
+    display: block;
+    width: 9px;
+    height: 9px;
+    border: 1px solid rgba(62, 103, 70, .54);
+    border-radius: 50%;
+    background: #edf2e9;
+    box-shadow: 0 0 0 6px rgba(112, 158, 91, .09);
+    content: "";
+    pointer-events: none;
+  }
 }
 
 .controlReadout {
@@ -998,6 +1118,7 @@
   .controlReadout { grid-template-columns: 1fr; }
   .controlPulse { grid-column: auto; }
   .appDevice { min-height: 465px; }
+  .controlStoreButtons { grid-template-columns: 1fr; }
   .launchQuote,
   .launchSimulator { grid-template-columns: 26px minmax(0, 1fr) 38px; padding: 21px; }
   .launchQuote > b,
@@ -1012,6 +1133,7 @@
   .launchSimulator,
   .atlasLink svg,
   .controlLink svg,
+  .controlStoreButton,
   .faqLink svg,
   .protocolFooter a svg,
   .launchQuote > b,
@@ -1021,5 +1143,6 @@
   .contextCard:hover::before,
   .protocolTimeline li:hover,
   .launchQuote:hover,
-  .launchSimulator:hover { transform: none; }
+  .launchSimulator:hover,
+  .controlStoreButton:hover { transform: none; }
 }

@@ -81,6 +81,23 @@ const controlFeatures = [
   },
 ];
 
+const autelAppStores = [
+  {
+    label: "App Store",
+    prefix: "Télécharger dans",
+    href: "https://apps.apple.com/fr/app/autel-charge/id1578454464",
+    icon: "/icons/stores/apple.svg",
+    eventName: "download_autel_charge_ios_home",
+  },
+  {
+    label: "Google Play",
+    prefix: "Disponible sur",
+    href: "https://play.google.com/store/apps/details?id=com.autel.charge",
+    icon: "/icons/stores/google-play.svg",
+    eventName: "download_autel_charge_android_home",
+  },
+] as const;
+
 export function HomeFuturisticSolutions() {
   return (
     <section className={`${styles.atlasSection} section`} aria-labelledby="home-solutions-title">
@@ -207,6 +224,27 @@ export function HomeFuturisticConnected() {
                 </div>
               </article>
             ))}
+            <div className={styles.controlDownload}>
+              <span>Télécharger Autel Charge</span>
+              <div className={styles.controlStoreButtons}>
+                {autelAppStores.map((store) => (
+                  <TrackedLink
+                    aria-label={`${store.prefix} ${store.label}`}
+                    className={styles.controlStoreButton}
+                    eventName={store.eventName}
+                    href={store.href}
+                    key={store.label}
+                    prefetch={false}
+                    rel="noopener noreferrer"
+                    target="_blank"
+                  >
+                    <Image alt="" aria-hidden="true" height={24} src={store.icon} width={24} />
+                    <span><small>{store.prefix}</small><b>{store.label}</b></span>
+                    <i aria-hidden="true">↗</i>
+                  </TrackedLink>
+                ))}
+              </div>
+            </div>
             <ProductRouteLink className={styles.controlLink} eventName="click_product_feature">
               Explorer la MaxiCharger <Icon name="arrow" size={17} />
             </ProductRouteLink>
