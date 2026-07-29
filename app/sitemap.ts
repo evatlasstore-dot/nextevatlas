@@ -5,6 +5,12 @@ export const dynamic = "force-static";
 
 const siteUrl = "https://evatlas.store";
 const contentDate = new Date("2026-07-17T00:00:00.000Z");
+const blogLastModified = new Date(
+  `${blogPosts.reduce(
+    (latest, post) => post.dateModified > latest ? post.dateModified : latest,
+    "2026-07-17",
+  )}T00:00:00.000Z`,
+);
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const pages: MetadataRoute.Sitemap = [
@@ -45,7 +51,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
     {
       url: `${siteUrl}/blog`,
-      lastModified: contentDate,
+      lastModified: blogLastModified,
       changeFrequency: "weekly",
     },
     {

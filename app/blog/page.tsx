@@ -12,7 +12,7 @@ const blogUrl = `${siteUrl}/blog`;
 export const metadata: Metadata = {
   title: "Guides sur la recharge électrique au Maroc",
   description:
-    "Guides EVAtlas pour choisir, installer et utiliser une borne de recharge au Maroc : puissance, budget, temps de charge et projets collectifs.",
+    "Guides EVAtlas sur la recharge électrique au Maroc : borne à domicile, MaxiCharger, solaire, puissance, compatibilité et longs trajets.",
   alternates: { canonical: "/blog" },
   robots: { index: true, follow: true },
   openGraph: {
@@ -21,7 +21,7 @@ export const metadata: Metadata = {
     url: "/blog",
     title: "Guides sur la recharge électrique au Maroc | EVAtlas",
     description:
-      "Des réponses pratiques pour choisir une borne, préparer son installation et mieux comprendre la recharge électrique.",
+      "Des réponses pratiques sur les bornes, l’installation, la recharge solaire, la compatibilité et les usages connectés au Maroc.",
     siteName: "EVAtlas",
     images: [
       {
@@ -116,7 +116,10 @@ const blogSchema = {
 };
 
 export default function BlogPage() {
-  const [featured, ...articles] = blogPosts;
+  const featured = blogPosts[0];
+  const articles = blogPosts
+    .slice(1)
+    .sort((first, second) => second.datePublished.localeCompare(first.datePublished));
 
   return (
     <>
@@ -201,7 +204,7 @@ export default function BlogPage() {
                 <h2 id="articles-title">Approfondir chaque décision.</h2>
               </div>
               <p>
-                Installation, puissance, temps de charge et projets partagés :
+                Installation, solaire, puissance, compatibilité et mobilité :
                 choisissez le sujet qui correspond à votre étape actuelle.
               </p>
             </div>

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import { notFound } from "next/navigation";
+import { Fragment } from "react";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import Icon from "@/components/ui/Icon";
@@ -159,6 +160,35 @@ export default async function BlogArticlePage({
 
   const relatedPosts = getRelatedPosts(post);
   const articleUrl = `${siteUrl}/blog/${post.slug}`;
+  const articleText = [
+    post.title,
+    post.description,
+    ...post.intro,
+    post.quickAnswer,
+    ...post.sections.flatMap((section) => [
+      section.title,
+      ...section.paragraphs,
+      ...(section.bullets ?? []),
+      ...(section.table?.rows.flat() ?? []),
+      section.note?.text ?? "",
+    ]),
+    ...post.faq.flatMap((item) => [item.question, item.answer]),
+  ].join(" ");
+  const wordCount = articleText.trim().split(/\s+/).length;
+  const imageObject = {
+    "@type": "ImageObject",
+    url: `${siteUrl}${post.image}`,
+    width: 1600,
+    height: 900,
+    caption: post.imageAlt,
+    contentUrl: `${siteUrl}${post.image}`,
+    creditText: "EVAtlas",
+    creator: {
+      "@type": "Organization",
+      name: "EVAtlas",
+    },
+    copyrightNotice: "EVAtlas",
+  };
   const articleSchema = {
     "@context": "https://schema.org",
     "@graph": [
@@ -175,6 +205,20 @@ export default async function BlogArticlePage({
         },
       },
       {
+        "@type": "WebPage",
+        "@id": `${articleUrl}/#webpage`,
+        url: articleUrl,
+        name: post.title,
+        description: post.description,
+        inLanguage: "fr-MA",
+        datePublished: post.datePublished,
+        dateModified: post.dateModified,
+        isPartOf: { "@id": `${siteUrl}/blog/#blog` },
+        breadcrumb: { "@id": `${articleUrl}/#breadcrumb` },
+        primaryImageOfPage: imageObject,
+        mainEntity: { "@id": `${articleUrl}/#article` },
+      },
+      {
         "@type": "BlogPosting",
         "@id": `${articleUrl}/#article`,
         url: articleUrl,
@@ -184,18 +228,19 @@ export default async function BlogArticlePage({
         },
         headline: post.title,
         description: post.description,
-        image: {
-          "@type": "ImageObject",
-          url: `${siteUrl}${post.image}`,
-          width: 1600,
-          height: 900,
-          caption: post.imageAlt,
-        },
+        image: imageObject,
+        thumbnailUrl: `${siteUrl}${post.image}`,
         datePublished: post.datePublished,
         dateModified: post.dateModified,
         inLanguage: "fr-MA",
         articleSection: post.category,
         keywords: post.keywords.join(", "),
+        wordCount,
+        isAccessibleForFree: true,
+        about: post.keywords.slice(0, 3).map((keyword) => ({
+          "@type": "Thing",
+          name: keyword,
+        })),
         author: {
           "@type": "Organization",
           name: "Équipe EVAtlas",
@@ -266,7 +311,9 @@ export default async function BlogArticlePage({
                 <h1>{post.title}</h1>
                 <p className="article-deck">{post.description}</p>
                 <div className="article-meta">
-                  <span>Par l’équipe EVAtlas</span>
+                  <TrackedLink href="/a-propos">
+                    Par l’équipe EVAtlas
+                  </TrackedLink>
                   <span aria-hidden="true">•</span>
                   <time dateTime={post.datePublished}>
                     Publié le {formatDate(post.datePublished)}
@@ -334,8 +381,25 @@ export default async function BlogArticlePage({
                 <strong>{post.quickAnswer}</strong>
               </aside>
 
-              {post.sections.map((section) => (
-                <ArticleSectionContent section={section} key={section.id} />
+              {post.sections.map((section, index) => (
+                <Fragment key={section.id}>
+                  <ArticleSectionContent section={section} />
+                  {index === 1 && post.productCta && (
+                    <aside className="article-inline-product" aria-labelledby="article-inline-product-title">
+                      <div>
+                        <p>{post.productCta.eyebrow}</p>
+                        <h2 id="article-inline-product-title">{post.productCta.title}</h2>
+                        <span>{post.productCta.text}</span>
+                      </div>
+                      <ProductRouteLink
+                        className="button"
+                        eventName="click_article_inline_product"
+                      >
+                        {post.productCta.label} <Icon name="arrow" size={17} />
+                      </ProductRouteLink>
+                    </aside>
+                  )}
+                </Fragment>
               ))}
 
               <section

@@ -43,9 +43,16 @@ export type BlogPost = {
   sections: BlogSection[];
   faq: BlogFaq[];
   relatedSlugs: string[];
+  productCta?: {
+    eyebrow: string;
+    title: string;
+    text: string;
+    label: string;
+  };
 };
 
 const publicationDate = "2026-07-17";
+const newPublicationDate = "2026-07-29";
 
 export const blogPosts: BlogPost[] = [
   {
@@ -935,6 +942,703 @@ export const blogPosts: BlogPost[] = [
       "prix-borne-recharge-installation-maroc",
     ],
   },
+  {
+    slug: "autel-maxicharger-22kw-maroc",
+    title: "Autel MaxiCharger 22 kW au Maroc : le guide complet",
+    seoTitle: "Autel MaxiCharger 22 kW au Maroc : guide",
+    description:
+      "Puissance, application, connectivité et installation : découvrez si l’Autel MaxiCharger 22 kW correspond à votre véhicule et à votre usage au Maroc.",
+    excerpt:
+      "Un décryptage concret de la MaxiCharger : puissance réellement utile, fonctions connectées, pose et critères à vérifier avant de choisir.",
+    category: "Produit",
+    readingTime: 9,
+    datePublished: newPublicationDate,
+    dateModified: newPublicationDate,
+    image: "/images/blog/autel-maxicharger-22kw-maroc.jpg",
+    imageAlt:
+      "Autel MaxiCharger installée sur le mur d’une villa contemporaine au Maroc près d’un véhicule électrique",
+    keywords: [
+      "Autel MaxiCharger Maroc",
+      "Autel MaxiCharger 22 kW",
+      "borne Autel Maroc",
+      "wallbox Autel",
+      "Autel Charge App",
+    ],
+    intro: [
+      "L’Autel MaxiCharger AC Wallbox réunit une puissance pouvant atteindre 22 kW, un connecteur Type 2 et plusieurs fonctions de pilotage. Ces caractéristiques sont attractives, mais leur valeur dépend toujours du véhicule, de l’alimentation électrique et de la manière dont la borne sera utilisée.",
+      "Ce guide présente les éléments utiles pour évaluer la MaxiCharger dans un projet résidentiel ou professionnel au Maroc. L’objectif est de distinguer les capacités du produit de la puissance qui sera réellement disponible une fois la borne installée.",
+    ],
+    quickAnswer:
+      "L’Autel MaxiCharger convient aux véhicules compatibles Type 2 et peut délivrer jusqu’à 22 kW en configuration adaptée. La vitesse réelle reste limitée par le chargeur embarqué du véhicule et l’installation. Son intérêt tient aussi à l’application Autel Charge, à la programmation, au suivi, au RFID et aux options de connectivité.",
+    sections: [
+      {
+        id: "profil-maxicharger",
+        title: "À quel type de projet correspond la MaxiCharger ?",
+        paragraphs: [
+          "La MaxiCharger peut répondre à une recharge quotidienne à domicile comme à un besoin d’accès contrôlé sur un site professionnel. Son format compact permet une pose murale ; une installation sur pied peut être étudiée lorsque la place de stationnement n’est pas adossée à un support adapté.",
+          "Le produit ne doit cependant pas être choisi uniquement pour sa puissance maximale. Le bon projet commence par le temps de stationnement, l’énergie à récupérer, la limite AC de la voiture et la puissance que le bâtiment peut consacrer à la recharge.",
+        ],
+        listTitle: "Les profils qui peuvent y trouver un intérêt",
+        bullets: [
+          "Conducteur souhaitant programmer et suivre ses sessions depuis une application",
+          "Foyer recherchant une borne évolutive pour un futur véhicule",
+          "Entreprise ayant besoin d’identifier les utilisateurs avec un badge RFID",
+          "Stationnement nécessitant une pose murale ou une implantation sur pied",
+        ],
+      },
+      {
+        id: "puissance-reelle",
+        title: "Jusqu’à 22 kW : comprendre la puissance réellement obtenue",
+        paragraphs: [
+          "La borne peut atteindre 22 kW avec une alimentation triphasée compatible. Cette valeur ne signifie pas que chaque voiture chargera à 22 kW. Le chargeur embarqué du véhicule peut accepter une puissance AC inférieure, et l’installation peut être configurée à un niveau adapté à sa capacité.",
+          "Une MaxiCharger réglée à 7,4 ou 11 kW peut donc être parfaitement cohérente. Le produit conserve ses fonctions connectées tout en respectant la limite du site. Le dimensionnement évite de renforcer inutilement une installation pour une puissance que le véhicule ne saurait pas utiliser.",
+        ],
+        table: {
+          caption: "Les trois limites qui déterminent la recharge",
+          headers: ["Élément", "Rôle", "Vérification utile"],
+          rows: [
+            ["Véhicule", "Fixe la puissance AC maximale acceptée", "Fiche technique ou simulateur"],
+            ["Installation", "Détermine la capacité disponible", "Étude du tableau et de l’alimentation"],
+            ["Borne", "Fournit la puissance configurée", "Réglage lors de la mise en service"],
+          ],
+        },
+      },
+      {
+        id: "application-connectivite",
+        title: "Autel Charge App, RFID et connectivité au quotidien",
+        paragraphs: [
+          "L’application Autel Charge permet notamment de démarrer ou arrêter une session, programmer des horaires, consulter l’historique, suivre la consommation et recevoir des notifications. Ces fonctions deviennent utiles lorsque la recharge doit s’adapter au rythme du foyer ou être surveillée à distance.",
+          "La borne prend en charge le Wi-Fi, le Bluetooth et l’Ethernet, avec une option 4G selon la configuration. Le RFID apporte un contrôle d’accès simple lorsqu’un point de charge se trouve dans un parking partagé ou accessible à plusieurs personnes.",
+        ],
+        listTitle: "Fonctions à configurer dès la mise en service",
+        bullets: [
+          "Association de la borne au compte et au réseau disponible",
+          "Plage horaire correspondant au stationnement habituel",
+          "Niveau de puissance retenu après l’étude électrique",
+          "Badges et règles d’accès pour les utilisateurs autorisés",
+          "Notifications réellement utiles pour éviter les alertes superflues",
+        ],
+        note: {
+          title: "Une borne connectée doit rester simple",
+          text: "Le réglage initial doit se limiter aux fonctions utiles. Une interface riche n’oblige pas à activer chaque option dès le premier jour.",
+        },
+      },
+      {
+        id: "installation-protection",
+        title: "Installation, protection et emplacement",
+        paragraphs: [
+          "La MaxiCharger affiche un indice IP54 et une résistance IK08, avec une plage de fonctionnement annoncée de -40 °C à +55 °C. Ces caractéristiques n’annulent pas la nécessité de choisir un emplacement raisonnable, une fixation stable et un cheminement de câble protégé.",
+          "L’installation doit réunir le circuit, les protections électriques, la mise à la terre, le support et la configuration de puissance. EVAtlas analyse également la longueur du câble, proposée en 5 m ou 7,5 m, afin que le connecteur rejoigne naturellement le port du véhicule.",
+        ],
+        listTitle: "Points contrôlés avant la pose",
+        ordered: true,
+        bullets: [
+          "Position du port de charge lorsque la voiture est garée",
+          "Distance et cheminement depuis le tableau électrique",
+          "Support disponible pour une pose murale ou sur pied",
+          "Exposition, circulation et rangement du câble",
+          "Connexion réseau nécessaire aux fonctions retenues",
+        ],
+      },
+      {
+        id: "choisir-maxicharger",
+        title: "La grille de décision avant de choisir",
+        paragraphs: [
+          "La MaxiCharger est pertinente lorsque ses fonctions répondent à un usage réel et que son installation est dimensionnée sur des données vérifiées. Une recommandation claire doit indiquer le véhicule, la puissance configurée, le type de pose, la longueur du câble et les options de contrôle.",
+          "Le simulateur EVAtlas fournit un premier ordre de grandeur du temps de charge. Une étude reprend ensuite le tableau électrique et l’emplacement pour transformer cette estimation en configuration installable.",
+        ],
+        table: {
+          caption: "Décision rapide autour de la MaxiCharger",
+          headers: ["Question", "Si la réponse est oui"],
+          rows: [
+            ["Le véhicule utilise-t-il le Type 2 en AC ?", "La compatibilité de connecteur est cohérente"],
+            ["L’application ou le RFID sont-ils utiles ?", "Les fonctions connectées apportent une valeur concrète"],
+            ["Le site a-t-il été vérifié ?", "La puissance peut être configurée sans hypothèse"],
+            ["L’emplacement est-il pratique ?", "La recharge restera simple au quotidien"],
+          ],
+        },
+      },
+    ],
+    faq: [
+      {
+        question: "La MaxiCharger délivre-t-elle toujours 22 kW ?",
+        answer:
+          "Non. Elle peut atteindre 22 kW, mais la puissance réelle dépend de la configuration électrique et de la limite AC du véhicule.",
+      },
+      {
+        question: "L’application Autel Charge est-elle obligatoire ?",
+        answer:
+          "La borne peut être configurée selon l’usage retenu. L’application apporte la programmation, le suivi et la gestion à distance, mais les fonctions à utiliser dépendent du projet.",
+      },
+      {
+        question: "La borne peut-elle être posée sans mur à proximité ?",
+        answer:
+          "Oui, une pose sur pied peut être étudiée. Le support, le cheminement électrique et la protection de l’emplacement doivent alors être intégrés au projet.",
+      },
+    ],
+    relatedSlugs: [
+      "borne-recharge-7-11-22-kw",
+      "installer-borne-recharge-maison-maroc",
+      "borne-recharge-intelligente-delestage",
+    ],
+    productCta: {
+      eyebrow: "Voir le produit en détail",
+      title: "Explorez la MaxiCharger sous tous les angles.",
+      text: "Puissance, architecture, application, pose murale ou sur pied : retrouvez la présentation complète avant de configurer votre projet.",
+      label: "Découvrir l’Autel MaxiCharger",
+    },
+  },
+  {
+    slug: "recharge-voiture-electrique-solaire-maroc",
+    title: "Recharger une voiture électrique au solaire au Maroc",
+    seoTitle: "Recharge solaire d’une voiture électrique au Maroc",
+    description:
+      "Découvrez comment coordonner panneaux solaires, consommation de la maison et borne pour mieux valoriser une recharge photovoltaïque au Maroc.",
+    excerpt:
+      "Production solaire, horaires, puissance et pilotage : les décisions qui permettent de rapprocher la recharge du moment où l’énergie est disponible.",
+    category: "Énergie solaire",
+    readingTime: 10,
+    datePublished: newPublicationDate,
+    dateModified: newPublicationDate,
+    image: "/images/blog/recharge-voiture-electrique-solaire-maroc.jpg",
+    imageAlt:
+      "Voiture électrique en recharge devant une villa marocaine équipée de panneaux solaires",
+    keywords: [
+      "recharge voiture électrique solaire Maroc",
+      "panneaux solaires borne recharge",
+      "photovoltaïque voiture électrique",
+      "autoconsommation recharge véhicule",
+      "borne intelligente solaire",
+    ],
+    intro: [
+      "Le Maroc bénéficie d’un ensoleillement qui rend naturelle la question suivante : peut-on utiliser une partie de la production photovoltaïque pour recharger sa voiture ? Techniquement, l’objectif n’est pas de relier directement des panneaux à la voiture, mais de coordonner la production, les usages du bâtiment et la borne.",
+      "La réussite dépend surtout du moment où le véhicule est présent, de la puissance photovoltaïque réellement disponible et de la capacité de la borne à être programmée ou pilotée. Une installation cohérente privilégie les données mesurées plutôt qu’une promesse d’autonomie solaire totale.",
+    ],
+    quickAnswer:
+      "Une voiture peut être rechargée pendant les heures de production photovoltaïque lorsque l’installation du bâtiment, la borne et le pilotage sont conçus ensemble. La part solaire dépend de la production instantanée, des autres consommations, de la puissance de charge et du temps de présence du véhicule.",
+    sections: [
+      {
+        id: "principe-recharge-solaire",
+        title: "Comprendre le trajet réel de l’énergie",
+        paragraphs: [
+          "Les panneaux alimentent l’installation électrique du bâtiment selon l’architecture retenue. La voiture devient l’un des usages de cette installation, au même titre que les équipements du logement. La production disponible est donc partagée entre les besoins présents au même moment.",
+          "Parler de recharge solaire est pertinent lorsque la session coïncide avec la production et que la puissance est ajustée en conséquence. Si la voiture charge la nuit sans stockage adapté, l’énergie consommée à cet instant ne provient pas directement des panneaux de la journée.",
+        ],
+        note: {
+          title: "Éviter une confusion fréquente",
+          text: "La puissance installée en panneaux n’est pas disponible en permanence. La météo, l’heure, la saison et les autres usages modifient la production réellement affectable à la voiture.",
+        },
+      },
+      {
+        id: "presence-vehicule",
+        title: "Le meilleur levier : faire coïncider présence et production",
+        paragraphs: [
+          "Un véhicule stationné à domicile pendant la journée peut absorber une partie de la production au fil des heures. Lorsque la voiture n’est présente que le soir, la programmation seule ne suffit pas à déplacer l’énergie solaire ; le projet doit alors étudier d’autres stratégies de consommation ou de stockage.",
+          "Le télétravail, les véhicules de flotte présents entre deux missions ou un second véhicule stationné en journée créent des profils particulièrement intéressants. L’analyse porte sur une semaine réelle, pas uniquement sur une journée idéale.",
+        ],
+        table: {
+          caption: "Impact du profil de stationnement",
+          headers: ["Profil", "Possibilité de recharge solaire directe", "Approche utile"],
+          rows: [
+            ["Présent en journée", "Élevée selon la production", "Programmer et ajuster la puissance"],
+            ["Présent seulement le soir", "Faible sans stockage", "Étudier le bilan global et les horaires"],
+            ["Flotte avec retours fréquents", "Variable mais exploitable", "Prioriser les véhicules présents"],
+          ],
+        },
+      },
+      {
+        id: "puissance-ajustee",
+        title: "Pourquoi une puissance modulée vaut mieux qu’un maximum fixe",
+        paragraphs: [
+          "Une borne réglée à forte puissance peut demander davantage que le surplus photovoltaïque disponible. Le réseau ou l’installation complète alors la différence. Une recharge modulée peut au contraire suivre une enveloppe plus raisonnable et augmenter la part de production locale utilisée.",
+          "Le niveau minimal et les possibilités de pilotage dépendent de la borne, du véhicule et de l’architecture électrique. Il faut vérifier leur compatibilité avant de promettre un suivi automatique du surplus.",
+        ],
+        listTitle: "Données nécessaires au réglage",
+        bullets: [
+          "Courbe de production photovoltaïque sur plusieurs périodes",
+          "Consommation de base du bâtiment pendant la journée",
+          "Énergie moyenne à récupérer dans le véhicule",
+          "Durée de présence et heure de départ souhaitée",
+          "Capacité de mesure et de pilotage de la solution retenue",
+        ],
+      },
+      {
+        id: "borne-connectee-solaire",
+        title: "Le rôle de la borne connectée",
+        paragraphs: [
+          "Une application permet au minimum de programmer les sessions et d’observer l’énergie délivrée. Une gestion plus avancée peut exploiter une mesure de puissance pour adapter la recharge, à condition que tous les composants communiquent correctement.",
+          "La connectivité ne produit pas d’énergie supplémentaire. Elle sert à mieux synchroniser la demande avec la production et les contraintes du bâtiment. Le projet doit prévoir le réseau, l’emplacement des mesures et le comportement attendu en cas de perte de connexion.",
+        ],
+        listTitle: "Fonctions particulièrement utiles",
+        bullets: [
+          "Programmation sur les heures de production habituelles",
+          "Historique des sessions pour comparer les périodes",
+          "Limitation de puissance afin de préserver les autres usages",
+          "Notifications de début, de fin ou d’interruption",
+        ],
+      },
+      {
+        id: "etude-solaire",
+        title: "Construire un scénario mesurable avant d’investir",
+        paragraphs: [
+          "Une étude utile rapproche trois séries de données : production, consommation du bâtiment et besoin de mobilité. Elle peut alors estimer la quantité d’énergie transférable à la voiture et identifier les contraintes qui limitent le résultat.",
+          "Commencez par un scénario simple : une plage horaire, une puissance cible et une énergie quotidienne. Après quelques semaines, l’historique réel permet d’ajuster la stratégie sans surdimensionner automatiquement les panneaux, la borne ou le stockage.",
+        ],
+        listTitle: "Plan de départ",
+        ordered: true,
+        bullets: [
+          "Mesurer ou estimer la production et la consommation diurnes",
+          "Décrire les heures de présence du véhicule",
+          "Définir l’énergie à récupérer avant le prochain départ",
+          "Vérifier les fonctions de programmation et de pilotage",
+          "Comparer le scénario prévu aux sessions réellement observées",
+        ],
+      },
+    ],
+    faq: [
+      {
+        question: "Peut-on brancher directement une voiture sur des panneaux solaires ?",
+        answer:
+          "Dans un projet résidentiel courant, la recharge s’intègre à l’installation électrique du bâtiment. L’architecture complète doit être conçue et vérifiée par des professionnels compétents.",
+      },
+      {
+        question: "Une borne de 22 kW exige-t-elle 22 kW de panneaux ?",
+        answer:
+          "Non. La borne peut être configurée ou pilotée à une puissance inférieure. Le dimensionnement doit partir de la production disponible, du véhicule et du besoin réel.",
+      },
+      {
+        question: "Une batterie domestique est-elle indispensable ?",
+        answer:
+          "Pas si le véhicule peut charger pendant les heures de production. Si la recharge a lieu uniquement le soir, le stockage peut faire partie des scénarios à étudier, avec son propre coût et ses contraintes.",
+      },
+    ],
+    relatedSlugs: [
+      "borne-recharge-intelligente-delestage",
+      "temps-recharge-voiture-electrique",
+      "installer-borne-recharge-maison-maroc",
+    ],
+    productCta: {
+      eyebrow: "Piloter la recharge",
+      title: "Une borne connectée pour choisir le bon moment.",
+      text: "Découvrez les fonctions de programmation, de suivi et de gestion de puissance proposées par l’Autel MaxiCharger.",
+      label: "Voir la MaxiCharger connectée",
+    },
+  },
+  {
+    slug: "borne-recharge-intelligente-delestage",
+    title: "Borne intelligente et délestage : recharger sans dépasser",
+    seoTitle: "Borne intelligente et délestage : le guide",
+    description:
+      "Comprenez le délestage, la gestion dynamique de puissance, la programmation et le suivi pour intégrer une borne intelligente à votre installation.",
+    excerpt:
+      "Une borne connectée ne sert pas seulement à lancer la recharge : elle peut aider à répartir la puissance et à préserver les usages du bâtiment.",
+    category: "Technologie",
+    readingTime: 9,
+    datePublished: newPublicationDate,
+    dateModified: newPublicationDate,
+    image: "/images/blog/borne-recharge-intelligente-delestage.jpg",
+    imageAlt:
+      "Borne de recharge intelligente reliée visuellement au tableau électrique, au véhicule et à une application mobile",
+    keywords: [
+      "borne recharge intelligente",
+      "délestage borne recharge",
+      "gestion dynamique puissance",
+      "wallbox connectée Maroc",
+      "pilotage recharge voiture électrique",
+    ],
+    intro: [
+      "Une borne dite intelligente ajoute du pilotage à la fourniture d’énergie. Elle peut programmer les sessions, identifier des utilisateurs, enregistrer l’historique et, selon le système installé, adapter la puissance pour tenir compte des autres consommations du bâtiment.",
+      "Le délestage et la gestion dynamique sont souvent présentés comme une seule fonction. Ils recouvrent pourtant des architectures et des niveaux de contrôle différents. Les comprendre permet de choisir les équipements compatibles et de définir le comportement attendu avant l’installation.",
+    ],
+    quickAnswer:
+      "Une borne intelligente peut ajuster ou limiter la recharge afin de respecter une enveloppe de puissance. La programmation agit selon l’heure ; la gestion dynamique réagit à une mesure de consommation. La solution exige des équipements compatibles, un réglage initial et une stratégie claire en cas de forte demande.",
+    sections: [
+      {
+        id: "borne-intelligente-definition",
+        title: "Ce qui rend réellement une borne intelligente",
+        paragraphs: [
+          "La connectivité seule ne suffit pas. Une borne devient utilement intelligente lorsqu’elle transforme des informations en actions : différer une session, appliquer une limite, reconnaître un badge, enregistrer l’énergie délivrée ou répartir une capacité entre plusieurs points.",
+          "Chaque fonction répond à une question d’usage. La programmation convient à un rythme prévisible ; le contrôle d’accès protège un parking partagé ; la gestion dynamique devient pertinente lorsque la consommation du bâtiment varie fortement.",
+        ],
+        table: {
+          caption: "Fonctions et problèmes résolus",
+          headers: ["Fonction", "Information utilisée", "Objectif"],
+          rows: [
+            ["Programmation", "Heure et calendrier", "Décaler la recharge"],
+            ["Limite fixe", "Puissance configurée", "Respecter une enveloppe connue"],
+            ["Gestion dynamique", "Consommation mesurée", "Adapter la recharge en temps réel"],
+            ["RFID", "Identité du badge", "Contrôler les utilisateurs"],
+          ],
+        },
+      },
+      {
+        id: "delestage-dynamique",
+        title: "Délestage et gestion dynamique : la différence utile",
+        paragraphs: [
+          "Un mécanisme de délestage peut réduire ou interrompre un usage lorsque la puissance disponible devient insuffisante. Une gestion dynamique de recharge ajuste plus finement la puissance de la borne selon une mesure et des règles compatibles avec l’installation.",
+          "Le résultat recherché est le même : éviter que la recharge compromette les autres usages. Mais les capteurs, la communication, le temps de réaction et les possibilités de réglage doivent être vérifiés pour la solution précise, sans supposer qu’une application mobile assure à elle seule cette fonction.",
+        ],
+        note: {
+          title: "Le point de compatibilité",
+          text: "La borne, le dispositif de mesure et l’architecture de commande doivent être conçus comme un système. Deux appareils connectés ne sont pas automatiquement capables de travailler ensemble.",
+        },
+      },
+      {
+        id: "scenarios-maison",
+        title: "Trois scénarios concrets à domicile",
+        paragraphs: [
+          "Dans un logement, les pointes peuvent provenir de plusieurs équipements utilisés simultanément. La recharge peut être déplacée vers une période calme, limitée à une puissance stable ou ajustée selon la consommation instantanée.",
+          "Le choix dépend de la régularité des habitudes. Une simple plage nocturne peut suffire à certains foyers. D’autres préfèrent une adaptation automatique pour conserver de la souplesse sans surveiller chaque appareil.",
+        ],
+        listTitle: "Du plus simple au plus réactif",
+        ordered: true,
+        bullets: [
+          "Programmer la recharge lorsque la maison consomme peu",
+          "Configurer une limite fixe compatible avec la marge disponible",
+          "Mesurer la consommation et moduler la borne en temps réel",
+        ],
+      },
+      {
+        id: "entreprise-multi-bornes",
+        title: "Répartir la puissance entre plusieurs véhicules",
+        paragraphs: [
+          "Sur un site équipé de plusieurs points de charge, la puissance totale importe davantage que le maximum d’une seule borne. Un système compatible peut répartir l’enveloppe entre les véhicules branchés et appliquer des priorités liées aux départs.",
+          "La règle doit rester compréhensible pour les utilisateurs : partage égal, priorité à une flotte ou rotation selon l’état de charge. Une stratégie opaque crée des attentes impossibles à tenir, même si la technologie fonctionne correctement.",
+        ],
+        listTitle: "Éléments à cadrer",
+        bullets: [
+          "Puissance globale réservée à la recharge",
+          "Nombre de véhicules simultanés et heures de départ",
+          "Priorités métiers ou groupes d’utilisateurs",
+          "Comportement en cas de perte du réseau ou de la supervision",
+          "Données nécessaires au suivi et à l’assistance",
+        ],
+      },
+      {
+        id: "choix-installation-intelligente",
+        title: "Préparer une installation intelligente sans complexité inutile",
+        paragraphs: [
+          "La bonne solution est celle que l’utilisateur peut expliquer en quelques phrases : quand la voiture charge, quelle puissance elle peut recevoir et ce qui se passe lorsque le bâtiment consomme davantage. Cette règle opérationnelle doit être définie avant le choix final des équipements.",
+          "L’étude vérifie ensuite la mesure, la communication, le câblage et les réglages. La mise en service doit inclure un test en situation et une explication du mode de secours, pas seulement la création d’un compte dans l’application.",
+        ],
+        listTitle: "Questions à poser au devis",
+        bullets: [
+          "La puissance est-elle fixe, programmée ou réellement dynamique ?",
+          "Quel équipement mesure la consommation du bâtiment ?",
+          "Que se passe-t-il lorsque la connexion est indisponible ?",
+          "Qui peut modifier les limites et consulter l’historique ?",
+          "Comment le système pourra-t-il évoluer avec un second véhicule ?",
+        ],
+      },
+    ],
+    faq: [
+      {
+        question: "Le délestage ralentit-il toujours la recharge ?",
+        answer:
+          "Il ne réduit la puissance que lorsque la règle ou la consommation du bâtiment l’exige. Le reste du temps, la borne peut utiliser la capacité autorisée.",
+      },
+      {
+        question: "Une application mobile suffit-elle pour gérer dynamiquement la puissance ?",
+        answer:
+          "Non. Une gestion dynamique nécessite généralement une mesure et une communication compatibles avec la borne. L’application sert surtout à configurer ou consulter le système.",
+      },
+      {
+        question: "Le pilotage est-il utile avec une seule voiture ?",
+        answer:
+          "Oui lorsque la marge électrique varie, que la recharge doit être programmée ou que l’utilisateur souhaite suivre ses sessions. Une limite fixe peut toutefois suffire dans un site stable.",
+      },
+    ],
+    relatedSlugs: [
+      "autel-maxicharger-22kw-maroc",
+      "recharge-voiture-electrique-solaire-maroc",
+      "borne-recharge-entreprise-copropriete-maroc",
+    ],
+    productCta: {
+      eyebrow: "Contrôle connecté",
+      title: "Pilotez la recharge depuis Autel Charge.",
+      text: "Programmation, suivi, historique, gestion de puissance et accès RFID : découvrez l’écosystème de la MaxiCharger.",
+      label: "Explorer les fonctions connectées",
+    },
+  },
+  {
+    slug: "borne-recharge-tesla-type-2-maroc",
+    title: "Quelle borne de recharge pour une Tesla au Maroc ?",
+    seoTitle: "Quelle borne pour une Tesla au Maroc ?",
+    description:
+      "Type 2, puissance AC, câble et installation : les critères pour choisir une borne à domicile compatible avec votre Tesla au Maroc.",
+    excerpt:
+      "Le connecteur ne fait pas toute la vitesse : vérifiez la limite AC de votre véhicule, votre installation et vos habitudes avant de choisir.",
+    category: "Compatibilité",
+    readingTime: 8,
+    datePublished: newPublicationDate,
+    dateModified: newPublicationDate,
+    image: "/images/blog/borne-recharge-tesla-type-2-maroc.jpg",
+    imageAlt:
+      "Berline électrique blanche compatible Type 2 branchée à une borne murale dans une résidence à Casablanca",
+    keywords: [
+      "borne recharge Tesla Maroc",
+      "wallbox Tesla Maroc",
+      "chargeur Type 2 Tesla",
+      "recharge Tesla maison",
+      "borne compatible Tesla",
+    ],
+    intro: [
+      "Une Tesla peut être rechargée sur une borne AC compatible Type 2, mais la vitesse dépend du modèle, de sa configuration et de l’installation électrique. Choisir uniquement à partir du logo de la voiture conduit souvent à ignorer le temps de stationnement et la puissance réellement disponible.",
+      "Ce guide propose une méthode valable pour préparer une recharge à domicile au Maroc : vérifier la prise AC du véhicule, sa limite de charge, le câble, le tableau et les fonctions de pilotage souhaitées.",
+    ],
+    quickAnswer:
+      "Pour une Tesla équipée pour la recharge AC Type 2, une borne Type 2 correctement installée peut convenir. La puissance utile doit être choisie selon la limite AC exacte du véhicule, l’alimentation du logement et l’énergie à récupérer. Une borne 22 kW ne garantit pas une recharge à 22 kW.",
+    sections: [
+      {
+        id: "compatibilite-type-2",
+        title: "Type 2 : la première compatibilité à confirmer",
+        paragraphs: [
+          "Le Type 2 est un connecteur courant pour la recharge AC de véhicules électriques en Europe et sur de nombreux modèles commercialisés au Maroc. La présence du port adapté permet la connexion physique, mais elle ne détermine pas à elle seule la puissance de la session.",
+          "Le manuel et l’interface du véhicule restent les sources prioritaires pour confirmer la puissance AC acceptée. Cette valeur peut varier selon le modèle, l’année ou la configuration ; il faut donc éviter d’appliquer une donnée générique à toutes les Tesla.",
+        ],
+        listTitle: "Informations à relever sur le véhicule",
+        bullets: [
+          "Modèle, version et année",
+          "Puissance maximale acceptée en courant alternatif",
+          "Emplacement du port lorsque la voiture est stationnée",
+          "Recommandations de niveau de charge affichées par le véhicule",
+        ],
+      },
+      {
+        id: "puissance-tesla",
+        title: "7,4, 11 ou 22 kW : raisonner depuis la limite AC",
+        paragraphs: [
+          "La puissance maximale de la borne n’accélère la recharge que si la voiture et le site peuvent l’utiliser. Si le chargeur embarqué accepte une valeur inférieure, le véhicule limite automatiquement l’énergie reçue.",
+          "Le besoin quotidien est souvent plus instructif. Une voiture stationnée toute la nuit peut récupérer une quantité importante d’énergie avec une puissance modérée. L’objectif consiste à retrouver le niveau nécessaire avant le départ, pas à atteindre systématiquement le maximum technique.",
+        ],
+        table: {
+          caption: "Méthode de choix de la puissance",
+          headers: ["Question", "Conséquence"],
+          rows: [
+            ["Quelle est la limite AC du véhicule ?", "Écarte la puissance inutilisable"],
+            ["Combien d’énergie faut-il récupérer ?", "Définit le besoin de la session"],
+            ["Combien d’heures la voiture stationne-t-elle ?", "Donne la puissance moyenne nécessaire"],
+            ["Quelle marge offre le tableau ?", "Fixe la configuration réalisable"],
+          ],
+        },
+      },
+      {
+        id: "cable-emplacement",
+        title: "Le câble et l’emplacement font la différence au quotidien",
+        paragraphs: [
+          "Le port de charge doit pouvoir être atteint sans tendre le câble ni traverser un passage. La position habituelle de la voiture, marche avant ou arrière, doit être reproduite pendant l’étude. Une longueur de câble adaptée évite de déplacer le véhicule à chaque session.",
+          "Une pose murale est compacte lorsque le support est bien placé. Un pied peut être plus naturel dans une allée ouverte ou entre plusieurs places. Dans les deux cas, le câble doit être rangé à l’écart des roues et des zones de circulation.",
+        ],
+        listTitle: "Test simple sur l’emplacement",
+        ordered: true,
+        bullets: [
+          "Garer la voiture dans son sens habituel",
+          "Repérer le port de charge ouvert",
+          "Tracer un trajet de câble sans obstacle",
+          "Vérifier le rangement et l’accès à la borne",
+        ],
+      },
+      {
+        id: "fonctions-connectees-tesla",
+        title: "Application du véhicule et application de la borne",
+        paragraphs: [
+          "La voiture possède ses propres réglages, tandis qu’une borne connectée peut ajouter un historique, des règles d’accès, une programmation ou une limitation au niveau du point de charge. Les deux interfaces ne remplissent pas toujours le même rôle.",
+          "Pour un foyer avec un seul véhicule, une configuration simple peut suffire. Avec plusieurs utilisateurs ou une place accessible, le RFID et la gestion des comptes deviennent plus intéressants. Il faut définir quelle application sera la référence pour éviter des programmations contradictoires.",
+        ],
+        note: {
+          title: "Une seule règle de programmation",
+          text: "Programmer simultanément la voiture et la borne peut compliquer le diagnostic d’une session qui ne démarre pas. Choisissez une logique principale et documentez-la.",
+        },
+      },
+      {
+        id: "installation-tesla-maroc",
+        title: "Préparer l’installation au Maroc",
+        paragraphs: [
+          "Le professionnel vérifie l’alimentation, le tableau, la terre, le cheminement et les protections correspondant à la borne. Les conditions de chaleur, d’exposition et de circulation autour de la place sont intégrées au choix de l’emplacement.",
+          "Une demande bien préparée rassemble le modèle exact du véhicule, des photos du tableau et de la place, la distance approximative et les fonctions souhaitées. Le simulateur permet ensuite de comparer différents niveaux de puissance avant la validation technique.",
+        ],
+        listTitle: "Dossier à transmettre",
+        bullets: [
+          "Modèle et année du véhicule",
+          "Photos du tableau électrique",
+          "Vue large de la place de stationnement",
+          "Distance et obstacles jusqu’à l’emplacement envisagé",
+          "Besoin de programmation, RFID ou suivi des sessions",
+        ],
+      },
+    ],
+    faq: [
+      {
+        question: "Une Tesla peut-elle utiliser une borne Autel Type 2 ?",
+        answer:
+          "Si le véhicule est compatible Type 2 en recharge AC, la connexion est cohérente. EVAtlas vérifie le modèle exact et la puissance acceptée avant l’installation.",
+      },
+      {
+        question: "Faut-il obligatoirement une borne de 22 kW ?",
+        answer:
+          "Non. La puissance utile dépend de la limite AC du véhicule, du temps de stationnement et de l’installation. Une borne configurée à 7,4 ou 11 kW peut répondre au besoin.",
+      },
+      {
+        question: "Peut-on charger deux voitures avec la même borne ?",
+        answer:
+          "Elles peuvent utiliser le point à tour de rôle si elles sont compatibles. Pour des recharges simultanées, il faut étudier plusieurs points et la gestion de la puissance.",
+      },
+    ],
+    relatedSlugs: [
+      "borne-recharge-7-11-22-kw",
+      "temps-recharge-voiture-electrique",
+      "autel-maxicharger-22kw-maroc",
+    ],
+    productCta: {
+      eyebrow: "Compatibilité Type 2",
+      title: "Découvrez la MaxiCharger pour votre véhicule.",
+      text: "Jusqu’à 22 kW, câble de 5 m ou 7,5 m, application connectée et configuration adaptée à la puissance réellement acceptée.",
+      label: "Voir la borne compatible Type 2",
+    },
+  },
+  {
+    slug: "voyage-voiture-electrique-maroc",
+    title: "Voyager en voiture électrique au Maroc : bien préparer le trajet",
+    seoTitle: "Voyager en voiture électrique au Maroc : guide",
+    description:
+      "Autonomie, recharge, étapes et départ à domicile : préparez un long trajet en voiture électrique au Maroc avec une marge réaliste.",
+    excerpt:
+      "Un parcours serein commence avant la route : niveau de départ, consommation réelle, solutions de recharge vérifiées et plan de secours.",
+    category: "Mobilité",
+    readingTime: 9,
+    datePublished: newPublicationDate,
+    dateModified: newPublicationDate,
+    image: "/images/blog/voyage-voiture-electrique-maroc.jpg",
+    imageAlt:
+      "Véhicule électrique chargé devant une maison avant un trajet vers les montagnes de l’Atlas",
+    keywords: [
+      "voyage voiture électrique Maroc",
+      "recharge trajet Maroc",
+      "autonomie voiture électrique autoroute",
+      "préparer trajet véhicule électrique",
+      "borne recharge domicile départ voyage",
+    ],
+    intro: [
+      "Un long trajet en voiture électrique se prépare avec davantage d’informations qu’un plein traditionnel, mais il ne doit pas devenir une suite de calculs anxieux. Une bonne préparation combine un départ chargé, une estimation réaliste de la consommation et des solutions de recharge vérifiées près de l’itinéraire.",
+      "Les disponibilités du réseau public, les conditions routières et les services peuvent évoluer. Ce guide ne fournit donc pas une carte figée : il propose une méthode à actualiser avant chaque départ et un plan de secours pour conserver une marge.",
+    ],
+    quickAnswer:
+      "Partez avec un niveau adapté depuis une recharge à domicile, estimez la consommation selon la vitesse, le relief et la météo, puis vérifiez juste avant le départ chaque étape de recharge dans une source à jour. Prévoyez une alternative et arrivez avec une réserve plutôt qu’avec une estimation au pourcent près.",
+    sections: [
+      {
+        id: "depart-domicile",
+        title: "La première étape se joue à domicile",
+        paragraphs: [
+          "Une borne à domicile permet de préparer le niveau de départ sans détour. La session peut être programmée pour se terminer avant l’heure prévue, en respectant les recommandations de charge du constructeur et la puissance configurée sur le site.",
+          "Avant un trajet inhabituel, vérifiez que la session a effectivement démarré et que le câble est correctement connecté. Une notification ou l’historique de la borne peut confirmer l’énergie délivrée sans attendre le matin.",
+        ],
+        listTitle: "La veille du départ",
+        bullets: [
+          "Définir l’heure de départ et le niveau visé",
+          "Vérifier la programmation et la connexion",
+          "Contrôler la pression des pneus selon les recommandations du véhicule",
+          "Préparer les applications ou moyens d’accès nécessaires sur le trajet",
+        ],
+      },
+      {
+        id: "autonomie-reelle",
+        title: "Calculer avec une consommation réaliste",
+        paragraphs: [
+          "L’autonomie affichée évolue avec la vitesse, le relief, la température, le vent, la climatisation et la charge transportée. Une route de montagne vers l’Atlas ne produit pas le même profil qu’une circulation urbaine régulière.",
+          "Utilisez la consommation récente du véhicule et conservez une marge. Le but n’est pas d’exploiter chaque kilowattheure, mais d’atteindre une étape avec suffisamment de liberté pour changer de borne ou poursuivre vers une alternative.",
+        ],
+        table: {
+          caption: "Facteurs qui modifient la consommation",
+          headers: ["Facteur", "Effet possible", "Réponse pratique"],
+          rows: [
+            ["Vitesse soutenue", "Consommation plus élevée", "Réduire l’allure si la marge baisse"],
+            ["Relief", "Effort accru en montée", "Prévoir une réserve avant le col"],
+            ["Température et climatisation", "Énergie auxiliaire", "Intégrer l’usage au calcul"],
+            ["Charge et vent", "Résistance supplémentaire", "Éviter une estimation trop optimiste"],
+          ],
+        },
+      },
+      {
+        id: "etapes-recharge",
+        title: "Choisir des étapes vérifiées, pas seulement proches",
+        paragraphs: [
+          "Une borne bien située n’est utile que si sa puissance, son accès et son état correspondent au besoin. Vérifiez la localisation exacte, les horaires du site, le moyen d’activation et les informations les plus récentes disponibles.",
+          "Prévoyez une seconde option raisonnable autour de chaque zone critique. Les réseaux et applications évoluent : une liste imprimée plusieurs mois auparavant ne remplace pas une vérification effectuée à proximité du départ.",
+        ],
+        listTitle: "Informations à confirmer",
+        bullets: [
+          "Type de connecteur et puissance proposée",
+          "Compatibilité avec le véhicule",
+          "Accès, horaires et moyen de paiement ou d’activation",
+          "Retours récents ou état indiqué par l’opérateur",
+          "Alternative accessible avec la réserve prévue",
+        ],
+        note: {
+          title: "Information évolutive",
+          text: "EVAtlas recommande de vérifier les bornes publiques auprès de sources et opérateurs à jour avant le trajet. La disponibilité ne peut pas être garantie par un guide statique.",
+        },
+      },
+      {
+        id: "temps-pause",
+        title: "Transformer la recharge en pause utile",
+        paragraphs: [
+          "Le meilleur arrêt n’est pas toujours celui qui affiche la puissance la plus élevée. Une recharge située près d’un lieu sûr, de sanitaires ou d’une restauration peut mieux s’intégrer au voyage, surtout si la voiture n’a pas besoin d’une longue session.",
+          "Définissez l’énergie nécessaire pour rejoindre l’étape suivante avec une marge, plutôt qu’un objectif automatique de 100 %. Selon le véhicule, la puissance de recharge peut diminuer lorsque la batterie approche d’un niveau élevé.",
+        ],
+        listTitle: "Une pause bien préparée",
+        ordered: true,
+        bullets: [
+          "Brancher et confirmer le démarrage de la session",
+          "Estimer le niveau nécessaire pour l’étape suivante",
+          "Profiter de la pause sans quitter le suivi trop longtemps",
+          "Libérer la place lorsque l’objectif est atteint",
+        ],
+      },
+      {
+        id: "plan-secours",
+        title: "Construire un plan de secours simple",
+        paragraphs: [
+          "Un plan de secours ne consiste pas à multiplier les détours. Il identifie les points où la marge devient faible, une alternative par zone et la conduite à adopter si la consommation réelle dépasse l’estimation.",
+          "Réduire modérément la vitesse, limiter une charge inutile et rejoindre une borne alternative suffisamment tôt sont des décisions plus efficaces que d’attendre une alerte critique. À l’arrivée, une recharge fiable à domicile ou sur le lieu de séjour simplifie également le trajet retour.",
+        ],
+        listTitle: "Les quatre sécurités du parcours",
+        bullets: [
+          "Réserve minimale décidée avant le départ",
+          "Alternative vérifiée autour des étapes principales",
+          "Câbles ou accessoires recommandés par le constructeur",
+          "Coordonnées d’assistance du véhicule et des opérateurs utilisés",
+        ],
+      },
+    ],
+    faq: [
+      {
+        question: "À quel niveau faut-il arriver à une borne publique ?",
+        answer:
+          "Il n’existe pas un pourcentage universel. Conservez une réserve adaptée à l’itinéraire, au relief, aux alternatives et aux recommandations du véhicule.",
+      },
+      {
+        question: "Faut-il charger jusqu’à 100 % à chaque étape ?",
+        answer:
+          "Pas nécessairement. Chargez l’énergie utile pour atteindre la prochaine étape avec une marge. Les recommandations propres à la batterie et au véhicule restent prioritaires.",
+      },
+      {
+        question: "Comment vérifier les bornes disponibles au Maroc ?",
+        answer:
+          "Consultez avant le départ les informations récentes des opérateurs et applications utilisés, puis confirmez le connecteur, l’accès et une alternative. Un article statique ne peut pas garantir leur disponibilité.",
+      },
+    ],
+    relatedSlugs: [
+      "temps-recharge-voiture-electrique",
+      "borne-recharge-maroc-guide",
+      "borne-recharge-tesla-type-2-maroc",
+    ],
+    productCta: {
+      eyebrow: "Partir avec confiance",
+      title: "Préparez votre niveau de départ depuis chez vous.",
+      text: "Programmez la recharge, suivez la session et retrouvez un véhicule prêt au moment de prendre la route.",
+      label: "Découvrir la recharge à domicile",
+    },
+  },
 ];
 
 export const getBlogPost = (slug: string) =>
@@ -944,4 +1648,3 @@ export const getRelatedPosts = (post: BlogPost) =>
   post.relatedSlugs
     .map((slug) => getBlogPost(slug))
     .filter((related): related is BlogPost => Boolean(related));
-
