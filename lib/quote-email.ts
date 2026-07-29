@@ -1,6 +1,7 @@
 import { randomUUID } from "node:crypto";
 import tls, { type TLSSocket } from "node:tls";
 
+import { WHATSAPP_NUMBER, WHATSAPP_URL } from "@/data/contact";
 import type { QuoteSubmission } from "@/lib/quote-request";
 
 type MailConfig = {
@@ -421,9 +422,150 @@ function quoteDetails(submission: QuoteSubmission): Array<[string, string]> {
   ];
 }
 
+const emailSiteUrl = (process.env.NEXT_PUBLIC_SITE_URL?.trim() || "https://evatlas.store").replace(/\/+$/u, "");
+const emailLogoUrl = `${emailSiteUrl}/images/evatlas-logo.png`;
+const emailProductUrl = `${emailSiteUrl}/nos-produits/autel-maxicharger/`;
+const emailInstagramUrl = "https://www.instagram.com/evatlas.store/";
+const emailLinkedInUrl = "https://www.linkedin.com/company/evatlas-maroc";
+
+type EmailButtonVariant = "primary" | "secondary" | "light";
+
+function emailButton(label: string, href: string, variant: EmailButtonVariant = "primary"): string {
+  const variants: Record<EmailButtonVariant, { background: string; border: string; color: string }> = {
+    primary: { background: "#173f2b", border: "#173f2b", color: "#ffffff" },
+    secondary: { background: "#dff2a5", border: "#dff2a5", color: "#173f2b" },
+    light: { background: "#ffffff", border: "#cdd7c9", color: "#173f2b" },
+  };
+  const colors = variants[variant];
+
+  return `<a class="email-action" href="${escapeHtml(href)}" style="display:inline-block;background:${colors.background};border:1px solid ${colors.border};border-radius:999px;color:${colors.color};font-family:Arial,Helvetica,sans-serif;font-size:14px;font-weight:700;line-height:18px;padding:13px 20px;text-align:center;text-decoration:none">${escapeHtml(label)}&nbsp;&nbsp;→</a>`;
+}
+
+function emailLayout(options: {
+  preheader: string;
+  eyebrow: string;
+  title: string;
+  introduction: string;
+  content: string;
+  footerNote: string;
+}): string {
+  return `<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="color-scheme" content="light">
+    <meta name="supported-color-schemes" content="light">
+    <title>${escapeHtml(options.title)}</title>
+    <style>
+      @media only screen and (max-width:620px) {
+        .email-page-pad { padding: 14px 8px !important; }
+        .email-card-pad { padding: 28px 20px !important; }
+        .email-header-pad { padding: 22px 20px !important; }
+        .email-title { font-size: 30px !important; line-height: 35px !important; }
+        .email-intro { font-size: 16px !important; line-height: 25px !important; }
+        .email-column { display: block !important; width: 100% !important; }
+        .email-column-gap { display: none !important; }
+        .email-action-cell { display: block !important; width: 100% !important; padding: 0 0 10px !important; }
+        .email-action { box-sizing: border-box !important; display: block !important; width: 100% !important; }
+        .email-detail-label { width: 42% !important; }
+        .email-logo { width: 176px !important; }
+      }
+    </style>
+  </head>
+  <body style="background:#eef2e9;margin:0;padding:0;-webkit-text-size-adjust:100%;word-spacing:normal">
+    <div style="display:none;font-size:1px;color:#eef2e9;line-height:1px;max-height:0;max-width:0;opacity:0;overflow:hidden">${escapeHtml(options.preheader)}&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;</div>
+    <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" style="background:#eef2e9;border-collapse:collapse">
+      <tr>
+        <td class="email-page-pad" align="center" style="padding:32px 14px">
+          <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" style="border-collapse:separate;max-width:680px">
+            <tr>
+              <td class="email-header-pad" style="background:#f9faf6;border:1px solid #dbe2d7;border-bottom:0;border-radius:28px 28px 0 0;padding:24px 34px">
+                <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" style="border-collapse:collapse">
+                  <tr>
+                    <td>
+                      <a href="${emailSiteUrl}/" style="text-decoration:none">
+                        <img class="email-logo" src="${emailLogoUrl}" width="190" alt="EVAtlas" style="border:0;display:block;height:auto;max-width:100%;outline:none;text-decoration:none">
+                      </a>
+                    </td>
+                    <td align="right" style="color:#718272;font-family:Arial,Helvetica,sans-serif;font-size:11px;font-weight:700;letter-spacing:1.6px;text-transform:uppercase">Recharge connectée</td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+            <tr>
+              <td class="email-card-pad" style="background:#ffffff;border-left:1px solid #dbe2d7;border-right:1px solid #dbe2d7;padding:42px 44px 18px">
+                <p style="color:#688260;font-family:Arial,Helvetica,sans-serif;font-size:12px;font-weight:700;letter-spacing:2px;line-height:18px;margin:0 0 14px;text-transform:uppercase">${escapeHtml(options.eyebrow)}</p>
+                <h1 class="email-title" style="color:#102f20;font-family:Arial,Helvetica,sans-serif;font-size:38px;font-weight:700;letter-spacing:-1.2px;line-height:43px;margin:0 0 16px">${escapeHtml(options.title)}</h1>
+                <p class="email-intro" style="color:#56675a;font-family:Arial,Helvetica,sans-serif;font-size:17px;line-height:27px;margin:0">${escapeHtml(options.introduction)}</p>
+              </td>
+            </tr>
+            <tr>
+              <td class="email-card-pad" style="background:#ffffff;border-left:1px solid #dbe2d7;border-right:1px solid #dbe2d7;padding:22px 44px 42px">
+                ${options.content}
+              </td>
+            </tr>
+            <tr>
+              <td style="background:#173f2b;border-radius:0 0 28px 28px;padding:26px 34px">
+                <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" style="border-collapse:collapse">
+                  <tr>
+                    <td class="email-column" style="color:#f5f8f2;font-family:Arial,Helvetica,sans-serif;font-size:12px;line-height:19px;width:58%">${escapeHtml(options.footerNote)}</td>
+                    <td class="email-column" align="right" style="color:#dff2a5;font-family:Arial,Helvetica,sans-serif;font-size:12px;line-height:19px">
+                      <a href="${emailSiteUrl}/" style="color:#dff2a5;text-decoration:none">evatlas.store</a>&nbsp;&nbsp;·&nbsp;&nbsp;<a href="${emailInstagramUrl}" style="color:#dff2a5;text-decoration:none">Instagram</a>&nbsp;&nbsp;·&nbsp;&nbsp;<a href="${emailLinkedInUrl}" style="color:#dff2a5;text-decoration:none">LinkedIn</a>
+                    </td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+    </table>
+  </body>
+</html>`;
+}
+
+function renderDetailRows(details: Array<[string, string]>): string {
+  return details
+    .map(
+      ([label, value], index) => `<tr>
+        <td class="email-detail-label" style="border-bottom:${index === details.length - 1 ? "0" : "1px solid #e2e7df"};color:#718074;font-family:Arial,Helvetica,sans-serif;font-size:12px;font-weight:700;letter-spacing:.7px;line-height:18px;padding:13px 12px;text-transform:uppercase;width:36%">${escapeHtml(label)}</td>
+        <td style="border-bottom:${index === details.length - 1 ? "0" : "1px solid #e2e7df"};color:#173322;font-family:Arial,Helvetica,sans-serif;font-size:14px;font-weight:700;line-height:21px;padding:13px 12px">${escapeHtml(value)}</td>
+      </tr>`,
+    )
+    .join("");
+}
+
+function detailCard(title: string, details: Array<[string, string]>): string {
+  return `<table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" style="background:#f7f9f4;border:1px solid #dce4d8;border-collapse:separate;border-radius:18px;margin:0 0 16px;overflow:hidden">
+    <tr>
+      <td style="border-bottom:1px solid #dce4d8;color:#5e7959;font-family:Arial,Helvetica,sans-serif;font-size:11px;font-weight:700;letter-spacing:1.6px;padding:15px 16px 11px;text-transform:uppercase">${escapeHtml(title)}</td>
+    </tr>
+    <tr>
+      <td>
+        <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" style="border-collapse:collapse">${renderDetailRows(details)}</table>
+      </td>
+    </tr>
+  </table>`;
+}
+
+function normalizeWhatsAppPhone(phone: string): string {
+  let digits = phone.replace(/\D/gu, "");
+  if (digits.startsWith("00")) digits = digits.slice(2);
+  if (digits.startsWith("0")) digits = `212${digits.slice(1)}`;
+  if (digits.length === 9) digits = `212${digits}`;
+  return digits;
+}
+
 function createInternalMessage(config: MailConfig, submission: QuoteSubmission): MailMessage {
   const details = quoteDetails(submission);
-  const rows = details.map(([label, value]) => `<tr><td style="padding:8px 12px;border-bottom:1px solid #d9e1d8;color:#4a5a4c;font-weight:700">${escapeHtml(label)}</td><td style="padding:8px 12px;border-bottom:1px solid #d9e1d8;color:#142d20">${escapeHtml(value)}</td></tr>`).join("");
+  const customerLabels = new Set(["Profil", "Organisation", "Ville", "Contact", "Téléphone", "E-mail"]);
+  const customerDetails = details.filter(([label]) => customerLabels.has(label));
+  const projectDetails = details.filter(([label]) => !customerLabels.has(label));
+  const mailtoUrl = `mailto:${submission.email}?subject=${encodeURIComponent(`Votre projet de recharge EVAtlas — ${submission.city}`)}`;
+  const phoneUrl = `tel:${submission.phone.replace(/[^\d+]/gu, "")}`;
+  const clientWhatsAppNumber = normalizeWhatsAppPhone(submission.phone);
+  const clientWhatsAppUrl = `https://wa.me/${clientWhatsAppNumber}?text=${encodeURIComponent(`Bonjour ${submission.firstName}, je vous contacte au sujet de votre demande de devis EVAtlas.`)}`;
   const text = [
     "Nouvelle demande de devis EVAtlas",
     "",
@@ -435,12 +577,37 @@ function createInternalMessage(config: MailConfig, submission: QuoteSubmission):
     replyTo: submission.email || undefined,
     subject: `Nouvelle demande de devis — ${submission.firstName} · ${submission.city}`,
     text,
-    html: `<div style="font-family:Arial,sans-serif;color:#142d20;max-width:680px;margin:0 auto;padding:24px"><p style="color:#60815e;font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase">EVATLAS · NOUVELLE DEMANDE</p><h1 style="font-size:28px;line-height:1.2;margin:0 0 22px">Un nouveau projet est à reprendre.</h1><table role="presentation" style="width:100%;border-collapse:collapse;background:#f8faf5;border:1px solid #d9e1d8">${rows}</table><p style="margin-top:22px;color:#536654;font-size:14px">Répondez directement à cet e-mail pour contacter le client lorsque son adresse e-mail est renseignée.</p></div>`,
+    html: emailLayout({
+      preheader: `${submission.firstName} ${submission.lastName} vient d’envoyer une demande de devis à ${submission.city}.`,
+      eyebrow: "Nouvelle demande · À traiter",
+      title: "Un nouveau projet est prêt à être repris.",
+      introduction: `${submission.firstName} ${submission.lastName} souhaite être accompagné pour son projet de recharge à ${submission.city}. Toutes les informations transmises sont réunies ci-dessous.`,
+      content: `
+        <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" style="background:#173f2b;border-collapse:separate;border-radius:20px;margin:0 0 20px">
+          <tr>
+            <td style="padding:22px 24px">
+              <p style="color:#cfe99a;font-family:Arial,Helvetica,sans-serif;font-size:11px;font-weight:700;letter-spacing:1.5px;line-height:16px;margin:0 0 7px;text-transform:uppercase">Contact prioritaire</p>
+              <p style="color:#ffffff;font-family:Arial,Helvetica,sans-serif;font-size:22px;font-weight:700;line-height:28px;margin:0">${escapeHtml(`${submission.firstName} ${submission.lastName}`.trim())}</p>
+              <p style="color:#d6dfd8;font-family:Arial,Helvetica,sans-serif;font-size:14px;line-height:22px;margin:5px 0 0">${escapeHtml(`${submission.city} · ${submission.customerType === "particulier" ? "Particulier" : "Professionnel"}`)}</p>
+            </td>
+          </tr>
+        </table>
+        ${detailCard("Coordonnées du client", customerDetails)}
+        ${detailCard("Projet de recharge", projectDetails)}
+        <p style="color:#5b6d5e;font-family:Arial,Helvetica,sans-serif;font-size:13px;line-height:21px;margin:22px 0 12px">Répondez directement à cet e-mail ou choisissez une action rapide :</p>
+        <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" style="border-collapse:collapse">
+          <tr>
+            <td class="email-action-cell" style="padding:0 8px 0 0">${emailButton("Répondre par e-mail", mailtoUrl)}</td>
+            <td class="email-action-cell" style="padding:0 8px 0 0">${emailButton("Appeler", phoneUrl, "light")}</td>
+            <td class="email-action-cell" style="padding:0">${emailButton("WhatsApp", clientWhatsAppUrl, "secondary")}</td>
+          </tr>
+        </table>`,
+      footerNote: "Notification privée EVAtlas · Les informations de ce message proviennent du formulaire de devis.",
+    }),
   };
 }
 
 function createCustomerMessage(submission: QuoteSubmission): MailMessage {
-  const firstName = escapeHtml(submission.firstName);
   const text = [
     `Bonjour ${submission.firstName},`,
     "",
@@ -456,7 +623,53 @@ function createCustomerMessage(submission: QuoteSubmission): MailMessage {
     subject: "Votre demande EVAtlas a bien été reçue",
     text,
     autoReply: true,
-    html: `<div style="font-family:Arial,sans-serif;color:#142d20;max-width:620px;margin:0 auto;padding:32px 24px"><p style="color:#60815e;font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase">EVATLAS · DEMANDE REÇUE</p><h1 style="font-size:30px;line-height:1.15;margin:0 0 18px">Merci ${firstName}, votre demande est bien reçue.</h1><p style="font-size:17px;line-height:1.6;color:#455846">Un conseiller EVAtlas vous contactera prochainement pour reprendre votre projet de recharge.</p><p style="font-size:17px;line-height:1.6;color:#455846">À très bientôt,<br><strong>L’équipe EVAtlas</strong></p></div>`,
+    html: emailLayout({
+      preheader: "Votre demande EVAtlas a bien été reçue. Un conseiller vous contactera prochainement.",
+      eyebrow: "Demande reçue · Confirmation",
+      title: `Merci ${submission.firstName}, votre projet est entre de bonnes mains.`,
+      introduction: "Votre demande nous est bien parvenue. Un conseiller EVAtlas va maintenant l’étudier et vous contactera prochainement pour reprendre votre projet de recharge.",
+      content: `
+        <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" style="background:#edf6d7;border:1px solid #d4e5ad;border-collapse:separate;border-radius:20px;margin:0 0 22px">
+          <tr>
+            <td width="58" valign="top" style="padding:20px 0 20px 20px">
+              <div style="background:#173f2b;border-radius:50%;color:#ffffff;font-family:Arial,Helvetica,sans-serif;font-size:18px;font-weight:700;height:38px;line-height:38px;text-align:center;width:38px">✓</div>
+            </td>
+            <td style="padding:19px 20px 19px 12px">
+              <p style="color:#173f2b;font-family:Arial,Helvetica,sans-serif;font-size:16px;font-weight:700;line-height:22px;margin:0 0 3px">Confirmation enregistrée</p>
+              <p style="color:#57704f;font-family:Arial,Helvetica,sans-serif;font-size:13px;line-height:20px;margin:0">Aucune autre action n’est nécessaire pour le moment.</p>
+            </td>
+          </tr>
+        </table>
+        ${detailCard("Résumé de votre demande", [
+          ["Solution", productLabels[submission.product]],
+          ["Véhicule", submission.vehicle],
+          ["Installation", `${installationLabels[submission.installationType]} · ${mountingLabels[submission.mounting]}`],
+          ["Ville", submission.city],
+        ])}
+        <p style="color:#607160;font-family:Arial,Helvetica,sans-serif;font-size:11px;font-weight:700;letter-spacing:1.5px;line-height:17px;margin:26px 0 14px;text-transform:uppercase">Les prochaines étapes</p>
+        <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" style="border-collapse:collapse;margin:0 0 26px">
+          <tr>
+            <td width="48" valign="top" style="padding:0 0 18px"><div style="background:#173f2b;border-radius:50%;color:#ffffff;font-family:Arial,Helvetica,sans-serif;font-size:12px;font-weight:700;height:32px;line-height:32px;text-align:center;width:32px">01</div></td>
+            <td valign="top" style="padding:2px 0 18px"><p style="color:#173322;font-family:Arial,Helvetica,sans-serif;font-size:15px;font-weight:700;line-height:20px;margin:0 0 3px">Demande reçue</p><p style="color:#69796b;font-family:Arial,Helvetica,sans-serif;font-size:13px;line-height:20px;margin:0">Vos informations ont été transmises à notre équipe.</p></td>
+          </tr>
+          <tr>
+            <td width="48" valign="top" style="padding:0 0 18px"><div style="background:#dff2a5;border-radius:50%;color:#173f2b;font-family:Arial,Helvetica,sans-serif;font-size:12px;font-weight:700;height:32px;line-height:32px;text-align:center;width:32px">02</div></td>
+            <td valign="top" style="padding:2px 0 18px"><p style="color:#173322;font-family:Arial,Helvetica,sans-serif;font-size:15px;font-weight:700;line-height:20px;margin:0 0 3px">Étude de votre projet</p><p style="color:#69796b;font-family:Arial,Helvetica,sans-serif;font-size:13px;line-height:20px;margin:0">Un conseiller analyse votre besoin et votre configuration.</p></td>
+          </tr>
+          <tr>
+            <td width="48" valign="top"><div style="background:#f2f5ef;border:1px solid #cfdbcc;border-radius:50%;color:#527057;font-family:Arial,Helvetica,sans-serif;font-size:12px;font-weight:700;height:30px;line-height:30px;text-align:center;width:30px">03</div></td>
+            <td valign="top" style="padding:2px 0 0"><p style="color:#173322;font-family:Arial,Helvetica,sans-serif;font-size:15px;font-weight:700;line-height:20px;margin:0 0 3px">Prise de contact</p><p style="color:#69796b;font-family:Arial,Helvetica,sans-serif;font-size:13px;line-height:20px;margin:0">Notre équipe revient vers vous pour préciser la solution.</p></td>
+          </tr>
+        </table>
+        <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" style="border-collapse:collapse">
+          <tr>
+            <td class="email-action-cell" style="padding:0 8px 0 0">${emailButton("Découvrir la MaxiCharger", emailProductUrl)}</td>
+            <td class="email-action-cell" style="padding:0">${emailButton("Contacter EVAtlas", `${WHATSAPP_URL}?text=${encodeURIComponent(`Bonjour EVAtlas, je viens d’envoyer une demande de devis au nom de ${submission.firstName} ${submission.lastName}.`)}`, "secondary")}</td>
+          </tr>
+        </table>
+        <p style="color:#738175;font-family:Arial,Helvetica,sans-serif;font-size:12px;line-height:19px;margin:22px 0 0">Besoin d’une réponse rapide ? Écrivez-nous sur WhatsApp au ${escapeHtml(WHATSAPP_NUMBER)}.</p>`,
+      footerNote: "EVAtlas · La recharge électrique connectée, installée avec soin et pensée pour le Maroc.",
+    }),
   };
 }
 
