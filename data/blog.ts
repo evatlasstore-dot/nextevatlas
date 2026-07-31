@@ -53,6 +53,7 @@ export type BlogPost = {
 
 const publicationDate = "2026-07-17";
 const newPublicationDate = "2026-07-29";
+const latestPublicationDate = "2026-07-31";
 
 export const blogPosts: BlogPost[] = [
   {
@@ -351,7 +352,7 @@ export const blogPosts: BlogPost[] = [
     relatedSlugs: [
       "borne-recharge-maroc-guide",
       "prix-borne-recharge-installation-maroc",
-      "borne-recharge-7-11-22-kw",
+      "borne-recharge-exterieure-maroc",
     ],
   },
   {
@@ -792,7 +793,7 @@ export const blogPosts: BlogPost[] = [
     relatedSlugs: [
       "borne-recharge-7-11-22-kw",
       "borne-recharge-maroc-guide",
-      "installer-borne-recharge-maison-maroc",
+      "recharge-hybride-rechargeable-maroc",
     ],
   },
   {
@@ -939,7 +940,7 @@ export const blogPosts: BlogPost[] = [
     relatedSlugs: [
       "borne-recharge-maroc-guide",
       "borne-recharge-7-11-22-kw",
-      "prix-borne-recharge-installation-maroc",
+      "borne-recharge-hotel-riad-maroc",
     ],
   },
   {
@@ -1637,6 +1638,487 @@ export const blogPosts: BlogPost[] = [
       title: "Préparez votre niveau de départ depuis chez vous.",
       text: "Programmez la recharge, suivez la session et retrouvez un véhicule prêt au moment de prendre la route.",
       label: "Découvrir la recharge à domicile",
+    },
+  },
+  {
+    slug: "borne-recharge-hotel-riad-maroc",
+    title: "Borne de recharge pour hôtel et riad au Maroc : le guide",
+    seoTitle: "Borne de recharge pour hôtel et riad au Maroc",
+    description:
+      "Comment équiper un hôtel, un riad ou une maison d’hôtes au Maroc : puissance, accès, emplacement, pilotage et parcours client.",
+    excerpt:
+      "Une méthode concrète pour transformer la recharge à destination en service simple, fiable et cohérent avec l’expérience de votre établissement.",
+    category: "Hôtellerie",
+    readingTime: 11,
+    datePublished: latestPublicationDate,
+    dateModified: latestPublicationDate,
+    image: "/images/blog/borne-recharge-hotel-riad-maroc.jpg",
+    imageAlt:
+      "Voiture électrique branchée à une borne dans la cour d’un hôtel contemporain d’inspiration marocaine",
+    keywords: [
+      "borne recharge hôtel Maroc",
+      "borne recharge riad",
+      "recharge voiture électrique hôtel",
+      "borne électrique maison d’hôtes",
+      "recharge à destination Maroc",
+    ],
+    intro: [
+      "Pour un hôtel, un riad ou une maison d’hôtes, la recharge ne se résume pas à ajouter un équipement dans le parking. Elle devient une partie du séjour : le client doit comprendre où se garer, comment démarrer la session et à quel moment son véhicule sera prêt, sans multiplier les demandes à la réception.",
+      "Une installation réussie associe le rythme naturel de l’établissement à une puissance réaliste, un accès maîtrisé et un emplacement confortable. Ce guide aide les exploitants marocains à cadrer le projet avant le devis, depuis l’analyse des nuitées jusqu’à la mise en service.",
+    ],
+    quickAnswer:
+      "Pour un hôtel ou un riad, une borne AC bien dimensionnée est généralement pensée pour la durée de stationnement des clients plutôt que pour une recharge la plus rapide possible. Il faut vérifier la puissance du site, organiser l’accès, choisir un emplacement visible et prévoir une procédure simple pour la réception et la maintenance.",
+    sections: [
+      {
+        id: "usage-hotelier",
+        title: "Commencer par le parcours réel du client",
+        paragraphs: [
+          "Un voyageur qui arrive en fin de journée laisse souvent son véhicule plusieurs heures. Cette durée disponible favorise la recharge à destination : l’objectif est de restituer une autonomie utile avant le départ, avec une expérience aussi naturelle que le stationnement lui-même.",
+          "Avant de choisir la borne, observez les arrivées, les départs, la durée moyenne de stationnement et la manière dont les places sont attribuées. Un riad avec quelques places privées n’a pas le même fonctionnement qu’un hôtel disposant d’un grand parking et d’équipes présentes en continu.",
+        ],
+        listTitle: "Les questions à poser à l’exploitation",
+        bullets: [
+          "Combien de véhicules électriques peuvent être accueillis simultanément ?",
+          "Les clients restent-ils une nuit, plusieurs nuits ou seulement quelques heures ?",
+          "La place peut-elle être réservée avant l’arrivée ?",
+          "Qui explique l’accès et intervient si une session ne démarre pas ?",
+          "Le service est-il réservé aux résidents ou ouvert aux visiteurs ?",
+        ],
+      },
+      {
+        id: "puissance-destination",
+        title: "Dimensionner la puissance selon le temps de stationnement",
+        paragraphs: [
+          "La puissance nominale la plus élevée n’est pas automatiquement la plus pertinente. La voiture limite elle-même la puissance AC qu’elle accepte, tandis que la durée de la nuit laisse souvent suffisamment de temps pour récupérer l’énergie nécessaire.",
+          "Le dimensionnement doit également préserver les usages prioritaires de l’établissement : cuisine, climatisation, buanderie, production d’eau chaude ou équipements événementiels. Un pilotage de puissance peut adapter la recharge lorsque la consommation du bâtiment augmente.",
+        ],
+        table: {
+          caption: "Repères pour cadrer une recharge à destination",
+          headers: ["Situation", "Priorité de conception", "Point à vérifier"],
+          rows: [
+            ["Une ou deux places", "Simplicité d’accès et emplacement", "Puissance réellement disponible"],
+            ["Plusieurs bornes", "Répartition dynamique de la puissance", "Capacité globale et simultanéité"],
+            ["Forte rotation", "Énergie récupérée entre deux départs", "Puissance AC des véhicules accueillis"],
+          ],
+        },
+        note: {
+          title: "Éviter le surdimensionnement",
+          text: "Une borne 22 kW ne délivre 22 kW que si le véhicule et l’installation le permettent. Une étude du site reste nécessaire avant de retenir la puissance.",
+        },
+      },
+      {
+        id: "emplacement-signalisation",
+        title: "Créer une place facile à trouver et à utiliser",
+        paragraphs: [
+          "La place doit être identifiable dès l’arrivée sans dégrader l’esthétique du site. Une signalétique sobre, une information dans la confirmation de réservation et une consigne donnée à la réception évitent qu’un véhicule thermique occupe l’emplacement ou que le client cherche la borne dans le parking.",
+          "Le câble ne doit pas traverser un chemin piéton, rester tendu ni gêner les manœuvres. La position des ports de charge varie selon les véhicules : un espace suffisant autour de la place rend l’installation compatible avec davantage de configurations.",
+        ],
+        listTitle: "Une implantation professionnelle",
+        bullets: [
+          "Borne visible depuis la place sans nuire à l’architecture",
+          "Éclairage suffisant pour une arrivée nocturne",
+          "Cheminement du câble protégé et sans risque de chute",
+          "Accès possible avec des véhicules aux ports de charge différents",
+          "Consigne claire en français et, si utile, dans les langues des visiteurs",
+        ],
+      },
+      {
+        id: "acces-pilotage",
+        title: "Choisir un accès que l’équipe peut réellement gérer",
+        paragraphs: [
+          "Application, carte RFID ou activation contrôlée : la meilleure méthode est celle que l’établissement peut expliquer en quelques secondes. Une procédure trop technique augmente la charge de la réception et fragilise l’expérience du client.",
+          "Le suivi connecté peut aider à confirmer qu’une session a démarré, consulter l’énergie délivrée et limiter les accès. Les responsabilités doivent rester lisibles : qui possède les identifiants, qui reçoit une alerte et quelle procédure appliquer en dehors des horaires habituels.",
+        ],
+        listTitle: "Le protocole à remettre aux équipes",
+        ordered: true,
+        bullets: [
+          "Identifier le client et la place attribuée",
+          "Présenter la méthode d’activation en une phrase",
+          "Vérifier que la charge a effectivement commencé",
+          "Communiquer la règle de libération de la place",
+          "Savoir qui contacter en cas d’anomalie",
+        ],
+      },
+      {
+        id: "service-tarification",
+        title: "Définir le service avant de communiquer",
+        paragraphs: [
+          "L’établissement doit décider si la recharge est incluse dans le séjour, proposée selon une règle interne ou organisée autrement. Cette décision influence l’accès, le suivi et l’information donnée au client. Toute facturation éventuelle doit être cadrée avec les obligations applicables et les outils réellement disponibles.",
+          "La communication doit rester précise : nombre de places, réservation nécessaire, disponibilité non garantie tant que la place n’est pas confirmée et puissance indicative. Une promesse mesurée protège mieux l’expérience qu’un message commercial imprécis.",
+        ],
+        table: {
+          caption: "Informations utiles avant l’arrivée",
+          headers: ["Information", "Pourquoi la préciser"],
+          rows: [
+            ["Nombre de places équipées", "Évite de confondre présence et disponibilité"],
+            ["Réservation ou attribution", "Organise les arrivées"],
+            ["Type de connecteur", "Permet au client de vérifier sa compatibilité"],
+            ["Conditions d’accès", "Évite une surprise à la réception"],
+          ],
+        },
+      },
+      {
+        id: "deploiement-hotel",
+        title: "Passer d’une première borne à un équipement évolutif",
+        paragraphs: [
+          "Un premier point de charge peut servir à mesurer la demande réelle, mais l’alimentation et l’implantation doivent anticiper une extension raisonnable. Prévoir le cheminement futur ou la répartition de puissance coûte souvent moins cher que reprendre entièrement le parking plus tard.",
+          "Le dossier de départ doit réunir le plan des places, les distances, les photos du tableau, les consommations importantes et le parcours client souhaité. EVAtlas peut ensuite proposer une configuration Autel MaxiCharger adaptée au site et préciser ce qui doit être validé lors de l’étude technique.",
+        ],
+        listTitle: "Préparer une demande de devis exploitable",
+        bullets: [
+          "Adresse et type d’établissement",
+          "Nombre de places actuelles et futures",
+          "Photos du parking et du tableau électrique",
+          "Distance approximative jusqu’aux places",
+          "Horaires, durée de stationnement et méthode d’accès souhaitée",
+        ],
+      },
+    ],
+    faq: [
+      {
+        question: "Quelle puissance choisir pour une borne d’hôtel au Maroc ?",
+        answer:
+          "Elle dépend du temps de stationnement, des véhicules accueillis et de la capacité électrique du site. Une étude permet de comparer 7,4, 11 et 22 kW sans perturber les autres usages de l’établissement.",
+      },
+      {
+        question: "Peut-on réserver une borne pour un client avant son arrivée ?",
+        answer:
+          "L’établissement peut organiser l’attribution d’une place dans son propre parcours de réservation. Il doit toutefois distinguer la réservation de la place de la garantie d’une quantité d’énergie ou d’un temps de charge précis.",
+      },
+      {
+        question: "Faut-il une application pour utiliser la borne ?",
+        answer:
+          "Pas nécessairement. Selon la configuration, l’accès peut être organisé par application, RFID ou procédure contrôlée. Le choix doit rester simple pour le client et l’équipe.",
+      },
+    ],
+    relatedSlugs: [
+      "borne-recharge-entreprise-copropriete-maroc",
+      "borne-recharge-exterieure-maroc",
+      "autel-maxicharger-22kw-maroc",
+    ],
+    productCta: {
+      eyebrow: "Recharge à destination",
+      title: "Transformez une place de parking en service client maîtrisé.",
+      text: "Découvrez une borne connectée, pilotable et configurable pour les usages de votre établissement.",
+      label: "Voir l’Autel MaxiCharger",
+    },
+  },
+  {
+    slug: "recharge-hybride-rechargeable-maroc",
+    title: "Recharger une voiture hybride rechargeable au Maroc",
+    seoTitle: "Recharge hybride rechargeable au Maroc : guide",
+    description:
+      "Prise ou borne, puissance AC, temps de charge et bonnes habitudes : tout comprendre pour recharger une hybride rechargeable au Maroc.",
+    excerpt:
+      "Les repères pratiques pour exploiter la batterie d’une hybride rechargeable sans surdimensionner la borne ni compliquer le quotidien.",
+    category: "Hybride rechargeable",
+    readingTime: 10,
+    datePublished: latestPublicationDate,
+    dateModified: latestPublicationDate,
+    image: "/images/blog/recharge-hybride-rechargeable-maroc.jpg",
+    imageAlt:
+      "Berline hybride rechargeable branchée à une borne murale dans une villa contemporaine à Casablanca",
+    keywords: [
+      "recharge hybride rechargeable Maroc",
+      "borne voiture hybride rechargeable",
+      "wallbox PHEV Maroc",
+      "temps recharge hybride rechargeable",
+      "prise Type 2 hybride",
+    ],
+    intro: [
+      "Une hybride rechargeable associe un moteur thermique à une batterie qui peut être rechargée sur une source externe. Pour profiter régulièrement de son mode électrique, la recharge doit s’intégrer au stationnement quotidien plutôt que dépendre d’occasions ponctuelles.",
+      "Sa batterie est généralement plus petite que celle d’une voiture entièrement électrique, mais cela ne signifie pas que toutes les solutions se valent. La puissance AC acceptée, le câble, la durée disponible et l’installation du logement déterminent la configuration utile.",
+    ],
+    quickAnswer:
+      "Une hybride rechargeable peut être rechargée sur une solution compatible avec son connecteur et les prescriptions du constructeur. Une wallbox apporte un point dédié, une utilisation régulière et des fonctions de programmation ; sa puissance doit être choisie selon la limite AC du véhicule et la capacité électrique du site.",
+    sections: [
+      {
+        id: "fonctionnement-phev",
+        title: "Comprendre ce que la voiture peut réellement accepter",
+        paragraphs: [
+          "La borne fournit du courant alternatif, puis le chargeur embarqué du véhicule le convertit pour la batterie. La puissance utilisée est donc limitée par le véhicule, même lorsque la borne peut délivrer davantage.",
+          "Deux hybrides rechargeables de capacité proche peuvent accepter des puissances AC différentes. La fiche technique du modèle et son manuel restent les sources prioritaires pour identifier le connecteur, la puissance et les recommandations de charge.",
+        ],
+        listTitle: "Les informations à relever",
+        bullets: [
+          "Modèle, année et version exacte du véhicule",
+          "Capacité utile ou nominale indiquée par le constructeur",
+          "Puissance maximale de recharge en courant alternatif",
+          "Type de connecteur et câble fourni",
+          "Recommandations du constructeur pour la batterie",
+        ],
+      },
+      {
+        id: "prise-ou-wallbox",
+        title: "Prise ou wallbox : comparer l’usage, pas seulement la vitesse",
+        paragraphs: [
+          "Une solution occasionnelle et une borne dédiée ne répondent pas au même usage. La wallbox est conçue pour la recharge répétée, avec une puissance paramétrée pour le circuit, un accès plus pratique et, selon le modèle, une programmation et un suivi dans l’application.",
+          "La décision doit partir de la fréquence de branchement. Si le véhicule est rechargé presque chaque jour, un emplacement fixe et un câble bien rangé peuvent compter davantage que le gain de temps théorique.",
+        ],
+        table: {
+          caption: "Comparer les deux approches",
+          headers: ["Critère", "Recharge occasionnelle", "Wallbox dédiée"],
+          rows: [
+            ["Fréquence", "Usage ponctuel selon les prescriptions", "Usage régulier et organisé"],
+            ["Puissance", "Limitée par la solution utilisée", "Réglée selon le véhicule et le site"],
+            ["Pilotage", "Dépend du véhicule", "Programmation et suivi possibles selon la borne"],
+            ["Installation", "Circuit à faire vérifier", "Étude, protections et circuit adaptés"],
+          ],
+        },
+      },
+      {
+        id: "calcul-temps",
+        title: "Estimer le temps de charge sans promettre un chiffre universel",
+        paragraphs: [
+          "Un premier calcul consiste à diviser l’énergie à récupérer par la puissance réellement utilisée. Par exemple, récupérer 10 kWh à une puissance stable de 3,7 kW demande théoriquement environ 2 h 40, avant de tenir compte des pertes et des variations de charge.",
+          "Le bon calcul utilise l’énergie manquante, pas forcément toute la capacité de la batterie. Le temps réel dépend ensuite du véhicule, de la température, du rendement et de la puissance effectivement disponible.",
+        ],
+        note: {
+          title: "Utilisez le modèle exact",
+          text: "Le simulateur EVAtlas reprend les caractéristiques de recharge du véhicule sélectionné. La documentation du constructeur reste prioritaire en cas d’écart.",
+        },
+      },
+      {
+        id: "choisir-puissance-phev",
+        title: "Choisir une puissance cohérente pour aujourd’hui et demain",
+        paragraphs: [
+          "Installer une borne plus puissante que la limite actuelle du véhicule n’accélère pas sa recharge. Cette marge peut toutefois être pertinente si l’installation le permet et qu’un véhicule 100 % électrique est envisagé à moyen terme.",
+          "Le choix final équilibre le besoin actuel, la capacité du tableau et une évolution réaliste. Il ne faut pas augmenter la puissance uniquement pour anticiper un scénario incertain, surtout si cela complexifie le raccordement.",
+        ],
+        table: {
+          caption: "Logique de dimensionnement",
+          headers: ["Question", "Décision associée"],
+          rows: [
+            ["Quelle puissance AC accepte le PHEV ?", "Fixe la vitesse maximale actuelle"],
+            ["Combien d’heures stationne-t-il ?", "Détermine la puissance réellement nécessaire"],
+            ["Un véhicule électrique est-il prévu ?", "Peut justifier une marge raisonnable"],
+            ["Quelle puissance reste disponible ?", "Cadre la configuration du site"],
+          ],
+        },
+      },
+      {
+        id: "routine-recharge",
+        title: "Construire une routine qui favorise les trajets électriques",
+        paragraphs: [
+          "Une hybride rechargeable est plus simple à exploiter lorsque le branchement devient un geste naturel à l’arrivée. La programmation peut aligner la session sur les horaires souhaités, tandis que l’application permet de vérifier son état sans retourner au véhicule.",
+          "Les objectifs de niveau de batterie et les périodes de stockage doivent suivre les recommandations du constructeur. La borne facilite la routine, mais elle ne remplace pas les réglages et limites prévus par le véhicule.",
+        ],
+        listTitle: "Une routine en quatre gestes",
+        ordered: true,
+        bullets: [
+          "Stationner sans tendre le câble",
+          "Brancher et vérifier le démarrage",
+          "Programmer la session si cela correspond à l’usage",
+          "Ranger le câble avant le départ",
+        ],
+      },
+      {
+        id: "preparer-installation-phev",
+        title: "Préparer une installation adaptée au véhicule et au logement",
+        paragraphs: [
+          "Le professionnel vérifie le tableau, l’alimentation, la terre, le cheminement et l’emplacement avant de retenir la puissance et les protections. La pose murale convient lorsque le stationnement longe un support adapté ; une pose sur pied peut être étudiée si la place est éloignée.",
+          "Pour obtenir une recommandation précise, transmettez le modèle exact, des photos du tableau et de la place, la distance approximative et vos habitudes. Le devis EVAtlas peut ainsi distinguer le besoin immédiat de l’évolution éventuelle vers un véhicule entièrement électrique.",
+        ],
+        listTitle: "Votre dossier de départ",
+        bullets: [
+          "Carte grise ou désignation exacte du véhicule",
+          "Photos du tableau électrique",
+          "Vue large de la place de stationnement",
+          "Distance et obstacles jusqu’à l’emplacement",
+          "Fréquence de recharge et prochain véhicule envisagé",
+        ],
+      },
+    ],
+    faq: [
+      {
+        question: "Une borne de 22 kW recharge-t-elle plus vite une hybride rechargeable ?",
+        answer:
+          "Uniquement si le véhicule accepte cette puissance en AC et si l’installation peut la fournir. Beaucoup de modèles utilisent une puissance inférieure : il faut vérifier la fiche technique exacte.",
+      },
+      {
+        question: "Faut-il recharger une hybride rechargeable tous les jours ?",
+        answer:
+          "Cela dépend des trajets et des recommandations du constructeur. Une recharge régulière permet généralement d’exploiter davantage le mode électrique lorsque la voiture est utilisée quotidiennement.",
+      },
+      {
+        question: "La prise Type 2 suffit-elle à garantir la compatibilité ?",
+        answer:
+          "Non. Le connecteur est un premier critère, mais il faut aussi vérifier la puissance AC acceptée, le câble, les paramètres du véhicule et la configuration électrique du site.",
+      },
+    ],
+    relatedSlugs: [
+      "temps-recharge-voiture-electrique",
+      "borne-recharge-7-11-22-kw",
+      "borne-recharge-maroc-guide",
+    ],
+    productCta: {
+      eyebrow: "Recharge quotidienne",
+      title: "Une borne dimensionnée pour votre hybride et votre prochain véhicule.",
+      text: "La MaxiCharger ajuste la puissance, programme les sessions et accompagne une installation pensée pour évoluer.",
+      label: "Explorer l’Autel MaxiCharger",
+    },
+  },
+  {
+    slug: "borne-recharge-exterieure-maroc",
+    title: "Installer une borne de recharge extérieure au Maroc",
+    seoTitle: "Borne de recharge extérieure au Maroc : guide",
+    description:
+      "Chaleur, soleil, pluie et poussière : les critères pour choisir l’emplacement et installer durablement une borne extérieure au Maroc.",
+    excerpt:
+      "Indices de protection, ombrage, câbles et entretien : les décisions qui rendent une installation extérieure sûre, pratique et durable.",
+    category: "Installation extérieure",
+    readingTime: 11,
+    datePublished: latestPublicationDate,
+    dateModified: latestPublicationDate,
+    image: "/images/blog/borne-recharge-exterieure-maroc.jpg",
+    imageAlt:
+      "Borne de recharge extérieure avec gouttes de pluie reliée à une voiture électrique devant une villa marocaine",
+    keywords: [
+      "borne recharge extérieure Maroc",
+      "wallbox extérieur pluie chaleur",
+      "indice IP borne recharge",
+      "installation borne parking extérieur",
+      "protection borne voiture électrique",
+    ],
+    intro: [
+      "Une borne extérieure peut fonctionner durablement au Maroc à condition que le matériel, son emplacement et sa pose soient cohérents avec l’exposition réelle. Le soleil direct, la poussière, les épisodes de pluie, les chocs et les écarts de température ne se traitent pas avec un seul accessoire.",
+      "L’indice de protection du produit est important, mais il ne remplace ni les prescriptions du fabricant ni une installation professionnelle. Le support, l’étanchéité des entrées de câble, le drainage et le confort d’usage forment un ensemble.",
+    ],
+    quickAnswer:
+      "Pour installer une borne à l’extérieur au Maroc, choisissez une version explicitement prévue pour cet usage, respectez sa plage de température et ses indices de protection, puis faites étudier le support, l’alimentation, les entrées de câble et l’écoulement de l’eau. Un ombrage architectural bien ventilé peut améliorer le confort sans enfermer la borne.",
+    sections: [
+      {
+        id: "exposition-site",
+        title: "Lire l’exposition réelle avant de choisir l’emplacement",
+        paragraphs: [
+          "Deux places situées dans le même parking peuvent subir des contraintes très différentes. Une façade orientée à l’ouest reçoit un fort soleil en fin de journée ; une zone basse peut accumuler l’eau ; un passage étroit augmente le risque de choc.",
+          "L’étude doit observer plusieurs situations : véhicule présent ou absent, pluie avec vent, lavage du sol, circulation des personnes et rayon de manœuvre. L’emplacement le plus court à câbler n’est pas toujours le plus durable.",
+        ],
+        listTitle: "Les contraintes à relever",
+        bullets: [
+          "Durée et orientation de l’exposition solaire",
+          "Ruissellement, projections et eau stagnante",
+          "Poussière, sable et fréquence de nettoyage",
+          "Risques de choc lors des manœuvres",
+          "Distance jusqu’au tableau et cheminement de l’alimentation",
+        ],
+      },
+      {
+        id: "indices-ip-ik",
+        title: "Comprendre les indices IP et IK sans les surinterpréter",
+        paragraphs: [
+          "L’indice IP décrit un niveau de protection de l’enveloppe contre la pénétration de corps solides et d’eau dans des conditions définies. L’indice IK, lorsqu’il est communiqué, concerne la résistance mécanique aux impacts. Ces indices permettent de comparer des versions, mais ne rendent pas une installation invulnérable.",
+          "La MaxiCharger AC Wallbox existe selon les marchés et configurations avec des caractéristiques qui peuvent varier, notamment entre version avec câble et version avec prise. La fiche technique correspondant exactement à la référence installée doit être vérifiée.",
+        ],
+        table: {
+          caption: "Ce que les indices disent — et ne disent pas",
+          headers: ["Repère", "Ce qu’il aide à évaluer", "Ce qu’il ne remplace pas"],
+          rows: [
+            ["Indice IP", "Protection de l’enveloppe contre solides et eau", "Qualité des raccordements et respect de la pose"],
+            ["Indice IK", "Résistance de l’enveloppe à certains impacts", "Protection contre une collision de véhicule"],
+            ["Plage thermique", "Températures prévues par le fabricant", "Étude de l’exposition et ventilation"],
+          ],
+        },
+        note: {
+          title: "Vérifier la référence exacte",
+          text: "Les caractéristiques d’une gamme ne doivent pas être appliquées automatiquement à toutes ses variantes. Utilisez la fiche technique et la notice du produit livré.",
+        },
+      },
+      {
+        id: "soleil-chaleur",
+        title: "Gérer le soleil et la chaleur sans bloquer la ventilation",
+        paragraphs: [
+          "Un emplacement ombragé ou un auvent peut limiter l’échauffement de surface et améliorer le confort lorsque l’utilisateur manipule le câble. La protection ne doit toutefois pas enfermer la borne ni empêcher la dissipation prévue par le fabricant.",
+          "Il faut conserver les dégagements exigés, éviter les coffrages improvisés et respecter la plage de fonctionnement. Une teinte de mur très exposée, un volume fermé ou une proximité avec une source de chaleur peuvent modifier les conditions autour de l’équipement.",
+        ],
+        listTitle: "Bonnes décisions d’implantation",
+        bullets: [
+          "Privilégier une ombre architecturale lorsque le site le permet",
+          "Respecter les dégagements et l’orientation de la notice",
+          "Éviter un boîtier secondaire non prévu par le fabricant",
+          "Maintenir les voyants et commandes facilement visibles",
+          "Conserver un accès simple pour l’inspection et la maintenance",
+        ],
+      },
+      {
+        id: "pluie-drainage",
+        title: "Traiter la pluie au niveau de toute l’installation",
+        paragraphs: [
+          "La protection de l’enveloppe ne suffit pas si l’entrée de câble, le support ou le cheminement créent une faiblesse. Les presse-étoupes, conduits, fixations et pénétrations dans le mur doivent être réalisés selon les prescriptions du produit et les conditions du site.",
+          "Le câble de recharge doit être rangé hors des zones d’eau stagnante et ne pas traverser une évacuation. Une pente de sol, un nettoyage fréquent ou un arrosage automatique peuvent exposer l’installation même lorsqu’elle se trouve sous un auvent.",
+        ],
+        listTitle: "Points à contrôler lors de la pose",
+        ordered: true,
+        bullets: [
+          "Stabilité et état du support",
+          "Étanchéité des entrées et cheminements",
+          "Absence d’accumulation d’eau autour de la borne",
+          "Rangement du câble et protection du connecteur",
+          "Essais et inspection après la mise en service",
+        ],
+      },
+      {
+        id: "poussiere-entretien",
+        title: "Prévoir un entretien simple face à la poussière",
+        paragraphs: [
+          "La poussière extérieure ne justifie pas un nettoyage agressif. Une inspection visuelle régulière permet de repérer un câble marqué, un connecteur sale, une fixation desserrée ou une obstruction autour de l’appareil.",
+          "Le nettoyage doit suivre la notice, avec la borne hors utilisation et sans produit abrasif ni jet non autorisé. Toute anomalie électrique, surchauffe, fissure ou défaut répété doit être confié à un professionnel plutôt que masqué par une remise en route systématique.",
+        ],
+        table: {
+          caption: "Routine d’inspection indicative",
+          headers: ["Élément", "Observation utile", "Réaction"],
+          rows: [
+            ["Câble et connecteur", "Coupure, écrasement, saleté", "Cesser l’usage si endommagé"],
+            ["Boîtier et fixation", "Fissure, jeu ou choc", "Faire contrôler"],
+            ["Zone au sol", "Eau, obstacle ou passage gêné", "Libérer et corriger la cause"],
+            ["Application et voyants", "Défaut récurrent", "Consulter la notice et le support"],
+          ],
+        },
+      },
+      {
+        id: "devis-exterieur",
+        title: "Documenter le site pour obtenir un devis précis",
+        paragraphs: [
+          "Des photos prises à différents angles permettent de comprendre le mur, le sol, le stationnement et l’exposition. Ajoutez la distance jusqu’au tableau, les zones de passage et, si possible, une indication de l’orientation et des moments où la place reçoit le soleil.",
+          "EVAtlas peut alors étudier une pose murale ou sur pied, le cheminement, la puissance et les protections autour d’une Autel MaxiCharger. La configuration finale reste confirmée à partir de la référence produit et des conditions observées sur place.",
+        ],
+        listTitle: "Les éléments à transmettre",
+        bullets: [
+          "Vue générale de la place et du bâtiment",
+          "Photo rapprochée du support envisagé",
+          "Photos du tableau et de son environnement",
+          "Distance approximative et obstacles",
+          "Informations sur le véhicule et la puissance souhaitée",
+        ],
+      },
+    ],
+    faq: [
+      {
+        question: "Peut-on laisser une borne de recharge sous la pluie ?",
+        answer:
+          "Uniquement si la version exacte est prévue pour l’extérieur et installée conformément à sa notice. L’indice IP, les raccordements, le support et le drainage doivent tous être adaptés.",
+      },
+      {
+        question: "Faut-il obligatoirement installer un auvent au-dessus de la borne ?",
+        answer:
+          "Pas systématiquement. Cela dépend du produit et du site. Un ombrage peut améliorer le confort et limiter l’exposition directe, mais il ne doit pas gêner la ventilation ni contredire les prescriptions du fabricant.",
+      },
+      {
+        question: "Comment protéger une borne extérieure contre les chocs ?",
+        answer:
+          "Choisissez une position hors de la trajectoire des véhicules et étudiez, si nécessaire, une protection physique adaptée au parking. L’indice IK ne remplace pas une implantation sûre.",
+      },
+    ],
+    relatedSlugs: [
+      "installer-borne-recharge-maison-maroc",
+      "borne-recharge-hotel-riad-maroc",
+      "autel-maxicharger-22kw-maroc",
+    ],
+    productCta: {
+      eyebrow: "Installation extérieure",
+      title: "Une borne conçue pour le site, pas seulement posée dehors.",
+      text: "Découvrez les caractéristiques de la MaxiCharger et faites valider la version, l’emplacement et la puissance pour votre parking.",
+      label: "Découvrir la MaxiCharger",
     },
   },
 ];

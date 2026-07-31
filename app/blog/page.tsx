@@ -3,6 +3,7 @@ import Image from "next/image";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import Icon from "@/components/ui/Icon";
+import ProductRouteLink from "@/components/ui/ProductRouteLink";
 import TrackedLink from "@/components/ui/TrackedLink";
 import { blogPosts } from "@/data/blog";
 
@@ -12,7 +13,7 @@ const blogUrl = `${siteUrl}/blog`;
 export const metadata: Metadata = {
   title: "Guides sur la recharge électrique au Maroc",
   description:
-    "Guides EVAtlas sur la recharge électrique au Maroc : borne à domicile, MaxiCharger, solaire, puissance, compatibilité et longs trajets.",
+    "Guides EVAtlas sur la recharge électrique au Maroc : installation, hôtellerie, hybride rechargeable, extérieur, puissance et MaxiCharger.",
   alternates: { canonical: "/blog" },
   robots: { index: true, follow: true },
   openGraph: {
@@ -21,7 +22,7 @@ export const metadata: Metadata = {
     url: "/blog",
     title: "Guides sur la recharge électrique au Maroc | EVAtlas",
     description:
-      "Des réponses pratiques sur les bornes, l’installation, la recharge solaire, la compatibilité et les usages connectés au Maroc.",
+      "Des réponses pratiques sur les bornes, l’installation extérieure, l’hôtellerie, les hybrides rechargeables et les usages connectés au Maroc.",
     siteName: "EVAtlas",
     images: [
       {
@@ -204,8 +205,8 @@ export default function BlogPage() {
                 <h2 id="articles-title">Approfondir chaque décision.</h2>
               </div>
               <p>
-                Installation, solaire, puissance, compatibilité et mobilité :
-                choisissez le sujet qui correspond à votre étape actuelle.
+                Installation, hôtellerie, hybride rechargeable, puissance et
+                mobilité : choisissez le sujet qui correspond à votre projet.
               </p>
             </div>
             <div className="blog-grid">
@@ -266,6 +267,12 @@ export default function BlogPage() {
               </p>
             </div>
             <div className="blog-cta-actions">
+              <ProductRouteLink
+                className="button button-outline"
+                eventName="click_blog_product"
+              >
+                Voir la MaxiCharger <Icon name="arrow" size={17} />
+              </ProductRouteLink>
               <TrackedLink
                 href="/simulateur"
                 className="button button-outline"
@@ -274,11 +281,11 @@ export default function BlogPage() {
                 Ouvrir le simulateur <Icon name="arrow" size={17} />
               </TrackedLink>
               <TrackedLink
-                href="/devis#quote-form"
+                href="/devis?product=autel-maxicharger#quote-form"
                 className="button"
                 eventName="click_blog_quote"
               >
-                Demander une étude <Icon name="arrow" size={17} />
+                Recevoir mon devis personnalisé <Icon name="arrow" size={17} />
               </TrackedLink>
             </div>
           </div>

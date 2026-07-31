@@ -358,7 +358,20 @@ export default async function BlogArticlePage({
                 </ol>
               </nav>
               <div className="article-sidebar-cta">
-                <p>Besoin d’un premier repère&nbsp;?</p>
+                <p>Faire avancer votre projet</p>
+                <ProductRouteLink
+                  className="text-link"
+                  eventName="click_article_sidebar_product"
+                >
+                  Voir la MaxiCharger <Icon name="arrow" size={15} />
+                </ProductRouteLink>
+                <TrackedLink
+                  href="/devis?product=autel-maxicharger#quote-form"
+                  className="text-link"
+                  eventName="click_article_sidebar_quote"
+                >
+                  Obtenir mon devis <Icon name="arrow" size={15} />
+                </TrackedLink>
                 <TrackedLink
                   href="/simulateur"
                   className="text-link"
@@ -391,12 +404,45 @@ export default async function BlogArticlePage({
                         <h2 id="article-inline-product-title">{post.productCta.title}</h2>
                         <span>{post.productCta.text}</span>
                       </div>
-                      <ProductRouteLink
-                        className="button"
-                        eventName="click_article_inline_product"
-                      >
-                        {post.productCta.label} <Icon name="arrow" size={17} />
-                      </ProductRouteLink>
+                      <div className="article-inline-product-actions">
+                        <ProductRouteLink
+                          className="button"
+                          eventName="click_article_inline_product"
+                        >
+                          {post.productCta.label} <Icon name="arrow" size={17} />
+                        </ProductRouteLink>
+                        <TrackedLink
+                          href="/devis?product=autel-maxicharger#quote-form"
+                          className="button button-outline"
+                          eventName="click_article_inline_quote"
+                        >
+                          Recevoir mon devis <Icon name="arrow" size={17} />
+                        </TrackedLink>
+                      </div>
+                    </aside>
+                  )}
+                  {index === 3 && (
+                    <aside className="article-inline-quote" aria-labelledby="article-inline-quote-title">
+                      <div>
+                        <p>Votre configuration EVAtlas</p>
+                        <h2 id="article-inline-quote-title">Obtenez une recommandation adaptée à votre véhicule et à votre site.</h2>
+                        <span>Décrivez votre installation en quelques étapes. Un conseiller reprend les informations transmises pour préparer votre projet.</span>
+                      </div>
+                      <div className="article-inline-quote-actions">
+                        <TrackedLink
+                          href="/devis?product=autel-maxicharger#quote-form"
+                          className="button"
+                          eventName="click_article_mid_quote"
+                        >
+                          Demander mon devis <Icon name="arrow" size={17} />
+                        </TrackedLink>
+                        <ProductRouteLink
+                          className="text-link"
+                          eventName="click_article_mid_product"
+                        >
+                          Explorer la MaxiCharger <Icon name="arrow" size={15} />
+                        </ProductRouteLink>
+                      </div>
                     </aside>
                   )}
                 </Fragment>
