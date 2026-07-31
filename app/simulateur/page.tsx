@@ -52,7 +52,6 @@ export default function SimulatorPage() {
           id="simulator-reviews-title"
           eyebrow="Retours d’expérience"
           title="Des projets proches du vôtre."
-          description="Les témoignages ci-dessous sont des contenus provisoires de démonstration. Ils illustrent des usages fréquents et seront remplacés par des avis clients vérifiés."
         />
       </main>
       <Footer />

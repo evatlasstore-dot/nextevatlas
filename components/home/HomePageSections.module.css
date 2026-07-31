@@ -550,6 +550,10 @@
   align-items: end;
 }
 
+.reviewsHeader > div:only-child {
+  grid-column: 1 / -1;
+}
+
 .reviewsHeader > p {
   max-width: 500px;
   color: #606d64;

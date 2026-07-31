@@ -8,7 +8,6 @@ import styles from "./HomePageSections.module.css";
 type HomeReviewsCarouselProps = {
   eyebrow?: string;
   title?: string;
-  description?: string;
   id?: string;
 };
 
@@ -22,7 +21,6 @@ function getItemsPerView() {
 export default function HomeReviewsCarousel({
   eyebrow = "Retours d’expérience",
   title = "Des projets proches du vôtre.",
-  description = "Les témoignages ci-dessous sont des contenus provisoires de démonstration. Ils illustrent des usages fréquents et seront remplacés par des avis clients vérifiés.",
   id = "home-reviews-title",
 }: HomeReviewsCarouselProps) {
   const [itemsPerView, setItemsPerView] = useState(3);
@@ -61,14 +59,13 @@ export default function HomeReviewsCarousel({
             <p className="eyebrow">{eyebrow}</p>
             <h2 id={id}>{title}</h2>
           </div>
-          <p>{description}</p>
         </header>
 
         <div
           className={styles.carousel}
           role="region"
           aria-roledescription="carrousel"
-          aria-label="Avis et scénarios clients"
+          aria-label="Avis clients"
           tabIndex={0}
           onKeyDown={(event) => {
             if (event.key === "ArrowLeft") move(-1);
@@ -100,7 +97,6 @@ export default function HomeReviewsCarousel({
                   >
                     <div className={styles.reviewMeta}>
                       <span aria-label={`${story.rating} étoiles sur 5`}>{"★".repeat(story.rating)}</span>
-                      <small>Scénario provisoire</small>
                     </div>
                     <blockquote>“{story.quote}”</blockquote>
                     <footer>
