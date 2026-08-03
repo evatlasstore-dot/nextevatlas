@@ -54,6 +54,7 @@ export type BlogPost = {
 const publicationDate = "2026-07-17";
 const newPublicationDate = "2026-07-29";
 const latestPublicationDate = "2026-07-31";
+const augustPublicationDate = "2026-08-03";
 
 export const blogPosts: BlogPost[] = [
   {
@@ -1352,7 +1353,7 @@ export const blogPosts: BlogPost[] = [
     relatedSlugs: [
       "autel-maxicharger-22kw-maroc",
       "recharge-voiture-electrique-solaire-maroc",
-      "borne-recharge-entreprise-copropriete-maroc",
+      "deux-voitures-electriques-maison-une-ou-deux-bornes",
     ],
     productCta: {
       eyebrow: "Contrôle connecté",
@@ -1487,7 +1488,7 @@ export const blogPosts: BlogPost[] = [
     ],
     relatedSlugs: [
       "borne-recharge-7-11-22-kw",
-      "temps-recharge-voiture-electrique",
+      "connecteur-type-2-ccs2-recharge-maroc",
       "autel-maxicharger-22kw-maroc",
     ],
     productCta: {
@@ -2111,7 +2112,7 @@ export const blogPosts: BlogPost[] = [
     ],
     relatedSlugs: [
       "installer-borne-recharge-maison-maroc",
-      "borne-recharge-hotel-riad-maroc",
+      "entretien-borne-recharge-maintenance",
       "autel-maxicharger-22kw-maroc",
     ],
     productCta: {
@@ -2119,6 +2120,498 @@ export const blogPosts: BlogPost[] = [
       title: "Une borne conçue pour le site, pas seulement posée dehors.",
       text: "Découvrez les caractéristiques de la MaxiCharger et faites valider la version, l’emplacement et la puissance pour votre parking.",
       label: "Découvrir la MaxiCharger",
+    },
+  },
+  {
+    slug: "deux-voitures-electriques-maison-une-ou-deux-bornes",
+    title: "Deux voitures électriques à la maison : une ou deux bornes ?",
+    seoTitle: "Deux voitures électriques : une ou deux bornes ?",
+    description:
+      "Un ou deux points de charge, puissance partagée et stationnement : concevez une recharge simple pour deux voitures électriques à la maison.",
+    excerpt:
+      "Deux véhicules ne signifient pas automatiquement deux installations surdimensionnées. Voici comment arbitrer entre un point partagé et deux bornes pilotées.",
+    category: "Foyer multi-véhicules",
+    readingTime: 11,
+    datePublished: augustPublicationDate,
+    dateModified: augustPublicationDate,
+    image: "/images/blog/deux-voitures-electriques-maison.jpg",
+    imageAlt:
+      "Deux voitures électriques branchées à deux bornes murales devant une villa contemporaine au Maroc",
+    keywords: [
+      "deux voitures électriques maison",
+      "une borne pour deux voitures",
+      "deux bornes recharge domicile",
+      "partage puissance borne recharge",
+      "recharge simultanée voitures électriques",
+      "borne recharge Maroc maison",
+    ],
+    intro: [
+      "Lorsqu’un foyer accueille deux véhicules électriques, la question n’est plus seulement de savoir à quelle vitesse une voiture peut charger. Il faut organiser deux besoins, parfois au même moment, sans dépasser la puissance disponible ni transformer le parking en parcours de câbles.",
+      "Une seule borne peut suffire si les horaires et les distances quotidiennes sont compatibles. Deux points de charge deviennent plus confortables lorsque les départs sont proches, que les véhicules roulent beaucoup ou que les prises de charge sont éloignées. La bonne décision part donc des usages avant de partir du nombre de kilowatts.",
+    ],
+    quickAnswer:
+      "Pour deux voitures électriques, commencez par comparer l’énergie quotidienne à récupérer et les heures de départ. Une borne partagée convient lorsque les véhicules peuvent alterner. Deux points pilotés sont plus confortables pour une recharge simultanée, à condition de répartir dynamiquement la puissance disponible et de faire valider l’installation.",
+    sections: [
+      {
+        id: "profils-deux-vehicules",
+        title: "Additionner les besoins réels, pas les puissances maximales",
+        paragraphs: [
+          "Le premier véhicule peut effectuer 35 kilomètres par jour et rester garé douze heures, tandis que le second parcourt davantage avec un départ matinal. Installer deux bornes de puissance maximale sans regarder ces rythmes peut augmenter le coût sans améliorer l’expérience.",
+          "Pour chaque voiture, notez la distance d’une journée exigeante, la consommation moyenne, l’heure d’arrivée, l’heure de départ et la fréquence des longs trajets. Cette photographie des usages indique l’énergie à restituer pendant la fenêtre de stationnement.",
+        ],
+        listTitle: "La fiche à préparer pour chaque véhicule",
+        bullets: [
+          "Modèle exact et puissance maximale acceptée en courant alternatif",
+          "Kilométrage quotidien habituel et journée la plus exigeante",
+          "Heure d’arrivée et heure de départ",
+          "Emplacement du port de charge une fois le véhicule garé",
+          "Évolution prévue : remplacement du véhicule ou troisième place",
+        ],
+      },
+      {
+        id: "une-ou-deux-bornes",
+        title: "Une borne partagée ou deux points de charge ?",
+        paragraphs: [
+          "Une borne unique demande d’alterner les véhicules. Cette solution reste pertinente lorsqu’une voiture roule peu, que les horaires sont décalés ou qu’un branchement tous les deux ou trois jours suffit. Son principal coût caché est l’organisation : déplacer le câble ou permuter les voitures doit rester simple dans la durée.",
+          "Deux points de charge évitent cette manipulation et permettent de brancher chaque voiture dès son arrivée. Ils ne doivent pas être interprétés comme deux appels permanents à pleine puissance. Avec une gestion adaptée, la puissance disponible peut être répartie entre les deux sessions selon les limites du site et la configuration retenue.",
+        ],
+        table: {
+          caption: "Choisir selon le fonctionnement du foyer",
+          headers: ["Configuration", "Quand elle est cohérente", "Point à surveiller"],
+          rows: [
+            ["Une borne", "Horaires décalés ou faibles kilométrages", "Alternance et accessibilité du câble"],
+            ["Deux points", "Départs proches ou recharge simultanée fréquente", "Puissance totale disponible"],
+            ["Pré-équipement", "Second véhicule prévu plus tard", "Cheminements et réserve à anticiper"],
+          ],
+        },
+        note: {
+          title: "Le confort compte",
+          text: "Une configuration théoriquement suffisante peut devenir contraignante si elle impose de déplacer une voiture chaque soir. Testez le geste réel sur le parking avant de décider.",
+        },
+      },
+      {
+        id: "recharge-simultanee",
+        title: "Comprendre la recharge simultanée et le partage de puissance",
+        paragraphs: [
+          "Lorsque deux voitures chargent ensemble, la puissance totale ne doit pas être supposée illimitée. Le dimensionnement tient compte de l’alimentation du bâtiment, des autres équipements en service et des protections prévues. Une stratégie de partage peut attribuer davantage de puissance à un véhicule, répartir équitablement ou réduire la recharge lorsque la maison consomme davantage.",
+          "Le comportement exact dépend des bornes, de leur architecture de communication et de la solution de gestion retenue. La compatibilité entre les équipements et la méthode de pilotage doit être confirmée avant l’achat ; elle ne se déduit pas uniquement de la présence d’une application mobile.",
+        ],
+        table: {
+          caption: "Exemple de répartition à interpréter avec l’installateur",
+          headers: ["Situation", "Logique possible", "Objectif"],
+          rows: [
+            ["Une seule voiture branchée", "Puissance autorisée pour ce point", "Profiter de la capacité disponible"],
+            ["Deux voitures branchées", "Répartition ou priorité configurée", "Rester sous la limite du site"],
+            ["Maison fortement sollicitée", "Réduction temporaire de la recharge", "Préserver les autres usages"],
+          ],
+        },
+      },
+      {
+        id: "puissance-installation",
+        title: "Faire valider l’installation électrique comme un système",
+        paragraphs: [
+          "Deux points de charge impliquent d’étudier le tableau, l’alimentation, les protections, le cheminement et la gestion de puissance comme un ensemble. Additionner simplement deux puissances nominales ne suffit ni pour garantir la disponibilité ni pour définir les composants électriques.",
+          "L’étude professionnelle vérifie également ce qui se passe en cas de perte de communication, de défaut sur un point ou de modification ultérieure. Les prescriptions du fabricant et les caractéristiques de la référence livrée restent prioritaires.",
+        ],
+        listTitle: "Ce que l’étude doit préciser",
+        ordered: true,
+        bullets: [
+          "Puissance disponible et usages simultanés du logement",
+          "Limite AC de chacun des deux véhicules",
+          "Architecture d’un ou deux circuits et protections associées",
+          "Mode de pilotage ou de partage de puissance compatible",
+          "Essais, priorités et comportement attendu après la mise en service",
+        ],
+      },
+      {
+        id: "implantation-parking",
+        title: "Dessiner le parking avant de choisir les câbles",
+        paragraphs: [
+          "La position des ports de charge varie selon les modèles. Une borne centrale peut sembler idéale sur un plan, puis imposer un câble tendu derrière un véhicule. Photographiez les deux voitures garées dans leur sens habituel et mesurez le trajet réel entre le mur, le pied éventuel et chaque connecteur.",
+          "Le câble ne doit pas traverser une zone de marche, frotter sur une carrosserie ou gêner l’ouverture d’une porte. Pour deux places, une implantation symétrique n’est pas toujours la plus pratique : la priorité est un branchement naturel et un rangement propre après usage.",
+        ],
+        listTitle: "Repères d’implantation",
+        bullets: [
+          "Côté du port de charge pour chaque voiture",
+          "Longueur utile sans tension sur le connecteur",
+          "Circulation des personnes et ouverture des portes",
+          "Protection contre les manœuvres et les chocs",
+          "Accès futur à une troisième place ou à un nouveau modèle",
+        ],
+      },
+      {
+        id: "preparer-devis-deux-voitures",
+        title: "Obtenir une recommandation claire pour les deux véhicules",
+        paragraphs: [
+          "Un devis utile doit comparer les scénarios qui changent réellement l’usage : un point partagé, deux points pilotés ou une première installation pré-équipée pour évoluer. Pour chacun, demandez la puissance disponible, les limites, le cheminement et le résultat attendu pendant une recharge simultanée.",
+          "EVAtlas peut reprendre les caractéristiques des deux voitures et les contraintes du parking pour proposer une configuration autour de la MaxiCharger. Le choix final est confirmé après analyse du site et de la compatibilité des fonctions nécessaires.",
+        ],
+        listTitle: "Les pièces qui accélèrent l’étude",
+        bullets: [
+          "Modèle et année des deux véhicules",
+          "Photos des deux places avec les voitures garées",
+          "Photos du tableau et de son environnement",
+          "Distance approximative jusqu’à chaque emplacement",
+          "Horaires de départ et priorités entre les véhicules",
+        ],
+      },
+    ],
+    faq: [
+      {
+        question: "Une seule borne peut-elle recharger deux voitures électriques ?",
+        answer:
+          "Oui, en alternant les branchements si les besoins et les horaires le permettent. Une borne ne recharge toutefois qu’un véhicule à la fois lorsqu’elle ne possède qu’un seul point de connexion.",
+      },
+      {
+        question: "Deux bornes de 22 kW demandent-elles forcément 44 kW ?",
+        answer:
+          "Pas nécessairement. Une gestion compatible peut répartir une puissance totale définie entre les points. L’architecture, les limites et le comportement exact doivent être validés par l’étude électrique et les documentations des équipements.",
+      },
+      {
+        question: "Faut-il installer la deuxième borne immédiatement ?",
+        answer:
+          "Non. Si le second véhicule arrive plus tard, il peut être pertinent d’anticiper le cheminement, l’emplacement et l’évolution du tableau, puis d’installer le second point au moment utile.",
+      },
+    ],
+    relatedSlugs: [
+      "borne-recharge-intelligente-delestage",
+      "borne-recharge-7-11-22-kw",
+      "installer-borne-recharge-maison-maroc",
+    ],
+    productCta: {
+      eyebrow: "Deux véhicules, un projet",
+      title: "Configurez une recharge qui partage intelligemment la puissance.",
+      text: "Découvrez la MaxiCharger et faites étudier un ou deux points de charge selon vos véhicules, vos horaires et votre parking.",
+      label: "Voir l’Autel MaxiCharger",
+    },
+  },
+  {
+    slug: "entretien-borne-recharge-maintenance",
+    title: "Entretien d’une borne de recharge : le guide pratique",
+    seoTitle: "Entretien d’une borne de recharge : guide pratique",
+    description:
+      "Inspection, nettoyage, câble et défauts : les bons gestes pour entretenir une borne de recharge et savoir quand appeler un professionnel.",
+    excerpt:
+      "Une routine courte suffit à repérer la plupart des anomalies visibles. Découvrez ce que l’utilisateur peut contrôler et ce qui relève d’un technicien.",
+    category: "Entretien et sécurité",
+    readingTime: 10,
+    datePublished: augustPublicationDate,
+    dateModified: augustPublicationDate,
+    image: "/images/blog/entretien-borne-recharge-maintenance.jpg",
+    imageAlt:
+      "Technicien contrôlant une borne de recharge et son câble avec une tablette dans une maison marocaine",
+    keywords: [
+      "entretien borne de recharge",
+      "maintenance wallbox",
+      "nettoyer borne voiture électrique",
+      "câble recharge endommagé",
+      "dépannage borne recharge",
+      "maintenance borne Maroc",
+    ],
+    intro: [
+      "Une borne de recharge ne demande pas les mêmes gestes qu’un moteur, mais elle mérite une surveillance régulière. Le câble est manipulé, le connecteur peut subir des chocs et une installation extérieure rencontre poussière, soleil ou humidité.",
+      "L’objectif n’est pas d’ouvrir l’appareil ni d’improviser une réparation. Une bonne maintenance distingue l’inspection simple accessible à l’utilisateur du diagnostic électrique réservé à un professionnel qualifié. La notice de la référence installée reste toujours la règle principale.",
+    ],
+    quickAnswer:
+      "Inspectez régulièrement le boîtier, la fixation, le câble, le connecteur et la zone autour de la borne. Nettoyez uniquement selon la notice, sans jet ni produit agressif. En cas de fissure, échauffement, câble abîmé, odeur, bruit inhabituel ou défaut répété, cessez l’utilisation et faites contrôler l’équipement par un professionnel.",
+    sections: [
+      {
+        id: "entretien-preventif",
+        title: "Ce que l’entretien préventif doit réellement accomplir",
+        paragraphs: [
+          "L’entretien préventif vise à repérer une dégradation avant qu’elle ne gêne la recharge ou ne présente un risque. Il porte sur l’état visible de l’équipement, son environnement et les signaux de fonctionnement. Il ne suppose pas de démonter le capot ni de toucher aux protections du tableau.",
+          "La fréquence dépend de l’usage et de l’exposition. Une borne utilisée chaque jour dans un parking ouvert mérite des regards plus fréquents qu’un équipement intérieur peu sollicité. Après un choc, une inondation, des travaux ou un incident électrique, une vérification spécifique est préférable à l’attente de la prochaine routine.",
+        ],
+        listTitle: "Les cinq zones à surveiller",
+        bullets: [
+          "Enveloppe, écran ou voyants et fixation",
+          "Câble sur toute sa longueur",
+          "Connecteur, capuchon et support de rangement",
+          "Cheminement électrique visible et protections accessibles",
+          "Sol, ventilation et espace autour de la borne",
+        ],
+      },
+      {
+        id: "inspection-utilisateur",
+        title: "Adopter une inspection visuelle simple et régulière",
+        paragraphs: [
+          "Avant de brancher, un regard rapide permet de détecter un câble écrasé, une gaine entaillée, une prise sale ou une fixation qui a bougé. Les contacts du connecteur ne doivent pas être touchés avec un objet ni redressés par l’utilisateur.",
+          "Vérifiez aussi le geste de rangement. Un câble enroulé trop serré, coincé sous un pneu ou laissé dans une flaque vieillit inutilement. Après usage, replacez-le sur le support prévu sans créer de torsion près de la poignée.",
+        ],
+        table: {
+          caption: "Contrôle visuel et réaction adaptée",
+          headers: ["Observation", "Action immédiate", "Suite recommandée"],
+          rows: [
+            ["Poussière légère", "Ne pas utiliser de jet", "Nettoyer selon la notice"],
+            ["Gaine marquée ou coupée", "Ne pas rebrancher", "Faire contrôler ou remplacer"],
+            ["Boîtier fissuré ou mobile", "Cesser l’usage", "Contacter l’installateur"],
+            ["Défaut récurrent", "Noter le code et l’heure", "Transmettre au support"],
+          ],
+        },
+        note: {
+          title: "Ne pas ouvrir la borne",
+          text: "L’absence de charge ne signifie pas que l’intérieur peut être manipulé sans danger. Le diagnostic et toute intervention électrique relèvent d’un professionnel autorisé.",
+        },
+      },
+      {
+        id: "nettoyage-borne",
+        title: "Nettoyer sans endommager les surfaces ni les joints",
+        paragraphs: [
+          "Le nettoyage doit être réalisé lorsque la borne n’est pas en cours d’utilisation, avec les précautions indiquées dans sa documentation. Un chiffon doux légèrement humide peut être autorisé sur certaines surfaces, tandis que les solvants, abrasifs et jets à pression sont généralement à éviter. La notice exacte tranche.",
+          "Ne pulvérisez pas de produit dans le connecteur, les ouvertures ou autour des raccordements. Si de l’eau, du sable ou un corps étranger semble avoir pénétré dans une partie fonctionnelle, ne cherchez pas à l’extraire avec un outil métallique.",
+        ],
+        listTitle: "Une méthode prudente",
+        ordered: true,
+        bullets: [
+          "Arrêter la session et ranger le véhicule à distance du câble",
+          "Consulter les consignes de nettoyage de la référence installée",
+          "Retirer la poussière superficielle avec le moyen autorisé",
+          "Sécher les surfaces et inspecter le connecteur",
+          "Attendre les conditions prévues avant la prochaine utilisation",
+        ],
+      },
+      {
+        id: "cable-connecteur",
+        title: "Protéger le câble et le connecteur, les pièces les plus manipulées",
+        paragraphs: [
+          "La majorité des gestes quotidiens se concentre sur la poignée et les premiers centimètres de câble. Évitez de tirer sur la gaine pour débrancher, de faire tomber le connecteur et de forcer son insertion. Un verrouillage difficile peut venir de la voiture, du câble ou d’un mauvais alignement : insister n’identifie pas la cause.",
+          "Une chaleur anormale, une odeur, une coloration, des broches endommagées ou des coupures de charge répétées justifient l’arrêt de l’utilisation. Photographiez l’anomalie sans toucher les contacts et transmettez les informations à l’installateur ou au support.",
+        ],
+        listTitle: "Signaux qui exigent un contrôle",
+        bullets: [
+          "Connecteur qui chauffe anormalement ou dégage une odeur",
+          "Gaine coupée, écrasée ou déformée",
+          "Broche ou logement visiblement altéré",
+          "Charge interrompue à chaque mouvement du câble",
+          "Traces d’impact, d’humidité interne ou de brûlure",
+        ],
+      },
+      {
+        id: "application-diagnostic",
+        title: "Utiliser l’application comme indice, pas comme réparation",
+        paragraphs: [
+          "Une borne connectée peut afficher l’état des sessions, l’heure d’un défaut ou des événements récurrents. Ces données aident à décrire le problème, mais elles ne remplacent pas une inspection physique lorsque le câble, le boîtier ou l’installation semble endommagé.",
+          "Avant de contacter l’assistance, relevez le message exact, l’heure, le véhicule concerné et les conditions de survenue. Une capture d’écran et une photo de l’installation raccourcissent le diagnostic. Évitez les réinitialisations répétées qui effacent le contexte sans corriger la cause.",
+        ],
+        table: {
+          caption: "Informations utiles au support",
+          headers: ["Information", "Pourquoi elle aide", "Exemple"],
+          rows: [
+            ["Code ou message", "Identifie la famille de défaut", "Capture de l’application"],
+            ["Moment du défaut", "Relie l’incident aux usages", "Pendant la charge nocturne"],
+            ["Véhicule et câble", "Isole une compatibilité possible", "Modèle, année, câble utilisé"],
+            ["Contexte du site", "Repère un événement extérieur", "Pluie, travaux, coupure réseau"],
+          ],
+        },
+      },
+      {
+        id: "maintenance-professionnelle",
+        title: "Savoir quand demander une maintenance professionnelle",
+        paragraphs: [
+          "Une vérification professionnelle devient nécessaire lorsqu’une anomalie touche l’intégrité de la borne, le câble, les protections ou la qualité de la recharge. Elle peut également être planifiée selon les recommandations du fabricant, l’intensité d’usage et les exigences du site.",
+          "Pour une installation EVAtlas, conservez la référence du produit, les documents de mise en service et les coordonnées de l’installateur. Si vous envisagez une MaxiCharger, un devis peut intégrer dès le départ l’emplacement, le rangement du câble et l’accessibilité nécessaires à un entretien simple.",
+        ],
+        listTitle: "Préparer la demande d’intervention",
+        bullets: [
+          "Référence et numéro de série sans les publier en ligne",
+          "Date d’installation et historique récent",
+          "Photos du boîtier, du câble et du connecteur",
+          "Codes défaut et captures d’écran",
+          "Description de tout choc, coupure ou changement sur le site",
+        ],
+      },
+    ],
+    faq: [
+      {
+        question: "À quelle fréquence faut-il entretenir une borne de recharge ?",
+        answer:
+          "La fréquence exacte dépend de la notice, de l’exposition et de l’intensité d’usage. Une inspection visuelle régulière et après tout événement inhabituel complète les contrôles professionnels recommandés pour l’installation.",
+      },
+      {
+        question: "Peut-on nettoyer une borne de recharge au jet d’eau ?",
+        answer:
+          "N’utilisez pas de jet sauf indication explicite de la notice, et jamais pendant une session. Les indices de protection ne remplacent pas les consignes de nettoyage du fabricant.",
+      },
+      {
+        question: "Que faire si le câble de recharge est endommagé ?",
+        answer:
+          "Cessez de l’utiliser, évitez de toucher les contacts et faites-le contrôler par un professionnel. Un ruban adhésif ou une réparation improvisée ne constitue pas une remise en état sûre.",
+      },
+    ],
+    relatedSlugs: [
+      "borne-recharge-exterieure-maroc",
+      "autel-maxicharger-22kw-maroc",
+      "installer-borne-recharge-maison-maroc",
+    ],
+    productCta: {
+      eyebrow: "Fiabilité au quotidien",
+      title: "Choisissez une installation pensée pour être simple à utiliser et à suivre.",
+      text: "Explorez la MaxiCharger et confiez à EVAtlas l’étude de son emplacement, de sa protection et de sa mise en service.",
+      label: "Découvrir la MaxiCharger",
+    },
+  },
+  {
+    slug: "connecteur-type-2-ccs2-recharge-maroc",
+    title: "Type 2 ou CCS2 au Maroc : quel connecteur choisir ?",
+    seoTitle: "Type 2 ou CCS2 au Maroc : quel connecteur ?",
+    description:
+      "Type 2 pour la recharge AC, CCS2 pour la recharge rapide DC : comprenez les connecteurs et vérifiez la compatibilité de votre voiture au Maroc.",
+    excerpt:
+      "Deux formes proches, deux usages différents. Ce guide sépare clairement connecteur, courant et puissance pour éviter les erreurs de choix.",
+    category: "Compatibilité véhicule",
+    readingTime: 10,
+    datePublished: augustPublicationDate,
+    dateModified: augustPublicationDate,
+    image: "/images/blog/connecteur-type-2-ccs2-maroc.jpg",
+    imageAlt:
+      "Connecteurs de recharge Type 2 et CCS Combo 2 présentés côte à côte sur un décor vert inspiré du Maroc",
+    keywords: [
+      "Type 2 CCS2 Maroc",
+      "connecteur voiture électrique Maroc",
+      "prise Type 2 borne recharge",
+      "CCS Combo 2 recharge rapide",
+      "compatibilité borne voiture électrique",
+      "câble recharge Type 2",
+    ],
+    intro: [
+      "Type 2 et CCS2 sont souvent cités dans la même fiche de véhicule, ce qui peut laisser penser qu’ils sont interchangeables. Ils décrivent pourtant deux modes de recharge distincts : le courant alternatif pour le Type 2 et la recharge rapide en courant continu pour le CCS Combo 2.",
+      "Comprendre cette différence permet de choisir une borne à domicile, de lire correctement une carte de stations et de vérifier un véhicule importé. La forme de la prise n’indique pas à elle seule la puissance réellement acceptée.",
+    ],
+    quickAnswer:
+      "Pour une borne AC à domicile ou au travail, le Type 2 est le connecteur de référence sur de nombreux véhicules du marché européen. Le CCS Combo 2 ajoute deux contacts de puissance pour la recharge rapide DC sur des stations dédiées. Vérifiez toujours le port du véhicule, sa puissance AC et sa puissance DC séparément.",
+    sections: [
+      {
+        id: "connecteur-mode-puissance",
+        title: "Séparer trois notions : connecteur, courant et puissance",
+        paragraphs: [
+          "Le connecteur décrit l’interface physique. Le mode de recharge précise notamment si l’énergie arrive en courant alternatif ou continu. La puissance exprime la vitesse maximale théorique, limitée par la borne, le véhicule, le câble et les conditions de la session.",
+          "Deux voitures avec un port Type 2 peuvent accepter 7,4, 11 ou 22 kW en AC selon leur chargeur embarqué. De la même manière, la présence d’un port CCS2 ne garantit pas une valeur identique de recharge rapide entre deux modèles.",
+        ],
+        table: {
+          caption: "Les trois informations à lire séparément",
+          headers: ["Information", "Question à poser", "Où la vérifier"],
+          rows: [
+            ["Connecteur", "La prise est-elle compatible ?", "Port du véhicule et manuel"],
+            ["Mode", "Recharge AC ou DC ?", "Documentation du véhicule et de la station"],
+            ["Puissance", "Quelle limite réelle ?", "Fiche de la version exacte"],
+          ],
+        },
+      },
+      {
+        id: "type-2-ac",
+        title: "Type 2 : la recharge AC du quotidien",
+        paragraphs: [
+          "Le Type 2 est couramment utilisé pour la recharge en courant alternatif à domicile, au travail et sur de nombreuses bornes de destination. Dans ce cas, le chargeur embarqué dans la voiture transforme l’électricité AC pour la batterie, ce qui explique pourquoi sa limite influence directement la vitesse.",
+          "Une Autel MaxiCharger AC Wallbox s’inscrit dans cet usage. Sa puissance nominale ne doit pas être confondue avec la puissance que chaque voiture acceptera. L’étude vérifie la version du véhicule, le réseau électrique et la configuration de la borne.",
+        ],
+        listTitle: "À confirmer pour une borne Type 2",
+        bullets: [
+          "Présence d’un port Type 2 compatible sur la version exacte",
+          "Puissance maximale du chargeur embarqué AC",
+          "Alimentation monophasée ou triphasée disponible",
+          "Borne avec câble attaché ou prise selon la configuration",
+          "Longueur et rangement du câble sur la place",
+        ],
+        note: {
+          title: "Même prise, vitesse différente",
+          text: "Le Type 2 confirme une interface de recharge AC, pas une puissance universelle. La limite du véhicule doit être lue dans sa documentation.",
+        },
+      },
+      {
+        id: "ccs2-dc",
+        title: "CCS Combo 2 : la recharge rapide DC en déplacement",
+        paragraphs: [
+          "Le CCS Combo 2 reprend la partie supérieure du dessin Type 2 et ajoute deux grands contacts destinés au courant continu. Sur une station rapide compatible, l’électronique de puissance se trouve principalement côté station et fournit le courant continu à la batterie selon le dialogue avec le véhicule.",
+          "Ce matériel, sa puissance, son coût et ses contraintes d’installation diffèrent d’une wallbox AC résidentielle. Un connecteur CCS2 est donc utile pour les arrêts rapides sur itinéraire, tandis que le Type 2 répond souvent à la recharge longue pendant le stationnement.",
+        ],
+        table: {
+          caption: "Type 2 et CCS2 : usages complémentaires",
+          headers: ["Critère", "Type 2", "CCS Combo 2"],
+          rows: [
+            ["Courant", "Alternatif AC", "Continu DC"],
+            ["Usage courant", "Domicile, travail, destination", "Station rapide sur trajet"],
+            ["Équipement", "Wallbox ou borne AC", "Chargeur rapide DC dédié"],
+            ["Limite véhicule", "Chargeur embarqué AC", "Courbe et puissance DC acceptées"],
+          ],
+        },
+      },
+      {
+        id: "combo-2-port-vehicule",
+        title: "Pourquoi un même véhicule peut afficher Type 2 et CCS2",
+        paragraphs: [
+          "Sur un véhicule équipé d’une entrée Combo 2, la partie supérieure accueille généralement un connecteur Type 2 pour la recharge AC. Pour une session DC, le connecteur CCS2 utilise cette zone de communication et les deux contacts inférieurs de puissance.",
+          "Cette compatibilité générale doit être vérifiée sur la version exacte, en particulier pour un véhicule importé ou décliné selon plusieurs marchés. La documentation du constructeur et l’observation du port valent mieux qu’une conclusion tirée du seul nom commercial.",
+        ],
+        listTitle: "Avant d’acheter un câble ou une borne",
+        ordered: true,
+        bullets: [
+          "Identifier le marché et l’année de la voiture",
+          "Photographier le port ouvert sans toucher les contacts",
+          "Lire les limites AC et DC séparément",
+          "Vérifier le câble fourni avec le véhicule",
+          "Confirmer la compatibilité avec l’installateur ou le constructeur",
+        ],
+      },
+      {
+        id: "cable-attache-prise",
+        title: "Choisir entre câble attaché et borne avec prise",
+        paragraphs: [
+          "Un câble attaché reste disponible sur la borne et simplifie le geste quotidien. Une borne avec prise permet d’utiliser un câble amovible compatible et peut alléger visuellement l’emplacement lorsque le câble est rangé ailleurs. Le meilleur choix dépend du parking, de l’exposition et du nombre de véhicules.",
+          "Dans tous les cas, utilisez un câble certifié et dimensionné pour l’usage prévu. Les adaptateurs non validés, les rallonges improvisées et les câbles dont les caractéristiques sont inconnues peuvent annuler les hypothèses de compatibilité et de sécurité.",
+        ],
+        table: {
+          caption: "Deux configurations de borne AC",
+          headers: ["Option", "Avantage", "À anticiper"],
+          rows: [
+            ["Câble attaché", "Branchement rapide au quotidien", "Longueur, rangement et exposition"],
+            ["Prise Type 2", "Câble amovible et remplaçable", "Transport et rangement du câble"],
+          ],
+        },
+      },
+      {
+        id: "compatibilite-devis",
+        title: "Rassembler les bonnes données pour éviter une erreur de configuration",
+        paragraphs: [
+          "Pour une borne à domicile au Maroc, transmettez le modèle, l’année, la version, une photo du port et la puissance AC annoncée. Ajoutez les caractéristiques du site : tableau, distance, emplacement et temps de stationnement. Ces éléments permettent de distinguer la compatibilité physique du dimensionnement électrique.",
+          "Le simulateur EVAtlas fournit un premier repère de temps de charge. Le devis permet ensuite de confirmer une configuration MaxiCharger cohérente avec le véhicule et l’installation, sans choisir 22 kW uniquement parce que la voiture possède un port CCS2.",
+        ],
+        listTitle: "Le dossier de compatibilité",
+        bullets: [
+          "Marque, modèle, version, année et marché d’origine",
+          "Photo nette du port de charge",
+          "Puissance AC maximale indiquée par le constructeur",
+          "Type de câble possédé ou souhaité",
+          "Photos du tableau et de la place de stationnement",
+        ],
+      },
+    ],
+    faq: [
+      {
+        question: "Peut-on brancher un câble Type 2 sur une voiture équipée CCS2 ?",
+        answer:
+          "Une entrée Combo 2 accepte généralement un connecteur Type 2 dans sa partie supérieure pour la recharge AC. Vérifiez néanmoins le manuel et la version exacte du véhicule avant tout achat.",
+      },
+      {
+        question: "Une prise Type 2 signifie-t-elle que la voiture accepte 22 kW ?",
+        answer:
+          "Non. Le Type 2 décrit le connecteur. La puissance AC dépend du chargeur embarqué de la voiture et peut être inférieure à 22 kW.",
+      },
+      {
+        question: "Peut-on installer une borne CCS2 rapide à la maison ?",
+        answer:
+          "La recharge CCS2 utilise un équipement DC dédié, très différent d’une wallbox AC résidentielle et soumis à d’autres contraintes. Pour la majorité des domiciles, une borne Type 2 AC dimensionnée selon l’usage est la solution étudiée.",
+      },
+    ],
+    relatedSlugs: [
+      "borne-recharge-tesla-type-2-maroc",
+      "borne-recharge-7-11-22-kw",
+      "autel-maxicharger-22kw-maroc",
+    ],
+    productCta: {
+      eyebrow: "Compatibilité confirmée",
+      title: "Reliez votre véhicule à une borne AC correctement dimensionnée.",
+      text: "Découvrez la MaxiCharger Type 2 et obtenez une recommandation fondée sur la version exacte de votre voiture et votre installation.",
+      label: "Explorer la MaxiCharger",
     },
   },
 ];

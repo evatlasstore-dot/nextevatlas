@@ -13,7 +13,7 @@ const blogUrl = `${siteUrl}/blog`;
 export const metadata: Metadata = {
   title: "Guides sur la recharge électrique au Maroc",
   description:
-    "Guides EVAtlas sur la recharge électrique au Maroc : installation, hôtellerie, hybride rechargeable, extérieur, puissance et MaxiCharger.",
+    "Guides EVAtlas sur la recharge électrique au Maroc : installation, entretien, connecteurs, foyer multi-véhicules, puissance et MaxiCharger.",
   alternates: { canonical: "/blog" },
   robots: { index: true, follow: true },
   openGraph: {
@@ -22,7 +22,7 @@ export const metadata: Metadata = {
     url: "/blog",
     title: "Guides sur la recharge électrique au Maroc | EVAtlas",
     description:
-      "Des réponses pratiques sur les bornes, l’installation extérieure, l’hôtellerie, les hybrides rechargeables et les usages connectés au Maroc.",
+      "Des réponses pratiques sur les bornes, leur entretien, les connecteurs Type 2 et CCS2 et la recharge de plusieurs véhicules au Maroc.",
     siteName: "EVAtlas",
     images: [
       {
