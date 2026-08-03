@@ -10,10 +10,11 @@ export const metadata: Metadata = {
   title: "Demander un devis pour une borne de recharge au Maroc",
   description: "Présentez votre véhicule et votre projet à EVAtlas pour préparer une recommandation de borne de recharge et d’installation adaptée au Maroc.",
   keywords: ["Devis borne de recharge Maroc", "Installation wallbox Casablanca", "Devis Autel MaxiCharger", "Installateur borne électrique Maroc"],
-  alternates: { canonical: "/devis" },
+  alternates: { canonical: "/devis/" },
   openGraph: {
     type: "website",
     locale: "fr_MA",
+    url: "/devis/",
     title: "Préparez votre projet de recharge avec EVAtlas",
     description: "Une demande guidée pour cadrer votre borne, votre véhicule et votre installation.",
     images: [{ url: "/images/quote/quote-hero-morocco.png", width: 1672, height: 941, alt: "Borne de recharge et véhicule électrique dans une résidence marocaine" }],

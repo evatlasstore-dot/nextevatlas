@@ -3,6 +3,7 @@ import tls, { type TLSSocket } from "node:tls";
 
 import { WHATSAPP_NUMBER, WHATSAPP_URL } from "@/data/contact";
 import type { QuoteSubmission } from "@/lib/quote-request";
+import { SITE_URL } from "@/lib/site";
 
 type MailConfig = {
   host: string;
@@ -422,7 +423,7 @@ function quoteDetails(submission: QuoteSubmission): Array<[string, string]> {
   ];
 }
 
-const emailSiteUrl = (process.env.NEXT_PUBLIC_SITE_URL?.trim() || "https://evatlas.store").replace(/\/+$/u, "");
+const emailSiteUrl = (process.env.NEXT_PUBLIC_SITE_URL?.trim() || SITE_URL).replace(/\/+$/u, "");
 const emailLogoUrl = `${emailSiteUrl}/images/evatlas-logo.png`;
 const emailProductUrl = `${emailSiteUrl}/nos-produits/autel-maxicharger/`;
 const emailInstagramUrl = "https://www.instagram.com/evatlas.store/";

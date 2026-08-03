@@ -4,7 +4,7 @@ import LegalPage, { type LegalSection } from "@/components/legal/LegalPage";
 export const metadata: Metadata = {
   title: "Politique de confidentialité",
   description: "Politique EVAtlas relative aux données personnelles et aux demandes adressées depuis le site.",
-  alternates: { canonical: "/politique-de-confidentialite" },
+  alternates: { canonical: "/politique-de-confidentialite/" },
   robots: { index: true, follow: true },
 };
 

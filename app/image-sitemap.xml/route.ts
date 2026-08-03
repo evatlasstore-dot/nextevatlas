@@ -1,8 +1,7 @@
 import { blogPosts } from "@/data/blog";
+import { absoluteAssetUrl, absolutePageUrl } from "@/lib/site";
 
 export const dynamic = "force-static";
-
-const siteUrl = "https://evatlas.store";
 
 const escapeXml = (value: string) =>
   value
@@ -16,10 +15,10 @@ export function GET() {
   const urls = blogPosts
     .map(
       (post) => `  <url>
-    <loc>${escapeXml(`${siteUrl}/blog/${post.slug}`)}</loc>
+    <loc>${escapeXml(absolutePageUrl(`/blog/${post.slug}/`))}</loc>
     <lastmod>${post.dateModified}</lastmod>
     <image:image>
-      <image:loc>${escapeXml(`${siteUrl}${post.image}`)}</image:loc>
+      <image:loc>${escapeXml(absoluteAssetUrl(post.image))}</image:loc>
     </image:image>
   </url>`,
     )

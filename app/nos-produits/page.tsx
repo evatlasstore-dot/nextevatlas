@@ -6,15 +6,17 @@ import TrackedLink from "@/components/ui/TrackedLink";
 import ProductRouteLink from "@/components/ui/ProductRouteLink";
 import styles from "@/components/content/ContentPages.module.css";
 import ReviewsSection from "@/components/shared/ReviewsSection";
+import { absolutePageUrl } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Bornes de recharge au Maroc : nos solutions",
   description:
     "Découvrez les solutions de recharge EVAtlas pour la maison, l’entreprise et les parkings partagés, avec accompagnement et installation au Maroc.",
-  alternates: { canonical: "/nos-produits" },
+  alternates: { canonical: "/nos-produits/" },
   openGraph: {
     type: "website",
     locale: "fr_MA",
+    url: "/nos-produits/",
     title: "Bornes de recharge au Maroc | EVAtlas",
     description: "Une solution de recharge choisie selon votre véhicule, votre site et vos usages.",
     images: [{
@@ -59,7 +61,7 @@ export default function ProductsPage() {
     itemListElement: [{
       "@type": "ListItem",
       position: 1,
-      url: "https://evatlas.store/nos-produits/autel-maxicharger",
+      url: absolutePageUrl("/nos-produits/autel-maxicharger/"),
       name: "Autel MaxiCharger AC Wallbox",
     }],
   };

@@ -4,7 +4,7 @@ import LegalPage, { type LegalSection } from "@/components/legal/LegalPage";
 export const metadata: Metadata = {
   title: "Politique relative aux cookies",
   description: "Informations sur les cookies et technologies similaires susceptibles d’être utilisés sur le site EVAtlas.",
-  alternates: { canonical: "/cookies" },
+  alternates: { canonical: "/cookies/" },
   robots: { index: true, follow: true },
 };
 

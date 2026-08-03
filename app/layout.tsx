@@ -1,20 +1,21 @@
 import type { Metadata } from "next";
 import MetaPixelPageView from "@/components/analytics/MetaPixelPageView";
+import { absolutePageUrl, SITE_NAME, SITE_URL } from "@/lib/site";
 import "./globals.css";
 import "./site.css";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://evatlas.store"),
+  metadataBase: new URL(SITE_URL),
   title: {
     default: "EVAtlas — Bornes de recharge au Maroc",
     template: "%s | EVAtlas",
   },
   description:
     "EVAtlas propose des bornes de recharge connectées jusqu’à 22 kW avec installation professionnelle et accompagnement local au Maroc.",
-  applicationName: "EVAtlas",
-  authors: [{ name: "Équipe EVAtlas", url: "https://evatlas.store/a-propos" }],
-  creator: "EVAtlas",
-  publisher: "EVAtlas",
+  applicationName: SITE_NAME,
+  authors: [{ name: "Équipe EVAtlas", url: absolutePageUrl("/a-propos/") }],
+  creator: SITE_NAME,
+  publisher: SITE_NAME,
   category: "Mobilité électrique",
   formatDetection: { email: false, address: false, telephone: false },
   icons: {
@@ -23,6 +24,9 @@ export const metadata: Metadata = {
     apple: [{ url: "/images/evatlas-icon-180.png?v=2", sizes: "180x180", type: "image/png" }],
   },
   robots: { index: true, follow: true, googleBot: { index: true, follow: true, "max-image-preview": "large", "max-snippet": -1, "max-video-preview": -1 } },
+  verification: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION
+    ? { google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION }
+    : undefined,
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {

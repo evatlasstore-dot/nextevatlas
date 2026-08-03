@@ -6,20 +6,20 @@ import Icon from "@/components/ui/Icon";
 import ProductRouteLink from "@/components/ui/ProductRouteLink";
 import TrackedLink from "@/components/ui/TrackedLink";
 import { blogPosts } from "@/data/blog";
+import { absoluteAssetUrl, absolutePageUrl, SITE_NAME, SITE_URL } from "@/lib/site";
 
-const siteUrl = "https://evatlas.store";
-const blogUrl = `${siteUrl}/blog`;
+const blogUrl = absolutePageUrl("/blog/");
 
 export const metadata: Metadata = {
   title: "Guides sur la recharge électrique au Maroc",
   description:
     "Guides EVAtlas sur la recharge électrique au Maroc : installation, entretien, connecteurs, foyer multi-véhicules, puissance et MaxiCharger.",
-  alternates: { canonical: "/blog" },
+  alternates: { canonical: "/blog/" },
   robots: { index: true, follow: true },
   openGraph: {
     type: "website",
     locale: "fr_MA",
-    url: "/blog",
+    url: "/blog/",
     title: "Guides sur la recharge électrique au Maroc | EVAtlas",
     description:
       "Des réponses pratiques sur les bornes, leur entretien, les connecteurs Type 2 et CCS2 et la recharge de plusieurs véhicules au Maroc.",
@@ -54,56 +54,56 @@ const blogSchema = {
   "@graph": [
     {
       "@type": "Organization",
-      "@id": `${siteUrl}/#organization`,
-      name: "EVAtlas",
-      url: siteUrl,
+      "@id": `${SITE_URL}/#organization`,
+      name: SITE_NAME,
+      url: absolutePageUrl(),
       logo: {
         "@type": "ImageObject",
-        url: `${siteUrl}/images/evatlas-logo.png`,
+        url: absoluteAssetUrl("/images/evatlas-logo.png"),
         width: 1421,
         height: 215,
       },
     },
     {
       "@type": "Blog",
-      "@id": `${blogUrl}/#blog`,
+      "@id": `${blogUrl}#blog`,
       url: blogUrl,
       name: "Guides EVAtlas sur la recharge électrique",
       description:
         "Guides pratiques pour choisir, installer et utiliser une borne de recharge au Maroc.",
       inLanguage: "fr-MA",
-      publisher: { "@id": `${siteUrl}/#organization` },
+      publisher: { "@id": `${SITE_URL}/#organization` },
       blogPost: blogPosts.map((post) => ({
         "@type": "BlogPosting",
-        "@id": `${blogUrl}/${post.slug}/#article`,
-        url: `${blogUrl}/${post.slug}`,
+        "@id": `${absolutePageUrl(`/blog/${post.slug}/`)}#article`,
+        url: absolutePageUrl(`/blog/${post.slug}/`),
         headline: post.title,
         datePublished: post.datePublished,
         dateModified: post.dateModified,
-        image: `${siteUrl}${post.image}`,
+        image: absoluteAssetUrl(post.image),
       })),
     },
     {
       "@type": "ItemList",
-      "@id": `${blogUrl}/#articles`,
+      "@id": `${blogUrl}#articles`,
       name: "Articles EVAtlas",
       numberOfItems: blogPosts.length,
       itemListElement: blogPosts.map((post, index) => ({
         "@type": "ListItem",
         position: index + 1,
         name: post.title,
-        url: `${blogUrl}/${post.slug}`,
+        url: absolutePageUrl(`/blog/${post.slug}/`),
       })),
     },
     {
       "@type": "BreadcrumbList",
-      "@id": `${blogUrl}/#breadcrumb`,
+      "@id": `${blogUrl}#breadcrumb`,
       itemListElement: [
         {
           "@type": "ListItem",
           position: 1,
           name: "Accueil",
-          item: siteUrl,
+          item: absolutePageUrl(),
         },
         {
           "@type": "ListItem",

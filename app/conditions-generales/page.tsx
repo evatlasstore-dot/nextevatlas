@@ -4,7 +4,7 @@ import LegalPage, { type LegalSection } from "@/components/legal/LegalPage";
 export const metadata: Metadata = {
   title: "Conditions générales",
   description: "Conditions générales d’utilisation du site et principes applicables aux demandes adressées à EVAtlas.",
-  alternates: { canonical: "/conditions-generales" },
+  alternates: { canonical: "/conditions-generales/" },
   robots: { index: true, follow: true },
 };
 

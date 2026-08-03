@@ -11,10 +11,11 @@ export const metadata: Metadata = {
   title: "Simulateur de temps de recharge pour voiture électrique",
   description: "Estimez le temps de recharge de votre véhicule électrique selon la capacité de sa batterie, son niveau de charge et la puissance de la borne.",
   keywords: ["Simulateur recharge voiture électrique", "Temps de recharge borne 7 kW", "Recharge 11 kW 22 kW", "Borne électrique Maroc"],
-  alternates: { canonical: "/simulateur" },
+  alternates: { canonical: "/simulateur/" },
   openGraph: {
     type: "website",
     locale: "fr_MA",
+    url: "/simulateur/",
     title: "Estimez votre temps de recharge avec EVAtlas",
     description: "Un calcul simple et transparent selon votre batterie et la puissance disponible.",
     images: [{ url: "/images/simulator/simulator-hero-morocco.png", width: 1672, height: 941, alt: "Véhicule électrique en recharge devant une maison contemporaine au Maroc" }],

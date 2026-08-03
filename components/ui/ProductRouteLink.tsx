@@ -1,6 +1,7 @@
 "use client";
 
 import type { AnchorHTMLAttributes, ReactNode } from "react";
+import { canonicalPath } from "@/lib/site";
 
 type ProductRouteLinkProps = Omit<AnchorHTMLAttributes<HTMLAnchorElement>, "href" | "children"> & {
   children: ReactNode;
@@ -20,7 +21,7 @@ export default function ProductRouteLink({
   return (
     <a
       {...props}
-      href={href}
+      href={canonicalPath(href)}
       onClick={(event) => {
         if (eventName) window.dispatchEvent(new CustomEvent("evatlas:tracking", { detail: { event: eventName } }));
         onClick?.(event);

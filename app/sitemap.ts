@@ -1,10 +1,11 @@
 import type { MetadataRoute } from "next";
 import { blogPosts } from "@/data/blog";
+import { absoluteAssetUrl, absolutePageUrl } from "@/lib/site";
 
 export const dynamic = "force-static";
 
-const siteUrl = "https://evatlas.store";
 const contentDate = new Date("2026-07-17T00:00:00.000Z");
+const technicalSheetDate = new Date("2026-07-24T00:00:00.000Z");
 const blogLastModified = new Date(
   `${blogPosts.reduce(
     (latest, post) => post.dateModified > latest ? post.dateModified : latest,
@@ -15,69 +16,74 @@ const blogLastModified = new Date(
 export default function sitemap(): MetadataRoute.Sitemap {
   const pages: MetadataRoute.Sitemap = [
     {
-      url: siteUrl,
+      url: absolutePageUrl(),
       lastModified: contentDate,
       changeFrequency: "monthly",
     },
     {
-      url: `${siteUrl}/nos-produits`,
+      url: absolutePageUrl("/nos-produits/"),
       lastModified: contentDate,
       changeFrequency: "monthly",
     },
     {
-      url: `${siteUrl}/nos-produits/autel-maxicharger`,
+      url: absolutePageUrl("/nos-produits/autel-maxicharger/"),
       lastModified: contentDate,
       changeFrequency: "monthly",
     },
     {
-      url: `${siteUrl}/simulateur`,
+      url: absolutePageUrl("/simulateur/"),
       lastModified: contentDate,
       changeFrequency: "monthly",
     },
     {
-      url: `${siteUrl}/devis`,
+      url: absolutePageUrl("/devis/"),
       lastModified: contentDate,
       changeFrequency: "monthly",
     },
     {
-      url: `${siteUrl}/a-propos`,
+      url: absolutePageUrl("/a-propos/"),
       lastModified: contentDate,
       changeFrequency: "yearly",
     },
     {
-      url: `${siteUrl}/faq`,
+      url: absolutePageUrl("/faq/"),
       lastModified: contentDate,
       changeFrequency: "monthly",
     },
     {
-      url: `${siteUrl}/blog`,
+      url: absolutePageUrl("/blog/"),
       lastModified: blogLastModified,
       changeFrequency: "weekly",
     },
     {
-      url: `${siteUrl}/mentions-legales`,
+      url: absolutePageUrl("/mentions-legales/"),
       lastModified: contentDate,
       changeFrequency: "yearly",
     },
     {
-      url: `${siteUrl}/politique-de-confidentialite`,
+      url: absolutePageUrl("/politique-de-confidentialite/"),
       lastModified: contentDate,
       changeFrequency: "yearly",
     },
     {
-      url: `${siteUrl}/cookies`,
+      url: absolutePageUrl("/cookies/"),
       lastModified: contentDate,
       changeFrequency: "yearly",
     },
     {
-      url: `${siteUrl}/conditions-generales`,
+      url: absolutePageUrl("/conditions-generales/"),
       lastModified: contentDate,
+      changeFrequency: "yearly",
+    },
+    {
+      url: absoluteAssetUrl("/documents/fiche-technique-evatlas-autel-maxicharger-22kw.pdf"),
+      lastModified: technicalSheetDate,
       changeFrequency: "yearly",
     },
   ];
 
   const articles: MetadataRoute.Sitemap = blogPosts.map((post) => ({
-    url: `${siteUrl}/blog/${post.slug}`,
+    url: absolutePageUrl(`/blog/${post.slug}/`),
     lastModified: new Date(`${post.dateModified}T00:00:00.000Z`),
     changeFrequency: "monthly",
   }));

@@ -4,7 +4,7 @@ import LegalPage, { type LegalSection } from "@/components/legal/LegalPage";
 export const metadata: Metadata = {
   title: "Mentions légales",
   description: "Mentions légales du site EVAtlas et informations de contact de l’éditeur.",
-  alternates: { canonical: "/mentions-legales" },
+  alternates: { canonical: "/mentions-legales/" },
   robots: { index: true, follow: true },
 };
 
@@ -13,7 +13,7 @@ const sections: LegalSection[] = [
     id: "editeur",
     title: "Éditeur du site",
     paragraphs: [
-      "Le site evatlas.ma est édité sous la marque EVAtlas. L’adresse de contact communiquée est le 12 Rue Mustapha Manfalouti, Gauthier – RDC, Casablanca 20053. EVAtlas peut être contacté par e-mail à evatlas.store@gmail.com ou par téléphone au +212 7 12 83 32 84.",
+      "Le site www.evatlas.store est édité sous la marque EVAtlas. L’adresse de contact communiquée est le 12 Rue Mustapha Manfalouti, Gauthier – RDC, Casablanca 20053. EVAtlas peut être contacté par e-mail à evatlas.store@gmail.com ou par téléphone au +212 7 12 83 32 84.",
       "La dénomination sociale complète, la forme juridique et les identifiants administratifs de la structure exploitante ne figurent pas dans les informations actuellement disponibles dans ce projet. Ils devront être ajoutés à cette page avant toute publication commerciale définitive.",
     ],
   },
@@ -29,7 +29,7 @@ const sections: LegalSection[] = [
     id: "hebergement",
     title: "Hébergement",
     paragraphs: [
-      "Les coordonnées du prestataire d’hébergement définitif ne figurent pas dans les informations disponibles dans ce projet. Elles devront être renseignées sur cette page lors de la mise en production du domaine evatlas.ma.",
+      "Le site www.evatlas.store est déployé sur l’infrastructure de Vercel et distribué via les services réseau de Cloudflare. Les informations contractuelles complètes de l’hébergeur doivent être reprises depuis le compte utilisé par l’éditeur du site.",
     ],
   },
   {

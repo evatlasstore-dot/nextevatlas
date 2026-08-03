@@ -13,8 +13,7 @@ import {
   getRelatedPosts,
   type BlogSection,
 } from "@/data/blog";
-
-const siteUrl = "https://evatlas.store";
+import { absoluteAssetUrl, absolutePageUrl, SITE_NAME, SITE_URL } from "@/lib/site";
 
 type BlogArticlePageProps = {
   params: Promise<{ slug: string }>;
@@ -34,13 +33,13 @@ export async function generateMetadata({
 
   if (!post) notFound();
 
-  const path = `/blog/${post.slug}`;
+  const path = `/blog/${post.slug}/`;
 
   return {
     title: post.seoTitle,
     description: post.description,
     keywords: post.keywords,
-    authors: [{ name: "Équipe EVAtlas", url: "/a-propos" }],
+    authors: [{ name: "Équipe EVAtlas", url: "/a-propos/" }],
     category: post.category,
     alternates: { canonical: path },
     robots: { index: true, follow: true },
@@ -159,7 +158,7 @@ export default async function BlogArticlePage({
   if (!post) notFound();
 
   const relatedPosts = getRelatedPosts(post);
-  const articleUrl = `${siteUrl}/blog/${post.slug}`;
+  const articleUrl = absolutePageUrl(`/blog/${post.slug}/`);
   const articleText = [
     post.title,
     post.description,
@@ -177,11 +176,11 @@ export default async function BlogArticlePage({
   const wordCount = articleText.trim().split(/\s+/).length;
   const imageObject = {
     "@type": "ImageObject",
-    url: `${siteUrl}${post.image}`,
+    url: absoluteAssetUrl(post.image),
     width: 1600,
     height: 900,
     caption: post.imageAlt,
-    contentUrl: `${siteUrl}${post.image}`,
+    contentUrl: absoluteAssetUrl(post.image),
     creditText: "EVAtlas",
     creator: {
       "@type": "Organization",
@@ -194,42 +193,42 @@ export default async function BlogArticlePage({
     "@graph": [
       {
         "@type": "Organization",
-        "@id": `${siteUrl}/#organization`,
-        name: "EVAtlas",
-        url: siteUrl,
+        "@id": `${SITE_URL}/#organization`,
+        name: SITE_NAME,
+        url: absolutePageUrl(),
         logo: {
           "@type": "ImageObject",
-          url: `${siteUrl}/images/evatlas-logo.png`,
+          url: absoluteAssetUrl("/images/evatlas-logo.png"),
           width: 1421,
           height: 215,
         },
       },
       {
         "@type": "WebPage",
-        "@id": `${articleUrl}/#webpage`,
+        "@id": `${articleUrl}#webpage`,
         url: articleUrl,
         name: post.title,
         description: post.description,
         inLanguage: "fr-MA",
         datePublished: post.datePublished,
         dateModified: post.dateModified,
-        isPartOf: { "@id": `${siteUrl}/blog/#blog` },
-        breadcrumb: { "@id": `${articleUrl}/#breadcrumb` },
+        isPartOf: { "@id": `${absolutePageUrl("/blog/")}#blog` },
+        breadcrumb: { "@id": `${articleUrl}#breadcrumb` },
         primaryImageOfPage: imageObject,
-        mainEntity: { "@id": `${articleUrl}/#article` },
+        mainEntity: { "@id": `${articleUrl}#article` },
       },
       {
         "@type": "BlogPosting",
-        "@id": `${articleUrl}/#article`,
+        "@id": `${articleUrl}#article`,
         url: articleUrl,
         mainEntityOfPage: {
           "@type": "WebPage",
-          "@id": `${articleUrl}/#webpage`,
+          "@id": `${articleUrl}#webpage`,
         },
         headline: post.title,
         description: post.description,
         image: imageObject,
-        thumbnailUrl: `${siteUrl}${post.image}`,
+        thumbnailUrl: absoluteAssetUrl(post.image),
         datePublished: post.datePublished,
         dateModified: post.dateModified,
         inLanguage: "fr-MA",
@@ -244,26 +243,26 @@ export default async function BlogArticlePage({
         author: {
           "@type": "Organization",
           name: "Équipe EVAtlas",
-          url: `${siteUrl}/a-propos`,
+          url: absolutePageUrl("/a-propos/"),
         },
-        publisher: { "@id": `${siteUrl}/#organization` },
-        isPartOf: { "@id": `${siteUrl}/blog/#blog` },
+        publisher: { "@id": `${SITE_URL}/#organization` },
+        isPartOf: { "@id": `${absolutePageUrl("/blog/")}#blog` },
       },
       {
         "@type": "BreadcrumbList",
-        "@id": `${articleUrl}/#breadcrumb`,
+        "@id": `${articleUrl}#breadcrumb`,
         itemListElement: [
           {
             "@type": "ListItem",
             position: 1,
             name: "Accueil",
-            item: siteUrl,
+            item: absolutePageUrl(),
           },
           {
             "@type": "ListItem",
             position: 2,
             name: "Guides",
-            item: `${siteUrl}/blog`,
+            item: absolutePageUrl("/blog/"),
           },
           {
             "@type": "ListItem",
@@ -275,7 +274,7 @@ export default async function BlogArticlePage({
       },
       {
         "@type": "FAQPage",
-        "@id": `${articleUrl}/#faq`,
+        "@id": `${articleUrl}#faq`,
         mainEntity: post.faq.map((item) => ({
           "@type": "Question",
           name: item.question,

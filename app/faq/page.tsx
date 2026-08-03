@@ -9,10 +9,11 @@ export const metadata: Metadata = {
   title: "FAQ : bornes de recharge et installation au Maroc",
   description:
     "Retrouvez les réponses EVAtlas sur la puissance, la compatibilité, l’installation, l’application et l’accompagnement des projets de recharge au Maroc.",
-  alternates: { canonical: "/faq" },
+  alternates: { canonical: "/faq/" },
   openGraph: {
     type: "website",
     locale: "fr_MA",
+    url: "/faq/",
     title: "Questions fréquentes sur la recharge électrique | EVAtlas",
     description: "Des réponses claires pour choisir, installer et utiliser une borne de recharge.",
   },

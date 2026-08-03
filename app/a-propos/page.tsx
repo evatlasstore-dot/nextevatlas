@@ -9,10 +9,11 @@ export const metadata: Metadata = {
   title: "À propos : recharge électrique au Maroc",
   description:
     "Découvrez l’approche EVAtlas : comprendre le besoin, vérifier le site et accompagner les projets de recharge électrique au Maroc.",
-  alternates: { canonical: "/a-propos" },
+  alternates: { canonical: "/a-propos/" },
   openGraph: {
     type: "website",
     locale: "fr_MA",
+    url: "/a-propos/",
     title: "À propos d’EVAtlas",
     description: "Une approche locale et structurée de la recharge électrique au Maroc.",
     images: [{ url: "/images/evatlas-team.jpg", width: 1232, height: 822, alt: "L’équipe EVAtlas réunie" }],

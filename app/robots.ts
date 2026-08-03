@@ -1,4 +1,5 @@
 import type { MetadataRoute } from "next";
+import { absolutePageUrl, SITE_URL } from "@/lib/site";
 
 export const dynamic = "force-static";
 
@@ -9,9 +10,9 @@ export default function robots(): MetadataRoute.Robots {
       allow: "/",
     },
     sitemap: [
-      "https://evatlas.store/sitemap.xml",
-      "https://evatlas.store/image-sitemap.xml",
+      absolutePageUrl("/sitemap.xml"),
+      absolutePageUrl("/image-sitemap.xml"),
     ],
-    host: "https://evatlas.store",
+    host: SITE_URL,
   };
 }
