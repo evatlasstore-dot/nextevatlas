@@ -1,17 +1,22 @@
 import type { Metadata } from "next";
 import MetaPixelPageView from "@/components/analytics/MetaPixelPageView";
-import { absolutePageUrl, SITE_NAME, SITE_URL } from "@/lib/site";
+import {
+  absolutePageUrl,
+  SITE_DESCRIPTION,
+  SITE_HOME_TITLE_WITH_BRAND,
+  SITE_NAME,
+  SITE_URL,
+} from "@/lib/site";
 import "./globals.css";
 import "./site.css";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: "EVAtlas — Bornes de recharge au Maroc",
+    default: SITE_HOME_TITLE_WITH_BRAND,
     template: "%s | EVAtlas",
   },
-  description:
-    "EVAtlas propose des bornes de recharge connectées jusqu’à 22 kW avec installation professionnelle et accompagnement local au Maroc.",
+  description: SITE_DESCRIPTION,
   applicationName: SITE_NAME,
   authors: [{ name: "Équipe EVAtlas", url: absolutePageUrl("/a-propos/") }],
   creator: SITE_NAME,

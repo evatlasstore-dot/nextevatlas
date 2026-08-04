@@ -1,6 +1,14 @@
 export const SITE_URL = "https://www.evatlas.store";
 export const SITE_NAME = "EVAtlas";
 export const SITE_LOCALE = "fr-MA";
+export const SITE_HOME_TITLE = "Bornes de recharge au Maroc";
+export const SITE_HOME_TITLE_WITH_BRAND = `${SITE_HOME_TITLE} | ${SITE_NAME}`;
+export const SITE_DESCRIPTION =
+  "EVAtlas accompagne particuliers et professionnels au Maroc dans le choix et l’installation de bornes de recharge connectées jusqu’à 22 kW.";
+export const SITE_PRIMARY_IMAGE =
+  "/images/product/autel-maxicharger/exploded-sequence-cutout/step-01-closed.png";
+export const SITE_SOCIAL_IMAGE =
+  "/images/product/autel-maxicharger/hero-poster.png";
 
 const hasFileExtension = (pathname: string) => /\/[^/]+\.[a-z0-9]+$/iu.test(pathname);
 

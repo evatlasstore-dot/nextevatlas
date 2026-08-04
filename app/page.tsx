@@ -10,15 +10,45 @@ import {
   HomeFuturisticSolutions,
 } from "@/components/home/HomeFuturisticSections";
 import HomeReviewsCarousel from "@/components/home/HomeReviewsCarousel";
-import { organizationSchema, faqSchema, localBusinessSchema, websiteSchema } from "@/data/schema";
+import {
+  faqSchema,
+  homePageSchema,
+  localBusinessSchema,
+  organizationSchema,
+  websiteSchema,
+} from "@/data/schema";
+import {
+  SITE_DESCRIPTION,
+  SITE_HOME_TITLE_WITH_BRAND,
+  SITE_NAME,
+  SITE_SOCIAL_IMAGE,
+} from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: "Bornes de recharge pour véhicules électriques au Maroc",
-  description: "EVAtlas vous accompagne dans le choix, l’installation et le pilotage d’une borne de recharge connectée au Maroc.",
+  title: { absolute: SITE_HOME_TITLE_WITH_BRAND },
+  description: SITE_DESCRIPTION,
   keywords: ["borne de recharge Maroc", "installation wallbox Maroc", "borne électrique Casablanca", "recharge véhicule électrique Maroc"],
   alternates: { canonical: "/" },
-  openGraph: { type: "website", locale: "fr_MA", siteName: "EVAtlas", title: "EVAtlas — La recharge électrique, pensée pour le Maroc", description: "Bornes connectées, installation professionnelle et accompagnement local.", url: "/", images: [{ url: "/images/evatlas-home-hero-poster.png", width: 1280, height: 720, alt: "Véhicule électrique en recharge avec EVAtlas" }] },
-  twitter: { card: "summary_large_image", images: ["/images/evatlas-home-hero-poster.png"] },
+  openGraph: {
+    type: "website",
+    locale: "fr_MA",
+    siteName: SITE_NAME,
+    title: SITE_HOME_TITLE_WITH_BRAND,
+    description: SITE_DESCRIPTION,
+    url: "/",
+    images: [{
+      url: SITE_SOCIAL_IMAGE,
+      width: 1280,
+      height: 720,
+      alt: "Autel MaxiCharger, borne de recharge connectée proposée par EVAtlas au Maroc",
+    }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: SITE_HOME_TITLE_WITH_BRAND,
+    description: SITE_DESCRIPTION,
+    images: [SITE_SOCIAL_IMAGE],
+  },
 };
 
 export default function HomePage() {
@@ -38,7 +68,13 @@ export default function HomePage() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
-          __html: JSON.stringify([organizationSchema, localBusinessSchema, websiteSchema, faqSchema]),
+          __html: JSON.stringify([
+            organizationSchema,
+            localBusinessSchema,
+            websiteSchema,
+            homePageSchema,
+            faqSchema,
+          ]),
         }}
       />
     </>

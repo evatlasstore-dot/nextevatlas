@@ -1,11 +1,20 @@
 import homepage from "./homepage.json";
-import { absoluteAssetUrl, absolutePageUrl, SITE_NAME, SITE_URL } from "@/lib/site";
+import {
+  absoluteAssetUrl,
+  absolutePageUrl,
+  SITE_DESCRIPTION,
+  SITE_HOME_TITLE_WITH_BRAND,
+  SITE_NAME,
+  SITE_PRIMARY_IMAGE,
+  SITE_URL,
+} from "@/lib/site";
 
 export const organizationSchema = {
   "@context": "https://schema.org",
   "@type": "Organization",
   "@id": `${SITE_URL}/#organization`,
   name: SITE_NAME,
+  alternateName: "EVAtlas Maroc",
   url: absolutePageUrl(),
   logo: {
     "@type": "ImageObject",
@@ -38,6 +47,7 @@ export const localBusinessSchema = {
   "@type": "LocalBusiness",
   "@id": `${SITE_URL}/#localbusiness`,
   name: SITE_NAME,
+  description: SITE_DESCRIPTION,
   url: absolutePageUrl(),
   image: absoluteAssetUrl("/images/evatlas-logo.png"),
   logo: absoluteAssetUrl("/images/evatlas-logo.png"),
@@ -62,14 +72,44 @@ export const websiteSchema = {
   "@type": "WebSite",
   "@id": `${SITE_URL}/#website`,
   name: SITE_NAME,
+  alternateName: ["EVAtlas Maroc", "evatlas.store"],
   url: absolutePageUrl(),
   inLanguage: "fr-MA",
   publisher: { "@id": `${SITE_URL}/#organization` },
 };
 
+const homePrimaryImage = {
+  "@type": "ImageObject",
+  "@id": `${SITE_URL}/#primaryimage`,
+  url: absoluteAssetUrl(SITE_PRIMARY_IMAGE),
+  contentUrl: absoluteAssetUrl(SITE_PRIMARY_IMAGE),
+  width: 1254,
+  height: 1254,
+  caption: "Autel MaxiCharger, borne de recharge connectée proposée par EVAtlas au Maroc",
+  representativeOfPage: true,
+  creator: { "@id": `${SITE_URL}/#organization` },
+  creditText: SITE_NAME,
+};
+
+export const homePageSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "@id": `${SITE_URL}/#webpage`,
+  url: absolutePageUrl(),
+  name: SITE_HOME_TITLE_WITH_BRAND,
+  description: SITE_DESCRIPTION,
+  inLanguage: "fr-MA",
+  isPartOf: { "@id": `${SITE_URL}/#website` },
+  about: { "@id": `${SITE_URL}/#organization` },
+  mainEntity: { "@id": `${SITE_URL}/#localbusiness` },
+  primaryImageOfPage: homePrimaryImage,
+};
+
 export const faqSchema = {
   "@context": "https://schema.org",
   "@type": "FAQPage",
+  "@id": `${SITE_URL}/#faq`,
+  isPartOf: { "@id": `${SITE_URL}/#webpage` },
   mainEntity: homepage.faq.map((item) => ({
     "@type": "Question",
     name: item.question,
