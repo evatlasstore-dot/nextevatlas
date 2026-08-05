@@ -55,6 +55,7 @@ const publicationDate = "2026-07-17";
 const newPublicationDate = "2026-07-29";
 const latestPublicationDate = "2026-07-31";
 const augustPublicationDate = "2026-08-03";
+const todayPublicationDate = "2026-08-05";
 
 export const blogPosts: BlogPost[] = [
   {
@@ -2611,6 +2612,499 @@ export const blogPosts: BlogPost[] = [
       eyebrow: "Compatibilité confirmée",
       title: "Reliez votre véhicule à une borne AC correctement dimensionnée.",
       text: "Découvrez la MaxiCharger Type 2 et obtenez une recommandation fondée sur la version exacte de votre voiture et votre installation.",
+      label: "Explorer la MaxiCharger",
+    },
+  },
+  {
+    slug: "cout-recharge-voiture-electrique-maroc",
+    title: "Combien coûte la recharge d’une voiture électrique au Maroc ?",
+    seoTitle: "Coût recharge voiture électrique au Maroc : calcul",
+    description:
+      "Calculez le coût d’une recharge de voiture électrique au Maroc à partir de votre batterie, du niveau à récupérer et du prix réel de votre électricité.",
+    excerpt:
+      "Une méthode transparente pour convertir les kilowattheures récupérés en dirhams, comparer plusieurs scénarios et lire correctement sa facture.",
+    category: "Budget recharge",
+    readingTime: 10,
+    datePublished: todayPublicationDate,
+    dateModified: todayPublicationDate,
+    image: "/images/blog/cout-recharge-voiture-electrique-maroc.jpg",
+    imageAlt:
+      "Voiture électrique branchée à une borne résidentielle devant une villa contemporaine au Maroc",
+    keywords: [
+      "coût recharge voiture électrique Maroc",
+      "prix recharge voiture électrique Maroc",
+      "calcul coût recharge domicile",
+      "consommation borne recharge kWh",
+      "combien coûte recharge voiture électrique",
+    ],
+    intro: [
+      "Le coût d’une recharge ne correspond pas à la capacité totale écrite sur la fiche du véhicule. Il dépend d’abord de l’énergie réellement récupérée entre le niveau de départ et le niveau visé, puis du prix du kilowattheure applicable au contrat électrique du lieu de recharge.",
+      "Au Maroc, ce prix peut varier selon le fournisseur, la zone, le contrat, la tranche de consommation et la période concernée. Une estimation sérieuse doit donc partir d’une facture récente plutôt que d’un tarif universel trouvé en ligne. La méthode ci-dessous permet de refaire le calcul avec vos propres données.",
+    ],
+    quickAnswer:
+      "Multipliez l’énergie facturée pendant la session par le prix réel du kWh indiqué sur votre facture. Pour estimer l’énergie à récupérer, appliquez l’écart de charge à la capacité utile de la batterie, puis prévoyez une marge pour les pertes. Exemple : récupérer 30 kWh avec une hypothèse de 1,50 DH/kWh représente 45 DH avant ajustement des pertes et particularités du contrat.",
+    sections: [
+      {
+        id: "formule-cout-recharge",
+        title: "La formule fiable pour calculer le coût d’une recharge",
+        paragraphs: [
+          "Le calcul commence par l’écart entre le niveau actuel et le niveau souhaité. Une batterie de 60 kWh passant de 30 % à 80 % récupère théoriquement 30 kWh dans la batterie : 60 multiplié par 50 %. Cette énergie théorique n’est pas toujours identique à l’énergie prélevée au compteur.",
+          "La conversion, le refroidissement éventuel de la batterie, l’électronique de puissance et le câble entraînent des pertes variables. Pour un suivi exact, l’information la plus utile est donc l’énergie mesurée par la borne, l’application ou un compteur dédié pendant la session.",
+        ],
+        listTitle: "Les quatre données à réunir",
+        ordered: true,
+        bullets: [
+          "Capacité utile ou exploitable de la batterie, lorsque cette donnée est disponible",
+          "Niveau de charge au branchement",
+          "Niveau de charge souhaité",
+          "Prix réel du kWh et énergie effectivement prélevée",
+        ],
+        note: {
+          title: "Formule pratique",
+          text: "Coût de la session = énergie facturée en kWh × prix applicable du kWh. Le résultat reste une estimation tant que l’énergie réellement mesurée et les règles du contrat ne sont pas connues.",
+        },
+      },
+      {
+        id: "lire-facture-electricite",
+        title: "Trouver le bon prix du kWh sur sa facture au Maroc",
+        paragraphs: [
+          "Le montant total d’une facture ne doit pas être divisé trop rapidement par la consommation : il peut inclure des composantes fixes, des taxes ou des règles de tranche qui ne décrivent pas directement le coût marginal d’une nouvelle session de recharge.",
+          "Repérez le détail de la consommation, la période facturée et les lignes tarifaires applicables. Lorsque plusieurs tranches existent, une recharge supplémentaire peut modifier la répartition de la consommation. En cas de doute, demandez au fournisseur ou au gestionnaire du contrat quel prix utiliser pour une estimation additionnelle.",
+        ],
+        table: {
+          caption: "Informations à relever avant le calcul",
+          headers: ["Élément", "Pourquoi il compte", "Source à privilégier"],
+          rows: [
+            ["Énergie consommée", "Situe la consommation du logement", "Facture récente"],
+            ["Prix ou tranches", "Transforme les kWh en dirhams", "Détail tarifaire du contrat"],
+            ["Frais fixes", "Ne varient pas toujours avec une session", "Conditions de facturation"],
+            ["Énergie de la borne", "Isole la recharge du reste du logement", "Application ou compteur dédié"],
+          ],
+        },
+      },
+      {
+        id: "scenarios-en-dirhams",
+        title: "Comparer plusieurs scénarios sans inventer un tarif",
+        paragraphs: [
+          "Le tableau suivant ne présente pas les tarifs officiels d’un fournisseur. Il montre simplement comment le résultat évolue avec trois hypothèses rondes. Remplacez la colonne correspondant à votre situation par le prix réellement applicable à votre contrat.",
+          "Ces montants partent d’une énergie déjà mesurée au compteur ou à la borne. Ils n’ajoutent donc pas une seconde marge de pertes.",
+        ],
+        table: {
+          caption: "Exemples pédagogiques de coût d’une session",
+          headers: ["Énergie facturée", "À 1,00 DH/kWh", "À 1,50 DH/kWh", "À 2,00 DH/kWh"],
+          rows: [
+            ["20 kWh", "20 DH", "30 DH", "40 DH"],
+            ["40 kWh", "40 DH", "60 DH", "80 DH"],
+            ["60 kWh", "60 DH", "90 DH", "120 DH"],
+          ],
+        },
+        note: {
+          title: "Hypothèses, pas tarifs",
+          text: "Les prix de 1,00, 1,50 et 2,00 DH/kWh servent uniquement à comprendre la formule. Consultez votre facture et les conditions de votre fournisseur pour un calcul applicable à votre logement.",
+        },
+      },
+      {
+        id: "cout-cent-kilometres",
+        title: "Passer du coût d’une recharge au coût pour 100 kilomètres",
+        paragraphs: [
+          "Pour comparer deux véhicules ou deux styles de conduite, le coût pour 100 kilomètres est souvent plus parlant qu’une recharge complète. Multipliez la consommation moyenne observée en kWh/100 km par le prix du kWh utilisé dans votre calcul.",
+          "La consommation affichée par le véhicule varie avec la vitesse, la température, le relief, la climatisation et la circulation. Une moyenne relevée sur plusieurs trajets habituels sera plus représentative qu’une valeur isolée après un parcours exceptionnel.",
+        ],
+        table: {
+          caption: "Exemple avec une hypothèse de 1,50 DH/kWh",
+          headers: ["Consommation du véhicule", "Calcul", "Coût indicatif pour 100 km"],
+          rows: [
+            ["15 kWh/100 km", "15 × 1,50", "22,50 DH"],
+            ["18 kWh/100 km", "18 × 1,50", "27 DH"],
+            ["22 kWh/100 km", "22 × 1,50", "33 DH"],
+          ],
+        },
+      },
+      {
+        id: "domicile-public",
+        title: "Pourquoi le domicile et la recharge publique ne se comparent pas ligne par ligne",
+        paragraphs: [
+          "À domicile, la recharge apparaît dans la consommation électrique du site. Sur une borne publique, le prix peut intégrer l’équipement, la puissance disponible, l’exploitation, le stationnement, l’application ou d’autres conditions de service. Le mode de facturation peut aussi différer selon l’opérateur.",
+          "La comparaison doit donc porter sur le coût total de la session, la puissance réellement obtenue, le temps disponible et la simplicité d’usage. Une recharge rapide ponctuelle répond à un besoin différent d’une recharge régulière pendant plusieurs heures à la maison.",
+        ],
+        listTitle: "Questions à poser avant de comparer",
+        bullets: [
+          "La facturation porte-t-elle sur l’énergie, le temps ou une combinaison des deux ?",
+          "Des frais de stationnement, d’activation ou d’abonnement s’ajoutent-ils ?",
+          "Le véhicule peut-il exploiter la puissance annoncée par le point de charge ?",
+          "Quel niveau de batterie est réellement nécessaire pour le prochain trajet ?",
+        ],
+      },
+      {
+        id: "maitriser-budget-recharge",
+        title: "Installer les bons outils pour suivre son budget de recharge",
+        paragraphs: [
+          "Une borne connectée peut rendre le suivi plus lisible en regroupant les sessions, l’énergie délivrée et les horaires. Cette mesure permet de séparer la recharge des autres usages du logement et de comparer des périodes équivalentes.",
+          "Le choix de la puissance reste un sujet technique avant d’être un sujet de coût. Une borne surdimensionnée ne réduit pas automatiquement la facture et le véhicule peut accepter moins que la puissance disponible. Le simulateur donne un premier scénario ; l’étude du site confirme ensuite la configuration exploitable.",
+        ],
+        listTitle: "Préparer une estimation personnalisée",
+        bullets: [
+          "Modèle exact du véhicule et capacité de batterie",
+          "Pourcentage moyen récupéré lors d’une session",
+          "Consommation réelle observée sur vos trajets",
+          "Prix du kWh relevé sur une facture récente",
+          "Photos du tableau électrique et de l’emplacement de la borne",
+        ],
+      },
+    ],
+    faq: [
+      {
+        question: "Combien coûte une recharge complète de voiture électrique au Maroc ?",
+        answer:
+          "Il n’existe pas un montant unique. Une recharge complète dépend de la capacité réellement récupérée, des pertes, du prix du kWh applicable au contrat et du mode de facturation. Utilisez l’énergie mesurée pendant la session et votre tarif réel pour obtenir le résultat le plus fiable.",
+      },
+      {
+        question: "La capacité totale de la batterie correspond-elle aux kWh facturés ?",
+        answer:
+          "Non. Vous ne rechargez généralement qu’une partie de la batterie et l’énergie prélevée inclut des pertes variables. La mesure de la borne ou d’un compteur dédié est plus utile pour connaître les kWh facturés.",
+      },
+      {
+        question: "Une borne de 22 kW consomme-t-elle plus qu’une borne de 7,4 kW ?",
+        answer:
+          "La puissance décrit surtout la vitesse maximale de transfert. Pour une même énergie récupérée, le coût dépend principalement des kWh facturés et du tarif applicable, même si la durée et les pertes peuvent varier selon la configuration.",
+      },
+      {
+        question: "Comment suivre séparément la consommation de ma voiture ?",
+        answer:
+          "Une borne connectée, son application ou un dispositif de mesure prévu dans l’installation peut enregistrer l’énergie des sessions. La solution exacte doit être choisie selon la borne et le tableau électrique.",
+      },
+    ],
+    relatedSlugs: [
+      "temps-recharge-voiture-electrique",
+      "prix-borne-recharge-installation-maroc",
+      "borne-recharge-intelligente-delestage",
+    ],
+    productCta: {
+      eyebrow: "Mesure et pilotage",
+      title: "Suivez chaque session depuis une borne connectée.",
+      text: "Découvrez la MaxiCharger et demandez une configuration adaptée à votre véhicule, à votre tableau et à votre manière de recharger.",
+      label: "Découvrir la MaxiCharger",
+    },
+  },
+  {
+    slug: "acheter-voiture-electrique-occasion-maroc",
+    title: "Acheter une voiture électrique d’occasion au Maroc : les vérifications essentielles",
+    seoTitle: "Voiture électrique d’occasion au Maroc : 12 contrôles",
+    description:
+      "Batterie, recharge AC, prise, câble et garantie : vérifiez une voiture électrique d’occasion au Maroc avant de signer et préparez sa recharge à domicile.",
+    excerpt:
+      "Une méthode de contrôle centrée sur la batterie, la version exacte du véhicule et sa compatibilité avec votre future recharge quotidienne.",
+    category: "Achat véhicule",
+    readingTime: 11,
+    datePublished: todayPublicationDate,
+    dateModified: todayPublicationDate,
+    image: "/images/blog/acheter-voiture-electrique-occasion-maroc.jpg",
+    imageAlt:
+      "Technicien et acheteur contrôlant la batterie et le port de recharge d’une voiture électrique d’occasion au Maroc",
+    keywords: [
+      "voiture électrique occasion Maroc",
+      "acheter voiture électrique occasion",
+      "batterie voiture électrique occasion",
+      "test recharge voiture électrique occasion",
+      "SOH batterie voiture électrique",
+    ],
+    intro: [
+      "Sur une voiture électrique d’occasion, le kilométrage ne résume pas l’état du véhicule. La batterie de traction, la version logicielle, la puissance de recharge réellement acceptée et les accessoires fournis influencent directement l’usage futur.",
+      "Le contrôle doit aussi anticiper le lieu où la voiture stationnera chaque nuit. Un modèle peut être parfaitement adapté à vos trajets tout en exigeant une puissance, un câble ou une organisation de recharge différente de ce que l’annonce laisse imaginer.",
+    ],
+    quickAnswer:
+      "Avant d’acheter, identifiez la version et l’année exactes, demandez un rapport de santé de batterie lorsqu’il est disponible, vérifiez la garantie restante, testez une session de recharge, contrôlez le port et les câbles, puis comparez la puissance AC du véhicule avec votre future installation à domicile.",
+    sections: [
+      {
+        id: "identifier-version-exacte",
+        title: "Commencer par l’identité exacte du véhicule",
+        paragraphs: [
+          "Un même modèle peut exister avec plusieurs capacités de batterie, chargeurs embarqués, connecteurs ou options de recharge selon l’année et le marché d’origine. Le nom commercial affiché dans une annonce ne suffit donc pas à calculer le temps de charge ni à choisir une borne.",
+          "Demandez le numéro d’identification du véhicule, l’année, la finition, le pays d’origine et les documents techniques disponibles. Comparez ces informations avec le manuel et les caractéristiques correspondant précisément à cet exemplaire.",
+        ],
+        listTitle: "Contrôles 1 et 2",
+        ordered: true,
+        bullets: [
+          "Confirmer la version, l’année, la batterie et le marché d’origine",
+          "Identifier la puissance maximale acceptée en AC et en DC pour cette version",
+        ],
+        note: {
+          title: "Pourquoi c’est décisif",
+          text: "Deux voitures portant le même nom peuvent afficher des temps de recharge différents si leur batterie ou leur chargeur embarqué n’est pas identique.",
+        },
+      },
+      {
+        id: "sante-batterie-soh",
+        title: "Demander des preuves sur l’état de la batterie",
+        paragraphs: [
+          "Le State of Health, souvent abrégé SOH, cherche à représenter la capacité actuelle de la batterie par rapport à son état de référence. La méthode et la précision du rapport peuvent varier selon le constructeur, l’outil et le véhicule.",
+          "Un rapport récent provenant d’un diagnostic adapté est plus utile qu’une simple autonomie affichée après une recharge. Cette autonomie dépend aussi de la conduite récente, de la température et des réglages du véhicule.",
+        ],
+        listTitle: "Contrôles 3 et 4",
+        ordered: true,
+        bullets: [
+          "Demander un diagnostic ou un rapport de santé de batterie lorsque le constructeur le permet",
+          "Comparer le rapport avec l’historique d’entretien, les alertes et la garantie restante",
+        ],
+        table: {
+          caption: "Documents utiles autour de la batterie",
+          headers: ["Document", "Ce qu’il peut confirmer", "Limite à retenir"],
+          rows: [
+            ["Rapport de diagnostic", "Mesures disponibles au jour du test", "Dépend de l’outil et de la méthode"],
+            ["Historique d’entretien", "Interventions et campagnes réalisées", "Doit correspondre au véhicule"],
+            ["Garantie batterie", "Durée et conditions restantes", "Vérifier les exclusions et le transfert"],
+          ],
+        },
+      },
+      {
+        id: "tester-recharge-reelle",
+        title: "Effectuer un vrai test de recharge avant de signer",
+        paragraphs: [
+          "Un essai routier classique ne vérifie pas le comportement du port de charge. Lorsque cela est possible et autorisé, branchez le véhicule sur un équipement compatible et observez le démarrage de la session, la stabilité de la connexion, les messages affichés et la puissance acceptée.",
+          "Le test ne prouve pas à lui seul l’état complet de la batterie ou du chargeur embarqué, mais il peut révéler un port endommagé, un verrouillage irrégulier, une erreur persistante ou un câble inadapté.",
+        ],
+        listTitle: "Contrôles 5 et 6",
+        ordered: true,
+        bullets: [
+          "Inspecter visuellement le port, le capot, les broches et le mécanisme de verrouillage sans les démonter",
+          "Lancer une recharge AC réelle et vérifier l’absence d’alerte inhabituelle",
+        ],
+      },
+      {
+        id: "cables-accessoires",
+        title: "Contrôler les câbles et accessoires réellement fournis",
+        paragraphs: [
+          "Le câble présent dans le coffre doit correspondre au véhicule et à l’équipement que vous utiliserez. Vérifiez son type, son intensité ou sa puissance nominale, sa longueur, l’état des connecteurs et l’absence de réparation improvisée.",
+          "Ne considérez pas un câble domestique, un adaptateur ou un câble Type 2 comme automatiquement inclus. Faites inscrire les accessoires remis dans les documents de vente lorsque leur présence fait partie de l’accord.",
+        ],
+        listTitle: "Contrôles 7 et 8",
+        ordered: true,
+        bullets: [
+          "Inventorier les câbles, adaptateurs, cartes RFID et accessoires annoncés",
+          "Vérifier leur compatibilité, leur état physique et leur identification technique",
+        ],
+      },
+      {
+        id: "logiciel-garantie-historique",
+        title: "Vérifier le logiciel, la garantie et l’historique administratif",
+        paragraphs: [
+          "Une voiture connectée peut dépendre d’un compte constructeur, d’une application, de mises à jour ou d’un transfert de propriété numérique. Confirmez que l’ancien propriétaire pourra retirer son accès et que le nouveau compte pourra être associé correctement.",
+          "Relisez les conditions de garantie de la batterie et du véhicule : durée, kilométrage, seuils éventuels, pays de validité et procédure de transfert. Un véhicule importé peut relever de conditions différentes de celles d’un véhicule distribué localement.",
+        ],
+        listTitle: "Contrôles 9 et 10",
+        ordered: true,
+        bullets: [
+          "Valider le transfert des comptes, applications, clés et fonctions connectées",
+          "Faire confirmer par écrit la garantie restante et l’historique administratif",
+        ],
+      },
+      {
+        id: "preparer-recharge-domicile",
+        title: "Calculer la recharge à domicile avant l’achat définitif",
+        paragraphs: [
+          "Le bon véhicule est celui que vous pourrez recharger avec une routine réaliste. Utilisez sa capacité, son niveau de charge habituel et sa limite AC dans le simulateur, puis confrontez le résultat au temps pendant lequel il stationne chez vous.",
+          "Une étude du tableau, de l’emplacement et de la distance de câble permet ensuite de chiffrer la solution complète. Cette étape évite de découvrir après l’achat qu’un changement de puissance, un cheminement complexe ou un autre emplacement est nécessaire.",
+        ],
+        listTitle: "Contrôles 11 et 12",
+        ordered: true,
+        bullets: [
+          "Simuler le temps de recharge avec la version exacte du véhicule",
+          "Faire étudier le tableau électrique, la place de stationnement et le budget d’installation",
+        ],
+      },
+    ],
+    faq: [
+      {
+        question: "Quel SOH faut-il accepter pour une voiture électrique d’occasion ?",
+        answer:
+          "Il n’existe pas un seuil universel adapté à tous les véhicules et à tous les usages. Le SOH doit être interprété avec la méthode du rapport, l’âge, le kilométrage, la garantie, l’autonomie nécessaire et le prix du véhicule.",
+      },
+      {
+        question: "Peut-on vérifier la batterie uniquement avec l’autonomie affichée ?",
+        answer:
+          "Non. L’autonomie estimée dépend de la conduite récente, du climat et des réglages. Demandez un diagnostic adapté et comparez-le aux documents du véhicule.",
+      },
+      {
+        question: "Faut-il tester la recharge avant l’achat ?",
+        answer:
+          "Oui lorsque les conditions le permettent. Un test AC peut confirmer le démarrage de la session, le verrouillage du connecteur et l’absence d’alerte visible, sans remplacer un diagnostic professionnel complet.",
+      },
+      {
+        question: "Quelle borne choisir pour une voiture électrique d’occasion ?",
+        answer:
+          "La borne doit être choisie selon la puissance AC de la version exacte, l’énergie quotidienne à récupérer, le temps de stationnement et la capacité de l’installation électrique du domicile.",
+      },
+    ],
+    relatedSlugs: [
+      "connecteur-type-2-ccs2-recharge-maroc",
+      "temps-recharge-voiture-electrique",
+      "installer-borne-recharge-maison-maroc",
+    ],
+    productCta: {
+      eyebrow: "Votre prochain véhicule",
+      title: "Préparez sa recharge avant de signer l’achat.",
+      text: "Vérifiez la limite AC du véhicule puis découvrez une MaxiCharger configurée selon votre place et votre installation électrique.",
+      label: "Voir la MaxiCharger",
+    },
+  },
+  {
+    slug: "recharge-voiture-electrique-forte-chaleur-maroc",
+    title: "Recharger une voiture électrique par forte chaleur au Maroc",
+    seoTitle: "Recharge voiture électrique et forte chaleur au Maroc",
+    description:
+      "Chaleur, batterie, climatisation et vitesse de charge : adoptez une routine de recharge adaptée à l’été marocain sans ignorer les consignes du constructeur.",
+    excerpt:
+      "Comprendre ce que la chaleur change réellement pour la batterie, le véhicule et la borne afin de recharger avec des repères simples pendant l’été.",
+    category: "Usage estival",
+    readingTime: 10,
+    datePublished: todayPublicationDate,
+    dateModified: todayPublicationDate,
+    image: "/images/blog/recharge-voiture-electrique-forte-chaleur-maroc.jpg",
+    imageAlt:
+      "Voiture électrique en recharge sous un carport ombragé pendant une journée chaude au Maroc",
+    keywords: [
+      "recharge voiture électrique forte chaleur",
+      "batterie voiture électrique chaleur Maroc",
+      "recharger voiture électrique été",
+      "borne recharge chaleur Maroc",
+      "température batterie voiture électrique",
+    ],
+    intro: [
+      "Pendant une journée très chaude, plusieurs phénomènes se superposent : l’habitacle demande davantage de climatisation, la batterie peut activer son propre refroidissement et le véhicule peut adapter la puissance de charge pour rester dans sa plage de fonctionnement.",
+      "Ces ajustements ne signifient pas automatiquement qu’un problème existe. Les véhicules modernes surveillent leur batterie, mais l’utilisateur doit respecter le manuel du constructeur, observer les alertes et installer la borne dans un emplacement compatible avec ses conditions d’utilisation.",
+    ],
+    quickAnswer:
+      "Par forte chaleur, privilégiez un stationnement ombragé et ventilé, programmez la recharge aux heures plus fraîches lorsque cela convient à votre usage, laissez le véhicule gérer sa température et suivez ses alertes. N’enfermez pas la borne, ne couvrez pas ses aérations et faites contrôler toute surchauffe, odeur, câble endommagé ou défaut persistant.",
+    sections: [
+      {
+        id: "chaleur-batterie-borne",
+        title: "Séparer la température extérieure, celle de la batterie et celle de la borne",
+        paragraphs: [
+          "La température ressentie dans le parking n’est pas nécessairement celle des cellules de la batterie. Le véhicule utilise des capteurs et, selon sa conception, un système de gestion thermique pour maintenir la batterie dans une plage adaptée.",
+          "La borne possède également ses propres limites et protections. Son exposition au soleil, la ventilation autour du boîtier, le courant demandé et la qualité de l’installation peuvent influencer sa température. Les prescriptions de la référence exacte restent prioritaires.",
+        ],
+        table: {
+          caption: "Trois températures à ne pas confondre",
+          headers: ["Zone", "Ce qui peut changer", "Réflexe utile"],
+          rows: [
+            ["Air extérieur", "Climatisation et confort", "Chercher de l’ombre lorsque possible"],
+            ["Batterie du véhicule", "Refroidissement et puissance acceptée", "Suivre les alertes et le manuel"],
+            ["Borne et câble", "Protection thermique ou défaut", "Respecter l’installation et l’aération"],
+          ],
+        },
+      },
+      {
+        id: "vehicule-regule-puissance",
+        title: "Pourquoi le véhicule peut ralentir ou modifier la recharge",
+        paragraphs: [
+          "La puissance affichée sur la borne est une capacité maximale, pas une promesse permanente. Le véhicule décide de ce qu’il accepte selon son chargeur embarqué, son niveau de batterie, sa température et sa stratégie de protection.",
+          "À l’approche d’un niveau élevé ou lorsque la batterie doit être refroidie, la puissance peut évoluer. Comparez des sessions réalisées dans des conditions proches avant de conclure à une anomalie et vérifiez toujours les messages du tableau de bord ou de l’application.",
+        ],
+        listTitle: "Les facteurs à relever",
+        bullets: [
+          "Température extérieure et durée de stationnement au soleil",
+          "Niveau de batterie au début et à la fin de la session",
+          "Puissance réellement acceptée par le véhicule",
+          "Utilisation simultanée de la climatisation ou du préconditionnement",
+          "Alerte éventuelle dans le véhicule ou l’application de la borne",
+        ],
+        note: {
+          title: "Ne forcez pas la puissance",
+          text: "Une réduction décidée par le véhicule ou la borne peut être une protection normale. N’essayez pas de contourner une limite ou une alerte sans diagnostic approprié.",
+        },
+      },
+      {
+        id: "choisir-heures-fraiches",
+        title: "Programmer la recharge aux heures les plus fraîches",
+        paragraphs: [
+          "Lorsque le véhicule reste garé toute la nuit, une programmation peut déplacer la session après la baisse de la température extérieure. Cette organisation réduit aussi le temps passé à un niveau élevé avant le départ lorsque le véhicule permet de définir une heure de fin.",
+          "La programmation doit rester cohérente avec le trajet prévu, le prix applicable à votre contrat et les recommandations du constructeur. L’objectif n’est pas d’attendre systématiquement, mais d’utiliser intelligemment une longue période de stationnement.",
+        ],
+        listTitle: "Une routine simple",
+        ordered: true,
+        bullets: [
+          "Définir le niveau nécessaire pour le trajet suivant",
+          "Identifier l’heure de départ et la durée disponible",
+          "Programmer la session pendant une période plus fraîche si le véhicule le permet",
+          "Vérifier le lendemain que le niveau demandé a bien été atteint",
+        ],
+      },
+      {
+        id: "ombre-ventilation",
+        title: "Créer de l’ombre sans enfermer l’équipement",
+        paragraphs: [
+          "Un carport ou un emplacement naturellement ombragé peut limiter l’exposition directe du véhicule et de la borne. La protection ne doit toutefois pas bloquer la ventilation prévue autour de l’équipement ni rendre le câble difficile à manipuler.",
+          "N’ajoutez pas de housse, de coffret fermé ou de matériau isolant autour d’une borne en fonctionnement sans validation du fabricant et de l’installateur. L’étude doit tenir compte du support, de l’exposition solaire, de la poussière et de la circulation d’air.",
+        ],
+        listTitle: "Points à faire vérifier",
+        bullets: [
+          "Exposition réelle au soleil selon l’heure et la saison",
+          "Dégagements demandés autour de la borne",
+          "Compatibilité du support et absence de confinement thermique",
+          "Cheminement du câble à l’ombre sans tension ni passage dangereux",
+          "Protection de l’ensemble de l’installation contre les conditions du site",
+        ],
+      },
+      {
+        id: "proteger-batterie-usage",
+        title: "Adapter le niveau de charge à l’usage prévu",
+        paragraphs: [
+          "Les recommandations de niveau de charge ne sont pas identiques pour toutes les batteries. Certaines versions demandent une charge complète régulière, tandis que d’autres proposent une limite quotidienne dans l’interface du véhicule. Le manuel de la version exacte reste la référence.",
+          "Évitez surtout de laisser le véhicule immobilisé pendant une longue période à un niveau extrême sans nécessité. Si le véhicule dispose d’une fonction de départ programmé ou de préconditionnement, utilisez-la conformément aux instructions du constructeur.",
+        ],
+        note: {
+          title: "Pas de règle universelle à 80 %",
+          text: "La limite adaptée dépend de la chimie de batterie, du modèle et du trajet. Appliquez les recommandations affichées par votre véhicule plutôt qu’une règle générale trouvée en ligne.",
+        },
+      },
+      {
+        id: "signes-controle",
+        title: "Reconnaître les signes qui nécessitent un contrôle",
+        paragraphs: [
+          "Un ventilateur audible, une puissance variable ou un refroidissement actif peuvent faire partie du fonctionnement normal. En revanche, une odeur inhabituelle, une déformation, une trace de brûlure, un connecteur très endommagé, une alerte rouge ou des interruptions répétées nécessitent d’arrêter l’utilisation et de faire contrôler l’équipement.",
+          "Ne touchez pas aux composants internes et ne refroidissez jamais la borne ou le connecteur avec de l’eau. Notez l’heure, le niveau de batterie, le message affiché et les conditions météo afin de faciliter le diagnostic.",
+        ],
+        listTitle: "Informations utiles pour l’intervention",
+        bullets: [
+          "Photo de l’alerte sans masquer le contexte",
+          "Heure et durée approximative de la session",
+          "Niveau de charge et puissance affichée",
+          "Température extérieure approximative et exposition au soleil",
+          "État visuel du câble et du connecteur, sans démontage",
+        ],
+      },
+    ],
+    faq: [
+      {
+        question: "Peut-on recharger une voiture électrique en plein soleil ?",
+        answer:
+          "Un véhicule et une borne correctement conçus disposent de protections, mais leur installation et leur usage doivent respecter les limites du fabricant. Un emplacement ombragé et ventilé est préférable lorsqu’il est réalisable sans enfermer l’équipement.",
+      },
+      {
+        question: "La recharge est-elle plus lente quand il fait très chaud ?",
+        answer:
+          "Elle peut l’être si le véhicule ou la borne adapte la puissance pour gérer la température. Le niveau de batterie, la climatisation et la configuration influencent également le résultat.",
+      },
+      {
+        question: "Faut-il toujours limiter la batterie à 80 % en été ?",
+        answer:
+          "Non, cette règle n’est pas universelle. Suivez la limite quotidienne et les recommandations prévues pour la chimie et la version exacte de votre véhicule, puis adaptez le niveau au trajet nécessaire.",
+      },
+      {
+        question: "Peut-on couvrir une borne pour la protéger du soleil ?",
+        answer:
+          "N’ajoutez pas de housse ou de coffret susceptible de retenir la chaleur. Toute protection doit préserver les dégagements, la ventilation, l’accès au câble et les conditions d’installation prescrites par le fabricant.",
+      },
+    ],
+    relatedSlugs: [
+      "borne-recharge-exterieure-maroc",
+      "borne-recharge-intelligente-delestage",
+      "entretien-borne-recharge-maintenance",
+    ],
+    productCta: {
+      eyebrow: "Recharge connectée",
+      title: "Programmez une recharge adaptée à votre rythme.",
+      text: "Découvrez la MaxiCharger et préparez une implantation qui tient compte du véhicule, de l’exposition et des conditions réelles de votre stationnement.",
       label: "Explorer la MaxiCharger",
     },
   },

@@ -13,7 +13,7 @@ const blogUrl = absolutePageUrl("/blog/");
 export const metadata: Metadata = {
   title: "Guides sur la recharge électrique au Maroc",
   description:
-    "Guides EVAtlas sur la recharge électrique au Maroc : installation, entretien, connecteurs, foyer multi-véhicules, puissance et MaxiCharger.",
+    "Guides EVAtlas sur la recharge électrique au Maroc : coût en dirhams, achat d’occasion, chaleur, installation, puissance et borne connectée.",
   alternates: { canonical: "/blog/" },
   robots: { index: true, follow: true },
   openGraph: {
@@ -22,7 +22,7 @@ export const metadata: Metadata = {
     url: "/blog/",
     title: "Guides sur la recharge électrique au Maroc | EVAtlas",
     description:
-      "Des réponses pratiques sur les bornes, leur entretien, les connecteurs Type 2 et CCS2 et la recharge de plusieurs véhicules au Maroc.",
+      "Coût de recharge, véhicule électrique d’occasion, forte chaleur, installation et puissance : des réponses pratiques adaptées au Maroc.",
     siteName: "EVAtlas",
     images: [
       {
@@ -37,7 +37,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Guides sur la recharge électrique au Maroc | EVAtlas",
     description:
-      "Choix de la puissance, installation, budget et temps de recharge expliqués clairement.",
+      "Coût, achat d’occasion, chaleur, puissance et installation de recharge expliqués clairement pour le Maroc.",
     images: [blogPosts[0].image],
   },
 };
@@ -205,8 +205,8 @@ export default function BlogPage() {
                 <h2 id="articles-title">Approfondir chaque décision.</h2>
               </div>
               <p>
-                Installation, hôtellerie, hybride rechargeable, puissance et
-                mobilité : choisissez le sujet qui correspond à votre projet.
+                Budget, achat d’occasion, climat, installation et mobilité :
+                choisissez le sujet qui correspond à votre projet.
               </p>
             </div>
             <div className="blog-grid">
