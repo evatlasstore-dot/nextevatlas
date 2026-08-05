@@ -60,6 +60,7 @@ export default function Footer() {
           <TrackedLink href="/politique-de-confidentialite">Confidentialité</TrackedLink>
           <TrackedLink href="/cookies">Cookies</TrackedLink>
           <TrackedLink href="/conditions-generales">Conditions générales</TrackedLink>
+          <TrackedLink href="/licence-images">Licence des images</TrackedLink>
         </div>
       </div>
       <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className="whatsapp-float" aria-label={`Contacter EVAtlas sur WhatsApp au ${WHATSAPP_NUMBER}`} onClick={trackWhatsApp}><Icon name="whatsapp" size={25} /></a>

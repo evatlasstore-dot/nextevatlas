@@ -2,6 +2,9 @@ import homepage from "./homepage.json";
 import {
   absoluteAssetUrl,
   absolutePageUrl,
+  IMAGE_ACQUIRE_LICENSE_URL,
+  IMAGE_COPYRIGHT_NOTICE,
+  IMAGE_LICENSE_URL,
   SITE_DESCRIPTION,
   SITE_HOME_TITLE_WITH_BRAND,
   SITE_NAME,
@@ -89,6 +92,9 @@ const homePrimaryImage = {
   representativeOfPage: true,
   creator: { "@id": `${SITE_URL}/#organization` },
   creditText: SITE_NAME,
+  copyrightNotice: IMAGE_COPYRIGHT_NOTICE,
+  license: IMAGE_LICENSE_URL,
+  acquireLicensePage: IMAGE_ACQUIRE_LICENSE_URL,
 };
 
 export const homePageSchema = {

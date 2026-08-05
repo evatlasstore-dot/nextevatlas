@@ -9,6 +9,9 @@ export const SITE_PRIMARY_IMAGE =
   "/images/product/autel-maxicharger/exploded-sequence-cutout/step-01-closed.png";
 export const SITE_SOCIAL_IMAGE =
   "/images/product/autel-maxicharger/hero-poster.png";
+export const IMAGE_COPYRIGHT_NOTICE = "© EVAtlas. Tous droits réservés.";
+export const IMAGE_LICENSE_URL = `${SITE_URL}/licence-images/`;
+export const IMAGE_ACQUIRE_LICENSE_URL = `${IMAGE_LICENSE_URL}#demande-autorisation`;
 
 const hasFileExtension = (pathname: string) => /\/[^/]+\.[a-z0-9]+$/iu.test(pathname);
 

@@ -36,8 +36,8 @@ const sections: LegalSection[] = [
     id: "propriete-intellectuelle",
     title: "Propriété intellectuelle",
     paragraphs: [
-      "La structure, les textes, l’identité visuelle et les éléments propres à EVAtlas présentés sur ce site sont protégés par les règles applicables à la propriété intellectuelle, sous réserve des droits détenus par leurs propriétaires respectifs.",
-      "Les marques, noms de produits, photographies et documents appartenant à des fabricants ou à des tiers restent la propriété de leurs titulaires. Leur présence sur le site n’emporte aucun transfert de droit.",
+      "La structure, les textes, l’identité visuelle, les photographies, les rendus, les illustrations et les autres images publiés par EVAtlas sur ce site sont protégés par les règles applicables à la propriété intellectuelle. Sauf mention écrite contraire, EVAtlas est titulaire des droits d’auteur sur ces images.",
+      "Les marques, logos, noms de produits et designs de produits éventuellement représentés restent protégés au bénéfice de leurs titulaires respectifs. Les conditions d’utilisation des images EVAtlas et la procédure de demande d’autorisation sont précisées sur la page Licence des images.",
     ],
   },
   {

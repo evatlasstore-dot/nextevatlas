@@ -13,7 +13,15 @@ import {
   getRelatedPosts,
   type BlogSection,
 } from "@/data/blog";
-import { absoluteAssetUrl, absolutePageUrl, SITE_NAME, SITE_URL } from "@/lib/site";
+import {
+  absoluteAssetUrl,
+  absolutePageUrl,
+  IMAGE_ACQUIRE_LICENSE_URL,
+  IMAGE_COPYRIGHT_NOTICE,
+  IMAGE_LICENSE_URL,
+  SITE_NAME,
+  SITE_URL,
+} from "@/lib/site";
 
 type BlogArticlePageProps = {
   params: Promise<{ slug: string }>;
@@ -186,7 +194,9 @@ export default async function BlogArticlePage({
       "@type": "Organization",
       name: "EVAtlas",
     },
-    copyrightNotice: "EVAtlas",
+    copyrightNotice: IMAGE_COPYRIGHT_NOTICE,
+    license: IMAGE_LICENSE_URL,
+    acquireLicensePage: IMAGE_ACQUIRE_LICENSE_URL,
   };
   const articleSchema = {
     "@context": "https://schema.org",

@@ -15,9 +15,20 @@ type LegalPageProps = {
   introduction: string;
   sections: LegalSection[];
   note?: string;
+  updatedAt?: {
+    dateTime: string;
+    label: string;
+  };
 };
 
-export default function LegalPage({ eyebrow, title, introduction, sections, note }: LegalPageProps) {
+export default function LegalPage({
+  eyebrow,
+  title,
+  introduction,
+  sections,
+  note,
+  updatedAt = { dateTime: "2026-07-22", label: "22 juillet 2026" },
+}: LegalPageProps) {
   return (
     <>
       <Header />
@@ -30,7 +41,7 @@ export default function LegalPage({ eyebrow, title, introduction, sections, note
               <p className={styles["legal-introduction"]}>{introduction}</p>
               <div className={styles["legal-meta"]} aria-label="Informations sur ce document">
                 <span>{sections.length} rubriques</span>
-                <time className={styles["legal-updated"]} dateTime="2026-07-22">Mise à jour&nbsp;: 22 juillet 2026</time>
+                <time className={styles["legal-updated"]} dateTime={updatedAt.dateTime}>Mise à jour&nbsp;: {updatedAt.label}</time>
               </div>
             </div>
           </div>

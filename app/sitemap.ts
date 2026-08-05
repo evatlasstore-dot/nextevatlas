@@ -6,6 +6,7 @@ export const dynamic = "force-static";
 
 const contentDate = new Date("2026-07-17T00:00:00.000Z");
 const technicalSheetDate = new Date("2026-07-24T00:00:00.000Z");
+const imageLicenseDate = new Date("2026-08-05T00:00:00.000Z");
 const blogLastModified = new Date(
   `${blogPosts.reduce(
     (latest, post) => post.dateModified > latest ? post.dateModified : latest,
@@ -17,7 +18,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const pages: MetadataRoute.Sitemap = [
     {
       url: absolutePageUrl(),
-      lastModified: contentDate,
+      lastModified: imageLicenseDate,
       changeFrequency: "monthly",
     },
     {
@@ -73,6 +74,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
     {
       url: absolutePageUrl("/conditions-generales/"),
       lastModified: contentDate,
+      changeFrequency: "yearly",
+    },
+    {
+      url: absolutePageUrl("/licence-images/"),
+      lastModified: imageLicenseDate,
       changeFrequency: "yearly",
     },
     {

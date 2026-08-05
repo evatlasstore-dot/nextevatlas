@@ -1,0 +1,925 @@
+import { WHATSAPP_URL } from "@/data/contact";
+import {
+  EMAIL_PRODUCT_URL,
+  EMAIL_QUOTE_URL,
+  detailCard,
+  emailButton,
+  emailLayout,
+  escapeHtml,
+} from "@/lib/email-design";
+
+export type CommercialEmailStage =
+  | "demande"
+  | "qualification"
+  | "devis"
+  | "relance"
+  | "validation"
+  | "paiement"
+  | "commande"
+  | "visite"
+  | "installation"
+  | "facturation"
+  | "suivi";
+
+export type CommercialEmailTemplate = {
+  id: number;
+  slug: string;
+  stage: CommercialEmailStage;
+  name: string;
+  whenToUse: string;
+  subject: string;
+  eyebrow: string;
+  title: string;
+  introduction: string;
+  paragraphs: string[];
+  bullets?: string[];
+  fields: string[];
+  attachments: string[];
+  expectedAction: string;
+  ctas?: Array<{ label: string; href: string; variant?: "primary" | "secondary" | "light" }>;
+};
+
+export type RenderedCommercialEmail = {
+  template: CommercialEmailTemplate;
+  subject: string;
+  text: string;
+  html: string;
+};
+
+export const commercialEmailPricing = {
+  autelMaxiCharger22Kw: {
+    label: "Autel MaxiCharger 22 kW",
+    excludingTax: "14 500 DH HT",
+    includingTax: "17 400 DH TTC",
+  },
+  standardInstallation: {
+    label: "Installation standard",
+    excludingTax: "3 999 DH HT",
+    includingTax: "4 798,80 DH TTC",
+  },
+  standardPack: {
+    label: "Pack borne et installation standard",
+    excludingTax: "18 499 DH HT",
+    includingTax: "22 198,80 DH TTC",
+  },
+  travel: {
+    label: "Frais de déplacement",
+    amount: "3 DH par kilomètre",
+    note: "Ne pas préciser HT/TTC ni trajet simple/aller-retour avant confirmation de ces règles.",
+  },
+  additionalWorkNote: "Les travaux et équipements supplémentaires sont facturés séparément après étude.",
+} as const;
+
+const whatsappPhotosUrl = `${WHATSAPP_URL}?text=${encodeURIComponent("Bonjour EVAtlas, je vous transmets les informations et photos demandées pour mon projet de recharge.")}`;
+const whatsappQuestionUrl = `${WHATSAPP_URL}?text=${encodeURIComponent("Bonjour EVAtlas, j’ai une question au sujet de mon projet de recharge.")}`;
+const replyUrl = "mailto:evatlas.store@gmail.com";
+
+const templates: CommercialEmailTemplate[] = [
+  {
+    id: 1,
+    slug: "demande-site-recue",
+    stage: "demande",
+    name: "Réponse après une demande reçue depuis le site",
+    whenToUse: "Immédiatement après la réception d’une demande nécessitant une qualification complémentaire.",
+    subject: "Votre demande EVAtlas — informations nécessaires",
+    eyebrow: "Demande reçue · Qualification",
+    title: "Merci [Prénom], précisons votre projet.",
+    introduction: "Votre demande a bien été reçue. Quelques informations nous permettront de préparer une recommandation adaptée.",
+    paragraphs: [
+      "Bonjour [Prénom],",
+      "Merci d’avoir contacté EVAtlas au sujet de votre projet de recharge à [Ville].",
+      "Pour étudier votre besoin, merci de nous transmettre les éléments disponibles ci-dessous. Les photos peuvent être envoyées en réponse à cet e-mail ou directement sur WhatsApp.",
+      "Dès réception, notre équipe pourra reprendre votre dossier et préparer une proposition cohérente avec votre véhicule et votre installation.",
+      "Bien cordialement,\nL’équipe EVAtlas",
+    ],
+    bullets: [
+      "Nom et prénom",
+      "Numéro de téléphone",
+      "Ville et adresse d’installation",
+      "Marque, modèle et année du véhicule",
+      "Type de logement : maison, appartement ou résidence",
+      "Photo du tableau électrique",
+      "Photo de l’emplacement prévu",
+      "Distance approximative entre le tableau et la borne",
+    ],
+    fields: ["Prénom", "Ville"],
+    attachments: [],
+    expectedAction: "Répondre avec les informations et photos disponibles.",
+    ctas: [
+      { label: "Répondre par e-mail", href: replyUrl },
+      { label: "Envoyer les photos", href: whatsappPhotosUrl, variant: "secondary" },
+    ],
+  },
+  {
+    id: 2,
+    slug: "informations-manquantes",
+    stage: "qualification",
+    name: "Demande d’informations manquantes",
+    whenToUse: "Quand le dossier reçu ne permet pas encore de préparer une étude complète.",
+    subject: "Informations complémentaires pour votre projet EVAtlas",
+    eyebrow: "Dossier en cours · Informations requises",
+    title: "Il nous manque quelques éléments.",
+    introduction: "Votre projet est bien enregistré, mais son étude nécessite encore les informations listées ci-dessous.",
+    paragraphs: [
+      "Bonjour [Prénom],",
+      "Merci pour les premiers éléments transmis concernant [Rappel de la demande].",
+      "Afin de préparer une offre réellement adaptée, pourriez-vous nous envoyer uniquement les informations suivantes ?",
+      "Vous pouvez répondre à cet e-mail ou transmettre les photos sur WhatsApp.",
+      "Bien cordialement,\nL’équipe EVAtlas",
+    ],
+    bullets: ["[Information manquante 1]", "[Information manquante 2]", "[Information manquante 3]"],
+    fields: ["Prénom", "Rappel de la demande", "Information manquante 1", "Information manquante 2", "Information manquante 3"],
+    attachments: [],
+    expectedAction: "Transmettre uniquement les éléments manquants.",
+    ctas: [{ label: "Envoyer les éléments", href: whatsappPhotosUrl, variant: "secondary" }],
+  },
+  {
+    id: 3,
+    slug: "confirmation-informations-recues",
+    stage: "qualification",
+    name: "Confirmation de réception des informations",
+    whenToUse: "Après réception des informations ou photos demandées.",
+    subject: "Vos informations ont bien été reçues",
+    eyebrow: "Dossier complété · Analyse",
+    title: "Votre dossier avance.",
+    introduction: "Les informations transmises ont bien été enregistrées et sont maintenant en cours d’analyse.",
+    paragraphs: [
+      "Bonjour [Prénom],",
+      "Nous vous confirmons la bonne réception de vos informations et photos concernant votre projet à [Ville].",
+      "Notre équipe analyse désormais votre dossier. Si un élément complémentaire est nécessaire, nous reprendrons directement contact avec vous.",
+      "Merci pour votre confiance.\nL’équipe EVAtlas",
+    ],
+    fields: ["Prénom", "Ville"],
+    attachments: [],
+    expectedAction: "Aucune action immédiate ; rester disponible si EVAtlas demande une précision.",
+  },
+  {
+    id: 4,
+    slug: "envoi-devis",
+    stage: "devis",
+    name: "Envoi du devis",
+    whenToUse: "Pour transmettre officiellement une première proposition commerciale.",
+    subject: "Votre devis EVAtlas [Référence du devis]",
+    eyebrow: "Proposition · Devis joint",
+    title: "Votre solution de recharge est prête à être étudiée.",
+    introduction: "Vous trouverez en pièce jointe le devis préparé à partir des informations disponibles sur votre projet.",
+    paragraphs: [
+      "Bonjour [Prénom],",
+      "Merci pour votre demande concernant [Rappel du projet].",
+      "Le devis [Référence du devis] est joint à cet e-mail. Il reprend la solution proposée, l’installation prévue et les éventuels éléments complémentaires identifiés lors de l’étude.",
+      "Pour rappel, la puissance réellement reçue dépend du chargeur embarqué du véhicule, de l’installation électrique, de la puissance disponible et de la configuration du site. Les travaux ou équipements supplémentaires restent soumis à étude.",
+      "Ce devis est valable jusqu’au [Date de validité]. Pour poursuivre, merci de nous confirmer votre accord par écrit.",
+      "Nous restons disponibles par e-mail ou WhatsApp pour répondre à vos questions.\nL’équipe EVAtlas",
+    ],
+    bullets: ["Solution : [Solution retenue]", "Montant HT : [Montant HT]", "Montant TTC : [Montant TTC]", "Validité : [Date de validité]"],
+    fields: ["Prénom", "Rappel du projet", "Référence du devis", "Solution retenue", "Montant HT", "Montant TTC", "Date de validité"],
+    attachments: ["Devis PDF"],
+    expectedAction: "Lire le devis puis confirmer l’accord ou transmettre les questions.",
+    ctas: [
+      { label: "Découvrir la MaxiCharger", href: EMAIL_PRODUCT_URL },
+      { label: "Poser une question", href: whatsappQuestionUrl, variant: "secondary" },
+    ],
+  },
+  {
+    id: 5,
+    slug: "premiere-relance-devis",
+    stage: "relance",
+    name: "Première relance après devis",
+    whenToUse: "Après l’envoi d’un devis, pour vérifier sa bonne réception sans pression commerciale.",
+    subject: "Avez-vous bien reçu votre devis EVAtlas ?",
+    eyebrow: "Suivi du devis · Première relance",
+    title: "Un simple point sur votre devis.",
+    introduction: "Nous souhaitons uniquement nous assurer que le document vous est bien parvenu.",
+    paragraphs: [
+      "Bonjour [Prénom],",
+      "Nous vous avons envoyé le devis [Référence du devis] le [Date d’envoi]. Avez-vous bien pu le recevoir et le consulter ?",
+      "Si vous souhaitez une précision sur le produit, l’installation ou les éléments du devis, nous sommes disponibles pour vous répondre.",
+      "Bien cordialement,\nL’équipe EVAtlas",
+    ],
+    fields: ["Prénom", "Référence du devis", "Date d’envoi"],
+    attachments: ["Devis PDF, si utile"],
+    expectedAction: "Confirmer la réception ou poser une question.",
+    ctas: [{ label: "Échanger avec EVAtlas", href: whatsappQuestionUrl, variant: "secondary" }],
+  },
+  {
+    id: 6,
+    slug: "deuxieme-relance-devis",
+    stage: "relance",
+    name: "Deuxième relance après devis",
+    whenToUse: "Pour comprendre brièvement ce qui bloque une décision après une première relance.",
+    subject: "Votre projet de recharge est-il toujours d’actualité ?",
+    eyebrow: "Suivi du projet · Deuxième relance",
+    title: "Pouvons-nous vous aider à avancer ?",
+    introduction: "Un point rapide nous permettra de mieux comprendre votre décision.",
+    paragraphs: [
+      "Bonjour [Prénom],",
+      "Nous revenons vers vous au sujet de [Rappel du projet] et du devis [Référence du devis].",
+      "Souhaitez-vous toujours poursuivre ce projet ? Si un point vous freine — prix, délai, solution technique ou installation — nous pouvons vous l’expliquer simplement.",
+      "Un court retour de votre part nous aidera à mettre le dossier à jour.\nL’équipe EVAtlas",
+    ],
+    fields: ["Prénom", "Rappel du projet", "Référence du devis"],
+    attachments: [],
+    expectedAction: "Indiquer si le projet continue et préciser le principal point de blocage.",
+    ctas: [{ label: "Faire le point", href: whatsappQuestionUrl, variant: "secondary" }],
+  },
+  {
+    id: 7,
+    slug: "derniere-relance-cloture-temporaire",
+    stage: "relance",
+    name: "Dernière relance et clôture temporaire",
+    whenToUse: "Avant d’arrêter les relances sur un devis resté sans réponse.",
+    subject: "Mise à jour de votre dossier EVAtlas",
+    eyebrow: "Suivi du projet · Dernier message",
+    title: "Souhaitez-vous garder votre dossier actif ?",
+    introduction: "Sans retour de votre part, nous pouvons suspendre temporairement le suivi tout en laissant la porte ouverte.",
+    paragraphs: [
+      "Bonjour [Prénom],",
+      "Nous n’avons pas reçu de retour concernant le devis [Référence du devis]. Votre projet est-il toujours d’actualité ?",
+      "Sans réponse, nous clôturerons temporairement le dossier afin d’éviter des relances inutiles. Vous pourrez naturellement reprendre contact avec nous ultérieurement ; les prix et disponibilités devront alors être vérifiés.",
+      "Bien cordialement,\nL’équipe EVAtlas",
+    ],
+    fields: ["Prénom", "Référence du devis"],
+    attachments: [],
+    expectedAction: "Confirmer la poursuite du projet ou accepter sa clôture temporaire.",
+  },
+  {
+    id: 8,
+    slug: "modification-devis-recue",
+    stage: "devis",
+    name: "Réponse à une demande de modification du devis",
+    whenToUse: "Après qu’un client demande une modification de la proposition.",
+    subject: "Votre demande de modification du devis a bien été reçue",
+    eyebrow: "Devis · Révision demandée",
+    title: "Votre demande de modification est enregistrée.",
+    introduction: "Nous allons préparer une nouvelle version en tenant compte des changements demandés.",
+    paragraphs: [
+      "Bonjour [Prénom],",
+      "Nous confirmons la prise en compte des modifications suivantes concernant le devis [Référence du devis] :",
+      "Une version révisée sera préparée. Elle remplacera l’ancien devis dès son envoi ; aucun nouveau prix n’est confirmé avant finalisation de ce document.",
+      "Bien cordialement,\nL’équipe EVAtlas",
+    ],
+    bullets: ["[Modification 1]", "[Modification 2]", "[Modification 3]"],
+    fields: ["Prénom", "Référence du devis", "Modification 1", "Modification 2", "Modification 3"],
+    attachments: [],
+    expectedAction: "Vérifier le résumé des modifications et signaler toute correction.",
+  },
+  {
+    id: 9,
+    slug: "envoi-devis-revise",
+    stage: "devis",
+    name: "Envoi du devis révisé",
+    whenToUse: "Pour transmettre officiellement la nouvelle version d’un devis.",
+    subject: "Votre devis EVAtlas révisé [Nouvelle référence]",
+    eyebrow: "Proposition mise à jour · Devis joint",
+    title: "Votre devis révisé est disponible.",
+    introduction: "Cette nouvelle version reprend les ajustements convenus et remplace la proposition précédente.",
+    paragraphs: [
+      "Bonjour [Prénom],",
+      "Le devis [Nouvelle référence] a été mis à jour selon votre demande.",
+      "Les principales modifications sont résumées ci-dessous. Cette version remplace le devis [Ancienne référence].",
+      "Merci de nous confirmer par écrit votre accord sur cette nouvelle version ou de nous transmettre vos questions.\nL’équipe EVAtlas",
+    ],
+    bullets: ["[Modification principale 1]", "[Modification principale 2]", "[Modification principale 3]"],
+    fields: ["Prénom", "Nouvelle référence", "Ancienne référence", "Modification principale 1", "Modification principale 2", "Modification principale 3"],
+    attachments: ["Devis révisé PDF"],
+    expectedAction: "Confirmer par écrit l’accord sur le devis révisé.",
+  },
+  {
+    id: 10,
+    slug: "acceptation-devis",
+    stage: "validation",
+    name: "Confirmation d’acceptation du devis",
+    whenToUse: "Après réception de l’accord écrit du client.",
+    subject: "Accord reçu pour votre devis EVAtlas [Référence du devis]",
+    eyebrow: "Devis accepté · Prochaine étape",
+    title: "Merci [Prénom], votre accord est enregistré.",
+    introduction: "Votre commande peut désormais passer à l’étape suivante selon les conditions prévues au devis.",
+    paragraphs: [
+      "Bonjour [Prénom],",
+      "Nous vous confirmons la réception de votre accord pour le devis [Référence du devis].",
+      "Conditions de paiement prévues : [Conditions de paiement].",
+      "Les prochaines étapes sont la confirmation du paiement requis, la validation de la commande puis la planification de [Prochaine intervention]. Nous vous informerons à chaque étape.",
+      "Merci pour votre confiance.\nL’équipe EVAtlas",
+    ],
+    fields: ["Prénom", "Référence du devis", "Conditions de paiement", "Prochaine intervention"],
+    attachments: ["Devis accepté, si applicable"],
+    expectedAction: "Suivre les instructions de paiement communiquées.",
+  },
+  {
+    id: 11,
+    slug: "demande-acompte",
+    stage: "paiement",
+    name: "Demande d’acompte",
+    whenToUse: "Quand un acompte est requis pour confirmer la commande ou sa planification.",
+    subject: "Acompte requis pour votre commande EVAtlas",
+    eyebrow: "Paiement · Confirmation de commande",
+    title: "Confirmez votre commande avec l’acompte prévu.",
+    introduction: "Le règlement de l’acompte permettra de poursuivre la commande selon les conditions du devis accepté.",
+    paragraphs: [
+      "Bonjour [Prénom],",
+      "Pour confirmer le devis [Référence du devis], le montant de l’acompte attendu est de [Montant de l’acompte].",
+      "Instructions de paiement : [Instructions de paiement]. Merci d’indiquer la référence [Référence de paiement] et de nous envoyer le justificatif après règlement.",
+      "La commande ou la planification sera confirmée après réception effective du paiement.\nL’équipe EVAtlas",
+    ],
+    fields: ["Prénom", "Référence du devis", "Montant de l’acompte", "Instructions de paiement", "Référence de paiement"],
+    attachments: ["RIB, si nécessaire"],
+    expectedAction: "Régler l’acompte et transmettre le justificatif.",
+  },
+  {
+    id: 12,
+    slug: "envoi-rib",
+    stage: "paiement",
+    name: "Envoi du relevé d’identité bancaire",
+    whenToUse: "Pour transmettre officiellement les coordonnées bancaires nécessaires au règlement.",
+    subject: "RIB EVAtlas — règlement [Référence du devis]",
+    eyebrow: "Paiement · Document joint",
+    title: "Vos informations de virement.",
+    introduction: "Le relevé d’identité bancaire EVAtlas est joint à cet e-mail.",
+    paragraphs: [
+      "Bonjour [Prénom],",
+      "Pour le devis ou la commande [Référence], le montant à régler est de [Montant à régler].",
+      "Merci d’utiliser la référence de paiement [Référence de paiement] dans le libellé du virement, puis de nous transmettre le justificatif.",
+      "Bien cordialement,\nL’équipe EVAtlas",
+    ],
+    fields: ["Prénom", "Référence", "Montant à régler", "Référence de paiement"],
+    attachments: ["RIB EVAtlas"],
+    expectedAction: "Effectuer le virement et envoyer le justificatif.",
+  },
+  {
+    id: 13,
+    slug: "reception-acompte",
+    stage: "paiement",
+    name: "Confirmation de réception de l’acompte",
+    whenToUse: "Après vérification de la réception effective de l’acompte.",
+    subject: "Acompte reçu — commande EVAtlas [Référence du devis]",
+    eyebrow: "Paiement reçu · Commande",
+    title: "Votre acompte est bien enregistré.",
+    introduction: "Le paiement a été vérifié et votre dossier peut poursuivre son parcours.",
+    paragraphs: [
+      "Bonjour [Prénom],",
+      "Nous confirmons la réception de [Montant reçu] au titre de l’acompte du devis [Référence du devis].",
+      "Le solde restant est de [Solde restant]. La prochaine étape est [Prochaine étape].",
+      "[Un reçu ou une facture d’acompte est joint à cet e-mail, si applicable.]",
+      "Merci pour votre confiance.\nL’équipe EVAtlas",
+    ],
+    fields: ["Prénom", "Montant reçu", "Référence du devis", "Solde restant", "Prochaine étape"],
+    attachments: ["Reçu ou facture d’acompte, si applicable"],
+    expectedAction: "Prendre connaissance de la confirmation et de la prochaine étape.",
+  },
+  {
+    id: 14,
+    slug: "relance-acompte",
+    stage: "paiement",
+    name: "Relance de paiement de l’acompte",
+    whenToUse: "Après acceptation du devis lorsque l’acompte attendu n’a pas encore été reçu.",
+    subject: "Suivi de l’acompte — devis EVAtlas [Référence du devis]",
+    eyebrow: "Paiement en attente · Suivi",
+    title: "Votre projet est-il toujours confirmé ?",
+    introduction: "Nous n’avons pas encore identifié le règlement nécessaire à la poursuite de la commande.",
+    paragraphs: [
+      "Bonjour [Prénom],",
+      "Vous avez confirmé votre accord pour le devis [Référence du devis]. À ce jour, l’acompte de [Montant attendu] n’a pas encore été identifié.",
+      "Votre projet est-il toujours confirmé ? Si vous rencontrez une difficulté ou souhaitez une précision sur le paiement, nous restons disponibles pour vous aider.",
+      "Bien cordialement,\nL’équipe EVAtlas",
+    ],
+    fields: ["Prénom", "Référence du devis", "Montant attendu"],
+    attachments: ["RIB, si utile"],
+    expectedAction: "Confirmer le projet, régler l’acompte ou signaler une difficulté.",
+  },
+  {
+    id: 15,
+    slug: "confirmation-commande",
+    stage: "commande",
+    name: "Confirmation de commande",
+    whenToUse: "Pour récapituler officiellement une commande après validation des conditions requises.",
+    subject: "Confirmation de votre commande EVAtlas [Référence de commande]",
+    eyebrow: "Commande confirmée · Récapitulatif",
+    title: "Votre commande EVAtlas est confirmée.",
+    introduction: "Voici le récapitulatif officiel des éléments enregistrés pour votre projet.",
+    paragraphs: [
+      "Bonjour [Prénom],",
+      "Nous confirmons l’enregistrement de votre commande selon les informations ci-dessous.",
+      "Prochaines étapes : [Prochaines étapes]. Conditions particulières : [Conditions particulières ou “Aucune”].",
+      "Merci de vérifier ce récapitulatif et de nous signaler rapidement toute correction.\nL’équipe EVAtlas",
+    ],
+    bullets: [
+      "Client : [Nom du client]",
+      "Produit : [Produit commandé]",
+      "Quantité : [Quantité]",
+      "Référence de la borne : [Référence de la borne]",
+      "Montant total : [Montant total]",
+      "Montant payé : [Montant payé]",
+      "Solde restant : [Solde restant]",
+      "Adresse d’installation : [Adresse d’installation]",
+    ],
+    fields: ["Prénom", "Nom du client", "Produit commandé", "Quantité", "Référence de la borne", "Montant total", "Montant payé", "Solde restant", "Adresse d’installation", "Référence de commande", "Prochaines étapes", "Conditions particulières ou “Aucune”"],
+    attachments: ["Bon de commande, si applicable"],
+    expectedAction: "Vérifier le récapitulatif et signaler toute erreur.",
+  },
+  {
+    id: 16,
+    slug: "disponibilite-produit",
+    stage: "commande",
+    name: "Confirmation de disponibilité du produit",
+    whenToUse: "Quand la disponibilité du produit a été effectivement vérifiée.",
+    subject: "Disponibilité confirmée — [Référence du produit]",
+    eyebrow: "Produit disponible · Étape suivante",
+    title: "La borne sélectionnée est disponible.",
+    introduction: "La disponibilité a été vérifiée au moment de cet e-mail, sous réserve des conditions de confirmation indiquées.",
+    paragraphs: [
+      "Bonjour [Prénom],",
+      "Nous vous confirmons que le produit [Référence du produit] est actuellement disponible.",
+      "La prochaine étape est [Prochaine étape]. La disponibilité ne constitue pas une réservation tant que [Condition de réservation] n’est pas officiellement confirmé(e).",
+      "Bien cordialement,\nL’équipe EVAtlas",
+    ],
+    fields: ["Prénom", "Référence du produit", "Prochaine étape", "Condition de réservation"],
+    attachments: [],
+    expectedAction: "Confirmer ou réaliser l’étape requise pour réserver le produit.",
+  },
+  {
+    id: 17,
+    slug: "indisponibilite-produit",
+    stage: "commande",
+    name: "Information sur une indisponibilité ou un délai",
+    whenToUse: "Quand le produit commandé n’est pas immédiatement disponible.",
+    subject: "Mise à jour sur la disponibilité de votre borne EVAtlas",
+    eyebrow: "Disponibilité · Mise à jour",
+    title: "Une mise à jour concernant votre produit.",
+    introduction: "Nous souhaitons vous informer avec transparence de la situation actuelle.",
+    paragraphs: [
+      "Bonjour [Prénom],",
+      "Le produit [Référence du produit] n’est pas immédiatement disponible.",
+      "[Délai confirmé, uniquement s’il existe.] [Alternative disponible, si applicable.]",
+      "Souhaitez-vous maintenir votre commande dans ces conditions ou étudier l’alternative proposée ?",
+      "Bien cordialement,\nL’équipe EVAtlas",
+    ],
+    fields: ["Prénom", "Référence du produit", "Délai confirmé, uniquement s’il existe", "Alternative disponible, si applicable"],
+    attachments: ["Fiche de l’alternative, si applicable"],
+    expectedAction: "Confirmer le maintien de la commande ou demander l’étude de l’alternative.",
+  },
+  {
+    id: 18,
+    slug: "proposition-visite-technique",
+    stage: "visite",
+    name: "Proposition de visite technique",
+    whenToUse: "Quand l’installation nécessite une vérification sur place avant finalisation.",
+    subject: "Organisation d’une visite technique EVAtlas",
+    eyebrow: "Étude technique · Rendez-vous",
+    title: "Planifions la visite de votre installation.",
+    introduction: "Une visite permettra de vérifier les conditions réelles et de préparer une proposition adaptée.",
+    paragraphs: [
+      "Bonjour [Prénom],",
+      "Une visite technique est recommandée pour vérifier [Motif de la visite] avant de finaliser votre installation.",
+      "Créneaux proposés : [Créneau 1], [Créneau 2] ou [Créneau 3]. Merci de confirmer l’adresse [Adresse] ainsi que le nom et le téléphone de la personne présente.",
+      "Frais de déplacement applicables, si nécessaire : 3 DH par kilomètre. Les modalités exactes seront confirmées avant la visite.",
+      "Bien cordialement,\nL’équipe EVAtlas",
+    ],
+    fields: ["Prénom", "Motif de la visite", "Créneau 1", "Créneau 2", "Créneau 3", "Adresse"],
+    attachments: [],
+    expectedAction: "Choisir un créneau et confirmer l’adresse et le contact sur place.",
+  },
+  {
+    id: 19,
+    slug: "confirmation-visite-technique",
+    stage: "visite",
+    name: "Confirmation de visite technique",
+    whenToUse: "Après accord sur un créneau de visite.",
+    subject: "Visite technique confirmée — [Date] à [Heure]",
+    eyebrow: "Visite confirmée · Informations pratiques",
+    title: "Votre rendez-vous technique est confirmé.",
+    introduction: "Toutes les informations utiles sont réunies ci-dessous pour préparer la visite.",
+    paragraphs: [
+      "Bonjour [Prénom],",
+      "La visite technique est confirmée le [Date] à [Heure], à l’adresse [Adresse].",
+      "Contact sur place : [Nom du contact] — [Téléphone]. Objectif : [Objectif de la visite].",
+      "Merci de garantir les conditions d’accès suivantes : [Conditions d’accès]. En cas d’indisponibilité, prévenez-nous dès que possible.",
+      "Bien cordialement,\nL’équipe EVAtlas",
+    ],
+    fields: ["Prénom", "Date", "Heure", "Adresse", "Nom du contact", "Téléphone", "Objectif de la visite", "Conditions d’accès"],
+    attachments: [],
+    expectedAction: "Conserver le rendez-vous et prévenir EVAtlas en cas d’empêchement.",
+  },
+  {
+    id: 20,
+    slug: "compte-rendu-visite-technique",
+    stage: "visite",
+    name: "Compte rendu après visite technique",
+    whenToUse: "Après la visite, pour formaliser uniquement les conclusions confirmées.",
+    subject: "Compte rendu de votre visite technique EVAtlas",
+    eyebrow: "Étude technique · Compte rendu",
+    title: "Les principaux constats de la visite.",
+    introduction: "Ce résumé formalise les éléments observés sans anticiper les validations techniques ou tarifaires restantes.",
+    paragraphs: [
+      "Bonjour [Prénom],",
+      "Merci pour votre disponibilité lors de la visite du [Date de visite] à [Adresse].",
+      "Situation observée : [Résumé de la situation]. Travaux ou équipements à étudier : [Travaux ou équipements nécessaires].",
+      "Informations encore nécessaires : [Informations manquantes ou “Aucune”]. Un devis révisé pourra être préparé après validation de ces éléments.",
+      "Bien cordialement,\nL’équipe EVAtlas",
+    ],
+    fields: ["Prénom", "Date de visite", "Adresse", "Résumé de la situation", "Travaux ou équipements nécessaires", "Informations manquantes ou “Aucune”"],
+    attachments: ["Compte rendu ou photos, si applicable"],
+    expectedAction: "Vérifier le compte rendu et transmettre les informations manquantes.",
+  },
+  {
+    id: 21,
+    slug: "rendez-vous-installation",
+    stage: "installation",
+    name: "Confirmation de rendez-vous d’installation",
+    whenToUse: "Après validation ferme de la date d’intervention.",
+    subject: "Installation EVAtlas confirmée — [Date] à [Heure]",
+    eyebrow: "Installation · Rendez-vous confirmé",
+    title: "Votre intervention est planifiée.",
+    introduction: "Voici les informations pratiques nécessaires au bon déroulement de l’installation.",
+    paragraphs: [
+      "Bonjour [Prénom],",
+      "Votre installation est confirmée le [Date] à [Heure], à [Adresse]. La durée estimative est de [Durée estimative].",
+      "Contact sur place : [Nom du contact]. Intervention prévue : [Intervention prévue]. Conditions d’accès : [Conditions d’accès].",
+      "Merci de préparer [Éléments à préparer] et de contacter [Numéro en cas d’empêchement] si le rendez-vous doit être modifié.",
+      "Bien cordialement,\nL’équipe EVAtlas",
+    ],
+    fields: ["Prénom", "Date", "Heure", "Adresse", "Durée estimative", "Nom du contact", "Intervention prévue", "Conditions d’accès", "Éléments à préparer", "Numéro en cas d’empêchement"],
+    attachments: ["Bon d’intervention, si applicable"],
+    expectedAction: "Confirmer la présence et préparer les accès demandés.",
+  },
+  {
+    id: 22,
+    slug: "rappel-installation",
+    stage: "installation",
+    name: "Rappel avant installation",
+    whenToUse: "Peu avant l’intervention, pour confirmer la présence et les accès.",
+    subject: "Rappel — installation EVAtlas le [Date] à [Heure]",
+    eyebrow: "Installation · Rappel",
+    title: "Votre installation approche.",
+    introduction: "Une confirmation rapide permettra d’éviter tout déplacement inutile.",
+    paragraphs: [
+      "Bonjour [Prénom],",
+      "Nous vous rappelons l’intervention prévue le [Date] à [Heure], à [Adresse].",
+      "Merci de confirmer votre présence et de garantir l’accès au tableau électrique ainsi qu’à l’emplacement prévu pour la borne.",
+      "En cas d’empêchement, prévenez-nous rapidement afin d’adapter la planification.\nL’équipe EVAtlas",
+    ],
+    fields: ["Prénom", "Date", "Heure", "Adresse"],
+    attachments: [],
+    expectedAction: "Confirmer la présence et les accès.",
+  },
+  {
+    id: 23,
+    slug: "report-installation-evatlas",
+    stage: "installation",
+    name: "Report d’installation demandé par EVAtlas",
+    whenToUse: "Quand EVAtlas doit déplacer un rendez-vous déjà confirmé.",
+    subject: "Proposition de nouveaux créneaux pour votre installation",
+    eyebrow: "Installation · Replanification",
+    title: "Nous devons déplacer votre rendez-vous.",
+    introduction: "Nous vous présentons nos excuses et vous proposons immédiatement de nouvelles possibilités.",
+    paragraphs: [
+      "Bonjour [Prénom],",
+      "Nous sommes désolés, l’intervention prévue le [Ancienne date] doit être déplacée en raison de [Explication simple].",
+      "Votre commande reste bien maintenue. Nous pouvons vous proposer [Nouveau créneau 1], [Nouveau créneau 2] ou [Nouveau créneau 3].",
+      "Merci de nous indiquer le créneau qui vous convient le mieux.\nL’équipe EVAtlas",
+    ],
+    fields: ["Prénom", "Ancienne date", "Explication simple", "Nouveau créneau 1", "Nouveau créneau 2", "Nouveau créneau 3"],
+    attachments: [],
+    expectedAction: "Choisir un nouveau créneau.",
+  },
+  {
+    id: 24,
+    slug: "report-installation-client",
+    stage: "installation",
+    name: "Confirmation d’un report demandé par le client",
+    whenToUse: "Après accord sur une nouvelle date demandée par le client.",
+    subject: "Nouveau rendez-vous d’installation confirmé",
+    eyebrow: "Installation · Planning mis à jour",
+    title: "Votre nouveau créneau est enregistré.",
+    introduction: "L’ancien rendez-vous est annulé et la planification a été mise à jour.",
+    paragraphs: [
+      "Bonjour [Prénom],",
+      "Nous confirmons l’annulation du créneau initial du [Ancienne date].",
+      "Le nouveau rendez-vous est prévu le [Nouvelle date] à [Nouvelle heure], à [Adresse]. Merci de nous confirmer une dernière fois votre disponibilité.",
+      "Bien cordialement,\nL’équipe EVAtlas",
+    ],
+    fields: ["Prénom", "Ancienne date", "Nouvelle date", "Nouvelle heure", "Adresse"],
+    attachments: [],
+    expectedAction: "Confirmer définitivement le nouveau rendez-vous.",
+  },
+  {
+    id: 25,
+    slug: "demande-solde",
+    stage: "paiement",
+    name: "Demande de paiement du solde",
+    whenToUse: "À la date ou à l’étape prévue contractuellement pour le règlement restant.",
+    subject: "Solde à régler — commande EVAtlas [Référence de commande]",
+    eyebrow: "Paiement · Solde",
+    title: "Le solde de votre commande est à régler.",
+    introduction: "Ce message récapitule les montants enregistrés et le solde attendu.",
+    paragraphs: [
+      "Bonjour [Prénom],",
+      "Pour la commande [Référence de commande], le montant total est de [Montant total]. Les paiements déjà reçus s’élèvent à [Paiements reçus].",
+      "Le solde exact à régler est de [Solde à régler], attendu [Date ou étape de paiement].",
+      "Merci d’utiliser la référence [Référence de paiement] et de nous transmettre le justificatif.\nL’équipe EVAtlas",
+    ],
+    fields: ["Prénom", "Référence de commande", "Montant total", "Paiements reçus", "Solde à régler", "Date ou étape de paiement", "Référence de paiement"],
+    attachments: ["RIB ou facture, si applicable"],
+    expectedAction: "Régler le solde et envoyer le justificatif.",
+  },
+  {
+    id: 26,
+    slug: "reception-solde",
+    stage: "paiement",
+    name: "Confirmation de réception du solde",
+    whenToUse: "Après vérification du paiement intégral de la commande.",
+    subject: "Paiement complet confirmé — commande [Référence de commande]",
+    eyebrow: "Paiement reçu · Dossier soldé",
+    title: "Votre commande est entièrement réglée.",
+    introduction: "Le solde a bien été reçu et le dossier financier est à jour.",
+    paragraphs: [
+      "Bonjour [Prénom],",
+      "Nous confirmons la réception du solde de [Montant reçu] pour la commande [Référence de commande]. Le dossier est désormais soldé.",
+      "Prochaine étape : [Prochaine étape ou “Opération terminée”]. La facture finale est jointe à cet e-mail.",
+      "Merci pour votre confiance.\nL’équipe EVAtlas",
+    ],
+    fields: ["Prénom", "Montant reçu", "Référence de commande", "Prochaine étape ou “Opération terminée”"],
+    attachments: ["Facture finale"],
+    expectedAction: "Conserver la confirmation et la facture finale.",
+  },
+  {
+    id: 27,
+    slug: "facture-acompte",
+    stage: "facturation",
+    name: "Envoi de la facture d’acompte",
+    whenToUse: "Pour transmettre le document comptable relatif à un acompte reçu.",
+    subject: "Facture d’acompte [Référence de facture]",
+    eyebrow: "Facturation · Document joint",
+    title: "Votre facture d’acompte.",
+    introduction: "Le document correspondant au paiement reçu est joint à cet e-mail.",
+    paragraphs: [
+      "Bonjour [Prénom],",
+      "Veuillez trouver ci-joint la facture d’acompte [Référence de facture], liée au devis [Référence du devis], pour un montant de [Montant].",
+      "Bien cordialement,\nL’équipe EVAtlas",
+    ],
+    fields: ["Prénom", "Référence de facture", "Référence du devis", "Montant"],
+    attachments: ["Facture d’acompte PDF"],
+    expectedAction: "Conserver la facture.",
+  },
+  {
+    id: 28,
+    slug: "facture-finale",
+    stage: "facturation",
+    name: "Envoi de la facture finale",
+    whenToUse: "Pour transmettre officiellement la facture finale de la commande.",
+    subject: "Facture finale EVAtlas [Référence de facture]",
+    eyebrow: "Facturation · Document final",
+    title: "Votre facture finale est disponible.",
+    introduction: "Le document officiel relatif à votre commande est joint à cet e-mail.",
+    paragraphs: [
+      "Bonjour [Prénom],",
+      "Veuillez trouver ci-joint la facture finale [Référence de facture] pour la commande [Référence de commande].",
+      "Situation du paiement : [Paiement réglé ou solde restant de …]. Merci de conserver ce document.",
+      "Bien cordialement,\nL’équipe EVAtlas",
+    ],
+    fields: ["Prénom", "Référence de facture", "Référence de commande", "Paiement réglé ou solde restant de …"],
+    attachments: ["Facture finale PDF"],
+    expectedAction: "Conserver la facture et régler le solde uniquement s’il est indiqué.",
+  },
+  {
+    id: 29,
+    slug: "fin-installation",
+    stage: "installation",
+    name: "Confirmation de fin d’installation",
+    whenToUse: "Après la pose, la configuration et la mise en service confirmées.",
+    subject: "Installation EVAtlas terminée — [Référence de la borne]",
+    eyebrow: "Installation terminée · Mise en service",
+    title: "Votre borne est installée et mise en service.",
+    introduction: "L’intervention est terminée et les informations essentielles sont regroupées dans cet e-mail.",
+    paragraphs: [
+      "Bonjour [Prénom],",
+      "Nous confirmons la pose et la mise en service réalisées le [Date de l’intervention] pour la borne [Référence de la borne].",
+      "Les documents associés sont joints. La puissance réellement reçue dépend toujours du chargeur embarqué du véhicule, de l’installation électrique, de la puissance disponible et de la configuration du site.",
+      "En cas de besoin, contactez-nous via [Canal de contact].\nL’équipe EVAtlas",
+    ],
+    fields: ["Prénom", "Date de l’intervention", "Référence de la borne", "Canal de contact"],
+    attachments: ["Facture", "Garantie", "Fiche produit", "Guide utilisateur", "Procès-verbal ou fiche d’intervention, selon le dossier"],
+    expectedAction: "Conserver les documents et signaler toute difficulté constatée.",
+    ctas: [{ label: "Voir la MaxiCharger", href: EMAIL_PRODUCT_URL }],
+  },
+  {
+    id: 30,
+    slug: "documents-apres-installation",
+    stage: "installation",
+    name: "Envoi des documents après installation",
+    whenToUse: "Pour regrouper tous les documents de fin de projet dans un message unique.",
+    subject: "Documents de votre installation EVAtlas",
+    eyebrow: "Dossier client · Documents",
+    title: "Tous vos documents, réunis au même endroit.",
+    introduction: "Vous trouverez en pièces jointes les documents disponibles pour votre installation.",
+    paragraphs: [
+      "Bonjour [Prénom],",
+      "À la suite de votre installation [Référence de la borne], nous vous transmettons les documents listés ci-dessous.",
+      "Numéro de série : [Numéro de série]. Coordonnées du support : [Coordonnées du support].",
+      "Merci de conserver cet e-mail et ses pièces jointes.\nL’équipe EVAtlas",
+    ],
+    bullets: ["[Pièce jointe 1]", "[Pièce jointe 2]", "[Pièce jointe 3]", "[Pièce jointe 4]"],
+    fields: ["Prénom", "Référence de la borne", "Numéro de série", "Coordonnées du support", "Pièce jointe 1", "Pièce jointe 2", "Pièce jointe 3", "Pièce jointe 4"],
+    attachments: ["Facture", "Garantie", "Fiche produit", "Guide utilisateur", "Procès-verbal d’installation", "Fiche d’intervention, selon disponibilité"],
+    expectedAction: "Télécharger et conserver les documents.",
+  },
+  {
+    id: 31,
+    slug: "confirmation-bonne-mise-en-service",
+    stage: "suivi",
+    name: "Demande de confirmation de bonne mise en service",
+    whenToUse: "Après l’installation, pour vérifier que les premiers usages se déroulent correctement.",
+    subject: "Votre borne EVAtlas fonctionne-t-elle correctement ?",
+    eyebrow: "Suivi · Première utilisation",
+    title: "Tout se passe bien avec votre recharge ?",
+    introduction: "Un retour rapide nous permettra de confirmer la bonne prise en main de votre installation.",
+    paragraphs: [
+      "Bonjour [Prénom],",
+      "Depuis l’installation du [Date], la recharge fonctionne-t-elle correctement ? Avez-vous également pu connecter et utiliser l’application Autel Charge ?",
+      "En cas de difficulté, répondez à cet e-mail ou écrivez-nous sur WhatsApp afin d’organiser un échange rapide.",
+      "Bien cordialement,\nL’équipe EVAtlas",
+    ],
+    fields: ["Prénom", "Date"],
+    attachments: ["Guide utilisateur, si utile"],
+    expectedAction: "Confirmer le bon fonctionnement ou signaler la difficulté rencontrée.",
+    ctas: [{ label: "Contacter EVAtlas", href: whatsappQuestionUrl, variant: "secondary" }],
+  },
+  {
+    id: 32,
+    slug: "demande-avis-google",
+    stage: "suivi",
+    name: "Demande d’avis client",
+    whenToUse: "Après une installation réussie et confirmée par le client.",
+    subject: "Votre retour d’expérience EVAtlas",
+    eyebrow: "Votre expérience · Avis",
+    title: "Votre avis compte pour nous.",
+    introduction: "Quelques mots peuvent aider d’autres conducteurs à mieux préparer leur projet de recharge.",
+    paragraphs: [
+      "Bonjour [Prénom],",
+      "Merci encore d’avoir confié votre installation à EVAtlas.",
+      "Si vous le souhaitez, vous pouvez partager votre retour d’expérience sur Google en utilisant le lien ci-dessous. Votre avis reste entièrement libre.",
+      "Merci pour votre confiance.\nL’équipe EVAtlas",
+    ],
+    fields: ["Prénom", "Lien Google"],
+    attachments: [],
+    expectedAction: "Déposer librement un avis Google.",
+    ctas: [{ label: "Partager mon avis", href: "[Lien Google]", variant: "secondary" }],
+  },
+  {
+    id: 33,
+    slug: "autorisation-photos-installation",
+    stage: "suivi",
+    name: "Demande d’autorisation pour utiliser les photos",
+    whenToUse: "Avant toute publication de photos prises lors d’une installation.",
+    subject: "Autorisation d’utilisation des photos de votre installation",
+    eyebrow: "Autorisation · Utilisation des images",
+    title: "Pouvons-nous présenter votre installation ?",
+    introduction: "Votre accord écrit est indispensable avant toute utilisation des images concernées.",
+    paragraphs: [
+      "Bonjour [Prénom],",
+      "Nous souhaitons solliciter votre autorisation pour utiliser les images suivantes : [Description des images].",
+      "Avec votre accord, elles pourraient être utilisées sur notre site, nos réseaux sociaux ou dans une présentation commerciale. Aucune adresse ni information personnelle ne sera publiée sans autorisation spécifique.",
+      "Vous pouvez accepter ou refuser librement. Merci de nous répondre par écrit en indiquant clairement votre décision et, en cas d’accord, les supports autorisés.",
+      "Bien cordialement,\nL’équipe EVAtlas",
+    ],
+    fields: ["Prénom", "Description des images", "Supports autorisés"],
+    attachments: ["Aperçu des images concernées"],
+    expectedAction: "Donner ou refuser explicitement l’autorisation par écrit.",
+  },
+  {
+    id: 34,
+    slug: "annulation-commande-client",
+    stage: "commande",
+    name: "Annulation d’une commande par le client",
+    whenToUse: "Après réception d’une demande d’annulation.",
+    subject: "Demande d’annulation reçue — commande [Référence]",
+    eyebrow: "Commande · Demande d’annulation",
+    title: "Votre demande a bien été enregistrée.",
+    introduction: "Nous allons vérifier les conditions applicables avant de vous transmettre une réponse officielle.",
+    paragraphs: [
+      "Bonjour [Prénom],",
+      "Nous confirmons la réception de votre demande d’annulation concernant la commande [Référence].",
+      "Les conditions prévues au devis et les étapes déjà engagées vont être vérifiées. Cette confirmation de réception ne vaut pas promesse automatique de remboursement.",
+      "Nous vous transmettrons un retour officiel une fois l’examen terminé.\nL’équipe EVAtlas",
+    ],
+    fields: ["Prénom", "Référence"],
+    attachments: [],
+    expectedAction: "Attendre le retour officiel et fournir tout justificatif demandé.",
+  },
+  {
+    id: 35,
+    slug: "cloture-dossier",
+    stage: "suivi",
+    name: "Confirmation de clôture du dossier",
+    whenToUse: "Quand un projet est officiellement clôturé, définitivement ou temporairement.",
+    subject: "Clôture de votre dossier EVAtlas [Référence du dossier]",
+    eyebrow: "Dossier · Clôture",
+    title: "Votre dossier a été clôturé.",
+    introduction: "Cette confirmation récapitule la raison et la nature de la clôture.",
+    paragraphs: [
+      "Bonjour [Prénom],",
+      "Nous vous informons que le dossier [Référence du dossier] est clôturé pour la raison suivante : [Raison].",
+      "Type de clôture : [Définitive ou temporaire]. Démarches restantes : [Démarches restantes ou “Aucune”].",
+      "Merci pour les échanges avec notre équipe.\nL’équipe EVAtlas",
+    ],
+    fields: ["Prénom", "Référence du dossier", "Raison", "Définitive ou temporaire", "Démarches restantes ou “Aucune”"],
+    attachments: ["Document de clôture, si applicable"],
+    expectedAction: "Effectuer uniquement les démarches restantes indiquées.",
+  },
+  {
+    id: 36,
+    slug: "reactivation-ancien-projet",
+    stage: "suivi",
+    name: "Réactivation d’un ancien projet",
+    whenToUse: "Pour reprendre contact au sujet d’un projet précédemment suspendu.",
+    subject: "Votre ancien projet de recharge EVAtlas",
+    eyebrow: "Projet suspendu · Mise à jour",
+    title: "Votre projet est-il de nouveau d’actualité ?",
+    introduction: "Nous pouvons reprendre l’étude à partir de votre demande initiale et actualiser les éléments nécessaires.",
+    paragraphs: [
+      "Bonjour [Prénom],",
+      "Vous nous aviez contactés le [Date de la demande initiale] au sujet de [Rappel de la demande]. Votre projet est-il toujours d’actualité ?",
+      "Si vous souhaitez le réactiver, nous pourrons mettre à jour l’étude et le devis. Les prix, conditions et disponibilités devront être vérifiés au moment de la reprise.",
+      "Répondez simplement à cet e-mail pour nous indiquer votre situation actuelle.\nL’équipe EVAtlas",
+    ],
+    fields: ["Prénom", "Date de la demande initiale", "Rappel de la demande"],
+    attachments: ["Ancien devis, si utile"],
+    expectedAction: "Confirmer si le projet doit être réactivé.",
+    ctas: [
+      { label: "Revoir la MaxiCharger", href: EMAIL_PRODUCT_URL },
+      { label: "Demander une nouvelle étude", href: EMAIL_QUOTE_URL, variant: "secondary" },
+    ],
+  },
+];
+
+export const commercialEmailTemplates = templates.sort((a, b) => a.id - b.id);
+
+export function getCommercialEmailTemplate(idOrSlug: number | string): CommercialEmailTemplate | undefined {
+  return commercialEmailTemplates.find((template) =>
+    typeof idOrSlug === "number" ? template.id === idOrSlug : template.slug === idOrSlug,
+  );
+}
+
+function replaceFields(value: string, variables: Record<string, string>): string {
+  return value.replace(/\[([^\]]+)\]/gu, (match, field: string) => variables[field] ?? match);
+}
+
+function renderParagraph(value: string): string {
+  return `<p style="color:#56675a;font-family:Arial,Helvetica,sans-serif;font-size:15px;line-height:24px;margin:0 0 16px">${escapeHtml(value).replace(/\n/gu, "<br>")}</p>`;
+}
+
+function renderBullets(values: string[]): string {
+  if (values.length === 0) return "";
+  const items = values
+    .map((value) => `<li style="color:#405746;font-family:Arial,Helvetica,sans-serif;font-size:14px;line-height:22px;margin:0 0 8px">${escapeHtml(value)}</li>`)
+    .join("");
+  return `<div style="background:#f7f9f4;border:1px solid #dce4d8;border-radius:18px;margin:4px 0 20px;padding:18px 22px"><ul style="margin:0;padding-left:20px">${items}</ul></div>`;
+}
+
+export function renderCommercialEmailTemplate(
+  idOrSlug: number | string,
+  variables: Record<string, string> = {},
+): RenderedCommercialEmail {
+  const template = getCommercialEmailTemplate(idOrSlug);
+  if (!template) throw new Error(`Unknown EVAtlas commercial email template: ${idOrSlug}`);
+
+  const subject = replaceFields(template.subject, variables);
+  const title = replaceFields(template.title, variables);
+  const introduction = replaceFields(template.introduction, variables);
+  const paragraphs = template.paragraphs.map((paragraph) => replaceFields(paragraph, variables));
+  const bullets = (template.bullets || []).map((bullet) => replaceFields(bullet, variables));
+  const action = replaceFields(template.expectedAction, variables);
+  const ctas = (template.ctas || []).map((cta) => ({
+    ...cta,
+    label: replaceFields(cta.label, variables),
+    href: replaceFields(cta.href, variables),
+  }));
+
+  const actionCard = detailCard("Action attendue", [["Prochaine action", action]]);
+  const buttons = ctas.length
+    ? `<table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" style="border-collapse:collapse;margin-top:20px"><tr>${ctas
+        .map((cta, index) => `<td class="email-action-cell" style="padding:0 ${index === ctas.length - 1 ? "0" : "8px"} 0 0">${emailButton(cta.label, cta.href, cta.variant)}</td>`)
+        .join("")}</tr></table>`
+    : "";
+
+  const content = `${paragraphs.map(renderParagraph).join("")}${renderBullets(bullets)}${actionCard}${buttons}`;
+  const text = [
+    ...paragraphs,
+    ...(bullets.length ? ["", ...bullets.map((bullet) => `• ${bullet}`)] : []),
+    "",
+    `Action attendue : ${action}`,
+  ].join("\n");
+
+  return {
+    template,
+    subject,
+    text,
+    html: emailLayout({
+      preheader: introduction,
+      eyebrow: replaceFields(template.eyebrow, variables),
+      title,
+      introduction,
+      content,
+      footerNote: "EVAtlas · Communication commerciale et suivi de votre projet de recharge au Maroc.",
+    }),
+  };
+}
