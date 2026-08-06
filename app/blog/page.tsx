@@ -13,7 +13,7 @@ const blogUrl = absolutePageUrl("/blog/");
 export const metadata: Metadata = {
   title: "Guides sur la recharge électrique au Maroc",
   description:
-    "Guides EVAtlas sur la recharge électrique au Maroc : coût en dirhams, achat d’occasion, chaleur, installation, puissance et borne connectée.",
+    "Guides EVAtlas sur la recharge au Maroc : prise domestique, monophasé ou triphasé, batterie, coût, installation et borne connectée.",
   alternates: { canonical: "/blog/" },
   robots: { index: true, follow: true },
   openGraph: {
@@ -22,7 +22,7 @@ export const metadata: Metadata = {
     url: "/blog/",
     title: "Guides sur la recharge électrique au Maroc | EVAtlas",
     description:
-      "Coût de recharge, véhicule électrique d’occasion, forte chaleur, installation et puissance : des réponses pratiques adaptées au Maroc.",
+      "Prise domestique, monophasé ou triphasé, santé de batterie, coût et installation : des réponses pratiques adaptées au Maroc.",
     siteName: "EVAtlas",
     images: [
       {
@@ -37,7 +37,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Guides sur la recharge électrique au Maroc | EVAtlas",
     description:
-      "Coût, achat d’occasion, chaleur, puissance et installation de recharge expliqués clairement pour le Maroc.",
+      "Prise domestique, phases, batterie, coût et installation expliqués clairement pour le Maroc.",
     images: [blogPosts[0].image],
   },
 };
@@ -205,8 +205,8 @@ export default function BlogPage() {
                 <h2 id="articles-title">Approfondir chaque décision.</h2>
               </div>
               <p>
-                Budget, achat d’occasion, climat, installation et mobilité :
-                choisissez le sujet qui correspond à votre projet.
+                Prise domestique, réseau électrique, batterie, budget et
+                mobilité : choisissez le sujet qui correspond à votre projet.
               </p>
             </div>
             <div className="blog-grid">

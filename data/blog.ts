@@ -56,6 +56,7 @@ const newPublicationDate = "2026-07-29";
 const latestPublicationDate = "2026-07-31";
 const augustPublicationDate = "2026-08-03";
 const todayPublicationDate = "2026-08-05";
+const latestBlogPublicationDate = "2026-08-06";
 
 export const blogPosts: BlogPost[] = [
   {
@@ -3106,6 +3107,495 @@ export const blogPosts: BlogPost[] = [
       title: "Programmez une recharge adaptée à votre rythme.",
       text: "Découvrez la MaxiCharger et préparez une implantation qui tient compte du véhicule, de l’exposition et des conditions réelles de votre stationnement.",
       label: "Explorer la MaxiCharger",
+    },
+  },
+  {
+    slug: "recharge-voiture-electrique-prise-domestique-maroc",
+    title: "Recharger une voiture électrique sur une prise domestique au Maroc",
+    seoTitle: "Recharge sur prise domestique au Maroc : le guide",
+    description:
+      "Prise domestique, câble Mode 2 ou borne murale : découvrez comment évaluer une recharge de voiture électrique à domicile au Maroc sans improviser.",
+    excerpt:
+      "Une prise qui fonctionne pour un appareil ordinaire n’est pas automatiquement adaptée à une recharge prolongée. Voici les vérifications qui font la différence.",
+    category: "Recharge à domicile",
+    readingTime: 11,
+    datePublished: latestBlogPublicationDate,
+    dateModified: latestBlogPublicationDate,
+    image: "/images/blog/recharge-voiture-electrique-prise-domestique-maroc.jpg",
+    imageAlt:
+      "Électricien contrôlant une prise domestique et un câble de recharge près d’une voiture électrique au Maroc",
+    keywords: [
+      "recharge voiture électrique prise domestique Maroc",
+      "prise maison voiture électrique",
+      "câble Mode 2 Maroc",
+      "borne ou prise domestique",
+      "recharger voiture électrique à domicile Maroc",
+    ],
+    intro: [
+      "Brancher une voiture électrique sur une prise domestique paraît simple, mais la durée change la nature de l’usage. Une recharge peut solliciter le circuit pendant plusieurs heures, bien plus longtemps qu’un appareil utilisé quelques minutes.",
+      "La bonne question n’est donc pas seulement de savoir si la fiche entre dans la prise. Il faut vérifier l’état de la prise, le circuit qui l’alimente, la terre, les protections, le câble fourni par le constructeur et l’énergie que vous devez récupérer avant le prochain départ.",
+    ],
+    quickAnswer:
+      "Une prise domestique ne doit être utilisée que si le constructeur du véhicule l’autorise avec un câble Mode 2 compatible et si un professionnel a confirmé que la prise, la terre, le circuit et les protections conviennent à cet usage prolongé. N’utilisez ni rallonge, ni multiprise, ni adaptateur improvisé. Pour une recharge régulière, une borne sur circuit dédié apporte généralement plus de puissance, de contrôle et de lisibilité.",
+    sections: [
+      {
+        id: "prise-ne-suffit-pas",
+        title: "Pourquoi une prise qui fonctionne ne suffit pas comme diagnostic",
+        paragraphs: [
+          "Une prise peut alimenter correctement une lampe ou un petit appareil tout en présentant un serrage, une usure ou un circuit partagé peu adapté à une charge continue. L’échauffement dépend du courant, de la durée, des connexions et de l’état réel de l’installation.",
+          "L’apparence extérieure ne permet pas de confirmer la section des conducteurs, la qualité de la terre ou la protection en amont. Avant une utilisation répétée, le contrôle doit donc remonter jusqu’au tableau électrique.",
+        ],
+        listTitle: "Ce qu’un contrôle doit examiner",
+        bullets: [
+          "État mécanique de la prise et absence de jeu ou de trace thermique",
+          "Présence et continuité de la mise à la terre",
+          "Circuit dédié ou usages déjà raccordés sur la même ligne",
+          "Conducteurs, connexions et protection correspondant au circuit",
+          "Distance entre la prise, le véhicule et l’emplacement du boîtier de contrôle",
+        ],
+        note: {
+          title: "Pas de test improvisé",
+          text: "L’absence de coupure lors d’une première session ne prouve pas que le circuit est adapté à un usage régulier. Une vérification électrique reste nécessaire.",
+        },
+      },
+      {
+        id: "cable-mode-2",
+        title: "Comprendre le rôle du câble Mode 2",
+        paragraphs: [
+          "Le câble Mode 2 comporte un dispositif de contrôle et de protection intégré au câble. Il communique avec le véhicule et encadre le courant selon sa conception. Tous les câbles portables ne sont cependant pas interchangeables.",
+          "Utilisez la référence prévue ou approuvée pour le véhicule et respectez son manuel. Le boîtier doit rester soutenu, ventilé et protégé conformément à ses instructions, sans tirer sur la prise ni reposer dans une zone exposée à l’eau ou au passage.",
+        ],
+        listTitle: "Avant de brancher",
+        ordered: true,
+        bullets: [
+          "Identifier le câble exact et sa valeur de courant autorisée",
+          "Lire les limites d’usage indiquées par le constructeur",
+          "Vérifier que la fiche, le câble et le boîtier sont intacts",
+          "Positionner le câble sans traction, pincement ni risque de chute",
+        ],
+      },
+      {
+        id: "interdits-rallonge-multiprise",
+        title: "Écarter les rallonges, multiprises et adaptateurs",
+        paragraphs: [
+          "Une rallonge ajoute des connexions, une longueur de conducteur et des points d’échauffement potentiels. Une multiprise peut en plus alimenter plusieurs appareils sur un ensemble qui n’a pas été prévu pour la recharge d’un véhicule.",
+          "Même si un adaptateur rend mécaniquement les fiches compatibles, il ne transforme pas le circuit ni ses protections. Le raccordement doit être direct et conforme aux instructions du câble et du véhicule.",
+        ],
+        table: {
+          caption: "Solutions à ne pas confondre",
+          headers: ["Équipement", "Fonction", "Décision prudente"],
+          rows: [
+            ["Câble Mode 2 compatible", "Recharge portable contrôlée", "Après validation de la prise et du circuit"],
+            ["Rallonge", "Allonger une alimentation", "Ne pas utiliser pour la recharge du véhicule"],
+            ["Multiprise", "Partager une prise", "Ne pas utiliser"],
+            ["Adaptateur non approuvé", "Modifier la forme du raccord", "Ne pas improviser"],
+          ],
+        },
+      },
+      {
+        id: "temps-recharge-prise",
+        title: "Calculer si la prise répond réellement à votre mobilité",
+        paragraphs: [
+          "Une puissance plus faible peut suffire si la voiture récupère peu d’énergie chaque nuit et reste stationnée longtemps. Elle devient contraignante lorsque la batterie est grande, que les trajets sont quotidiens ou que la fenêtre de stationnement est courte.",
+          "Estimez les kilowattheures à récupérer plutôt qu’une recharge de 0 à 100 %. Divisez cette énergie par la puissance réellement acceptée, puis ajoutez une marge pour les pertes et les variations de puissance.",
+        ],
+        listTitle: "Données utiles au calcul",
+        bullets: [
+          "Kilomètres parcourus pendant une journée habituelle",
+          "Consommation moyenne du véhicule en kWh/100 km",
+          "Temps de stationnement disponible à domicile",
+          "Puissance autorisée par le câble et le circuit validé",
+          "Marge nécessaire pour les trajets imprévus",
+        ],
+      },
+      {
+        id: "quand-choisir-borne",
+        title: "Savoir quand passer à une borne murale",
+        paragraphs: [
+          "Une borne Mode 3 est conçue pour la recharge régulière et s’installe sur un circuit étudié pour cet usage. Elle peut offrir une puissance supérieure, une programmation, un historique des sessions et un pilotage de la puissance disponible selon l’équipement retenu.",
+          "Le passage à une borne ne signifie pas choisir automatiquement 22 kW. La puissance utile dépend du véhicule, du réseau présent au bâtiment, du tableau et du temps dont vous disposez réellement.",
+        ],
+        listTitle: "La borne devient particulièrement pertinente si",
+        bullets: [
+          "La recharge est quotidienne ou presque",
+          "La prise disponible est ancienne, éloignée ou sur un circuit partagé",
+          "Vous devez récupérer davantage d’énergie pendant la nuit",
+          "Vous souhaitez programmer, mesurer ou sécuriser l’accès",
+          "Plusieurs gros usages électriques fonctionnent simultanément",
+        ],
+      },
+      {
+        id: "signes-arret",
+        title: "Reconnaître les signes qui imposent l’arrêt",
+        paragraphs: [
+          "Arrêtez la session si la prise ou la fiche devient anormalement chaude, si une odeur apparaît, si le plastique change d’aspect, si le boîtier signale une erreur répétée ou si les protections déclenchent. Ne démontez rien et ne relancez pas plusieurs fois pour contourner le symptôme.",
+          "Conservez le message affiché, l’heure et les conditions de la session, puis faites contrôler l’installation et le matériel. Une borne ne doit pas non plus être utilisée lorsqu’un câble, un connecteur ou son boîtier est endommagé.",
+        ],
+        note: {
+          title: "Sécurité prioritaire",
+          text: "En cas d’échauffement, d’odeur, de déformation ou de défaut électrique, débranchez uniquement si cela peut être fait sans danger et contactez un professionnel.",
+        },
+      },
+    ],
+    faq: [
+      {
+        question: "Peut-on recharger tous les jours sur une prise domestique ?",
+        answer:
+          "Uniquement si le constructeur autorise cette méthode avec un câble compatible et si un professionnel confirme que la prise, le circuit, la terre et les protections conviennent. Pour un usage régulier, une borne dédiée est généralement plus adaptée.",
+      },
+      {
+        question: "Peut-on utiliser une rallonge pour atteindre la voiture ?",
+        answer:
+          "Non. Une rallonge ou une multiprise ajoute des connexions et des risques d’échauffement. Le câble de recharge doit être raccordé directement selon les instructions de son fabricant.",
+      },
+      {
+        question: "Pourquoi la recharge sur prise est-elle plus lente ?",
+        answer:
+          "Le courant autorisé est généralement plus faible que celui d’une borne dédiée. Le temps dépend également de l’énergie à récupérer et de la puissance acceptée par le véhicule.",
+      },
+      {
+        question: "Une borne de 22 kW est-elle toujours la meilleure solution ?",
+        answer:
+          "Non. Le véhicule, le réseau monophasé ou triphasé, le tableau et le besoin quotidien déterminent la puissance utile. Une étude évite de payer pour une capacité inexploitable.",
+      },
+    ],
+    relatedSlugs: [
+      "installer-borne-recharge-maison-maroc",
+      "borne-recharge-7-11-22-kw",
+      "entretien-borne-recharge-maintenance",
+    ],
+    productCta: {
+      eyebrow: "Recharge régulière",
+      title: "Passez d’une prise vérifiée à une solution réellement dimensionnée.",
+      text: "Découvrez la MaxiCharger et demandez une étude de votre tableau, de votre stationnement et de l’énergie à récupérer chaque nuit.",
+      label: "Découvrir la MaxiCharger",
+    },
+  },
+  {
+    slug: "borne-recharge-monophase-triphase-maroc",
+    title: "Borne de recharge monophasée ou triphasée au Maroc : que choisir ?",
+    seoTitle: "Borne monophasée ou triphasée au Maroc : choisir",
+    description:
+      "Monophasé, triphasé, 7,4, 11 ou 22 kW : comprenez le lien entre réseau, véhicule et tableau avant d’installer une borne au Maroc.",
+    excerpt:
+      "Le nombre de phases ne se choisit pas sur la borne seule. Il faut faire correspondre l’alimentation du site, le chargeur embarqué et le besoin quotidien.",
+    category: "Installation électrique",
+    readingTime: 11,
+    datePublished: latestBlogPublicationDate,
+    dateModified: latestBlogPublicationDate,
+    image: "/images/blog/borne-recharge-monophase-triphase-maroc.jpg",
+    imageAlt:
+      "Électricien étudiant un tableau triphasé, une borne murale et une voiture électrique dans une villa marocaine",
+    keywords: [
+      "borne recharge monophasé triphasé Maroc",
+      "borne 7,4 kW monophasé",
+      "borne 11 kW triphasé",
+      "borne 22 kW triphasé Maroc",
+      "installation électrique borne recharge",
+    ],
+    intro: [
+      "Une borne annoncée à 22 kW ne délivre cette puissance que si le site, le raccordement, la configuration de la borne et le chargeur embarqué du véhicule le permettent simultanément. Une seule limite suffit à réduire la puissance réelle.",
+      "Le choix monophasé ou triphasé doit donc commencer par un relevé de l’installation existante et des caractéristiques exactes du véhicule. Il ne s’agit pas de choisir le chiffre le plus élevé, mais la configuration qui récupère l’énergie nécessaire sans déséquilibrer le bâtiment.",
+    ],
+    quickAnswer:
+      "Une borne monophasée peut atteindre couramment 7,4 kW avec une configuration adaptée, tandis que 11 et 22 kW utilisent généralement une alimentation triphasée. Mais le véhicule doit lui aussi accepter cette puissance en courant alternatif. Si votre voiture est limitée à 7,4 ou 11 kW AC, une borne 22 kW ne la fera pas charger au-delà de cette limite.",
+    sections: [
+      {
+        id: "difference-mono-tri",
+        title: "Comprendre simplement la différence entre monophasé et triphasé",
+        paragraphs: [
+          "En monophasé, l’énergie est distribuée par une phase et un neutre. En triphasé, trois phases permettent de répartir la puissance. Cette architecture influence la puissance accessible à la borne et l’équilibre global des autres usages du bâtiment.",
+          "La présence de plusieurs rangées ou conducteurs dans un tableau ne suffit pas à identifier le régime. Le contrat, l’arrivée, les protections et les mesures sur place doivent être vérifiés par un professionnel.",
+        ],
+        table: {
+          caption: "Repères techniques courants en recharge AC",
+          headers: ["Configuration", "Puissance de borne courante", "Point à confirmer"],
+          rows: [
+            ["Monophasé", "Jusqu’à 7,4 kW selon l’équipement", "Courant disponible et véhicule"],
+            ["Triphasé", "11 kW selon l’équipement", "Acceptation AC triphasée du véhicule"],
+            ["Triphasé", "Jusqu’à 22 kW selon l’équipement", "Site, borne et véhicule compatibles"],
+          ],
+        },
+        note: {
+          title: "Des repères, pas une validation",
+          text: "Ces puissances décrivent des configurations courantes. La référence de la borne, le réseau du site et les prescriptions locales doivent être contrôlés avant travaux.",
+        },
+      },
+      {
+        id: "chargeur-embarque",
+        title: "Vérifier la limite du chargeur embarqué du véhicule",
+        paragraphs: [
+          "Lors d’une recharge AC, la borne fournit le courant disponible, mais le chargeur embarqué du véhicule le convertit pour la batterie. Sa limite peut être différente selon le modèle, l’année, la batterie et les options.",
+          "Une voiture acceptant 11 kW AC ne dépassera pas cette valeur sur une borne 22 kW. Certains véhicules exploitent une forte puissance en recharge rapide DC tout en restant plus limités en AC à domicile : ces deux chiffres ne doivent pas être confondus.",
+        ],
+        listTitle: "Informations à relever sur la voiture",
+        bullets: [
+          "Modèle, année et version exacte",
+          "Puissance maximale de recharge AC",
+          "Compatibilité monophasée et triphasée",
+          "Capacité utile de la batterie",
+          "Énergie habituellement récupérée pendant une nuit",
+        ],
+      },
+      {
+        id: "diagnostic-tableau",
+        title: "Lire le tableau électrique avant de parler de puissance",
+        paragraphs: [
+          "L’étude vérifie l’arrivée électrique, les protections, la terre, la capacité disponible et les autres charges importantes. Climatisation, chauffe-eau, pompe, cuisine ou équipements professionnels peuvent fonctionner pendant la recharge.",
+          "Le technicien examine aussi le cheminement jusqu’à la place de stationnement. La distance, la pose, l’environnement et la section des conducteurs influencent le projet autant que le chiffre affiché sur la borne.",
+        ],
+        listTitle: "Le relevé utile pour un devis",
+        ordered: true,
+        bullets: [
+          "Photographier le tableau fermé et ses informations lisibles",
+          "Identifier le type d’alimentation et la puissance disponible",
+          "Lister les appareils susceptibles de fonctionner en même temps",
+          "Mesurer approximativement le parcours jusqu’au stationnement",
+          "Préciser si la borne sera intérieure, extérieure, murale ou sur pied",
+        ],
+      },
+      {
+        id: "choisir-puissance-utile",
+        title: "Dimensionner selon l’énergie à récupérer, pas selon une recharge complète",
+        paragraphs: [
+          "La plupart des conducteurs ne reviennent pas chaque soir avec une batterie vide. Le besoin quotidien correspond aux kilomètres parcourus et à la consommation du véhicule. Cette énergie, divisée par le temps de stationnement, donne un premier ordre de grandeur de puissance utile.",
+          "Une configuration de 7,4 kW peut ainsi couvrir de nombreux usages résidentiels, tandis que 11 ou 22 kW devient pertinent pour certains véhicules, de courtes fenêtres de recharge, plusieurs utilisateurs ou un besoin professionnel. Le contexte décide.",
+        ],
+        table: {
+          caption: "Questions qui orientent la configuration",
+          headers: ["Question", "Impact sur le choix", "Erreur à éviter"],
+          rows: [
+            ["Combien de kWh récupérer ?", "Détermine le besoin réel", "Calculer systématiquement de 0 à 100 %"],
+            ["Combien d’heures disponibles ?", "Relie énergie et puissance", "Ignorer le stationnement nocturne"],
+            ["Que peut accepter la voiture ?", "Fixe une limite AC", "Confondre AC et recharge rapide DC"],
+            ["Que peut fournir le site ?", "Cadre l’installation", "Choisir la borne avant le diagnostic"],
+          ],
+        },
+      },
+      {
+        id: "equilibrage-pilotage",
+        title: "Éviter le déclenchement grâce au pilotage de puissance",
+        paragraphs: [
+          "Une gestion dynamique peut adapter la recharge à la puissance momentanément disponible lorsque la borne et l’installation le permettent. La voiture récupère davantage quand le bâtiment consomme peu et réduit sa demande lorsque d’autres usages augmentent.",
+          "Ce pilotage ne remplace ni les protections ni le dimensionnement du circuit. Il constitue une couche de gestion qui doit être prévue, configurée et testée avec le matériel compatible.",
+        ],
+        listTitle: "Ce que le pilotage peut apporter",
+        bullets: [
+          "Limiter le risque de dépasser la puissance disponible",
+          "Faire cohabiter recharge et usages du logement",
+          "Éviter certains surdimensionnements inutiles",
+          "Préparer une évolution vers plusieurs points de charge",
+        ],
+      },
+      {
+        id: "faut-il-passer-triphase",
+        title: "Décider si un passage au triphasé est réellement justifié",
+        paragraphs: [
+          "Modifier l’alimentation uniquement pour atteindre le maximum de la borne n’est pas toujours rentable ni nécessaire. Il faut comparer le gain de temps, la limite du véhicule, la fréquence des recharges et les travaux associés.",
+          "Si une recharge nocturne en monophasé couvre déjà l’usage quotidien, le bénéfice du triphasé peut être faible. À l’inverse, un site professionnel, plusieurs véhicules ou une voiture compatible avec une fenêtre courte peuvent justifier une étude plus poussée.",
+        ],
+        note: {
+          title: "La meilleure puissance est celle que vous exploitez",
+          text: "Une borne plus puissante ne réduit le temps que si l’installation et le véhicule peuvent réellement fournir et accepter cette puissance.",
+        },
+      },
+    ],
+    faq: [
+      {
+        question: "Faut-il du triphasé pour installer une borne de recharge ?",
+        answer:
+          "Non. Une borne peut fonctionner en monophasé, notamment pour des puissances allant couramment jusqu’à 7,4 kW selon l’équipement. Le triphasé est généralement utilisé pour 11 ou 22 kW, sous réserve de compatibilité du site et du véhicule.",
+      },
+      {
+        question: "Une borne 22 kW charge-t-elle toutes les voitures à 22 kW ?",
+        answer:
+          "Non. Le chargeur embarqué de la voiture fixe sa puissance AC maximale. Une voiture limitée à 11 kW chargera au maximum à cette valeur même sur une borne capable de délivrer 22 kW.",
+      },
+      {
+        question: "Comment savoir si ma maison est en monophasé ou triphasé ?",
+        answer:
+          "Consultez les informations du contrat et faites vérifier l’arrivée et le tableau par un professionnel. L’apparence du tableau seule peut être trompeuse.",
+      },
+      {
+        question: "Le délestage permet-il d’installer n’importe quelle puissance ?",
+        answer:
+          "Non. Le pilotage aide à répartir la puissance disponible, mais le circuit, les protections, les conducteurs et la borne doivent toujours être correctement dimensionnés.",
+      },
+    ],
+    relatedSlugs: [
+      "borne-recharge-7-11-22-kw",
+      "borne-recharge-intelligente-delestage",
+      "temps-recharge-voiture-electrique",
+    ],
+    productCta: {
+      eyebrow: "Puissance réellement utile",
+      title: "Configurez la MaxiCharger selon votre réseau et votre véhicule.",
+      text: "Transmettez les caractéristiques du véhicule et du tableau pour obtenir une recommandation monophasée ou triphasée fondée sur votre usage.",
+      label: "Configurer la MaxiCharger",
+    },
+  },
+  {
+    slug: "preserver-batterie-voiture-electrique-maroc",
+    title: "Comment préserver la batterie d’une voiture électrique au Maroc ?",
+    seoTitle: "Préserver la batterie d’une voiture électrique au Maroc",
+    description:
+      "Limite de charge, chaleur, recharge rapide et stationnement : adoptez une routine adaptée pour préserver la batterie de votre voiture électrique au Maroc.",
+    excerpt:
+      "La batterie vieillit naturellement, mais une routine cohérente peut éviter les contraintes inutiles sans transformer chaque recharge en calcul compliqué.",
+    category: "Batterie et autonomie",
+    readingTime: 12,
+    datePublished: latestBlogPublicationDate,
+    dateModified: latestBlogPublicationDate,
+    image: "/images/blog/preserver-batterie-voiture-electrique-maroc.jpg",
+    imageAlt:
+      "Voiture électrique rechargeant calmement sous un carport au lever du jour sur la côte marocaine",
+    keywords: [
+      "préserver batterie voiture électrique Maroc",
+      "durée de vie batterie voiture électrique",
+      "limite charge batterie 80 pour cent",
+      "recharge rapide dégradation batterie",
+      "santé batterie voiture électrique",
+    ],
+    intro: [
+      "Une batterie de traction perd progressivement une partie de sa capacité avec le temps et les cycles d’utilisation. Cette évolution est normale. La vitesse de vieillissement dépend toutefois de la chimie, de la gestion thermique, du climat, de l’usage et des recommandations propres au véhicule.",
+      "Le meilleur conseil n’est pas une limite universelle applicable à toutes les voitures. Il consiste à utiliser les réglages recommandés par le constructeur, à éviter les situations extrêmes inutiles et à organiser la recharge autour des trajets réels.",
+    ],
+    quickAnswer:
+      "Suivez la limite quotidienne indiquée par votre véhicule, rechargez régulièrement sans attendre systématiquement un niveau très bas, évitez de laisser longtemps la batterie presque vide ou complètement chargée lorsque ce n’est pas nécessaire, privilégiez la recharge AC pour la routine et réservez la recharge rapide DC aux trajets qui l’exigent. Les batteries LFP et les autres chimies peuvent recevoir des consignes différentes : l’écran et le manuel de votre version restent prioritaires.",
+    sections: [
+      {
+        id: "vieillissement-batterie",
+        title: "Comprendre les deux formes de vieillissement de la batterie",
+        paragraphs: [
+          "Le vieillissement calendaire se produit avec le temps, même lorsque la voiture roule peu. Le vieillissement lié aux cycles dépend de l’énergie chargée et déchargée au fil de l’usage. Température, niveaux extrêmes et puissance de recharge peuvent influencer ces mécanismes.",
+          "Il n’est donc pas pertinent de juger l’état d’une batterie avec le seul kilométrage. L’âge, l’historique, le climat, les périodes d’immobilisation et les données de diagnostic doivent être considérés ensemble.",
+        ],
+        table: {
+          caption: "Deux mécanismes à distinguer",
+          headers: ["Mécanisme", "Ce qui le caractérise", "Réflexe utile"],
+          rows: [
+            ["Vieillissement calendaire", "Évolution avec le temps", "Éviter une immobilisation prolongée à un niveau extrême"],
+            ["Vieillissement par cyclage", "Énergie chargée et utilisée", "Adopter une routine régulière adaptée aux trajets"],
+          ],
+        },
+      },
+      {
+        id: "limite-quotidienne",
+        title: "Utiliser la limite quotidienne prévue par le constructeur",
+        paragraphs: [
+          "De nombreux véhicules proposent une limite quotidienne et une limite de voyage. La valeur recommandée peut dépendre de la chimie de batterie et de la version logicielle. Certaines batteries LFP reçoivent notamment des consignes différentes de celles d’autres chimies.",
+          "Réglez la voiture ou son application selon la recommandation affichée, puis augmentez le niveau avant un long trajet lorsque cela est nécessaire. Évitez de copier la configuration d’un autre modèle sans vérifier votre propre manuel.",
+        ],
+        listTitle: "Une méthode simple",
+        ordered: true,
+        bullets: [
+          "Identifier la chimie ou suivre directement l’indication du véhicule",
+          "Définir la limite quotidienne recommandée",
+          "Programmer un niveau supérieur uniquement quand le trajet l’exige",
+          "Prévoir une fin de charge proche du départ lorsque cette fonction existe",
+        ],
+        note: {
+          title: "La règle des 80 % n’est pas universelle",
+          text: "Certains véhicules recommandent environ 80 % au quotidien, d’autres affichent une consigne différente. La recommandation du constructeur de la version exacte prime.",
+        },
+      },
+      {
+        id: "eviter-niveaux-extremes",
+        title: "Ne pas attendre systématiquement 0 % pour recharger",
+        paragraphs: [
+          "Une batterie lithium-ion n’a pas besoin d’être presque vide avant chaque branchement. Des recharges partielles et régulières peuvent être plus simples à intégrer au quotidien et évitent de dépendre d’une longue session au dernier moment.",
+          "Le niveau affiché contient généralement des marges gérées par le véhicule, mais il reste prudent de ne pas planifier une arrivée répétée à 0 %. Gardez une réserve adaptée au trajet, à la circulation et à l’accès à une solution de recharge.",
+        ],
+        listTitle: "Situations à éviter lorsque ce n’est pas nécessaire",
+        bullets: [
+          "Laisser le véhicule plusieurs jours presque vide",
+          "Maintenir longtemps un niveau très élevé sans trajet prévu",
+          "Multiplier les décharges profondes pour prétendument calibrer la batterie",
+          "Ignorer les alertes ou recommandations affichées par le véhicule",
+        ],
+      },
+      {
+        id: "ac-ou-recharge-rapide",
+        title: "Choisir la recharge AC pour la routine et le DC pour le voyage",
+        paragraphs: [
+          "La recharge à domicile en courant alternatif utilise le chargeur embarqué et s’intègre naturellement à une longue période de stationnement. Elle permet de récupérer l’énergie quotidienne sans rechercher la puissance maximale.",
+          "La recharge rapide en courant continu est précieuse sur les longs trajets. Elle n’a pas besoin d’être bannie, mais son usage fréquent et à forte puissance peut solliciter davantage la gestion thermique. Utilisez chaque solution pour le besoin auquel elle répond.",
+        ],
+        table: {
+          caption: "Choisir selon le contexte",
+          headers: ["Situation", "Solution logique", "Objectif"],
+          rows: [
+            ["Nuit à domicile", "Recharge AC dimensionnée", "Récupérer l’usage quotidien"],
+            ["Long trajet", "Recharge rapide DC compatible", "Réduire l’arrêt nécessaire"],
+            ["Stationnement prolongé", "Programmation et limite adaptées", "Éviter un niveau extrême inutile"],
+          ],
+        },
+      },
+      {
+        id: "chaleur-maroc",
+        title: "Tenir compte de la chaleur et du stationnement au Maroc",
+        paragraphs: [
+          "La batterie dispose de sa propre gestion thermique, mais un véhicule immobilisé en plein soleil accumule aussi de la chaleur dans l’habitacle et autour de ses composants. Un stationnement ombragé et ventilé est préférable lorsqu’il est disponible.",
+          "Programmer la recharge pendant une période plus fraîche peut améliorer le confort d’usage, surtout si le véhicule reste branché toute la nuit. Laissez toujours la voiture et la borne gérer leurs protections et ne tentez pas de contourner une réduction de puissance ou une alerte.",
+        ],
+        listTitle: "Repères pour l’été",
+        bullets: [
+          "Privilégier l’ombre sans enfermer la borne",
+          "Utiliser la programmation lorsque le véhicule reste stationné longtemps",
+          "Éviter une immobilisation prolongée avec un niveau extrême",
+          "Suivre les alertes de température et les consignes du manuel",
+          "Faire contrôler toute interruption ou surchauffe répétée",
+        ],
+      },
+      {
+        id: "suivre-sante-batterie",
+        title: "Suivre la santé de la batterie sans interpréter chaque variation comme une panne",
+        paragraphs: [
+          "L’autonomie affichée varie avec la conduite récente, la vitesse, le relief, la climatisation et la température. Une baisse ponctuelle ne mesure donc pas directement la capacité restante de la batterie.",
+          "Pour suivre une tendance, comparez des consommations et des conditions similaires. Si l’autonomie réelle chute durablement, si la recharge se comporte de manière inhabituelle ou si une alerte apparaît, demandez un diagnostic compatible avec le véhicule et consultez les conditions de garantie.",
+        ],
+        listTitle: "Informations à conserver",
+        bullets: [
+          "Historique d’entretien et mises à jour",
+          "Rapports de diagnostic ou de santé de batterie disponibles",
+          "Consommation moyenne sur des trajets comparables",
+          "Alertes, dates et conditions dans lesquelles elles apparaissent",
+          "Conditions précises de la garantie batterie",
+        ],
+      },
+    ],
+    faq: [
+      {
+        question: "Faut-il toujours charger une voiture électrique à 80 % ?",
+        answer:
+          "Non. De nombreux véhicules recommandent une limite quotidienne proche de 80 %, mais certaines batteries, notamment certaines versions LFP, peuvent recevoir des consignes différentes. Suivez l’écran et le manuel de votre véhicule.",
+      },
+      {
+        question: "La recharge rapide abîme-t-elle forcément la batterie ?",
+        answer:
+          "La recharge rapide est une fonction prévue pour le véhicule et reste utile en voyage. Un usage très fréquent à forte puissance peut toutefois solliciter davantage la batterie et sa gestion thermique. Pour la routine, la recharge AC est généralement plus cohérente.",
+      },
+      {
+        question: "Faut-il attendre que la batterie soit presque vide ?",
+        answer:
+          "Non. Les batteries lithium-ion peuvent être rechargées partiellement. Une recharge régulière permet d’éviter les arrivées répétées à un niveau très bas.",
+      },
+      {
+        question: "Comment connaître la santé réelle de la batterie ?",
+        answer:
+          "L’autonomie affichée ne suffit pas. Utilisez un diagnostic adapté au véhicule, l’historique, les éventuels rapports du constructeur et les conditions de garantie pour obtenir une lecture plus fiable.",
+      },
+    ],
+    relatedSlugs: [
+      "recharge-voiture-electrique-forte-chaleur-maroc",
+      "acheter-voiture-electrique-occasion-maroc",
+      "temps-recharge-voiture-electrique",
+    ],
+    productCta: {
+      eyebrow: "Routine de recharge",
+      title: "Programmez une recharge AC adaptée à votre quotidien.",
+      text: "Découvrez la MaxiCharger connectée et configurez vos sessions selon le véhicule, l’heure de départ et l’énergie réellement nécessaire.",
+      label: "Voir la MaxiCharger",
     },
   },
 ];
