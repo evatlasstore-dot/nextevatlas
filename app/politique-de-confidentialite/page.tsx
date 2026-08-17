@@ -5,7 +5,7 @@ export const metadata: Metadata = {
   title: "Politique de confidentialité",
   description: "Politique EVAtlas relative aux données personnelles et aux demandes adressées depuis le site.",
   alternates: { canonical: "/politique-de-confidentialite/" },
-  robots: { index: true, follow: true },
+  robots: { index: false, follow: true },
 };
 
 const sections: LegalSection[] = [
@@ -81,6 +81,7 @@ const sections: LegalSection[] = [
 export default function PrivacyPage() {
   return (
     <LegalPage
+      path="/politique-de-confidentialite/"
       eyebrow="Données personnelles"
       title="Politique de confidentialité"
       introduction="Cette politique explique quelles informations peuvent être traitées lorsque vous contactez EVAtlas et comment exercer vos choix."

@@ -1,4 +1,5 @@
 import homepage from "./homepage.json";
+import { EVATLAS_BUSINESS_ID } from "@/data/business-schema";
 import {
   absoluteAssetUrl,
   absolutePageUrl,
@@ -12,64 +13,6 @@ import {
   SITE_URL,
 } from "@/lib/site";
 
-export const organizationSchema = {
-  "@context": "https://schema.org",
-  "@type": "Organization",
-  "@id": `${SITE_URL}/#organization`,
-  name: SITE_NAME,
-  alternateName: "EVAtlas Maroc",
-  url: absolutePageUrl(),
-  logo: {
-    "@type": "ImageObject",
-    url: absoluteAssetUrl("/images/evatlas-logo.png"),
-    width: 1421,
-    height: 215,
-  },
-  email: "evatlas.store@gmail.com",
-  telephone: "+212712833284",
-  areaServed: { "@type": "Country", name: "Maroc" },
-  sameAs: [
-    "https://www.instagram.com/evatlas.store/",
-    "https://www.linkedin.com/company/evatlas-maroc",
-    "https://x.com/evatlasmaroc",
-    "https://www.facebook.com/profile.php?id=61592317502532",
-    "https://www.pinterest.com/evatlasmaroc/",
-  ],
-  contactPoint: {
-    "@type": "ContactPoint",
-    contactType: "service client",
-    telephone: "+212712833284",
-    email: "evatlas.store@gmail.com",
-    availableLanguage: ["fr"],
-    areaServed: "MA",
-  },
-};
-
-export const localBusinessSchema = {
-  "@context": "https://schema.org",
-  "@type": "LocalBusiness",
-  "@id": `${SITE_URL}/#localbusiness`,
-  name: SITE_NAME,
-  description: SITE_DESCRIPTION,
-  url: absolutePageUrl(),
-  image: absoluteAssetUrl("/images/evatlas-logo.png"),
-  logo: absoluteAssetUrl("/images/evatlas-logo.png"),
-  email: "evatlas.store@gmail.com",
-  telephone: "+212712833284",
-  parentOrganization: { "@id": `${SITE_URL}/#organization` },
-  areaServed: [
-    { "@type": "Country", name: "Maroc" },
-    { "@type": "City", name: "Casablanca" },
-  ],
-  address: {
-    "@type": "PostalAddress",
-    streetAddress: "12 Rue Mustapha Manfalouti, Gauthier – RDC",
-    addressLocality: "Casablanca",
-    postalCode: "20053",
-    addressCountry: "MA",
-  },
-};
-
 export const websiteSchema = {
   "@context": "https://schema.org",
   "@type": "WebSite",
@@ -78,7 +21,7 @@ export const websiteSchema = {
   alternateName: ["EVAtlas Maroc", "evatlas.store"],
   url: absolutePageUrl(),
   inLanguage: "fr-MA",
-  publisher: { "@id": `${SITE_URL}/#organization` },
+  publisher: { "@id": EVATLAS_BUSINESS_ID },
 };
 
 const homePrimaryImage = {
@@ -90,7 +33,7 @@ const homePrimaryImage = {
   height: 1254,
   caption: "Autel MaxiCharger, borne de recharge connectée proposée par EVAtlas au Maroc",
   representativeOfPage: true,
-  creator: { "@id": `${SITE_URL}/#organization` },
+  creator: { "@id": EVATLAS_BUSINESS_ID },
   creditText: SITE_NAME,
   copyrightNotice: IMAGE_COPYRIGHT_NOTICE,
   license: IMAGE_LICENSE_URL,
@@ -106,8 +49,8 @@ export const homePageSchema = {
   description: SITE_DESCRIPTION,
   inLanguage: "fr-MA",
   isPartOf: { "@id": `${SITE_URL}/#website` },
-  about: { "@id": `${SITE_URL}/#organization` },
-  mainEntity: { "@id": `${SITE_URL}/#localbusiness` },
+  about: { "@id": EVATLAS_BUSINESS_ID },
+  mainEntity: { "@id": EVATLAS_BUSINESS_ID },
   primaryImageOfPage: homePrimaryImage,
 };
 

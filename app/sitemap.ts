@@ -4,7 +4,7 @@ import { absoluteAssetUrl, absolutePageUrl } from "@/lib/site";
 
 export const dynamic = "force-static";
 
-const contentDate = new Date("2026-07-17T00:00:00.000Z");
+const contentDate = new Date("2026-08-17T00:00:00.000Z");
 const technicalSheetDate = new Date("2026-07-24T00:00:00.000Z");
 const imageLicenseDate = new Date("2026-08-05T00:00:00.000Z");
 const blogLastModified = new Date(
@@ -18,7 +18,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const pages: MetadataRoute.Sitemap = [
     {
       url: absolutePageUrl(),
-      lastModified: imageLicenseDate,
+      lastModified: contentDate,
       changeFrequency: "monthly",
     },
     {
@@ -55,26 +55,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
       url: absolutePageUrl("/blog/"),
       lastModified: blogLastModified,
       changeFrequency: "weekly",
-    },
-    {
-      url: absolutePageUrl("/mentions-legales/"),
-      lastModified: contentDate,
-      changeFrequency: "yearly",
-    },
-    {
-      url: absolutePageUrl("/politique-de-confidentialite/"),
-      lastModified: contentDate,
-      changeFrequency: "yearly",
-    },
-    {
-      url: absolutePageUrl("/cookies/"),
-      lastModified: contentDate,
-      changeFrequency: "yearly",
-    },
-    {
-      url: absolutePageUrl("/conditions-generales/"),
-      lastModified: contentDate,
-      changeFrequency: "yearly",
     },
     {
       url: absolutePageUrl("/licence-images/"),

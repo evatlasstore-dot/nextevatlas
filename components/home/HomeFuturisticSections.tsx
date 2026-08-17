@@ -122,8 +122,10 @@ export function HomeFuturisticSolutions() {
               <Image
                 className={styles.atlasCharger}
                 src="/images/product/autel-maxicharger/exploded-sequence-cutout/step-01-closed.png"
-                alt="Borne Autel MaxiCharger EVAtlas"
-                fill
+                alt="Autel MaxiCharger 22 kW proposée par EVAtlas au Maroc"
+                width={1254}
+                height={1254}
+                loading="lazy"
                 sizes="(max-width: 760px) 88vw, (max-width: 1100px) 50vw, 540px"
               />
             </div>
@@ -148,7 +150,7 @@ export function HomeFuturisticSolutions() {
               </article>
             ))}
             <TrackedLink href="/devis#quote-form" className={styles.atlasLink} eventName="submit_quote_start">
-              Parler de mon installation <Icon name="arrow" size={18} />
+              Demander une étude pour mon installation <Icon name="arrow" size={18} />
             </TrackedLink>
           </div>
         </div>
@@ -193,7 +195,7 @@ export function HomeFuturisticProcess() {
         <div className={styles.protocolFooter}>
           <span><i aria-hidden="true" /> Parcours clair, réponse adaptée</span>
           <p>Du besoin à la première recharge, sans angle mort technique.</p>
-          <TrackedLink href="/a-propos" eventName="click_about">Découvrir EVAtlas <Icon name="arrow" size={16} /></TrackedLink>
+          <TrackedLink href="/a-propos" eventName="click_about">Comprendre l’accompagnement EVAtlas <Icon name="arrow" size={16} /></TrackedLink>
         </div>
       </div>
     </section>
@@ -246,7 +248,7 @@ export function HomeFuturisticConnected() {
               </div>
             </div>
             <ProductRouteLink className={styles.controlLink} eventName="click_product_feature">
-              Explorer la MaxiCharger <Icon name="arrow" size={17} />
+              Découvrir l’application de l’Autel MaxiCharger <Icon name="arrow" size={17} />
             </ProductRouteLink>
           </div>
 
@@ -257,6 +259,7 @@ export function HomeFuturisticConnected() {
               alt="Application Autel Charge présentée sur trois smartphones"
               width={1162}
               height={1354}
+              loading="lazy"
               sizes="(max-width: 760px) 118vw, (max-width: 1100px) 72vw, 640px"
             />
           </figure>
@@ -297,7 +300,7 @@ export function HomeFuturisticConversion() {
             <span>01</span>
             <div>
               <small>Projet personnalisé</small>
-              <h3>Demander un devis</h3>
+              <h3>Demander un devis d’installation</h3>
               <p>Recevez une recommandation selon votre véhicule, votre puissance disponible et votre site.</p>
             </div>
             <b><Icon name="arrow" size={22} /></b>
@@ -306,7 +309,7 @@ export function HomeFuturisticConversion() {
             <span>02</span>
             <div>
               <small>Réponse immédiate</small>
-              <h3>Simuler ma recharge</h3>
+              <h3>Simuler le temps de recharge</h3>
               <p>Estimez votre temps de recharge et découvrez les paramètres qui comptent.</p>
             </div>
             <b><Icon name="calculator" size={24} /></b>
@@ -318,7 +321,7 @@ export function HomeFuturisticConversion() {
             <span>Avant de choisir</span>
             <h3>Les réponses essentielles, déjà prêtes.</h3>
             <p>Des repères concrets pour avancer sereinement avant l’étude technique.</p>
-            <TrackedLink href="/faq" className={styles.faqLink} eventName="click_home_faq">Voir toutes les questions <Icon name="arrow" size={16} /></TrackedLink>
+            <TrackedLink href="/faq" className={styles.faqLink} eventName="click_home_faq">Consulter la FAQ sur la recharge <Icon name="arrow" size={16} /></TrackedLink>
           </div>
           <div className={styles.faqItems}>
             {questions.map((item, index) => (

@@ -10,11 +10,10 @@ import {
   HomeFuturisticSolutions,
 } from "@/components/home/HomeFuturisticSections";
 import HomeReviewsCarousel from "@/components/home/HomeReviewsCarousel";
+import { evatlasBusinessSchema } from "@/data/business-schema";
 import {
   faqSchema,
   homePageSchema,
-  localBusinessSchema,
-  organizationSchema,
   websiteSchema,
 } from "@/data/schema";
 import {
@@ -25,9 +24,9 @@ import {
 } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: { absolute: SITE_HOME_TITLE_WITH_BRAND },
-  description: SITE_DESCRIPTION,
-  keywords: ["borne de recharge Maroc", "installation wallbox Maroc", "borne électrique Casablanca", "recharge véhicule électrique Maroc"],
+  title: { absolute: "Bornes de recharge au Maroc | Installation EVAtlas" },
+  description:
+    "EVAtlas propose des bornes de recharge pour voitures électriques au Maroc : conseil, installation professionnelle, solutions jusqu’à 22 kW et accompagnement local.",
   alternates: { canonical: "/" },
   openGraph: {
     type: "website",
@@ -69,8 +68,7 @@ export default function HomePage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{
           __html: JSON.stringify([
-            organizationSchema,
-            localBusinessSchema,
+            evatlasBusinessSchema,
             websiteSchema,
             homePageSchema,
             faqSchema,

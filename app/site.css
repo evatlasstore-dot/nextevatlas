@@ -52,7 +52,8 @@ main[id="main-content"] { scroll-margin-top:100px; }
 /* Quote flow. */
 .quote-page,.sim-page { color:var(--ui-ink); background:var(--ui-canvas); }
 .quote-hero,.sim-hero { position:relative; padding:clamp(155px,16vw,215px) 0 clamp(76px,9vw,120px); overflow:hidden; background:radial-gradient(circle at 84% 12%,rgba(168,212,111,.34),transparent 28%),linear-gradient(145deg,#fbfbf6,#e4ebe0); }
-.quote-hero { min-height:min(900px,100svh); isolation:isolate; color:#f5faef; background:#142b1e url('/images/quote/quote-hero-morocco.png') center 46% / cover no-repeat; }
+.quote-hero { min-height:min(900px,100svh); isolation:isolate; color:#f5faef; background:#142b1e; }
+.quote-hero-image { position:absolute; z-index:-1; inset:0; width:100%; height:100%; object-fit:cover; object-position:center 46%; }
 .quote-hero::before { position:absolute; z-index:0; inset:0; background:linear-gradient(90deg,rgba(6,21,13,.95) 0%,rgba(8,27,17,.84) 35%,rgba(9,30,19,.5) 58%,rgba(9,28,18,.14) 100%),linear-gradient(0deg,rgba(5,18,12,.62) 0%,transparent 46%); content:""; }
 .quote-hero::after { position:absolute; z-index:0; inset:0; pointer-events:none; opacity:.5; background-image:linear-gradient(rgba(220,244,194,.17) 1px,transparent 1px),linear-gradient(90deg,rgba(220,244,194,.17) 1px,transparent 1px); background-position:right center; background-size:clamp(46px,4.6vw,74px) clamp(46px,4.6vw,74px); mask-image:linear-gradient(90deg,transparent 43%,#000 100%); -webkit-mask-image:linear-gradient(90deg,transparent 43%,#000 100%); content:""; }
 .quote-hero-shell,.quote-shell,.sim-hero-shell,.sim-shell { width:min(calc(100% - 48px),1240px); margin-inline:auto; }
@@ -265,8 +266,7 @@ main[id="main-content"] { scroll-margin-top:100px; }
 
 /* Long-form article template. */
 .article-hero { padding:clamp(155px,16vw,215px) 0 72px; background:linear-gradient(145deg,#fbfbf6,#e6ece1); }
-.article-breadcrumb ol { display:flex; flex-wrap:wrap; gap:8px; padding:0; margin:0; color:#77827a; list-style:none; font-size:.72rem; }
-.article-breadcrumb li + li::before { margin-right:8px; content:"/"; }
+.article-breadcrumb ol { color:#77827a; }
 .article-breadcrumb a:hover { color:#315b42; }
 .article-hero-copy { max-width:980px; margin:70px auto 0; text-align:center; }
 .article-hero h1 { max-width:980px; margin:17px auto 0; font-size:clamp(3rem,6.2vw,6.15rem); letter-spacing:-.075em; line-height:.98; }
@@ -299,6 +299,9 @@ main[id="main-content"] { scroll-margin-top:100px; }
 .article-section { padding:52px 0; scroll-margin-top:115px; border-bottom:1px solid var(--ui-line); }
 .article-section h2 { max-width:720px; font-size:clamp(2rem,3.4vw,3.25rem); line-height:1.08; }
 .article-section > p { margin-top:20px; color:#465a4c; font-size:1rem; line-height:1.8; }
+.article-section > .article-context-link { padding:15px 18px; border-left:2px solid #73936a; border-radius:0 14px 14px 0; background:#f1f5ed; color:#3f5545; }
+.article-context-link a { color:#27553a; font-weight:750; text-decoration:underline; text-decoration-color:rgba(39,85,58,.35); text-decoration-thickness:1px; text-underline-offset:4px; }
+.article-context-link a:hover { color:#173a27; text-decoration-color:currentColor; }
 .article-section h3 { font-size:1.2rem; letter-spacing:-.035em; }
 .article-list-block { padding:25px; margin-top:28px; border-radius:22px; background:#f8f8f4; }
 .article-list-block ul,.article-list-block ol { display:grid; gap:11px; padding-left:22px; margin:17px 0 0; color:#4d6052; }

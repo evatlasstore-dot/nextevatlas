@@ -8,7 +8,7 @@ export const autelProductSchema = {
   "@type": "Product",
   "@id": `${productUrl}#product`,
   name: product.name,
-  description: "Borne de recharge AC connectée jusqu’à 22 kW, proposée avec installation professionnelle par EVAtlas au Maroc.",
+  description: "Borne de recharge connectée Type 2 jusqu’à 22 kW proposée par EVAtlas au Maroc.",
   brand: { "@type": "Brand", name: "Autel" },
   manufacturer: { "@type": "Organization", name: "Autel" },
   category: "Borne de recharge pour véhicule électrique",
@@ -17,12 +17,11 @@ export const autelProductSchema = {
   mainEntityOfPage: productUrl,
   additionalProperty: [
     { "@type": "PropertyValue", name: "Puissance", value: product.power },
-    { "@type": "PropertyValue", name: "Connecteur", value: "Type 2, Mode 3" },
-    { "@type": "PropertyValue", name: "Installation", value: product.installation },
-    { "@type": "PropertyValue", name: "Câble", value: product.cable },
+    { "@type": "PropertyValue", name: "Connecteur", value: "Type 2" },
+    { "@type": "PropertyValue", name: "Intensité maximale", value: "32 A" },
+    { "@type": "PropertyValue", name: "Connectivité", value: "Wi-Fi, Bluetooth, Ethernet, RFID" },
+    { "@type": "PropertyValue", name: "Protection", value: "IP54, IK08" },
   ],
 };
 
 export const autelFaqSchema = { "@context": "https://schema.org", "@type": "FAQPage", mainEntity: product.faq.map((item) => ({ "@type": "Question", name: item.question, acceptedAnswer: { "@type": "Answer", text: item.answer } })) };
-
-export const autelBreadcrumbSchema = { "@context": "https://schema.org", "@type": "BreadcrumbList", itemListElement: [{ "@type": "ListItem", position: 1, name: "Accueil", item: absolutePageUrl() }, { "@type": "ListItem", position: 2, name: "Nos Produits", item: absolutePageUrl("/nos-produits/") }, { "@type": "ListItem", position: 3, name: product.shortName, item: productUrl }] };

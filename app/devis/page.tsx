@@ -1,15 +1,16 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import QuoteForm from "@/components/forms/QuoteForm";
 import Icon from "@/components/ui/Icon";
-import TrackedLink from "@/components/ui/TrackedLink";
 import HomeReviewsCarousel from "@/components/home/HomeReviewsCarousel";
+import Breadcrumbs from "@/components/seo/Breadcrumbs";
 
 export const metadata: Metadata = {
-  title: "Demander un devis pour une borne de recharge au Maroc",
-  description: "Présentez votre véhicule et votre projet à EVAtlas pour préparer une recommandation de borne de recharge et d’installation adaptée au Maroc.",
-  keywords: ["Devis borne de recharge Maroc", "Installation wallbox Casablanca", "Devis Autel MaxiCharger", "Installateur borne électrique Maroc"],
+  title: { absolute: "Devis borne de recharge au Maroc | EVAtlas" },
+  description:
+    "Demandez votre devis pour l’installation d’une borne de recharge au Maroc. EVAtlas étudie votre véhicule, votre installation électrique et votre emplacement.",
   alternates: { canonical: "/devis/" },
   openGraph: {
     type: "website",
@@ -28,12 +29,29 @@ export default function QuotePage() {
       <Header />
       <main id="main-content" className="quote-page">
         <section className="quote-hero" aria-labelledby="quote-page-title">
+          <Image
+            className="quote-hero-image"
+            src="/images/quote/quote-hero-morocco.png"
+            alt="Borne de recharge EVAtlas installée dans une résidence contemporaine au Maroc"
+            width={1672}
+            height={941}
+            priority
+            fetchPriority="high"
+            sizes="100vw"
+          />
           <div className="quote-hero-shell">
-            <div className="quote-breadcrumb"><TrackedLink href="/">Accueil</TrackedLink><span aria-hidden="true">/</span><span>Demander un devis</span></div>
+            <Breadcrumbs
+              tone="inverse"
+              className="quote-breadcrumb"
+              items={[
+                { name: "Accueil", href: "/" },
+                { name: "Demander un devis", href: "/devis/" },
+              ]}
+            />
             <div className="quote-hero-layout">
               <div className="quote-hero-copy">
                 <p className="quote-hero-eyebrow">Conseil et installation EVAtlas</p>
-                <h1 id="quote-page-title">Votre projet mérite une réponse précise.</h1>
+                <h1 id="quote-page-title">Demandez votre devis pour une borne de recharge au Maroc</h1>
                 <p>Partagez l’essentiel de votre besoin. Notre équipe pourra reprendre votre contexte, vérifier la faisabilité et vous orienter vers une solution cohérente.</p>
               </div>
               <aside className="quote-hero-proof" aria-label="Les engagements de la demande">

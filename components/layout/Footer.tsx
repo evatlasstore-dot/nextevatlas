@@ -26,7 +26,7 @@ export default function Footer() {
     <footer className="site-footer footer-standard">
       <div className="container footer-standard-grid">
         <div className="footer-standard-brand">
-          <Image src="/images/evatlas-logo.png" alt="EVAtlas" width={190} height={52} />
+          <Image src="/images/evatlas-logo.png" alt="EVAtlas" width={190} height={52} loading="lazy" sizes="190px" />
           <p>La recharge électrique connectée, installée avec soin et pensée pour le Maroc.</p>
           <FooterSocialLinks />
         </div>

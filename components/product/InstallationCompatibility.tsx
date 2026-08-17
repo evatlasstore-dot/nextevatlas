@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Icon from "@/components/ui/Icon";
 import TrackedLink from "@/components/ui/TrackedLink";
 
@@ -25,12 +26,12 @@ export default function InstallationCompatibility() {
             <div className="installation-modes">
               <article className="installation-mode installation-wall">
                 <div className="installation-mode-top"><span>01</span><p><i aria-hidden="true" /> Configuration murale</p></div>
-                <figure className="installation-visual"><span className="installation-orbit" aria-hidden="true" /><img src="/images/product/autel-maxicharger/installation/wall-mounted.png" width="1024" height="1536" loading="lazy" decoding="async" alt="Autel MaxiCharger en pose murale avec son câble de recharge" /></figure>
+                <figure className="installation-visual"><span className="installation-orbit" aria-hidden="true" /><Image src="/images/product/autel-maxicharger/installation/wall-mounted.png" width={1024} height={1536} loading="lazy" sizes="(max-width: 760px) 88vw, (max-width: 1100px) 46vw, 520px" alt="Autel MaxiCharger installée en pose murale avec son câble de recharge" /></figure>
                 <div className="installation-mode-copy"><h3>Pose murale</h3><p>Une intégration nette, compacte et directement accessible depuis votre stationnement.</p><ul aria-label="Avantages de la pose murale"><li>Gain de place</li><li>Accès direct</li></ul></div>
               </article>
               <article className="installation-mode installation-pedestal">
                 <div className="installation-mode-top"><span>02</span><p><i aria-hidden="true" /> Configuration autonome</p></div>
-                <figure className="installation-visual"><span className="installation-orbit" aria-hidden="true" /><img src="/images/product/autel-maxicharger/installation/pedestal-mounted.png" width="1024" height="1536" loading="lazy" decoding="async" alt="Autel MaxiCharger installée sur un pied autonome" /></figure>
+                <figure className="installation-visual"><span className="installation-orbit" aria-hidden="true" /><Image src="/images/product/autel-maxicharger/installation/pedestal-mounted.png" width={1024} height={1536} loading="lazy" sizes="(max-width: 760px) 88vw, (max-width: 1100px) 46vw, 520px" alt="Autel MaxiCharger installée sur un pied autonome" /></figure>
                 <div className="installation-mode-copy"><h3>Pose sur pied</h3><p>Une implantation libre et élégante lorsque le mur n’est pas la bonne option.</p><ul aria-label="Avantages de la pose sur pied"><li>Sans mur</li><li>Implantation libre</li></ul></div>
               </article>
             </div>

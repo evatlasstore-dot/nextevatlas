@@ -5,8 +5,10 @@ import Footer from "@/components/layout/Footer";
 import Icon from "@/components/ui/Icon";
 import ProductRouteLink from "@/components/ui/ProductRouteLink";
 import TrackedLink from "@/components/ui/TrackedLink";
+import Breadcrumbs from "@/components/seo/Breadcrumbs";
 import { blogPosts } from "@/data/blog";
-import { absoluteAssetUrl, absolutePageUrl, SITE_NAME, SITE_URL } from "@/lib/site";
+import { EVATLAS_BUSINESS_ID, evatlasBusinessNode } from "@/data/business-schema";
+import { absoluteAssetUrl, absolutePageUrl } from "@/lib/site";
 
 const blogUrl = absolutePageUrl("/blog/");
 
@@ -52,18 +54,7 @@ const formatDate = (date: string) =>
 const blogSchema = {
   "@context": "https://schema.org",
   "@graph": [
-    {
-      "@type": "Organization",
-      "@id": `${SITE_URL}/#organization`,
-      name: SITE_NAME,
-      url: absolutePageUrl(),
-      logo: {
-        "@type": "ImageObject",
-        url: absoluteAssetUrl("/images/evatlas-logo.png"),
-        width: 1421,
-        height: 215,
-      },
-    },
+    evatlasBusinessNode,
     {
       "@type": "Blog",
       "@id": `${blogUrl}#blog`,
@@ -72,7 +63,7 @@ const blogSchema = {
       description:
         "Guides pratiques pour choisir, installer et utiliser une borne de recharge au Maroc.",
       inLanguage: "fr-MA",
-      publisher: { "@id": `${SITE_URL}/#organization` },
+      publisher: { "@id": EVATLAS_BUSINESS_ID },
       blogPost: blogPosts.map((post) => ({
         "@type": "BlogPosting",
         "@id": `${absolutePageUrl(`/blog/${post.slug}/`)}#article`,
@@ -95,24 +86,6 @@ const blogSchema = {
         url: absolutePageUrl(`/blog/${post.slug}/`),
       })),
     },
-    {
-      "@type": "BreadcrumbList",
-      "@id": `${blogUrl}#breadcrumb`,
-      itemListElement: [
-        {
-          "@type": "ListItem",
-          position: 1,
-          name: "Accueil",
-          item: absolutePageUrl(),
-        },
-        {
-          "@type": "ListItem",
-          position: 2,
-          name: "Guides",
-          item: blogUrl,
-        },
-      ],
-    },
   ],
 };
 
@@ -128,6 +101,12 @@ export default function BlogPage() {
       <main id="main-content" className="blog-page">
         <section className="blog-hero" aria-labelledby="blog-title">
           <div className="container blog-hero-inner">
+            <Breadcrumbs
+              items={[
+                { name: "Accueil", href: "/" },
+                { name: "Guides", href: "/blog/" },
+              ]}
+            />
             <p className="eyebrow">Guides EVAtlas</p>
             <h1 id="blog-title">Comprendre la recharge. Décider simplement.</h1>
             <p className="blog-hero-lead">
@@ -167,7 +146,7 @@ export default function BlogPage() {
                   alt={featured.imageAlt}
                   width={1600}
                   height={900}
-                  priority
+                  loading="lazy"
                   sizes="(max-width: 800px) 100vw, 58vw"
                 />
               </TrackedLink>

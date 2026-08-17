@@ -28,7 +28,6 @@ export const metadata: Metadata = {
     shortcut: "/images/evatlas-icon-192.png?v=2",
     apple: [{ url: "/images/evatlas-icon-180.png?v=2", sizes: "180x180", type: "image/png" }],
   },
-  robots: { index: true, follow: true, googleBot: { index: true, follow: true, "max-image-preview": "large", "max-snippet": -1, "max-video-preview": -1 } },
   verification: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION
     ? { google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION }
     : undefined,

@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Image from "next/image";
 import Icon from "@/components/ui/Icon";
 import TrackedLink from "@/components/ui/TrackedLink";
 
@@ -41,7 +42,7 @@ export default function ProductPageHeader() {
           ))}
         </nav>
         <TrackedLink href="/" className="brand-logo" aria-label="EVAtlas — Accueil">
-          <img src="/images/evatlas-logo.png" alt="EVAtlas" />
+          <Image src="/images/evatlas-logo.png" alt="EVAtlas" width={190} height={52} loading="eager" sizes="190px" />
         </TrackedLink>
         <TrackedLink href="/devis?product=autel-maxicharger#quote-form" className="header-quote button button-small" eventName="click_header_quote">
           Demander un devis <Icon name="arrow" size={15} />

@@ -73,7 +73,7 @@ export default function Header({ productMode = false }: { productMode?: boolean 
     <header className={`site-header ${productMode ? "product-header" : ""} ${scrolled ? "is-scrolled" : ""}`}>
       <div className="header-inner container">
         <TrackedLink href="/" className="brand-logo" aria-label="EVAtlas — Accueil">
-          <Image src="/images/evatlas-logo.png" alt="EVAtlas" width={190} height={52} priority />
+          <Image src="/images/evatlas-logo.png" alt="EVAtlas" width={190} height={52} loading="eager" sizes="190px" />
         </TrackedLink>
         <nav className="desktop-nav" aria-label="Navigation principale">
           {navigation.map((item) => {

@@ -5,7 +5,7 @@ const nextConfig: NextConfig = {
   reactStrictMode: true,
   trailingSlash: true,
   images: {
-    unoptimized: true,
+    formats: ["image/avif", "image/webp"],
   },
   async headers() {
     return [

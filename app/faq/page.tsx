@@ -4,11 +4,12 @@ import Footer from "@/components/layout/Footer";
 import FaqExplorer from "@/components/content/FaqExplorer";
 import { faqEntries } from "@/data/faq";
 import styles from "@/components/content/ContentPages.module.css";
+import Breadcrumbs from "@/components/seo/Breadcrumbs";
 
 export const metadata: Metadata = {
-  title: "FAQ : bornes de recharge et installation au Maroc",
+  title: { absolute: "FAQ bornes de recharge au Maroc | EVAtlas" },
   description:
-    "Retrouvez les réponses EVAtlas sur la puissance, la compatibilité, l’installation, l’application et l’accompagnement des projets de recharge au Maroc.",
+    "Retrouvez les réponses aux principales questions sur les bornes de recharge, leur installation, leur puissance et la compatibilité des véhicules au Maroc.",
   alternates: { canonical: "/faq/" },
   openGraph: {
     type: "website",
@@ -36,8 +37,14 @@ export default function FaqPage() {
       <main id="main-content" className={styles["faq-page"]}>
         <section className={styles["faq-page-hero"]} aria-labelledby="faq-page-title">
           <div className={`${styles["faq-page-shell"]} ${styles["faq-page-hero-copy"]}`}>
+            <Breadcrumbs
+              items={[
+                { name: "Accueil", href: "/" },
+                { name: "FAQ", href: "/faq/" },
+              ]}
+            />
             <p className={styles["faq-page-eyebrow"]}>Centre d’aide EVAtlas</p>
-            <h1 id="faq-page-title">Une réponse claire avant chaque décision.</h1>
+            <h1 id="faq-page-title">Questions sur les bornes de recharge au Maroc</h1>
             <p>Recherchez par mot-clé ou parcourez les sujets essentiels autour du choix, de l’installation et de l’utilisation de votre borne.</p>
           </div>
         </section>

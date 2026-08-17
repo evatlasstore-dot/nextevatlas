@@ -15,7 +15,17 @@
   overflow: hidden;
   isolation: isolate;
   color: #f7fbf1;
-  background: #11291b url("/images/simulator/simulator-hero-morocco.png") center / cover no-repeat;
+  background: #11291b;
+}
+
+.heroImage {
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
 }
 
 .hero::before {

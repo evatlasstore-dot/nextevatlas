@@ -85,6 +85,7 @@ const sections: LegalSection[] = [
 export default function ImageLicensePage() {
   return (
     <LegalPage
+      path="/licence-images/"
       eyebrow="Droits d’auteur"
       title="Licence et utilisation des images"
       introduction="Les règles applicables aux images EVAtlas et la procédure à suivre pour demander une autorisation écrite."

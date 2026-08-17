@@ -5,7 +5,7 @@ export const metadata: Metadata = {
   title: "Conditions générales",
   description: "Conditions générales d’utilisation du site et principes applicables aux demandes adressées à EVAtlas.",
   alternates: { canonical: "/conditions-generales/" },
-  robots: { index: true, follow: true },
+  robots: { index: false, follow: true },
 };
 
 const sections: LegalSection[] = [
@@ -76,6 +76,7 @@ const sections: LegalSection[] = [
 export default function TermsPage() {
   return (
     <LegalPage
+      path="/conditions-generales/"
       eyebrow="Cadre d’utilisation"
       title="Conditions générales"
       introduction="Les principes qui encadrent l’utilisation du site et les premières étapes d’un projet avec EVAtlas."

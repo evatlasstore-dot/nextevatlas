@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useMemo, useRef, useState, type KeyboardEvent } from "react";
+import { getImageProps } from "next/image";
 import product from "@/data/autel-maxicharger.json";
 
 const frames = [
@@ -15,6 +16,14 @@ const frames = [
 ];
 
 const sequenceFrameIndexes = [0, 2, 4, 6, 7];
+const frameSizes = "(max-width: 760px) 92vw, (max-width: 1100px) 62vw, 650px";
+const frameImageProps = frames.map((src) => getImageProps({
+  src,
+  alt: "",
+  width: 1254,
+  height: 1254,
+  sizes: frameSizes,
+}).props);
 const sequenceItems = product.sequence.map((item, index) => ({ item, index }));
 const frameTransitionDuration = 260;
 const clamp = (value: number, min: number, max: number) => Math.min(Math.max(value, min), max);
@@ -78,27 +87,39 @@ export default function ProductExplodedView() {
   useEffect(() => {
     let preloadTimer: number | null = null;
     let isDisposed = false;
-    const remainingFrames = [...frames.slice(1)];
-    const preloadFrame = (src: string) => {
+    const remainingFrames = [...frameImageProps.slice(1)];
+    const preloadFrame = (props: (typeof frameImageProps)[number]) => {
       const image = new Image();
       image.decoding = "async";
-      image.src = src;
+      if (props.sizes) image.sizes = props.sizes;
+      if (props.srcSet) image.srcset = props.srcSet;
+      image.src = props.src;
       image.decode().catch(() => undefined);
       preloadedFramesRef.current.push(image);
     };
     const preloadNextFrame = () => {
       if (isDisposed) return;
-      const src = remainingFrames.shift();
-      if (!src) return;
-      preloadFrame(src);
+      const props = remainingFrames.shift();
+      if (!props) return;
+      preloadFrame(props);
       // Spread decoding across idle moments so the initial page and touch scroll stay responsive.
       preloadTimer = window.setTimeout(preloadNextFrame, 90);
     };
 
-    // Frame 01 is already eagerly rendered. The remaining layers are warmed up progressively.
-    preloadTimer = window.setTimeout(preloadNextFrame, 140);
+    const section = sectionRef.current;
+    let observer: IntersectionObserver | null = null;
+    if (section) {
+      observer = new IntersectionObserver((entries) => {
+        if (!entries.some((entry) => entry.isIntersecting)) return;
+        observer?.disconnect();
+        preloadTimer = window.setTimeout(preloadNextFrame, 90);
+      }, { threshold: 0.01 });
+      observer.observe(section);
+    }
+
     return () => {
       isDisposed = true;
+      observer?.disconnect();
       if (preloadTimer) window.clearTimeout(preloadTimer);
       preloadedFramesRef.current = [];
       if (transitionTimerRef.current) window.clearTimeout(transitionTimerRef.current);
@@ -157,8 +178,8 @@ export default function ProductExplodedView() {
           </header>
           <div className="product-object-stage" role="img" tabIndex={0} onKeyDown={handleKeyDown} aria-label="Séquence d’ouverture de l’Autel MaxiCharger. Utilisez les flèches haut et bas pour changer d’étape.">
             <div className="product-frame-stack" aria-hidden="true">
-              {previousFrame !== null && previousFrame !== frameIndex && <img className="product-object-frame is-previous" key={`previous-${previousFrame}-${frameIndex}`} src={frames[previousFrame]} alt="" decoding="async" />}
-              <img className="product-object-frame is-current" key={`current-${frameIndex}`} src={frames[frameIndex]} alt="" loading="eager" decoding="async" />
+              {previousFrame !== null && previousFrame !== frameIndex && <img {...frameImageProps[previousFrame]} className="product-object-frame is-previous" key={`previous-${previousFrame}-${frameIndex}`} loading="lazy" decoding="async" />}
+              <img {...frameImageProps[frameIndex]} className="product-object-frame is-current" key={`current-${frameIndex}`} loading="lazy" decoding="async" />
             </div>
           </div>
           <ol className="product-sequence product-sequence-controls product-sequence-left" aria-label="Spécifications de la MaxiCharger">

@@ -5,7 +5,7 @@ export const metadata: Metadata = {
   title: "Mentions légales",
   description: "Mentions légales du site EVAtlas et informations de contact de l’éditeur.",
   alternates: { canonical: "/mentions-legales/" },
-  robots: { index: true, follow: true },
+  robots: { index: false, follow: true },
 };
 
 const sections: LegalSection[] = [
@@ -60,6 +60,7 @@ const sections: LegalSection[] = [
 export default function LegalNoticesPage() {
   return (
     <LegalPage
+      path="/mentions-legales/"
       eyebrow="Informations juridiques"
       title="Mentions légales"
       introduction="Les informations essentielles concernant l’édition, le contenu et l’utilisation du site EVAtlas."

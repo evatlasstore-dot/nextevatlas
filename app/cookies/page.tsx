@@ -5,7 +5,7 @@ export const metadata: Metadata = {
   title: "Politique relative aux cookies",
   description: "Informations sur les cookies et technologies similaires susceptibles d’être utilisés sur le site EVAtlas.",
   alternates: { canonical: "/cookies/" },
-  robots: { index: true, follow: true },
+  robots: { index: false, follow: true },
 };
 
 const sections: LegalSection[] = [
@@ -58,6 +58,7 @@ const sections: LegalSection[] = [
 export default function CookiesPage() {
   return (
     <LegalPage
+      path="/cookies/"
       eyebrow="Vos préférences"
       title="Politique relative aux cookies"
       introduction="Comprendre les technologies susceptibles d’être utilisées sur le site et la manière dont vos choix doivent être respectés."

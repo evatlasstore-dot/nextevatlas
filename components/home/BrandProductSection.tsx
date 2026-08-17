@@ -1,4 +1,5 @@
 import homepage from "@/data/homepage.json";
+import Image from "next/image";
 import Icon from "@/components/ui/Icon";
 import ProductRouteLink from "@/components/ui/ProductRouteLink";
 
@@ -9,11 +10,20 @@ export default function BrandProductSection() {
           <p className="eyebrow">EVAtlas et la borne</p>
           <h2 id="brand-title">Une solution pensée au-delà de la borne</h2>
           <p>EVAtlas accompagne les particuliers et les professionnels au Maroc dans le choix, l’installation, la configuration et le suivi de leur solution de recharge.</p>
-          <ProductRouteLink className="text-link" eventName="click_product_feature">Explorer la MaxiCharger <Icon name="arrow" size={16} /></ProductRouteLink>
+          <ProductRouteLink className="text-link" eventName="click_product_feature">Voir la borne Autel MaxiCharger connectée <Icon name="arrow" size={16} /></ProductRouteLink>
       </div>
       <div className="container product-experience reveal">
         <div className="product-stage" aria-label="Aperçu vidéo de la recharge EVAtlas">
-          <video className="watermark-crop" autoPlay muted loop playsInline preload="metadata" poster="/images/evatlas-maxicharger-garage-poster.png">
+          <Image
+            className="product-stage-poster"
+            src="/images/evatlas-maxicharger-garage-poster.png"
+            alt=""
+            width={1280}
+            height={720}
+            loading="lazy"
+            sizes="(max-width: 680px) 100vw, 1240px"
+          />
+          <video className="watermark-crop" autoPlay muted loop playsInline preload="metadata">
             <source src="/videos/evatlas-maxicharger-garage.mp4" type="video/mp4" />
           </video>
           <div className="stage-overlay" />

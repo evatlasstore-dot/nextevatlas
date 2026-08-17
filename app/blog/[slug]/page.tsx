@@ -7,6 +7,7 @@ import Footer from "@/components/layout/Footer";
 import Icon from "@/components/ui/Icon";
 import TrackedLink from "@/components/ui/TrackedLink";
 import ProductRouteLink from "@/components/ui/ProductRouteLink";
+import Breadcrumbs from "@/components/seo/Breadcrumbs";
 import {
   blogPosts,
   getBlogPost,
@@ -14,13 +15,16 @@ import {
   type BlogSection,
 } from "@/data/blog";
 import {
+  getBlogInternalLinks,
+  type BlogInternalLink,
+} from "@/data/blog-internal-links";
+import { EVATLAS_BUSINESS_ID, evatlasBusinessNode } from "@/data/business-schema";
+import {
   absoluteAssetUrl,
   absolutePageUrl,
   IMAGE_ACQUIRE_LICENSE_URL,
   IMAGE_COPYRIGHT_NOTICE,
   IMAGE_LICENSE_URL,
-  SITE_NAME,
-  SITE_URL,
 } from "@/lib/site";
 
 type BlogArticlePageProps = {
@@ -88,7 +92,13 @@ const formatDate = (date: string) =>
     year: "numeric",
   }).format(new Date(`${date}T12:00:00Z`));
 
-function ArticleSectionContent({ section }: { section: BlogSection }) {
+function ArticleSectionContent({
+  section,
+  internalLinks,
+}: {
+  section: BlogSection;
+  internalLinks: readonly BlogInternalLink[];
+}) {
   const List = section.ordered ? "ol" : "ul";
 
   return (
@@ -100,6 +110,15 @@ function ArticleSectionContent({ section }: { section: BlogSection }) {
       <h2 id={`${section.id}-title`}>{section.title}</h2>
       {section.paragraphs.map((paragraph) => (
         <p key={paragraph}>{paragraph}</p>
+      ))}
+      {internalLinks.map((link) => (
+        <p className="article-context-link" key={`${link.href}-${link.label}`}>
+          {link.lead}{" "}
+          <TrackedLink href={link.href} eventName="click_article_context_link">
+            {link.label}
+          </TrackedLink>
+          .
+        </p>
       ))}
       {section.bullets && (
         <div className="article-list-block">
@@ -172,9 +191,13 @@ export default async function BlogArticlePage({
     post.description,
     ...post.intro,
     post.quickAnswer,
-    ...post.sections.flatMap((section) => [
+    ...post.sections.flatMap((section, index) => [
       section.title,
       ...section.paragraphs,
+      ...getBlogInternalLinks(post.slug, index).flatMap((link) => [
+        link.lead,
+        link.label,
+      ]),
       ...(section.bullets ?? []),
       ...(section.table?.rows.flat() ?? []),
       section.note?.text ?? "",
@@ -182,18 +205,15 @@ export default async function BlogArticlePage({
     ...post.faq.flatMap((item) => [item.question, item.answer]),
   ].join(" ");
   const wordCount = articleText.trim().split(/\s+/).length;
+  const featuredImageUrl = absoluteAssetUrl(post.image);
   const imageObject = {
     "@type": "ImageObject",
-    url: absoluteAssetUrl(post.image),
-    width: 1600,
-    height: 900,
+    "@id": `${articleUrl}#primaryimage`,
+    url: featuredImageUrl,
     caption: post.imageAlt,
-    contentUrl: absoluteAssetUrl(post.image),
+    contentUrl: featuredImageUrl,
     creditText: "EVAtlas",
-    creator: {
-      "@type": "Organization",
-      name: "EVAtlas",
-    },
+    creator: { "@id": EVATLAS_BUSINESS_ID },
     copyrightNotice: IMAGE_COPYRIGHT_NOTICE,
     license: IMAGE_LICENSE_URL,
     acquireLicensePage: IMAGE_ACQUIRE_LICENSE_URL,
@@ -201,21 +221,10 @@ export default async function BlogArticlePage({
   const articleSchema = {
     "@context": "https://schema.org",
     "@graph": [
-      {
-        "@type": "Organization",
-        "@id": `${SITE_URL}/#organization`,
-        name: SITE_NAME,
-        url: absolutePageUrl(),
-        logo: {
-          "@type": "ImageObject",
-          url: absoluteAssetUrl("/images/evatlas-logo.png"),
-          width: 1421,
-          height: 215,
-        },
-      },
+      evatlasBusinessNode,
       {
         "@type": "WebPage",
-        "@id": `${articleUrl}#webpage`,
+        "@id": articleUrl,
         url: articleUrl,
         name: post.title,
         description: post.description,
@@ -233,12 +242,12 @@ export default async function BlogArticlePage({
         url: articleUrl,
         mainEntityOfPage: {
           "@type": "WebPage",
-          "@id": `${articleUrl}#webpage`,
+          "@id": articleUrl,
         },
         headline: post.title,
         description: post.description,
-        image: imageObject,
-        thumbnailUrl: absoluteAssetUrl(post.image),
+        image: [imageObject],
+        thumbnailUrl: featuredImageUrl,
         datePublished: post.datePublished,
         dateModified: post.dateModified,
         inLanguage: "fr-MA",
@@ -250,37 +259,9 @@ export default async function BlogArticlePage({
           "@type": "Thing",
           name: keyword,
         })),
-        author: {
-          "@type": "Organization",
-          name: "Équipe EVAtlas",
-          url: absolutePageUrl("/a-propos/"),
-        },
-        publisher: { "@id": `${SITE_URL}/#organization` },
+        author: { "@id": EVATLAS_BUSINESS_ID },
+        publisher: { "@id": EVATLAS_BUSINESS_ID },
         isPartOf: { "@id": `${absolutePageUrl("/blog/")}#blog` },
-      },
-      {
-        "@type": "BreadcrumbList",
-        "@id": `${articleUrl}#breadcrumb`,
-        itemListElement: [
-          {
-            "@type": "ListItem",
-            position: 1,
-            name: "Accueil",
-            item: absolutePageUrl(),
-          },
-          {
-            "@type": "ListItem",
-            position: 2,
-            name: "Guides",
-            item: absolutePageUrl("/blog/"),
-          },
-          {
-            "@type": "ListItem",
-            position: 3,
-            name: post.title,
-            item: articleUrl,
-          },
-        ],
       },
       {
         "@type": "FAQPage",
@@ -304,17 +285,14 @@ export default async function BlogArticlePage({
         <article>
           <header className="article-hero">
             <div className="container article-hero-inner">
-              <nav className="article-breadcrumb" aria-label="Fil d’Ariane">
-                <ol>
-                  <li>
-                    <TrackedLink href="/">Accueil</TrackedLink>
-                  </li>
-                  <li>
-                    <TrackedLink href="/blog">Guides</TrackedLink>
-                  </li>
-                  <li aria-current="page">{post.category}</li>
-                </ol>
-              </nav>
+              <Breadcrumbs
+                className="article-breadcrumb"
+                items={[
+                  { name: "Accueil", href: "/" },
+                  { name: "Guides", href: "/blog/" },
+                  { name: post.title, href: `/blog/${post.slug}/` },
+                ]}
+              />
               <div className="article-hero-copy">
                 <p className="eyebrow">{post.category}</p>
                 <h1>{post.title}</h1>
@@ -339,6 +317,7 @@ export default async function BlogArticlePage({
                 width={1600}
                 height={900}
                 priority
+                fetchPriority="high"
                 sizes="(max-width: 900px) 100vw, 1200px"
               />
               <p>Illustration éditoriale EVAtlas</p>
@@ -372,21 +351,21 @@ export default async function BlogArticlePage({
                   className="text-link"
                   eventName="click_article_sidebar_product"
                 >
-                  Voir la MaxiCharger <Icon name="arrow" size={15} />
+                  Découvrir la borne Autel MaxiCharger <Icon name="arrow" size={15} />
                 </ProductRouteLink>
                 <TrackedLink
                   href="/devis?product=autel-maxicharger#quote-form"
                   className="text-link"
                   eventName="click_article_sidebar_quote"
                 >
-                  Obtenir mon devis <Icon name="arrow" size={15} />
+                  Demander un devis d’installation <Icon name="arrow" size={15} />
                 </TrackedLink>
                 <TrackedLink
                   href="/simulateur"
                   className="text-link"
                   eventName="click_article_simulator"
                 >
-                  Ouvrir le simulateur <Icon name="arrow" size={15} />
+                  Simuler le temps de recharge <Icon name="arrow" size={15} />
                 </TrackedLink>
               </div>
             </aside>
@@ -405,7 +384,10 @@ export default async function BlogArticlePage({
 
               {post.sections.map((section, index) => (
                 <Fragment key={section.id}>
-                  <ArticleSectionContent section={section} />
+                  <ArticleSectionContent
+                    section={section}
+                    internalLinks={getBlogInternalLinks(post.slug, index)}
+                  />
                   {index === 1 && post.productCta && (
                     <aside className="article-inline-product" aria-labelledby="article-inline-product-title">
                       <div>
@@ -425,7 +407,7 @@ export default async function BlogArticlePage({
                           className="button button-outline"
                           eventName="click_article_inline_quote"
                         >
-                          Recevoir mon devis <Icon name="arrow" size={17} />
+                          Demander un devis pour cette borne <Icon name="arrow" size={17} />
                         </TrackedLink>
                       </div>
                     </aside>
@@ -443,13 +425,13 @@ export default async function BlogArticlePage({
                           className="button"
                           eventName="click_article_mid_quote"
                         >
-                          Demander mon devis <Icon name="arrow" size={17} />
+                          Demander une étude d’installation <Icon name="arrow" size={17} />
                         </TrackedLink>
                         <ProductRouteLink
                           className="text-link"
                           eventName="click_article_mid_product"
                         >
-                          Explorer la MaxiCharger <Icon name="arrow" size={15} />
+                          Voir les caractéristiques de la MaxiCharger <Icon name="arrow" size={15} />
                         </ProductRouteLink>
                       </div>
                     </aside>

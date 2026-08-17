@@ -1,6 +1,7 @@
 import Footer from "@/components/layout/Footer";
 import Header from "@/components/layout/Header";
 import styles from "@/components/content/ContentPages.module.css";
+import Breadcrumbs from "@/components/seo/Breadcrumbs";
 
 export type LegalSection = {
   id: string;
@@ -12,6 +13,7 @@ export type LegalSection = {
 type LegalPageProps = {
   eyebrow: string;
   title: string;
+  path: string;
   introduction: string;
   sections: LegalSection[];
   note?: string;
@@ -24,6 +26,7 @@ type LegalPageProps = {
 export default function LegalPage({
   eyebrow,
   title,
+  path,
   introduction,
   sections,
   note,
@@ -36,6 +39,12 @@ export default function LegalPage({
         <header className={styles["legal-header"]}>
           <div className={styles["legal-shell"]}>
             <div className={styles["legal-header-copy"]}>
+              <Breadcrumbs
+                items={[
+                  { name: "Accueil", href: "/" },
+                  { name: title, href: path },
+                ]}
+              />
               <p className={styles["legal-eyebrow"]}>{eyebrow}</p>
               <h1>{title}</h1>
               <p className={styles["legal-introduction"]}>{introduction}</p>

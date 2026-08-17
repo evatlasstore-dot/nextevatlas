@@ -65,6 +65,7 @@ export default function AutelChargeAppSection() {
               alt="Application Autel Charge présentée sur trois smartphones"
               width={1162}
               height={1354}
+              loading="lazy"
               sizes="(max-width: 680px) 108vw, (max-width: 980px) 78vw, 610px"
             />
             <figcaption className="app-command-caption">

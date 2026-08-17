@@ -51,6 +51,7 @@ export function HomeSolutionsSection() {
             src="/images/product/autel-maxicharger/hero-poster.png"
             alt="Borne Autel MaxiCharger installée dans un environnement contemporain"
             fill
+            loading="lazy"
             sizes="(max-width: 900px) 100vw, 52vw"
           />
           <figcaption>

@@ -270,7 +270,9 @@ export default function ChargingSimulator({ product = "autel-maxicharger" }: Cha
                     className={styles.vehicleImage}
                     src={activeBrand.visual.src}
                     alt={activeBrand.visual.alt}
-                    fill
+                    width={1536}
+                    height={1024}
+                    loading="lazy"
                     sizes="(max-width: 760px) 88vw, (max-width: 1040px) 620px, 480px"
                   />
                 ) : activeBrandLogo ? (
@@ -283,6 +285,7 @@ export default function ChargingSimulator({ product = "autel-maxicharger" }: Cha
                           src={activeBrandLogo.src}
                           alt=""
                           fill
+                          loading="lazy"
                           sizes="(max-width: 760px) 220px, 250px"
                         />
                       ) : (

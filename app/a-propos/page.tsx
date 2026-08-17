@@ -1,14 +1,17 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import Icon from "@/components/ui/Icon";
 import TrackedLink from "@/components/ui/TrackedLink";
+import Breadcrumbs from "@/components/seo/Breadcrumbs";
+import { evatlasBusinessSchema } from "@/data/business-schema";
 import styles from "@/components/content/ContentPages.module.css";
 
 export const metadata: Metadata = {
-  title: "À propos : recharge électrique au Maroc",
+  title: { absolute: "EVAtlas Maroc | Bornes de recharge à Casablanca" },
   description:
-    "Découvrez l’approche EVAtlas : comprendre le besoin, vérifier le site et accompagner les projets de recharge électrique au Maroc.",
+    "Découvrez EVAtlas, spécialiste des solutions de recharge pour véhicules électriques basé à Casablanca et intervenant sur des projets au Maroc.",
   alternates: { canonical: "/a-propos/" },
   openGraph: {
     type: "website",
@@ -57,10 +60,27 @@ export default function AboutPage() {
       <Header />
       <main id="main-content" className={styles["about-page"]}>
         <section className={styles["about-hero"]} aria-labelledby="about-title">
+          <Image
+            className={styles["about-hero-image"]}
+            src="/images/evatlas-team.jpg"
+            alt="L’équipe EVAtlas réunie à Casablanca"
+            width={1232}
+            height={822}
+            priority
+            fetchPriority="high"
+            sizes="100vw"
+          />
           <div className={`${styles["about-shell"]} ${styles["about-hero-grid"]}`}>
             <div className={styles["about-hero-copy"]}>
+              <Breadcrumbs
+                tone="inverse"
+                items={[
+                  { name: "Accueil", href: "/" },
+                  { name: "À propos", href: "/a-propos/" },
+                ]}
+              />
               <p className={styles["about-eyebrow"]}>À propos d’EVAtlas</p>
-              <h1 id="about-title">Rendre la recharge plus simple à décider.</h1>
+              <h1 id="about-title">EVAtlas, spécialiste de la recharge électrique au Maroc</h1>
               <p>EVAtlas accompagne les projets de recharge électrique depuis Casablanca, avec une approche centrée sur le véhicule, le lieu et l’usage réel au Maroc.</p>
               <div className={styles["about-hero-actions"]}>
                 <TrackedLink href="/devis#quote-form" className="button" eventName="click_about_quote">Parler de mon projet <Icon name="arrow" size={17} /></TrackedLink>
@@ -150,6 +170,10 @@ export default function AboutPage() {
         </section>
       </main>
       <Footer />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(evatlasBusinessSchema) }}
+      />
     </>
   );
 }

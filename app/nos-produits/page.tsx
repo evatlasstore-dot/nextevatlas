@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import Icon from "@/components/ui/Icon";
@@ -6,12 +7,13 @@ import TrackedLink from "@/components/ui/TrackedLink";
 import ProductRouteLink from "@/components/ui/ProductRouteLink";
 import styles from "@/components/content/ContentPages.module.css";
 import ReviewsSection from "@/components/shared/ReviewsSection";
+import Breadcrumbs from "@/components/seo/Breadcrumbs";
 import { absolutePageUrl } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: "Bornes de recharge au Maroc : nos solutions",
+  title: { absolute: "Bornes de recharge voiture électrique au Maroc | EVAtlas" },
   description:
-    "Découvrez les solutions de recharge EVAtlas pour la maison, l’entreprise et les parkings partagés, avec accompagnement et installation au Maroc.",
+    "Découvrez les bornes de recharge EVAtlas pour particuliers, entreprises, hôtels, résidences et parkings au Maroc.",
   alternates: { canonical: "/nos-produits/" },
   openGraph: {
     type: "website",
@@ -73,24 +75,33 @@ export default function ProductsPage() {
         <section className={styles["catalog-hero"]} aria-labelledby="catalog-title">
           <div className={`${styles["catalog-shell"]} ${styles["catalog-hero-grid"]}`}>
             <div className={styles["catalog-hero-copy"]}>
+              <Breadcrumbs
+                items={[
+                  { name: "Accueil", href: "/" },
+                  { name: "Bornes de recharge", href: "/nos-produits/" },
+                ]}
+              />
               <p className={styles["catalog-eyebrow"]}>Solutions de recharge</p>
-              <h1 id="catalog-title">La bonne borne commence par le bon usage.</h1>
+              <h1 id="catalog-title">Bornes de recharge pour particuliers et professionnels au Maroc</h1>
               <p>EVAtlas met le véhicule, le lieu et vos habitudes au centre de la recommandation. Une approche simple pour choisir une recharge cohérente aujourd’hui et durable demain.</p>
               <div className={styles["catalog-hero-actions"]}>
                 <TrackedLink href="/devis#quote-form" className="button" eventName="click_catalog_quote">
-                  Étudier mon projet <Icon name="arrow" size={17} />
+                  Demander une étude d’installation <Icon name="arrow" size={17} />
                 </TrackedLink>
                 <TrackedLink href="/simulateur" className={styles["catalog-secondary-link"]} eventName="click_catalog_simulator">
-                  Estimer ma recharge <Icon name="arrow" size={16} />
+                  Simuler le temps de recharge <Icon name="arrow" size={16} />
                 </TrackedLink>
               </div>
             </div>
             <div className={styles["catalog-hero-visual"]}>
-              <img
+              <Image
                 src="/images/product/autel-maxicharger/installation/wall-mounted.png"
-                width="1024"
-                height="1536"
-                alt="Autel MaxiCharger, borne de recharge murale disponible chez EVAtlas"
+                width={1024}
+                height={1536}
+                alt="Autel MaxiCharger 22 kW proposée par EVAtlas au Maroc"
+                priority
+                fetchPriority="high"
+                sizes="(max-width: 760px) 92vw, (max-width: 1100px) 46vw, 480px"
               />
               <div className={styles["catalog-visual-note"]}>
                 <span><b>Autel MaxiCharger</b><small>Murale ou sur pied</small></span>
@@ -129,11 +140,12 @@ export default function ProductsPage() {
             <article className={styles["catalog-product-card"]}>
               <div className={styles["catalog-product-media"]}>
                 <span className={styles["catalog-product-status"]}><i aria-hidden="true" /> Disponible à l’étude</span>
-                <img
+                <Image
                   src="/images/product/autel-maxicharger/installation/wall-mounted.png"
-                  width="1024"
-                  height="1536"
+                  width={1024}
+                  height={1536}
                   loading="lazy"
+                  sizes="(max-width: 760px) 92vw, (max-width: 980px) 70vw, 520px"
                   alt="Vue détourée de l’Autel MaxiCharger avec câble Type 2"
                 />
               </div>
@@ -150,10 +162,10 @@ export default function ProductsPage() {
                 </ul>
                 <div className={styles["catalog-product-actions"]}>
                   <ProductRouteLink className="button" eventName="click_catalog_product">
-                    Découvrir la MaxiCharger <Icon name="arrow" size={17} />
+                    Découvrir l’Autel MaxiCharger 22 kW <Icon name="arrow" size={17} />
                   </ProductRouteLink>
                   <TrackedLink href="/devis?product=autel-maxicharger#quote-form" className={styles["catalog-secondary-link"]} eventName="click_catalog_product_quote">
-                    Demander une étude <Icon name="arrow" size={16} />
+                    Demander un devis pour la MaxiCharger <Icon name="arrow" size={16} />
                   </TrackedLink>
                 </div>
               </div>
@@ -187,7 +199,7 @@ export default function ProductsPage() {
               <h2 id="catalog-cta-title">Faisons correspondre la borne à votre réalité.</h2>
             </div>
             <div className={styles["catalog-cta-actions"]}>
-              <TrackedLink href="/devis#quote-form" className="button" eventName="click_catalog_final_quote">Demander un devis <Icon name="arrow" size={17} /></TrackedLink>
+              <TrackedLink href="/devis#quote-form" className="button" eventName="click_catalog_final_quote">Demander un devis pour une borne <Icon name="arrow" size={17} /></TrackedLink>
               <TrackedLink href="/faq" className={styles["catalog-secondary-link"]}>Consulter la FAQ <Icon name="arrow" size={16} /></TrackedLink>
             </div>
           </div>

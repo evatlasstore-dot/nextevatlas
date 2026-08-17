@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Icon from "@/components/ui/Icon";
 import TrackedLink from "@/components/ui/TrackedLink";
 import ProductRouteLink from "@/components/ui/ProductRouteLink";
@@ -20,7 +21,7 @@ export default function ProductPageFooter() {
     <footer className="site-footer footer-standard">
       <div className="container footer-standard-grid">
         <div className="footer-standard-brand">
-          <img src="/images/evatlas-logo.png" alt="EVAtlas" />
+          <Image src="/images/evatlas-logo.png" alt="EVAtlas" width={190} height={52} loading="lazy" sizes="190px" />
           <p>La recharge électrique connectée, installée avec soin et pensée pour le Maroc.</p>
           <FooterSocialLinks />
         </div>
