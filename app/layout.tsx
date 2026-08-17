@@ -38,6 +38,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
   return (
     <html lang="fr-MA">
       <head>
+        <meta name="p:domain_verify" content="11b3fe49ed72ede32ee9087498ac86ce" />
         <script
           async
           src="https://www.googletagmanager.com/gtag/js?id=G-X43Z4LZK9H"

@@ -1,10 +1,10 @@
-# EVAtlas — 36 modèles d’e-mails commerciaux
+# EVAtlas — 38 modèles d’e-mails commerciaux
 
-Ce paquet contient les 36 modèles d’e-mails EVAtlas, leur design HTML responsive et les références nécessaires à leur rendu.
+Ce paquet contient les 38 modèles d’e-mails EVAtlas, leur design HTML responsive et les références nécessaires à leur rendu.
 
 ## Fichiers
 
-- `lib/commercial-email-templates.ts` : contenu, objets, champs variables, pièces jointes et actions attendues des 36 e-mails.
+- `lib/commercial-email-templates.ts` : contenu, objets, champs variables, pièces jointes et actions attendues des 38 e-mails.
 - `lib/email-design.ts` : design HTML EVAtlas partagé avec les e-mails automatiques du site.
 - `lib/site.ts` : URL et identité du site utilisées par le design.
 - `data/contact.ts` : liens de contact et WhatsApp utilisés par certains boutons.
@@ -13,7 +13,7 @@ Ce paquet contient les 36 modèles d’e-mails EVAtlas, leur design HTML respons
 
 Téléversez l’archive puis utilisez ce prompt :
 
-> Analyse tous les fichiers de cette archive. Les 36 modèles se trouvent dans `lib/commercial-email-templates.ts` et leur design se trouve dans `lib/email-design.ts`. Crée une prévisualisation fidèle de chaque modèle en respectant exactement le HTML, les couleurs, le logo, les boutons et la mise en page responsive EVAtlas. Conserve les champs entre crochets lorsqu’aucune valeur n’est fournie. Commence par afficher un sommaire numéroté des 36 modèles, puis demande-moi quel numéro je souhaite prévisualiser. Pour le modèle choisi, présente l’objet, le rendu visuel HTML, les champs à compléter, les pièces jointes et l’action attendue du client. N’invente aucun prix, délai, disponibilité ou condition.
+> Analyse tous les fichiers de cette archive. Les 38 modèles se trouvent dans `lib/commercial-email-templates.ts` et leur design se trouve dans `lib/email-design.ts`. Crée une prévisualisation fidèle de chaque modèle en respectant exactement le HTML, les couleurs, le logo, les boutons et la mise en page responsive EVAtlas. Conserve les champs entre crochets lorsqu’aucune valeur n’est fournie. Commence par afficher un sommaire numéroté des 38 modèles, puis demande-moi quel numéro je souhaite prévisualiser. Pour le modèle choisi, présente l’objet, le rendu visuel HTML, les champs à compléter, les pièces jointes et l’action attendue du client. N’invente aucun prix, délai, disponibilité ou condition.
 
 ## Règles importantes
 
