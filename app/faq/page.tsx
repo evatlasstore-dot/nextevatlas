@@ -35,8 +35,8 @@ export default function FaqPage() {
     <>
       <Header />
       <main id="main-content" className={styles["faq-page"]}>
-        <section className={styles["faq-page-hero"]} aria-labelledby="faq-page-title">
-          <div className={`${styles["faq-page-shell"]} ${styles["faq-page-hero-copy"]}`}>
+        <section className={styles["faq-page-hero"]} aria-labelledby="faq-page-title" data-hero-animate="true">
+          <div className={`${styles["faq-page-shell"]} ${styles["faq-page-hero-copy"]}`} data-hero-copy="true">
             <Breadcrumbs
               items={[
                 { name: "Accueil", href: "/" },

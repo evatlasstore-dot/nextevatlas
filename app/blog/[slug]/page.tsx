@@ -202,6 +202,7 @@ export default async function BlogArticlePage({
       ...(section.table?.rows.flat() ?? []),
       section.note?.text ?? "",
     ]),
+    ...(post.sources ?? []).flatMap((source) => [source.title, source.publisher]),
     ...post.faq.flatMap((item) => [item.question, item.answer]),
   ].join(" ");
   const wordCount = articleText.trim().split(/\s+/).length;
@@ -253,6 +254,7 @@ export default async function BlogArticlePage({
         inLanguage: "fr-MA",
         articleSection: post.category,
         keywords: post.keywords.join(", "),
+        citation: post.sources?.map((source) => source.url),
         wordCount,
         isAccessibleForFree: true,
         about: post.keywords.slice(0, 3).map((keyword) => ({
@@ -283,7 +285,7 @@ export default async function BlogArticlePage({
       <Header />
       <main id="main-content" className="article-page">
         <article>
-          <header className="article-hero">
+          <header className="article-hero" data-hero-animate="true">
             <div className="container article-hero-inner">
               <Breadcrumbs
                 className="article-breadcrumb"
@@ -293,7 +295,7 @@ export default async function BlogArticlePage({
                   { name: post.title, href: `/blog/${post.slug}/` },
                 ]}
               />
-              <div className="article-hero-copy">
+              <div className="article-hero-copy" data-hero-copy="true">
                 <p className="eyebrow">{post.category}</p>
                 <h1>{post.title}</h1>
                 <p className="article-deck">{post.description}</p>
@@ -337,9 +339,21 @@ export default async function BlogArticlePage({
                       </a>
                     </li>
                   ))}
+                  {post.sources && post.sources.length > 0 && (
+                    <li>
+                      <a href="#sources-references">
+                        <span>{String(post.sections.length + 1).padStart(2, "0")}</span>
+                        Sources et références
+                      </a>
+                    </li>
+                  )}
                   <li>
                     <a href="#questions-frequentes">
-                      <span>{String(post.sections.length + 1).padStart(2, "0")}</span>
+                      <span>
+                        {String(
+                          post.sections.length + (post.sources?.length ? 2 : 1),
+                        ).padStart(2, "0")}
+                      </span>
                       Questions fréquentes
                     </a>
                   </li>
@@ -438,6 +452,35 @@ export default async function BlogArticlePage({
                   )}
                 </Fragment>
               ))}
+
+              {post.sources && post.sources.length > 0 && (
+                <section
+                  id="sources-references"
+                  className="article-sources"
+                  aria-labelledby="article-sources-title"
+                >
+                  <p className="eyebrow">Vérification éditoriale</p>
+                  <h2 id="article-sources-title">Sources et références.</h2>
+                  <p>
+                    Les données datées et les annonces citées dans ce guide ont
+                    été vérifiées à partir des publications officielles suivantes.
+                  </p>
+                  <ul>
+                    {post.sources.map((source) => (
+                      <li key={source.url}>
+                        <a
+                          href={source.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          <strong>{source.title}</strong>
+                          <span>{source.publisher}</span>
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+                </section>
+              )}
 
               <section
                 id="questions-frequentes"

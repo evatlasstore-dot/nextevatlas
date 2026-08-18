@@ -72,9 +72,9 @@ export default function ProductsPage() {
     <>
       <Header />
       <main id="main-content" className={styles["catalog-page"]}>
-        <section className={styles["catalog-hero"]} aria-labelledby="catalog-title">
+        <section className={styles["catalog-hero"]} aria-labelledby="catalog-title" data-hero-animate="true">
           <div className={`${styles["catalog-shell"]} ${styles["catalog-hero-grid"]}`}>
-            <div className={styles["catalog-hero-copy"]}>
+            <div className={styles["catalog-hero-copy"]} data-hero-copy="true">
               <Breadcrumbs
                 items={[
                   { name: "Accueil", href: "/" },
@@ -103,7 +103,7 @@ export default function ProductsPage() {
                 fetchPriority="high"
                 sizes="(max-width: 760px) 92vw, (max-width: 1100px) 46vw, 480px"
               />
-              <div className={styles["catalog-visual-note"]}>
+              <div className={styles["catalog-visual-note"]} data-hero-panel="true">
                 <span><b>Autel MaxiCharger</b><small>Murale ou sur pied</small></span>
                 <strong>Jusqu’à 22 kW</strong>
               </div>

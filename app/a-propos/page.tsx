@@ -59,7 +59,7 @@ export default function AboutPage() {
     <>
       <Header />
       <main id="main-content" className={styles["about-page"]}>
-        <section className={styles["about-hero"]} aria-labelledby="about-title">
+        <section className={styles["about-hero"]} aria-labelledby="about-title" data-hero-animate="true">
           <Image
             className={styles["about-hero-image"]}
             src="/images/evatlas-team.jpg"
@@ -71,7 +71,7 @@ export default function AboutPage() {
             sizes="100vw"
           />
           <div className={`${styles["about-shell"]} ${styles["about-hero-grid"]}`}>
-            <div className={styles["about-hero-copy"]}>
+            <div className={styles["about-hero-copy"]} data-hero-copy="true">
               <Breadcrumbs
                 tone="inverse"
                 items={[

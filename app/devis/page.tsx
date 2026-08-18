@@ -28,7 +28,7 @@ export default function QuotePage() {
     <>
       <Header />
       <main id="main-content" className="quote-page">
-        <section className="quote-hero" aria-labelledby="quote-page-title">
+        <section className="quote-hero" aria-labelledby="quote-page-title" data-hero-animate="true">
           <Image
             className="quote-hero-image"
             src="/images/quote/quote-hero-morocco.png"
@@ -49,12 +49,12 @@ export default function QuotePage() {
               ]}
             />
             <div className="quote-hero-layout">
-              <div className="quote-hero-copy">
+              <div className="quote-hero-copy" data-hero-copy="true">
                 <p className="quote-hero-eyebrow">Conseil et installation EVAtlas</p>
                 <h1 id="quote-page-title">Demandez votre devis pour une borne de recharge au Maroc</h1>
                 <p>Partagez l’essentiel de votre besoin. Notre équipe pourra reprendre votre contexte, vérifier la faisabilité et vous orienter vers une solution cohérente.</p>
               </div>
-              <aside className="quote-hero-proof" aria-label="Les engagements de la demande">
+              <aside className="quote-hero-proof" aria-label="Les engagements de la demande" data-hero-panel="true">
                 <div><Icon name="shield" size={20} /><p><b>Demande transparente</b><span>Vos informations sont transmises directement et de façon sécurisée à l’équipe EVAtlas.</span></p></div>
                 <div><Icon name="pin" size={20} /><p><b>Regard local</b><span>Une étude adaptée au véhicule, au lieu et à l’installation.</span></p></div>
                 <div><Icon name="phone" size={20} /><p><b>Échange humain</b><span>Un interlocuteur reprend votre projet avec vous.</span></p></div>

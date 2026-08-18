@@ -99,8 +99,8 @@ export default function BlogPage() {
     <>
       <Header />
       <main id="main-content" className="blog-page">
-        <section className="blog-hero" aria-labelledby="blog-title">
-          <div className="container blog-hero-inner">
+        <section className="blog-hero" aria-labelledby="blog-title" data-hero-animate="true">
+          <div className="container blog-hero-inner" data-hero-copy="true">
             <Breadcrumbs
               items={[
                 { name: "Accueil", href: "/" },

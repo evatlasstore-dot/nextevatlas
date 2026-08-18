@@ -19,7 +19,7 @@ export default function ProductHero({ breadcrumb }: { breadcrumb?: ReactNode }) 
   }, []);
 
   return (
-    <section className="product-hero" aria-labelledby="product-hero-title">
+    <section className="product-hero" aria-labelledby="product-hero-title" data-hero-animate="true">
       <div className="product-hero-media">
         <Image
           className="product-hero-poster"
@@ -36,7 +36,7 @@ export default function ProductHero({ breadcrumb }: { breadcrumb?: ReactNode }) 
         </video>
       </div>
       <div className="product-hero-overlay" />
-      <div className="container product-hero-content">
+      <div className="container product-hero-content" data-hero-copy="true">
         {breadcrumb}
         <p className="eyebrow product-hero-eyebrow">Autel MaxiCharger AC · EVAtlas Maroc</p>
         <h1 id="product-hero-title">Autel MaxiCharger 22 kW : borne de recharge connectée au Maroc</h1>

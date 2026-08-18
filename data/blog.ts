@@ -1,3 +1,5 @@
+import { august2026BlogPosts } from "./blog-august-2026";
+
 export type BlogTable = {
   caption: string;
   headers: string[];
@@ -25,6 +27,12 @@ export type BlogFaq = {
   answer: string;
 };
 
+export type BlogSource = {
+  title: string;
+  publisher: string;
+  url: string;
+};
+
 export type BlogPost = {
   slug: string;
   title: string;
@@ -42,6 +50,7 @@ export type BlogPost = {
   quickAnswer: string;
   sections: BlogSection[];
   faq: BlogFaq[];
+  sources?: BlogSource[];
   relatedSlugs: string[];
   productCta?: {
     eyebrow: string;
@@ -59,6 +68,7 @@ const todayPublicationDate = "2026-08-05";
 const latestBlogPublicationDate = "2026-08-06";
 
 export const blogPosts: BlogPost[] = [
+  ...august2026BlogPosts,
   {
     slug: "borne-recharge-maroc-guide",
     title: "Borne de recharge au Maroc : le guide complet",

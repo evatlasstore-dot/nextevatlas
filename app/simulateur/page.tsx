@@ -29,7 +29,7 @@ export default function SimulatorPage() {
     <>
       <Header />
       <main id="main-content" className={styles.page}>
-        <section className={styles.hero} aria-labelledby="sim-page-title">
+        <section className={styles.hero} aria-labelledby="sim-page-title" data-hero-animate="true">
           <Image
             className={styles.heroImage}
             src="/images/simulator/simulator-hero-morocco.png"
@@ -50,12 +50,12 @@ export default function SimulatorPage() {
               ]}
             />
             <div className={styles.heroLayout}>
-              <div className={styles.heroCopy}>
+              <div className={styles.heroCopy} data-hero-copy="true">
                 <p className={styles.heroEyebrow}>Comprendre avant de choisir</p>
                 <h1 id="sim-page-title">Simulateur de temps de recharge pour voiture électrique</h1>
                 <p>Visualisez l’effet de la capacité, du niveau de batterie et de la puissance disponible avant de préparer votre installation.</p>
               </div>
-              <aside className={styles.heroCard} aria-label="Principes du simulateur">
+              <aside className={styles.heroCard} aria-label="Principes du simulateur" data-hero-panel="true">
                 <p><span>6</span>données utiles</p>
                 <ul>
                   <li><Icon name="check" size={15} /> Résultat immédiat</li>
