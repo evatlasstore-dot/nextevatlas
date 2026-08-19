@@ -10,6 +10,56 @@ export type BlogInternalLink = {
  * par sujet afin de garder une destination utile et des ancres naturelles.
  */
 export const blogInternalLinks: Record<string, readonly BlogInternalLink[]> = {
+  "ventes-voitures-electriques-maroc-2025": [
+    { sectionIndex: 1, lead: "Pour confronter les modèles disponibles à vos habitudes, utilisez", href: "/simulateur/", label: "le simulateur de recharge EVAtlas" },
+    { sectionIndex: 2, lead: "Pour découvrir une solution résidentielle connectée, consultez", href: "/nos-produits/autel-maxicharger/", label: "la borne Autel MaxiCharger jusqu’à 22 kW" },
+    { sectionIndex: 4, lead: "Pour transformer votre choix de véhicule en projet concret, vous pouvez", href: "/devis/#quote-form", label: "demander une étude d’installation au Maroc" },
+  ],
+  "autoroutes-maroc-bornes-recharge-strategie-adm": [
+    { sectionIndex: 2, lead: "Avant une longue étape, vous pouvez", href: "/simulateur/", label: "estimer l’énergie à récupérer pour votre véhicule" },
+    { sectionIndex: 3, lead: "Pour compléter les bornes rapides par une recharge régulière, découvrez", href: "/nos-produits/", label: "les solutions de recharge EVAtlas" },
+    { sectionIndex: 4, lead: "Pour partir avec une recharge adaptée depuis votre domicile, faites", href: "/devis/#quote-form", label: "étudier votre installation par EVAtlas" },
+  ],
+  "assurance-voiture-electrique-maroc-2026": [
+    { sectionIndex: 1, lead: "Avant d’assurer un véhicule d’occasion, consultez également", href: "/blog/acheter-voiture-electrique-occasion-maroc/", label: "les contrôles utiles sur la batterie et la recharge" },
+    { sectionIndex: 2, lead: "Pour examiner l’équipement et ses données techniques visibles, découvrez", href: "/nos-produits/autel-maxicharger/", label: "la MaxiCharger proposée par EVAtlas" },
+    { sectionIndex: 4, lead: "Pour obtenir un projet documenté et adapté au bâtiment, demandez", href: "/devis/#quote-form", label: "votre devis d’installation personnalisé" },
+  ],
+  "cybersecurite-borne-recharge-connectee-maroc": [
+    { sectionIndex: 1, lead: "Pour visualiser les fonctions connectées disponibles, consultez", href: "/nos-produits/autel-maxicharger/", label: "la page de l’Autel MaxiCharger" },
+    { sectionIndex: 2, lead: "Pour replacer la connectivité parmi les autres critères, parcourez", href: "/nos-produits/", label: "les solutions de recharge EVAtlas" },
+    { sectionIndex: 4, lead: "Pour prévoir la configuration et la mise en service de votre site, vous pouvez", href: "/devis/#quote-form", label: "présenter votre projet à un conseiller" },
+  ],
+  "plug-and-charge-iso-15118-maroc": [
+    { sectionIndex: 1, lead: "Pour distinguer cette communication de la recharge bidirectionnelle, lisez", href: "/blog/v2g-v2h-recharge-bidirectionnelle-maroc/", label: "le guide EVAtlas sur le V2G et le V2H" },
+    { sectionIndex: 3, lead: "Pour comparer ces innovations aux fonctions actuelles, découvrez", href: "/nos-produits/autel-maxicharger/", label: "l’Autel MaxiCharger connectée" },
+    { sectionIndex: 4, lead: "Pour vérifier d’abord le temps de recharge de votre voiture, utilisez", href: "/simulateur/", label: "le simulateur EVAtlas par modèle" },
+  ],
+  "distance-tableau-borne-recharge-maroc": [
+    { sectionIndex: 1, lead: "Pour comprendre les autres paramètres électriques du site, consultez", href: "/blog/borne-recharge-monophase-triphase-maroc/", label: "le guide monophasé ou triphasé" },
+    { sectionIndex: 2, lead: "Pour relier la puissance au véhicule, commencez par", href: "/simulateur/", label: "simuler plusieurs vitesses de recharge" },
+    { sectionIndex: 4, lead: "Pour faire mesurer le trajet et comparer les emplacements, demandez", href: "/devis/#quote-form", label: "une étude EVAtlas de votre stationnement" },
+  ],
+  "pneus-voiture-electrique-autonomie-maroc": [
+    { sectionIndex: 1, lead: "Pour compléter cette routine, retrouvez", href: "/blog/preserver-batterie-voiture-electrique-maroc/", label: "les conseils de préservation de la batterie" },
+    { sectionIndex: 4, lead: "Pour adapter l’énergie récupérée à votre consommation réelle, utilisez", href: "/simulateur/", label: "le simulateur de recharge par véhicule" },
+    { sectionIndex: 4, lead: "Pour découvrir une recharge programmée au domicile, consultez", href: "/nos-produits/autel-maxicharger/", label: "l’Autel MaxiCharger proposée au Maroc" },
+  ],
+  "borne-recharge-parking-souterrain-maroc": [
+    { sectionIndex: 0, lead: "Pour approfondir la gouvernance des espaces partagés, consultez", href: "/blog/borne-recharge-entreprise-copropriete-maroc/", label: "le guide entreprise et copropriété" },
+    { sectionIndex: 3, lead: "Pour voir une borne configurable avec contrôle des accès, découvrez", href: "/nos-produits/autel-maxicharger/", label: "la solution Autel MaxiCharger" },
+    { sectionIndex: 4, lead: "Pour cadrer votre place et les parties communes, faites", href: "/devis/#quote-form", label: "étudier votre parking par EVAtlas" },
+  ],
+  "voiture-electrique-montagne-maroc-autonomie": [
+    { sectionIndex: 2, lead: "Pour tenir compte aussi des températures élevées, lisez", href: "/blog/recharge-voiture-electrique-forte-chaleur-maroc/", label: "le guide de recharge par forte chaleur" },
+    { sectionIndex: 3, lead: "Avant votre départ, utilisez", href: "/simulateur/", label: "le simulateur de temps de recharge" },
+    { sectionIndex: 4, lead: "Pour préparer vos départs depuis la maison, découvrez", href: "/nos-produits/autel-maxicharger/", label: "la borne connectée Autel MaxiCharger" },
+  ],
+  "batterie-faible-panne-voiture-electrique-maroc": [
+    { sectionIndex: 1, lead: "Pour préparer plutôt que subir le prochain trajet, consultez", href: "/blog/voyage-voiture-electrique-maroc/", label: "le guide du voyage électrique au Maroc" },
+    { sectionIndex: 2, lead: "Pour connaître votre durée de récupération à différents niveaux, utilisez", href: "/simulateur/", label: "le calculateur EVAtlas" },
+    { sectionIndex: 4, lead: "Pour installer une recharge régulière à votre stationnement, demandez", href: "/devis/#quote-form", label: "une étude personnalisée de votre projet" },
+  ],
   "gigafactory-batteries-maroc-2026": [
     { sectionIndex: 0, lead: "Pour relier cette évolution industrielle à un projet concret, parcourez", href: "/nos-produits/", label: "les solutions de recharge proposées par EVAtlas" },
     { sectionIndex: 1, lead: "La technologie de batterie influence les usages ; vous pouvez", href: "/simulateur/", label: "simuler la recharge de votre modèle électrique" },
