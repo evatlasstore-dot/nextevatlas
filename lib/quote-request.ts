@@ -1,3 +1,5 @@
+import { sanitizeLeadAttribution, type LeadAttribution } from "@/lib/lead-attribution";
+
 export type QuoteCustomerType = "particulier" | "professionnel";
 export type QuoteProduct = "autel-maxicharger" | "a-definir";
 export type QuoteInstallationType = "maison" | "residence" | "entreprise" | "hotel" | "parking";
@@ -26,6 +28,7 @@ export type QuoteSubmission = {
   city: string;
   consent: true;
   simulation: QuoteSimulation | null;
+  attribution: LeadAttribution | null;
 };
 
 export type QuoteFieldErrors = Partial<Record<keyof QuoteSubmission | "simulation", string>>;
@@ -108,6 +111,7 @@ export function parseQuoteSubmission(input: unknown):
   const email = getString(input, "email").toLowerCase();
   const city = getString(input, "city");
   const simulation = parseSimulation(input.simulation);
+  const attribution = sanitizeLeadAttribution(input.attribution);
 
   if (!hasValidLength(vehicle, 2, 120)) errors.vehicle = "Indiquez un véhicule valide.";
   if (customerType === "professionnel" && !hasValidLength(organization, 2, 120)) {
@@ -146,6 +150,7 @@ export function parseQuoteSubmission(input: unknown):
       city,
       consent: true,
       simulation: validSimulation,
+      attribution,
     },
   };
 }

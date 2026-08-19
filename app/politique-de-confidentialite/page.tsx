@@ -21,6 +21,7 @@ const sections: LegalSection[] = [
     title: "Données susceptibles d’être traitées",
     paragraphs: [
       "Les données traitées dépendent de votre interaction avec EVAtlas. Elles peuvent inclure vos coordonnées, les informations que vous transmettez sur votre véhicule, votre besoin de recharge et votre lieu d’installation, ainsi que le contenu de vos échanges.",
+      "Lorsqu’une demande de devis est envoyée, EVAtlas peut également associer des informations techniques d’attribution à la demande : source et support de visite, campagne éventuelle, page d’entrée, site référent, page de conversion, type d’appareil et identifiants de clic publicitaire lorsqu’ils existent. Ces informations servent à comprendre l’origine des demandes et ne sont pas utilisées pour transmettre vos coordonnées personnelles aux outils d’analyse.",
       "Des informations techniques strictement nécessaires au fonctionnement et à la sécurité du site peuvent également être enregistrées par l’infrastructure utilisée pour le mettre à disposition.",
     ],
     items: [
@@ -28,6 +29,7 @@ const sections: LegalSection[] = [
       "Informations relatives au véhicule, au stationnement et à l’installation électrique.",
       "Messages, demandes de devis et préférences exprimées au cours des échanges.",
       "Données techniques nécessaires au fonctionnement, à la sécurité et au diagnostic du site.",
+      "Données d’attribution marketing associées à l’envoi d’une demande de devis.",
     ],
   },
   {

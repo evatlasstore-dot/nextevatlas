@@ -4,6 +4,7 @@ import { type FormEvent, useEffect, useLayoutEffect, useMemo, useState } from "r
 import Icon from "@/components/ui/Icon";
 import TrackedLink from "@/components/ui/TrackedLink";
 import { WHATSAPP_URL } from "@/data/contact";
+import { getLeadAttributionSnapshot } from "@/lib/lead-attribution";
 
 type SimulationContext = {
   capacity: number;
@@ -307,6 +308,7 @@ export default function QuoteForm({ initialProduct, initialSimulation = null }: 
     setSubmissionError("");
     setCustomerEmailSent(null);
     setSubmissionState("submitting");
+    const attribution = getLeadAttributionSnapshot();
 
     try {
       const response = await fetch("/api/devis/", {
@@ -318,6 +320,7 @@ export default function QuoteForm({ initialProduct, initialSimulation = null }: 
         body: JSON.stringify({
           ...fields,
           simulation,
+          attribution,
           website,
         }),
       });
@@ -331,6 +334,23 @@ export default function QuoteForm({ initialProduct, initialSimulation = null }: 
       if (payload?.internalEmailSent !== true) {
         throw new Error("Le serveur n’a pas confirmé la réception de votre demande. Réessayez dans un instant.");
       }
+
+      const requestId = typeof payload.requestId === "string" ? payload.requestId : "";
+      window.dispatchEvent(new CustomEvent("evatlas:tracking", {
+        detail: {
+          event: "generate_lead",
+          eventId: requestId,
+          params: {
+            event_id: requestId,
+            lead_source: attribution?.lastTouch.source || "direct",
+            lead_medium: attribution?.lastTouch.medium || "(none)",
+            lead_campaign: attribution?.lastTouch.campaign || "",
+            landing_page: attribution?.firstTouch.landingPage || "",
+            conversion_page: attribution?.conversionPage || "/devis/",
+            device_type: attribution?.deviceType || "unknown",
+          },
+        },
+      }));
 
       setCustomerEmailSent(payload.customerEmailSent === true);
       setSubmissionState("success");

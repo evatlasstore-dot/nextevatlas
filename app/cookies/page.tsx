@@ -50,6 +50,7 @@ const sections: LegalSection[] = [
     title: "Durée et évolution",
     paragraphs: [
       "La durée de vie d’un cookie dépend de sa finalité et de la configuration du service concerné. L’inventaire précis, les fournisseurs et les durées devront être alignés sur les outils réellement utilisés lors de la mise en production du site.",
+      "Afin d’attribuer une demande de devis à sa première et à sa dernière source de visite, le site peut conserver dans le stockage local du navigateur des paramètres de campagne, la page d’entrée et le référent pendant une durée maximale de 90 jours. Cette information est jointe à la demande uniquement au moment de son envoi.",
       "Cette page est mise à jour lorsque les technologies utilisées ou leur configuration évoluent de manière significative.",
     ],
   },

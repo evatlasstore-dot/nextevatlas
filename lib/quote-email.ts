@@ -9,6 +9,7 @@ import {
   emailLayout,
   escapeHtml,
 } from "@/lib/email-design";
+import type { LeadAttribution, LeadAttributionTouch } from "@/lib/lead-attribution";
 import type { QuoteSubmission } from "@/lib/quote-request";
 
 type MailConfig = {
@@ -420,6 +421,60 @@ function quoteDetails(submission: QuoteSubmission): Array<[string, string]> {
   ];
 }
 
+function formatAttributionDate(value: string): string {
+  const timestamp = Date.parse(value);
+  if (!Number.isFinite(timestamp)) return "Non disponible";
+
+  return new Intl.DateTimeFormat("fr-MA", {
+    dateStyle: "medium",
+    timeStyle: "short",
+    timeZone: "Africa/Casablanca",
+  }).format(new Date(timestamp));
+}
+
+function formatAttributionChannel(touch: LeadAttributionTouch): string {
+  if (touch.source === "direct" && touch.medium === "(none)") {
+    return "Accès direct ou origine non identifiable";
+  }
+  return `${touch.source} · ${touch.medium}`;
+}
+
+function attributionDetails(
+  attribution: LeadAttribution | null,
+  requestId?: string,
+): Array<[string, string]> {
+  const reference = requestId?.trim() || "Non disponible";
+  if (!attribution) {
+    return [
+      ["Référence du lead", reference],
+      ["Origine", "Accès direct ou origine non identifiable"],
+      ["Note", "Aucune donnée d’attribution n’a été transmise par le navigateur."],
+    ];
+  }
+
+  const { firstTouch, lastTouch } = attribution;
+  return [
+    ["Référence du lead", reference],
+    ["Première origine", formatAttributionChannel(firstTouch)],
+    ["Première campagne", firstTouch.campaign || "Aucune campagne détectée"],
+    ["Première page d’entrée", firstTouch.landingPage],
+    ["Premier référent", firstTouch.referrer || "Aucun référent externe détecté"],
+    ["Première visite", formatAttributionDate(firstTouch.capturedAt)],
+    ["Dernière origine", formatAttributionChannel(lastTouch)],
+    ["Dernière campagne", lastTouch.campaign || "Aucune campagne détectée"],
+    ["Dernière page d’entrée", lastTouch.landingPage],
+    ["Dernier référent", lastTouch.referrer || "Aucun référent externe détecté"],
+    ["Dernière visite attribuée", formatAttributionDate(lastTouch.capturedAt)],
+    ["Page de conversion", attribution.conversionPage],
+    ["Appareil", attribution.deviceType === "mobile" ? "Mobile" : attribution.deviceType === "tablet" ? "Tablette" : attribution.deviceType === "desktop" ? "Ordinateur" : "Non identifié"],
+    ...(lastTouch.gclid ? [["Google Ads click ID", lastTouch.gclid] as [string, string]] : []),
+    ...(lastTouch.fbclid ? [["Meta click ID", lastTouch.fbclid] as [string, string]] : []),
+    ...(lastTouch.msclkid ? [["Microsoft Ads click ID", lastTouch.msclkid] as [string, string]] : []),
+    ...(lastTouch.content ? [["Contenu de campagne", lastTouch.content] as [string, string]] : []),
+    ...(lastTouch.term ? [["Terme de campagne", lastTouch.term] as [string, string]] : []),
+  ];
+}
+
 function normalizeWhatsAppPhone(phone: string): string {
   let digits = phone.replace(/\D/gu, "");
   if (digits.startsWith("00")) digits = digits.slice(2);
@@ -428,8 +483,13 @@ function normalizeWhatsAppPhone(phone: string): string {
   return digits;
 }
 
-function createInternalMessage(config: MailConfig, submission: QuoteSubmission): MailMessage {
+function createInternalMessage(
+  config: MailConfig,
+  submission: QuoteSubmission,
+  context?: { requestId?: string },
+): MailMessage {
   const details = quoteDetails(submission);
+  const acquisition = attributionDetails(submission.attribution, context?.requestId);
   const customerLabels = new Set(["Profil", "Organisation", "Ville", "Contact", "Téléphone", "E-mail"]);
   const customerDetails = details.filter(([label]) => customerLabels.has(label));
   const projectDetails = details.filter(([label]) => !customerLabels.has(label));
@@ -441,6 +501,9 @@ function createInternalMessage(config: MailConfig, submission: QuoteSubmission):
     "Nouvelle demande de devis EVAtlas",
     "",
     ...details.map(([label, value]) => `${label} : ${value}`),
+    "",
+    "ACQUISITION DU PROSPECT",
+    ...acquisition.map(([label, value]) => `${label} : ${value}`),
   ].join("\n");
 
   return {
@@ -472,7 +535,10 @@ function createInternalMessage(config: MailConfig, submission: QuoteSubmission):
             <td class="email-action-cell" style="padding:0 8px 0 0">${emailButton("Appeler", phoneUrl, "light")}</td>
             <td class="email-action-cell" style="padding:0">${emailButton("WhatsApp", clientWhatsAppUrl, "secondary")}</td>
           </tr>
-        </table>`,
+        </table>
+        <div style="height:24px;line-height:24px">&nbsp;</div>
+        ${detailCard("Acquisition du prospect", acquisition)}
+        <p style="color:#738175;font-family:Arial,Helvetica,sans-serif;font-size:11px;line-height:18px;margin:8px 0 0">Ces informations d’attribution sont des indications marketing issues du navigateur. Elles n’incluent ni le nom, ni l’e-mail, ni le téléphone dans les outils d’analyse.</p>`,
       footerNote: "Notification privée EVAtlas · Les informations de ce message proviennent du formulaire de devis.",
     }),
   };
@@ -549,7 +615,7 @@ export async function sendQuoteEmails(
   context?: { requestId?: string },
 ): Promise<QuoteEmailResult> {
   const config = getMailConfig();
-  const internalMessage = createInternalMessage(config, submission);
+  const internalMessage = createInternalMessage(config, submission, context);
 
   // The EVAtlas notification is the critical delivery. Only its failure should
   // make the quote request fail in the browser.

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import LeadAttributionTracker from "@/components/analytics/LeadAttributionTracker";
 import MetaPixelPageView from "@/components/analytics/MetaPixelPageView";
 import {
   absolutePageUrl,
@@ -79,6 +80,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
             alt=""
           />
         </noscript>
+        <LeadAttributionTracker />
         <MetaPixelPageView />
         <a className="skip-link" href="#main-content">Aller au contenu</a>
         {children}

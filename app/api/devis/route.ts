@@ -8,7 +8,7 @@ import { parseQuoteSubmission } from "@/lib/quote-request";
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
-const MAX_BODY_BYTES = 16_384;
+const MAX_BODY_BYTES = 32_768;
 const RATE_LIMIT_WINDOW_MS = 15 * 60 * 1000;
 const RATE_LIMIT_MAX_REQUESTS = 4;
 
