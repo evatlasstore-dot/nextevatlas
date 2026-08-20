@@ -38,7 +38,7 @@ h3 { font-size:clamp(1.28rem,1.8vw,1.8rem); }
 
 @media (max-width:680px) {
   .breadcrumb { margin-bottom:22px; font-size:.72rem; line-height:1.42; }
-  .breadcrumb ol { gap-block:6px; }
+  .breadcrumb ol { row-gap:6px; }
   .breadcrumb li { gap:7px; }
   .breadcrumb-separator { margin-right:7px; }
 }
