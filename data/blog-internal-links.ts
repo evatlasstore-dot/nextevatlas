@@ -10,6 +10,56 @@ export type BlogInternalLink = {
  * par sujet afin de garder une destination utile et des ancres naturelles.
  */
 export const blogInternalLinks: Record<string, readonly BlogInternalLink[]> = {
+  "courbe-recharge-rapide-10-80-pourcent": [
+    { sectionIndex: 1, lead: "Pour préparer la température avant une station rapide, consultez", href: "/blog/preconditionnement-batterie-recharge-rapide/", label: "le guide du préconditionnement de batterie" },
+    { sectionIndex: 2, lead: "Pour estimer plutôt votre recharge régulière en AC, utilisez", href: "/simulateur/", label: "le simulateur EVAtlas par véhicule" },
+    { sectionIndex: 4, lead: "Pour organiser cette recharge à votre stationnement, découvrez", href: "/nos-produits/autel-maxicharger/", label: "l’Autel MaxiCharger connectée" },
+  ],
+  "recharger-batterie-80-ou-100-pourcent": [
+    { sectionIndex: 0, lead: "Pour replacer la limite dans une routine complète, lisez", href: "/blog/preserver-batterie-voiture-electrique-maroc/", label: "les conseils de préservation de la batterie" },
+    { sectionIndex: 3, lead: "Pour voir les fonctions de programmation disponibles, consultez", href: "/nos-produits/autel-maxicharger/", label: "la borne connectée Autel MaxiCharger" },
+    { sectionIndex: 4, lead: "Pour calculer la durée entre deux niveaux de charge, lancez", href: "/simulateur/", label: "une simulation avec votre modèle" },
+  ],
+  "capacite-brute-utile-soc-soh-batterie": [
+    { sectionIndex: 1, lead: "Pour convertir une capacité utile en durée estimée, utilisez", href: "/simulateur/", label: "le calculateur de recharge EVAtlas" },
+    { sectionIndex: 2, lead: "Avant l’achat d’un véhicule déjà immatriculé, consultez", href: "/blog/acheter-voiture-electrique-occasion-maroc/", label: "la check-list de l’électrique d’occasion" },
+    { sectionIndex: 4, lead: "Pour faire correspondre la batterie au circuit disponible, demandez", href: "/devis/#quote-form", label: "une étude personnalisée de l’installation" },
+  ],
+  "freinage-regeneratif-one-pedal-maroc": [
+    { sectionIndex: 2, lead: "Pour comprendre aussi l’effet d’une batterie presque pleine, lisez", href: "/blog/recharger-batterie-80-ou-100-pourcent/", label: "le guide des limites de recharge" },
+    { sectionIndex: 3, lead: "Pour préparer vos trajets avec du relief, consultez", href: "/blog/voiture-electrique-montagne-maroc-autonomie/", label: "le guide de l’autonomie en montagne" },
+    { sectionIndex: 4, lead: "Pour récupérer à domicile l’énergie nette consommée, utilisez", href: "/simulateur/", label: "le simulateur de temps de recharge" },
+  ],
+  "pompe-a-chaleur-voiture-electrique-maroc": [
+    { sectionIndex: 1, lead: "Pour lire l’autonomie annoncée avec davantage de recul, consultez", href: "/blog/autonomie-wltp-reelle-voiture-electrique-maroc/", label: "le guide WLTP et autonomie réelle" },
+    { sectionIndex: 3, lead: "Pour estimer une récupération d’énergie avant le départ, utilisez", href: "/simulateur/", label: "le simulateur EVAtlas" },
+    { sectionIndex: 4, lead: "Pour programmer une recharge adaptée à votre stationnement, demandez", href: "/devis/#quote-form", label: "une étude de borne au Maroc" },
+  ],
+  "v2l-voiture-electrique-alimenter-appareils": [
+    { sectionIndex: 0, lead: "Pour distinguer les fonctions liées au bâtiment et au réseau, consultez", href: "/blog/v2g-v2h-recharge-bidirectionnelle-maroc/", label: "le guide V2H et V2G" },
+    { sectionIndex: 2, lead: "Pour replacer l’énergie consommée dans la capacité disponible, lisez", href: "/blog/capacite-brute-utile-soc-soh-batterie/", label: "les repères SoC, SoH et capacité utile" },
+    { sectionIndex: 4, lead: "Pour récupérer ensuite cette énergie sur une borne AC, calculez", href: "/simulateur/", label: "votre scénario de recharge" },
+  ],
+  "architecture-400-800-volts-voiture-electrique": [
+    { sectionIndex: 1, lead: "Pour comparer correctement le pic et la durée réelle, découvrez", href: "/blog/courbe-recharge-rapide-10-80-pourcent/", label: "le guide de la courbe 10–80 %" },
+    { sectionIndex: 3, lead: "Pour connaître la limite AC de votre modèle, utilisez", href: "/simulateur/", label: "le simulateur par marque et véhicule" },
+    { sectionIndex: 4, lead: "Pour voir une borne AC configurable selon le site, consultez", href: "/nos-produits/autel-maxicharger/", label: "la MaxiCharger jusqu’à 22 kW" },
+  ],
+  "recharge-ne-demarre-pas-cable-bloque": [
+    { sectionIndex: 0, lead: "Pour les précautions spécifiques à l’humidité, lisez", href: "/blog/recharger-voiture-electrique-sous-la-pluie-maroc/", label: "le guide de recharge sous la pluie" },
+    { sectionIndex: 3, lead: "Pour planifier l’entretien préventif de l’équipement, consultez", href: "/blog/entretien-borne-recharge-maintenance/", label: "le calendrier de maintenance d’une borne" },
+    { sectionIndex: 4, lead: "Pour bénéficier d’une installation configurée et expliquée, demandez", href: "/devis/#quote-form", label: "une étude EVAtlas" },
+  ],
+  "borne-recharge-salaries-entreprise-maroc": [
+    { sectionIndex: 1, lead: "Pour comparer la recharge d’une journée de travail selon les modèles, utilisez", href: "/simulateur/", label: "le simulateur de recharge EVAtlas" },
+    { sectionIndex: 3, lead: "Pour approfondir la supervision de plusieurs points, consultez", href: "/blog/ocpp-borne-recharge-entreprise-maroc/", label: "le guide OCPP pour les entreprises" },
+    { sectionIndex: 4, lead: "Pour dimensionner votre parking et son évolution, demandez", href: "/devis/#quote-form", label: "une étude de recharge pour collaborateurs" },
+  ],
+  "location-voiture-electrique-tourisme-maroc": [
+    { sectionIndex: 1, lead: "Pour remettre au voyageur un parcours cohérent, complétez avec", href: "/blog/voyage-voiture-electrique-maroc/", label: "le guide du voyage électrique au Maroc" },
+    { sectionIndex: 2, lead: "Pour équiper aussi les nuits à destination, consultez", href: "/blog/borne-recharge-hotel-riad-maroc/", label: "le guide des bornes pour hôtels et riads" },
+    { sectionIndex: 3, lead: "Pour étudier les rotations et la puissance de votre dépôt, demandez", href: "/devis/#quote-form", label: "une configuration professionnelle EVAtlas" },
+  ],
   "normes-marocaines-bornes-recharge-2026": [
     { sectionIndex: 1, lead: "Pour relier ces exigences à un équipement concret, consultez", href: "/nos-produits/autel-maxicharger/", label: "les caractéristiques visibles de l’Autel MaxiCharger" },
     { sectionIndex: 2, lead: "Pour comprendre le rôle du véhicule dans la puissance obtenue, utilisez", href: "/simulateur/", label: "le simulateur de recharge par modèle" },
