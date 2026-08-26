@@ -10,6 +10,56 @@ export type BlogInternalLink = {
  * par sujet afin de garder une destination utile et des ancres naturelles.
  */
 export const blogInternalLinks: Record<string, readonly BlogInternalLink[]> = {
+  "recharge-intelligente-heures-pointe-maroc": [
+    { sectionIndex: 0, lead: "Pour approfondir la limitation dynamique dans le bâtiment, consultez", href: "/blog/borne-recharge-intelligente-delestage/", label: "le guide du délestage pour borne de recharge" },
+    { sectionIndex: 2, lead: "Pour estimer l’énergie à récupérer avant le départ, utilisez", href: "/simulateur/", label: "le simulateur EVAtlas par véhicule" },
+    { sectionIndex: 4, lead: "Pour faire vérifier le tableau et programmer une solution adaptée, demandez", href: "/devis/#quote-form", label: "une étude de recharge intelligente" },
+  ],
+  "certificats-origine-electricite-recharge-maroc": [
+    { sectionIndex: 2, lead: "Pour distinguer ces certificats d’une production réellement située sur place, lisez", href: "/blog/recharge-voiture-electrique-solaire-maroc/", label: "le guide de la recharge solaire au Maroc" },
+    { sectionIndex: 3, lead: "Pour structurer les sessions de plusieurs véhicules, découvrez", href: "/blog/ocpp-borne-recharge-entreprise-maroc/", label: "le rôle d’OCPP dans une infrastructure professionnelle" },
+    { sectionIndex: 4, lead: "Pour présenter le périmètre énergétique de votre site, demandez", href: "/devis/#quote-form", label: "une étude EVAtlas personnalisée" },
+  ],
+  "fiscalite-voiture-electrique-maroc-2026": [
+    { sectionIndex: 1, lead: "Pour compléter le budget d’acquisition avec les coûts d’usage, consultez", href: "/blog/cout-recharge-voiture-electrique-maroc/", label: "le guide du coût de recharge au Maroc" },
+    { sectionIndex: 2, lead: "Avant d’acheter un véhicule déjà immatriculé, parcourez", href: "/blog/acheter-voiture-electrique-occasion-maroc/", label: "la check-list de la voiture électrique d’occasion" },
+    { sectionIndex: 4, lead: "Pour ajouter un chiffrage d’installation à votre dossier, vous pouvez", href: "/devis/#quote-form", label: "demander un devis de borne de recharge" },
+  ],
+  "batterie-12v-voiture-electrique-panne": [
+    { sectionIndex: 1, lead: "Pour distinguer cette panne d’une batterie de traction vide, lisez", href: "/blog/batterie-faible-panne-voiture-electrique-maroc/", label: "les réflexes en cas d’autonomie épuisée" },
+    { sectionIndex: 4, lead: "Pour diagnostiquer plutôt une session qui refuse de démarrer, consultez", href: "/blog/recharge-ne-demarre-pas-cable-bloque/", label: "le guide de dépannage du câble et de la borne" },
+    { sectionIndex: 4, lead: "Pour disposer d’une installation testée et expliquée, demandez", href: "/devis/#quote-form", label: "une étude de recharge EVAtlas" },
+  ],
+  "cable-recharge-mode-2-mode-3-maroc": [
+    { sectionIndex: 0, lead: "Pour différencier aussi Type 2 et CCS2, consultez", href: "/blog/connecteur-type-2-ccs2-recharge-maroc/", label: "le guide des connecteurs de recharge" },
+    { sectionIndex: 2, lead: "Pour voir une borne AC Type 2 proposée au Maroc, découvrez", href: "/nos-produits/autel-maxicharger/", label: "l’Autel MaxiCharger jusqu’à 22 kW" },
+    { sectionIndex: 4, lead: "Pour valider câble, phases et circuit dédié, demandez", href: "/devis/#quote-form", label: "une configuration adaptée à votre véhicule" },
+  ],
+  "mise-a-jour-logicielle-ota-voiture-electrique": [
+    { sectionIndex: 1, lead: "Pour comprendre les limites physiques derrière le logiciel, lisez", href: "/blog/chargeur-embarque-voiture-electrique-22-kw/", label: "le guide du chargeur embarqué AC" },
+    { sectionIndex: 4, lead: "Pour protéger également le compte et la borne, consultez", href: "/blog/cybersecurite-borne-recharge-connectee-maroc/", label: "les bonnes pratiques de cybersécurité" },
+    { sectionIndex: 4, lead: "Pour découvrir une borne connectée configurée localement, explorez", href: "/nos-produits/autel-maxicharger/", label: "la page de l’Autel MaxiCharger" },
+  ],
+  "borne-recharge-centre-commercial-restaurant-maroc": [
+    { sectionIndex: 0, lead: "Pour comparer ce service avec la recharge de nuit à destination, consultez", href: "/blog/borne-recharge-hotel-riad-maroc/", label: "le guide pour hôtels et riads" },
+    { sectionIndex: 1, lead: "Pour vérifier le temps de recharge de plusieurs modèles, utilisez", href: "/simulateur/", label: "le simulateur EVAtlas" },
+    { sectionIndex: 4, lead: "Pour dimensionner parking, rotation et puissance, demandez", href: "/devis/#quote-form", label: "une étude dédiée à votre commerce" },
+  ],
+  "tco-flotte-voitures-electriques-maroc": [
+    { sectionIndex: 1, lead: "Pour construire les hypothèses d’une flotte urbaine, lisez", href: "/blog/flotte-electrique-dernier-kilometre-maroc/", label: "le guide du dernier kilomètre électrique" },
+    { sectionIndex: 2, lead: "Pour examiner une borne AC connectée destinée aux sites professionnels, découvrez", href: "/nos-produits/autel-maxicharger/", label: "l’Autel MaxiCharger proposée par EVAtlas" },
+    { sectionIndex: 4, lead: "Pour remplacer les hypothèses d’infrastructure par une étude de site, demandez", href: "/devis/#quote-form", label: "un dimensionnement de flotte" },
+  ],
+  "mobilite-durable-maroc-2026-transport-electrique": [
+    { sectionIndex: 1, lead: "Pour suivre la complémentarité avec les bornes publiques, consultez", href: "/blog/reseau-bornes-publiques-maroc-lecons-2026/", label: "l’état des lieux de la recharge publique au Maroc" },
+    { sectionIndex: 3, lead: "Pour estimer une recharge pendant les heures de stationnement, utilisez", href: "/simulateur/", label: "le simulateur de temps de recharge" },
+    { sectionIndex: 4, lead: "Pour traduire vos trajets en équipement concret, demandez", href: "/devis/#quote-form", label: "une étude EVAtlas au Maroc" },
+  ],
+  "emplois-competences-vehicule-electrique-maroc-2026": [
+    { sectionIndex: 0, lead: "Pour comprendre le contexte industriel complet, consultez", href: "/blog/maroc-hub-industrie-vehicule-electrique-2026/", label: "l’analyse du hub électrique marocain" },
+    { sectionIndex: 3, lead: "Pour voir un exemple concret de borne connectée et de ses usages, découvrez", href: "/nos-produits/autel-maxicharger/", label: "l’Autel MaxiCharger AC Wallbox" },
+    { sectionIndex: 4, lead: "Pour comprendre le parcours d’un projet client réel, explorez", href: "/devis/#quote-form", label: "les informations demandées pour une étude EVAtlas" },
+  ],
   "courbe-recharge-rapide-10-80-pourcent": [
     { sectionIndex: 1, lead: "Pour préparer la température avant une station rapide, consultez", href: "/blog/preconditionnement-batterie-recharge-rapide/", label: "le guide du préconditionnement de batterie" },
     { sectionIndex: 2, lead: "Pour estimer plutôt votre recharge régulière en AC, utilisez", href: "/simulateur/", label: "le simulateur EVAtlas par véhicule" },
