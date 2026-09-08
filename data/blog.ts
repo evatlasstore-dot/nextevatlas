@@ -3,6 +3,7 @@ import { august192026BlogPosts } from "./blog-august-19-2026";
 import { august202026BlogPosts } from "./blog-august-20-2026";
 import { august252026BlogPosts } from "./blog-august-25-2026";
 import { august262026BlogPosts } from "./blog-august-26-2026";
+import { september82026BlogPosts } from "./blog-september-8-2026";
 
 export type BlogTable = {
   caption: string;
@@ -72,6 +73,7 @@ const todayPublicationDate = "2026-08-05";
 const latestBlogPublicationDate = "2026-08-06";
 
 export const blogPosts: BlogPost[] = [
+  ...september82026BlogPosts,
   ...august262026BlogPosts,
   ...august252026BlogPosts,
   ...august202026BlogPosts,
