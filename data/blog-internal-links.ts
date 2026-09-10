@@ -10,6 +10,56 @@ export type BlogInternalLink = {
  * par sujet afin de garder une destination utile et des ancres naturelles.
  */
 export const blogInternalLinks: Record<string, readonly BlogInternalLink[]> = {
+  "reglementation-trottinette-electrique-maroc-2026": [
+    { sectionIndex: 0, lead: "Pour replacer cette actualité dans la transformation des transports, consultez", href: "/blog/mobilite-durable-maroc-2026-transport-electrique/", label: "le dossier sur la mobilité durable au Maroc" },
+    { sectionIndex: 2, lead: "Pour les batteries amovibles de deux-roues, lisez aussi", href: "/blog/scooter-moto-electrique-maroc-recharge-securite/", label: "le guide de recharge des scooters électriques" },
+    { sectionIndex: 4, lead: "Si votre projet concerne une voiture rechargeable, découvrez", href: "/nos-produits/", label: "les solutions automobiles EVAtlas" },
+  ],
+  "borne-recharge-aeroport-maroc-stationnement-longue-duree": [
+    { sectionIndex: 0, lead: "Pour convertir l’énergie du trajet retour en durée, utilisez", href: "/simulateur/", label: "le simulateur EVAtlas par véhicule" },
+    { sectionIndex: 2, lead: "Pour préparer les applications, tarifs et moyens d’accès, consultez", href: "/blog/prix-paiement-roaming-borne-recharge-publique/", label: "le guide de la recharge publique" },
+    { sectionIndex: 3, lead: "Pour partir avec une solution principale à domicile, découvrez", href: "/nos-produits/autel-maxicharger/", label: "l’Autel MaxiCharger jusqu’à 22 kW" },
+  ],
+  "ferry-maroc-europe-voiture-electrique-preparation": [
+    { sectionIndex: 0, lead: "Pour construire l’ensemble de l’itinéraire avant et après la traversée, consultez", href: "/blog/voyage-voiture-electrique-maroc/", label: "le guide du voyage électrique au Maroc" },
+    { sectionIndex: 4, lead: "Pour vérifier l’énergie nécessaire avant le port, utilisez", href: "/simulateur/", label: "le simulateur de temps de recharge" },
+    { sectionIndex: 4, lead: "Pour organiser cette recharge sur votre stationnement, demandez", href: "/devis/#quote-form", label: "une étude personnalisée EVAtlas" },
+  ],
+  "remorque-caravane-voiture-electrique-maroc-autonomie-recharge": [
+    { sectionIndex: 1, lead: "Pour distinguer valeur d’homologation et consommation réelle, lisez", href: "/blog/autonomie-wltp-reelle-voiture-electrique-maroc/", label: "le guide de l’autonomie WLTP" },
+    { sectionIndex: 2, lead: "Pour intégrer également le relief marocain, consultez", href: "/blog/voiture-electrique-montagne-maroc-autonomie/", label: "le dossier de la conduite en montagne" },
+    { sectionIndex: 4, lead: "Pour transformer vos kWh en durée de charge, ouvrez", href: "/simulateur/", label: "le simulateur EVAtlas" },
+  ],
+  "accident-voiture-electrique-remorquage-securite-maroc": [
+    { sectionIndex: 1, lead: "Pour anticiper aussi la déclaration et les garanties, consultez", href: "/blog/assurance-voiture-electrique-maroc-2026/", label: "le guide de l’assurance automobile électrique" },
+    { sectionIndex: 3, lead: "Si le véhicule a été exposé à l’eau, lisez", href: "/blog/voiture-electrique-inondation-maroc-securite/", label: "les précautions après une inondation" },
+    { sectionIndex: 4, lead: "Pour une installation sans dommage et correctement dimensionnée, demandez", href: "/devis/#quote-form", label: "une étude technique EVAtlas" },
+  ],
+  "borne-recharge-bord-mer-maroc-corrosion-embruns": [
+    { sectionIndex: 1, lead: "Pour approfondir les indices et l’exposition climatique, consultez", href: "/blog/borne-recharge-exterieure-maroc/", label: "le guide de la borne extérieure" },
+    { sectionIndex: 4, lead: "Pour organiser les contrôles après la pose, lisez", href: "/blog/entretien-borne-recharge-maintenance/", label: "le guide d’entretien de la borne" },
+    { sectionIndex: 4, lead: "Pour faire documenter votre site côtier, demandez", href: "/devis/#quote-form", label: "un devis d’installation personnalisé" },
+  ],
+  "maison-secondaire-maroc-borne-recharge-gestion-distance": [
+    { sectionIndex: 1, lead: "Pour comprendre la modulation de puissance entre les appareils, consultez", href: "/blog/borne-recharge-intelligente-delestage/", label: "le guide du délestage intelligent" },
+    { sectionIndex: 2, lead: "Pour protéger comptes, accès et mises à jour, lisez", href: "/blog/cybersecurite-borne-recharge-connectee-maroc/", label: "les bonnes pratiques de cybersécurité" },
+    { sectionIndex: 4, lead: "Pour configurer une solution selon votre résidence, demandez", href: "/devis/#quote-form", label: "une étude EVAtlas" },
+  ],
+  "cable-borne-recharge-longueur-rangement-securite": [
+    { sectionIndex: 0, lead: "Pour inclure aussi le cheminement électrique depuis le tableau, consultez", href: "/blog/distance-tableau-borne-recharge-maroc/", label: "le guide de la distance tableau-borne" },
+    { sectionIndex: 2, lead: "Pour préserver un passage utilisable par tous, lisez", href: "/blog/borne-recharge-accessible-pmr-parking-maroc/", label: "le guide d’accessibilité du parking" },
+    { sectionIndex: 4, lead: "Pour positionner la borne autour de votre véhicule, demandez", href: "/devis/#quote-form", label: "une étude d’implantation EVAtlas" },
+  ],
+  "voiture-electrique-coffre-toit-porte-velos-autonomie": [
+    { sectionIndex: 0, lead: "Pour comprendre l’écart entre homologation et route réelle, consultez", href: "/blog/autonomie-wltp-reelle-voiture-electrique-maroc/", label: "le guide de l’autonomie WLTP" },
+    { sectionIndex: 3, lead: "Pour planifier aussi les arrêts et alternatives, lisez", href: "/blog/voyage-voiture-electrique-maroc/", label: "la méthode du voyage électrique au Maroc" },
+    { sectionIndex: 4, lead: "Pour estimer votre recharge avant le départ, utilisez", href: "/simulateur/", label: "le simulateur EVAtlas" },
+  ],
+  "recharge-automatique-sous-vehicule-iec-61851-26-2026": [
+    { sectionIndex: 0, lead: "Pour comparer avec une technologie réellement sans contact, consultez", href: "/blog/recharge-sans-fil-voiture-electrique-maroc/", label: "le dossier de la recharge par induction" },
+    { sectionIndex: 1, lead: "Pour suivre le cadre national en construction, lisez", href: "/blog/normes-marocaines-bornes-recharge-2026/", label: "l’analyse des normes marocaines" },
+    { sectionIndex: 4, lead: "Pour une solution AC disponible aujourd’hui, découvrez", href: "/nos-produits/autel-maxicharger/", label: "l’Autel MaxiCharger proposée par EVAtlas" },
+  ],
   "importer-voiture-electrique-maroc-compatibilite-recharge": [
     { sectionIndex: 0, lead: "Pour intégrer les taxes et formalités au budget global, consultez", href: "/blog/fiscalite-voiture-electrique-maroc-2026/", label: "le guide de la fiscalité automobile au Maroc" },
     { sectionIndex: 2, lead: "Pour identifier les standards de prise avant l’achat, lisez", href: "/blog/connecteur-type-2-ccs2-recharge-maroc/", label: "le comparatif Type 2 et CCS2" },
